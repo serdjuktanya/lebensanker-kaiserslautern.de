@@ -336,3 +336,4 @@ on(window, 'keydown', e => { if (e.key === 'Escape') toggleDrawer(false); });
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
 })();
+
