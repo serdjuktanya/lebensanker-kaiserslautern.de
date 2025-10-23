@@ -1900,28 +1900,36 @@ backdrop-filter: blur(3px);
 }
 
 /* Фон партнёрской секции */
+
 #partner {
   position: relative;
+  isolation: isolate;                 /* отдельный стек для псевдоэлемента */
   background: color-mix(in oklab, var(--beige) 35%, white);
-  isolation: isolate;
 }
 
 #partner::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: -1;                        /* под контентом секции, но ВНУТРИ неё */
+  pointer-events: none;
   background:
-    url("./img/partner-bg.jpg") center/250px repeat,
-    linear-gradient(to bottom, rgba(255,255,255,0.92), rgba(255,255,255,0.65) 50%, rgba(255,255,255,0.4));
-  opacity: 0.35;
+    url("./img/partner-bg.jpg") center/260px repeat,
+    linear-gradient(to bottom,
+      rgba(255,255,255,0.96) 0%,
+      rgba(255,255,255,0.72) 28%,
+      rgba(255,255,255,0.48) 60%,
+      rgba(255,255,255,0.20) 100%);
+  opacity: .38;                       /* сделай .45 если хочешь ярче */
   mix-blend-mode: multiply;
-  z-index: -1;
 }
 
-/* Мобильная версия — фон мягче */
-@media (max-width: 768px) {
-  #partner::before {
-    background-size: 200px;
-    opacity: 0.25;
-  }
+/* чуть мягче на мобильных */
+@media (max-width: 768px){
+  #partner::before { background-size: 220px; opacity: .28; }
+}
+
+/* в тёмной теме — без multiply, чтобы не «грязнил» */
+@media (prefers-color-scheme: dark){
+  #partner::before { mix-blend-mode: normal; opacity: .24; }
 }
