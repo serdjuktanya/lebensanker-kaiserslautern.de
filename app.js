@@ -700,3 +700,69 @@ on(window, 'keydown', e => { if (e.key === 'Escape') toggleDrawer(false); });
 
   partnerCards.forEach(card => io.observe(card));
 })();
+
+
+/* ===============================
+   feedback/reviews slider
+=============================== */
+
+(() => {
+  // Reveal badges on view
+  const host = document.querySelector('#reviews');
+  const badges = document.querySelectorAll('[data-reviews-badges] .review-badge');
+  if (badges.length) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          host.classList.add('reviews-in');
+          io.disconnect();
+        }
+      });
+    }, { threshold: .25 });
+    io.observe(host);
+  }
+
+  // Simple slider (auto + dots)
+  const viewport = document.getElementById('reviewsViewport');
+  const track    = document.getElementById('reviewsTrack');
+  const dotsWrap = document.getElementById('reviewsDots');
+  if (!viewport || !track) return;
+
+  const slides = Array.from(track.children);
+  let index = 0, timer, isHover = false;
+  const AUTOPLAY = true, INTERVAL = 5000;
+
+  function buildDots(){
+    dotsWrap.innerHTML = '';
+    slides.forEach((_, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', `Слайд ${i+1}`);
+      b.addEventListener('click', () => { index = i; render(true); restart(); });
+      dotsWrap.appendChild(b);
+    });
+  }
+
+  function render(animate=true){
+    const x = -(index * viewport.clientWidth);
+    track.style.transitionDuration = animate ? '600ms' : '0ms';
+    track.style.transform = `translateX(${x}px)`;
+    Array.from(dotsWrap.children).forEach((d, i) =>
+      d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+  }
+
+  function next(){ index = (index + 1) % slides.length; render(true); }
+  function start(){ if (!AUTOPLAY) return; stop(); timer = setInterval(() => { if (!isHover && document.visibilityState==='visible') next(); }, INTERVAL); }
+  function stop(){ if (timer) clearInterval(timer); }
+  function restart(){ stop(); start(); }
+
+  viewport.addEventListener('mouseenter', () => { isHover = true; });
+  viewport.addEventListener('mouseleave', () => { isHover = false; });
+  window.addEventListener('resize', () => render(false), { passive:true });
+  document.addEventListener('visibilitychange', () => document.visibilityState==='hidden' ? stop() : start());
+
+  // init
+  buildDots();
+  render(false);
+  start();
+})();

@@ -1933,3 +1933,74 @@ backdrop-filter: blur(3px);
 @media (prefers-color-scheme: dark){
   #partner::before { mix-blend-mode: normal; opacity: .24; }
 }
+
+   
+
+
+
+/* ---- feedback ---- */
+#reviews{
+  position:relative; isolation:isolate;
+  background: color-mix(in oklab, var(--beige) 40%, white);
+}
+#reviews::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(185,146,106,.12), rgba(185,146,106,0) 45%),
+    radial-gradient(900px 220px at 50% -60px, rgba(255,255,255,.9), transparent 70%);
+  opacity:.8;
+}
+#reviews > *{ position:relative; z-index:1; }
+
+/* ---- Badges (Google / ProvenExpert) ---- */
+.review-badge{
+  background:#fff; border:1px solid rgba(0,0,0,.06);
+  border-radius:18px; padding:18px 18px 16px;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  opacity:0; transform: translateY(12px); /* для плавного появления */
+}
+.review-badge__head{ display:flex; align-items:center; gap:.75rem; margin-bottom:.35rem; }
+.review-badge__text{ color:#475569; margin:.35rem 0 .5rem; }
+.review-badge__stars{ letter-spacing:2px; color:var(--camel); font-size:1.05rem; }
+.review-badge:hover{
+  transform: translateY(-3px);
+  box-shadow:0 12px 28px rgba(16,24,40,.12);
+  border-color: color-mix(in oklab, var(--mint) 26%, transparent);
+}
+.dark .review-badge{ background:var(--card); border-color:var(--line); box-shadow:0 8px 24px rgba(0,0,0,.24); }
+.dark .review-badge__text{ color:#cbd5e1; }
+
+/* ---- Hero slider ---- */
+.review-viewport{ position:relative; overflow:hidden; max-width:980px; margin:0 auto; }
+.review-track{ display:flex; gap:24px; will-change:transform; transition: transform .6s cubic-bezier(.22,.61,.36,1); }
+.review-hero{
+  position:relative; flex:0 0 100%;
+  border-radius:20px; overflow:hidden; background:#0b0b0b;
+  box-shadow:0 8px 24px rgba(0,0,0,.10);
+}
+.review-hero__img{ width:100%; height:360px; object-fit:cover; display:block; filter: saturate(.98); }
+.review-hero__cap{
+  position:absolute; inset-inline:0; bottom:0;
+  display:grid; gap:.5rem;
+  padding:18px 18px 16px; color:#fff;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 48%, rgba(0,0,0,.9) 100%);
+  text-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+.review-hero__cap blockquote{ font-size:1.05rem; line-height:1.5; }
+.review-hero__who{ opacity:.9; font-size:.95rem; }
+@media (max-width:640px){ .review-hero__img{ height:300px; } .review-hero__cap blockquote{ font-size:1rem; } }
+
+/* Dots */
+.review-dots{ display:flex; justify-content:center; gap:8px; margin:12px auto 0; }
+.review-dots button{
+  width:8px; height:8px; border-radius:999px; border:0;
+  background: color-mix(in oklab, var(--mint) 35%, #ffffff);
+  opacity:.55; transition: width .25s, opacity .25s, transform .2s, background-color .25s;
+}
+.review-dots button[aria-current="true"]{ width:26px; opacity:1; background:var(--mint); }
+.review-dots button:hover{ transform: scale(1.1); }
+
+/* reveal on view */
+.reviews-in .review-badge{ opacity:1; transform:none; transition:opacity .6s, transform .6s; }
+
