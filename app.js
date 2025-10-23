@@ -340,90 +340,211 @@ on(window, 'keydown', e => { if (e.key === 'Escape') toggleDrawer(false); });
 
 
 
-/*  Наш мини-скрипт для карусели (без зависимостей) */
+/* скрипт для карусели (слайдеров) */
 
+
+/* ===============================
+   Unser Team — Carousel (final)
+   – без «хвоста», с автопрокруткой,
+     точками, arrows, swipe/drag
+=============================== */
 (() => {
-  const track = document.getElementById('teamTrack');
-  const viewport = document.getElementById('teamViewport');
-  const prev = document.getElementById('teamPrev');
-  const next = document.getElementById('teamNext');
-  const dotsWrap = document.getElementById('teamDots');
-  if (!track || !viewport) return;
+  // ── 1) Захватываем элементы (поддержка двух вариантов разметки)
+  const viewport =
+    document.getElementById('teamViewport') ||
+    document.querySelector('#team .team-wrap');
+  const track =
+    document.getElementById('teamTrack') ||
+    viewport?.querySelector('.team-track');
+  const prevBtn =
+    document.getElementById('teamPrev') ||
+    viewport?.querySelector('.team-prev');
+  const nextBtn =
+    document.getElementById('teamNext') ||
+    viewport?.querySelector('.team-next');
+  const dotsWrap =
+    document.getElementById('teamDots') ||
+    viewport?.querySelector('.team-dots');
+
+  if (!viewport || !track) return;
 
   const slides = Array.from(track.children);
-  let index = 0;
-  let timer;
-  let isHover = false;
 
-  // создаём точки
-  slides.forEach((_, i) => {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.className =
-      'w-2.5 h-2.5 rounded-full border border-[var(--early)]/30 aria-[current=true]:w-6 aria-[current=true]:bg-[var(--mint)] aria-[current=true]:border-[var(--mint)] transition-[width,background]';
-    b.setAttribute('aria-label', 'Slide ' + (i+1));
-    b.addEventListener('click', () => go(i, true));
-    dotsWrap.appendChild(b);
-  });
-  const dots = Array.from(dotsWrap.children);
+  // ── 2) Вспомогательные расчёты
+  const getGap = () => parseFloat(getComputedStyle(track).gap || 0);
 
-  function slideWidth() {
-    // ширина с учётом gap
-    const first = slides[0];
-    return first.getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap || 0);
-  }
-
-  function visiblePerView() {
+  const perView = () => {
     const w = viewport.clientWidth;
-    if (w >= 1024) return 4;
-    if (w >= 768)  return 3;
-    if (w >= 640)  return 2;
-    return 1;
+    if (w <= 640)  return 1;
+    if (w <= 1024) return 2;
+    return 3;
+  };
+
+  const stepWidth = () => {
+    const first = slides[0];
+    return first ? first.getBoundingClientRect().width + getGap() : 0;
+  };
+
+  const maxScroll = () => {
+    const total = track.scrollWidth;    // вся лента
+    const view  = viewport.clientWidth; // видимое окно
+    return Math.max(0, total - view);
+  };
+
+  // «страница» = один шаг по карточке; для точек считаем по страницам
+  const pageCount = () => Math.max(1, slides.length - perView() + 1);
+
+  // ── 3) Состояние
+  let index = 0;           // страничный индекс (0…pageCount-1)
+  let autoplayTimer = null;
+  let isHover = false;
+  let isDragging = false;
+  let dragStartX = 0;
+  let dragStartOffset = 0;
+
+  // ── 4) Точки
+  function buildDots() {
+    if (!dotsWrap) return;
+    dotsWrap.innerHTML = '';
+    for (let i = 0; i < pageCount(); i++) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'dot';
+      b.setAttribute('aria-label', `Slide ${i + 1}`);
+      b.addEventListener('click', () => goTo(i, true));
+      dotsWrap.appendChild(b);
+    }
+  }
+  const updateDots = () => {
+    if (!dotsWrap) return;
+    const dots = Array.from(dotsWrap.children);
+    dots.forEach((d, i) =>
+      d.classList.toggle('dot--active', i === index)
+    );
+  };
+
+  // ── 5) Перерисовка
+  function clampIndex(i) {
+    const max = pageCount() - 1;
+    return Math.min(Math.max(0, i), max);
+  }
+  function render() {
+    index = clampIndex(index);
+    const desired = index * stepWidth();
+    const offset  = Math.min(desired, maxScroll());
+    track.style.transform = `translateX(${-offset}px)`;
+
+    // блокируем стрелки на краях (если нет зацикливания)
+    prevBtn?.toggleAttribute('disabled', index <= 0);
+    nextBtn?.toggleAttribute('disabled', index >= pageCount() - 1);
+
+    updateDots();
   }
 
-  function go(i, manual=false) {
-    const maxIndex = Math.max(0, slides.length - visiblePerView());
-    index = Math.max(0, Math.min(maxIndex, i));
-    const x = -index * slideWidth();
-    track.style.transform = `translateX(${x}px)`;
-    dots.forEach((d, di) => d.setAttribute('aria-current', di === index ? 'true' : 'false'));
-    if (manual) restart();
+  // ── 6) Переходы
+  function goTo(i, manual = false) {
+    index = clampIndex(i);
+    render();
+    if (manual) restartAutoplay();
+  }
+  const goPrev = () => goTo(index - 1, true);
+  const goNext = () => goTo(index + 1, true);
+
+  // ── 7) Автопрокрутка (зацикленная)
+  function tick() {
+    const last = pageCount() - 1;
+    index = index >= last ? 0 : index + 1;  // loop
+    render();
+  }
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(() => {
+      if (!isHover && document.visibilityState === 'visible' && !isDragging) {
+        tick();
+      }
+    }, 4000);
+  }
+  function stopAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    autoplayTimer = null;
+  }
+  function restartAutoplay() {
+    stopAutoplay();
+    startAutoplay();
   }
 
-  function nextAuto() {
-    const maxIndex = Math.max(0, slides.length - visiblePerView());
-    if (index >= maxIndex) go(0); else go(index + 1);
+  // ── 8) Навигация: кнопки
+  prevBtn?.addEventListener('click', goPrev);
+  nextBtn?.addEventListener('click', goNext);
+
+  // ── 9) Hover/focus/visibility
+  viewport.addEventListener('mouseenter', () => (isHover = true));
+  viewport.addEventListener('mouseleave', () => (isHover = false));
+  viewport.addEventListener('focusin', stopAutoplay);
+  viewport.addEventListener('focusout', startAutoplay);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState !== 'visible') stopAutoplay();
+    else startAutoplay();
+  });
+
+  // ── 10) Клавиатура
+  viewport.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') { e.preventDefault(); goPrev(); }
+    if (e.key === 'ArrowRight'){ e.preventDefault(); goNext(); }
+  });
+  // делаем контейнер фокусируемым для клавиш
+  viewport.tabIndex = viewport.tabIndex || 0;
+
+  // ── 11) Swipe / Drag
+  const pointerId = { id: null };
+  function onPointerDown(e) {
+    if (pointerId.id !== null) return;
+    pointerId.id = e.pointerId ?? 'mouse';
+    isDragging = true;
+    dragStartX = e.clientX;
+    // Текущая transform X
+    const m = /translateX\((-?\d+\.?\d*)px\)/.exec(getComputedStyle(track).transform);
+    dragStartOffset = m ? parseFloat(m[1]) : 0;
+    track.style.transition = 'none';
+    viewport.setPointerCapture?.(e.pointerId);
   }
-
-  function start() {
-    clearInterval(timer);
-    timer = setInterval(() => { if (!isHover && document.visibilityState === 'visible') nextAuto(); }, 3800);
+  function onPointerMove(e) {
+    if (!isDragging || (e.pointerId !== undefined && e.pointerId !== pointerId.id)) return;
+    const dx = e.clientX - dragStartX;
+    const desired = -(index * stepWidth()) + dx;
+    // ограничиваем реальным диапазоном прокрутки
+    const min = -maxScroll();
+    const max = 0;
+    const clamped = Math.max(min - 60, Math.min(max + 60, desired)); // с упругостью
+    track.style.transform = `translateX(${clamped}px)`;
   }
-  function stop() { clearInterval(timer); }
-  function restart() { stop(); start(); }
-
-  // кнопки
-  prev?.addEventListener('click', () => go(index - 1, true));
-  next?.addEventListener('click', () => go(index + 1, true));
-
-  // пауза на hover/focus
-  viewport.addEventListener('mouseenter', () => { isHover = true; });
-  viewport.addEventListener('mouseleave', () => { isHover = false; });
-  viewport.addEventListener('focusin', stop);
-  viewport.addEventListener('focusout', start);
-
-  // ресайз
-  let ro;
-  const onResize = () => { go(index); };
-  window.addEventListener('resize', onResize);
-  if ('ResizeObserver' in window) {
-    ro = new ResizeObserver(onResize);
-    ro.observe(viewport);
+  function onPointerUp(e) {
+    if (e.pointerId !== undefined && e.pointerId !== pointerId.id) return;
+    track.style.transition = ''; // вернуть плавность
+    // порог свайпа
+    const dx = e.clientX - dragStartX;
+    const threshold = Math.max(40, stepWidth() * 0.18);
+    if (dx > threshold)      goPrev();
+    else if (dx < -threshold) goNext();
+    else render(); // откат
+    isDragging = false;
+    pointerId.id = null;
+    viewport.releasePointerCapture?.(e.pointerId);
   }
+  viewport.addEventListener('pointerdown', onPointerDown);
+  window.addEventListener('pointermove', onPointerMove, { passive: true });
+  window.addEventListener('pointerup', onPointerUp);
 
-  // init
-  go(0);
-  start();
+  // ── 12) Ресайз (и пересборка точек)
+  const onResize = () => {
+    buildDots();
+    render();
+  };
+  window.addEventListener('resize', onResize, { passive: true });
+  if ('ResizeObserver' in window) new ResizeObserver(onResize).observe(viewport);
+
+  // ── 13) Инициализация
+  buildDots();
+  render();
+  startAutoplay();
 })();
-
-

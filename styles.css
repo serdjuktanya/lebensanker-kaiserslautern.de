@@ -1,4 +1,4 @@
-    /* =======================
+/* =======================
     Brand palette / Theme
     ======================= */
     :root{
@@ -1101,3 +1101,52 @@
   .dot{ transition: none }
 }
  
+
+/* Контейнер и трек */
+.team-wrap { position:relative; max-width:1120px; margin:28px auto 10px; padding:0 56px; }
+.team-track{
+  display:flex;
+  gap:24px;                 /* единый gap */
+  flex-wrap:nowrap;         /* не переносить! */
+  will-change:transform;
+  transition:transform .45s cubic-bezier(.22,.61,.36,1);
+  overflow:hidden;
+}
+
+/* Слайд: 3 / 2 / 1 на экранах */
+.team-slide{ 
+  position:relative; overflow:hidden; border-radius:18px; background:#000;
+  flex:0 0 calc((100% - 2*24px)/3);   /* 3 карточки за раз */
+  box-shadow:0 8px 24px rgba(0,0,0,.06);
+}
+@media (max-width:1024px){ .team-slide{ flex-basis: calc((100% - 24px)/2); } } /* 2 */
+@media (max-width:640px){  .team-slide{ flex-basis: 100%; } }                  /* 1 */
+
+.team-slide img{ width:100%; height:420px; object-fit:cover; display:block; }
+.team-slide figcaption{
+  position:absolute; left:0; right:0; bottom:0; padding:14px 16px; color:#fff;
+  background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 60%, rgba(0,0,0,.78) 100%);
+}
+.team-slide figcaption strong{ display:block; font-weight:700; }
+.team-slide figcaption span{ opacity:.92; font-size:.95rem; }
+
+/* Стрелки и точки — как у тебя было */
+.team-nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:44px; height:44px; border-radius:50%;
+  display:grid; place-items:center;
+  background:#fff; border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 6px 18px rgba(0,0,0,.12); z-index:2;
+}
+.team-prev{ left:12px; } .team-next{ right:12px; }
+
+.team-dots{ display:flex; justify-content:center; gap:8px; margin:12px auto 0; }
+.team-dots button{
+  width:8px; height:8px; border-radius:999px; border:none; background:rgba(0,0,0,.18);
+  transition:all .25s ease;
+}
+.team-dots button[aria-current="true"]{ width:26px; background:var(--mint); }
+
+#team .team-slide figcaption{
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 60%, rgba(0,0,0,.78) 100%);
+}
