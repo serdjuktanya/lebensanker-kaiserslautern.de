@@ -438,22 +438,71 @@
 </section>
 
 
-  <!-- Kooperationspartner -->
-  <section id="partner" class="section section-tint" aria-labelledby="partnerTitle">
-    <div class="wave wave-top" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" class="text-[var(--body)]" fill="currentColor"><path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"/></svg>
-    </div>
-    <div class="fade-in max-w-7xl mx-auto px-4 text-center">
-      <h2 id="partnerTitle" class="text-3xl font-bold mb-6">Kooperationspartner</h2>
-      <p class="max-w-3xl mx-auto mb-6 text-slate-600 dark:text-slate-300">Zusammenarbeit mit Hausärzten, Kliniken, Pflegekassen und sozialen Trägern – für schnelle, klare Wege in der Versorgung.</p>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 opacity-90 items-stretch">
-        <div class="card" aria-label="Partner-Logo Platzhalter"><div class="h-12 w-full bg-[var(--pistage)] rounded"></div></div>
-        <div class="card" aria-label="Partner-Logo Platzhalter"><div class="h-12 w-full bg-[var(--pistage)] rounded"></div></div>
-        <div class="card" aria-label="Partner-Logo Platzhalter"><div class="h-12 w-full bg-[var(--pistage)] rounded"></div></div>
-        <div class="card" aria-label="Partner-Logo Platzhalter"><div class="h-12 w-full bg-[var(--pistage)] rounded"></div></div>
+ <!-- Kooperationspartner -->
+<section
+  id="partner"
+  class="section relative py-16 md:py-20 overflow-hidden"
+  aria-labelledby="partnerTitle"
+>
+  <!-- Верхняя волна -->
+  <div class="wave wave-top" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none"
+         class="text-[var(--body)]" fill="currentColor">
+      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
+    </svg>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 text-center relative z-[1]">
+    <header class="mb-10">
+      <h2 id="partnerTitle" class="text-4xl font-bold text-[var(--calm)] tracking-tight mb-3">
+        Kooperationspartner
+      </h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto text-lg">
+        Gemeinsam stark – mit unseren regionalen und überregionalen Partnern für eine verlässliche Versorgung.
+      </p>
+    </header>
+
+    <!-- Логотипы -->
+    <div
+      class="partner-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3
+             gap-6 md:gap-8 lg:gap-10 justify-items-center items-center mx-auto max-w-6xl"
+      data-partner-grid
+    >
+      <div class="partner-card">
+        <img src="./img/internationale-hauptbahnhof-apotheke-logo.png"
+             alt="Internationale Hauptbahnhof Apotheke" class="partner-logo">
+      </div>
+      <div class="partner-card">
+        <img src="./img/Profi Gesundheits-Service-logo.png"
+             alt="Profi Gesundheits-Service" class="partner-logo">
+      </div>
+      <div class="partner-card">
+        <img src="./img/kochwerk.png"
+             alt="Kochwerk Kaiserslautern" class="partner-logo">
+      </div>
+      <div class="partner-card">
+        <img src="./img/bienen-apotheke-logo-1.png"
+             alt="Bienen Apotheke Kaiserslautern" class="partner-logo">
+      </div>
+      <div class="partner-card">
+        <img src="./img/radio-nrj-logo.png"
+             alt="NRJ Radio Kaiserslautern" class="partner-logo">
+      </div>
+      <div class="partner-card">
+        <img src="./img/bpa-logo-1.png"
+             alt="BPA Bundesverband Pflege" class="partner-logo">
       </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Нижняя волна -->
+  <div class="wave wave-bottom rotate-180 mt-10" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"
+         preserveAspectRatio="none" class="text-white" fill="currentColor">
+      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
+    </svg>
+  </div>
+</section>
 
   <!-- News -->
   <section id="news" class="section" aria-labelledby="blogTitle" style="background:color-mix(in oklab, var(--beige) 45%, transparent);">
@@ -632,7 +681,7 @@
       </div>
       <div>
         <h4 class="font-semibold mb-3">Sprachen</h4>
-        <p>DEU · RUS · UKR · ENG · ARA</p>
+        <p>DEU · RUS · ENG </p>
       </div>
     </div>
     <p class="text-center mt-8 text-white/70">© 2025 Lebensanker Pflegestützpunkt GmbH</p>

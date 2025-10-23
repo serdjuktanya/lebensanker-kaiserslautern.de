@@ -1733,3 +1733,195 @@ backdrop-filter: blur(3px);
 .chip {
     color: grey;
 }
+
+
+/* ============================
+   Kooperationspartner — CLEAN
+   (namespaced под #partner)
+============================ */
+
+/* Сетка */
+#partner .partner-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(1.4rem, 2vw, 2.2rem);
+  justify-items: center;
+  align-items: center;
+  padding-block: clamp(1.2rem, 3vw, 2.4rem);
+}
+
+/* Карточка */
+#partner .partner-card {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+  height: 150px;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 4px 12px rgba(0,0,0,.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  /* reveal */
+  opacity: 0;
+  transform: translateY(26px) scale(.97);
+  transition:
+    opacity .6s ease,
+    transform .6s cubic-bezier(.22,.61,.36,1),
+    box-shadow .35s ease, border-color .35s ease, filter .35s ease;
+  will-change: transform, opacity;
+}
+
+/* Показ при входе в вьюпорт */
+#partner .partner-card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Логотип */
+#partner .partner-logo {
+  display: block;
+  max-width: 86%;
+  max-height: 76%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+
+  /* лёгкое дыхание */
+  --pulse: 1;
+  --hover: 1;
+  transform: scale(calc(var(--pulse) * var(--hover)));
+  filter: saturate(.95) brightness(.98);
+  transition: filter .35s ease, box-shadow .35s ease;
+  animation: partnerPulse 2.6s ease-in-out infinite;
+}
+
+/* Hover — подъём и «мятая» аура */
+#partner .partner-card:is(:hover, :focus-within) {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 26px rgba(0,0,0,.10);
+  border-color: rgba(0,0,0,.10);
+}
+#partner .partner-card:is(:hover, :focus-within)::after {
+  content: "";
+  position: absolute; inset: 0; border-radius: 20px;
+  box-shadow: 0 0 28px 8px color-mix(in oklab, var(--mint) 40%, transparent);
+  pointer-events: none;
+  opacity: .75;
+}
+#partner .partner-card:is(:hover, :focus-within) .partner-logo {
+  --hover: 1.08;
+  filter: saturate(1.1) brightness(1.06) contrast(1.05);
+}
+
+/* Пульс логотипа (аккуратно) */
+@keyframes partnerPulse {
+  0%, 100% { --pulse: 1; }
+  50%      { --pulse: 1.05; }
+}
+
+/* Респонсив */
+@media (max-width: 768px) {
+  #partner .partner-card { height: 130px; max-width: 240px; }
+}
+@media (max-width: 480px) {
+  #partner .partner-card { height: 120px; max-width: 200px; }
+}
+
+/* Предпочтение без анимаций */
+@media (prefers-reduced-motion: reduce) {
+  #partner .partner-card,
+  #partner .partner-logo {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============================
+   Fix layout: 3×3 Partner Grid
+============================ */
+#partner .partner-grid {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 2rem;
+  /* По умолчанию — мобильная версия: 1 колонка */
+  grid-template-columns: 1fr;
+}
+
+/* ≥640px (планшет): 2 колонки */
+@media (min-width: 640px) {
+  #partner .partner-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ≥1024px (десктоп): 3 колонки */
+@media (min-width: 1024px) {
+  #partner .partner-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+#partner .partner-card {
+  margin-inline: auto;
+}
+
+/* Partner section background polish */
+#partner {
+  position: relative;
+  isolation: isolate;            /* чтобы псевдо-элемент не протекал наружу */
+  background: color-mix(in oklab, var(--beige) 35%, white);
+}
+
+#partner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  /* слои: 1) паттерн, 2) мягкий градиент сверху, 3) еле-заметный vignette */
+  background:
+    url("./img/partner-bg.jpg") center/260px repeat,
+    linear-gradient(to bottom, rgba(255,255,255,.9) 0%, rgba(255,255,255,.65) 28%, rgba(255,255,255,.4) 60%, rgba(255,255,255,.0) 100%),
+    radial-gradient(1200px 300px at 50% -80px, rgba(255,255,255,.9), transparent 70%);
+  opacity:.28;                   /* сила паттерна */
+  mix-blend-mode:multiply;       /* чтобы не вырывалось по цвету */
+  z-index:-1;
+}
+
+/* чуть тише на мобильных и в тёмной теме */
+@media (max-width: 768px){
+  #partner::before { opacity:.22; background-size: 220px, auto, auto; }
+}
+@media (prefers-color-scheme: dark){
+  #partner::before { opacity:.20; mix-blend-mode:normal; }
+}
+
+/* Фон партнёрской секции */
+#partner {
+  position: relative;
+  background: color-mix(in oklab, var(--beige) 35%, white);
+  isolation: isolate;
+}
+
+#partner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    url("./img/partner-bg.jpg") center/250px repeat,
+    linear-gradient(to bottom, rgba(255,255,255,0.92), rgba(255,255,255,0.65) 50%, rgba(255,255,255,0.4));
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  z-index: -1;
+}
+
+/* Мобильная версия — фон мягче */
+@media (max-width: 768px) {
+  #partner::before {
+    background-size: 200px;
+    opacity: 0.25;
+  }
+}
