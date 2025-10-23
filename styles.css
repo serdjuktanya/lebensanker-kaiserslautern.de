@@ -1387,3 +1387,179 @@
 
 -webkit-backdrop-filter: blur(3px);
 backdrop-filter: blur(3px);
+
+.team-card{
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 6px 24px rgba(20,25,20,.12), 0 1px 0 rgba(255,255,255,.25) inset;
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.03));
+}
+.team-card img{ transition: transform .5s ease; }
+.team-card:hover img{ transform: scale(1.03); }
+
+.team-caption{
+  position:absolute; inset-inline:0; bottom:0;
+  padding:14px 16px;
+  color:#fff;
+  background: linear-gradient(0deg, rgba(0,0,0,.55), rgba(0,0,0,0));
+}
+.team-role{
+  display:inline-flex; align-items:center; gap:6px;
+  margin-top:4px; padding:6px 10px; font-size:12px;
+  border-radius:999px; background:rgba(255,255,255,.14);
+  backdrop-filter: blur(6px);
+}
+.team-nav{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:space-between;
+  pointer-events:none;
+}
+.team-btn{
+  pointer-events:auto; width:40px; height:40px; border-radius:999px;
+  background:rgba(33,41,36,.9); color:#fff; border:1px solid rgba(255,255,255,.12);
+  display:grid; place-items:center; box-shadow:0 6px 18px rgba(0,0,0,.18);
+  transition: transform .2s ease, background .2s ease;
+}
+.team-btn:hover{ transform:scale(1.06); background:rgba(33,41,36,1); }
+
+@media (max-width:640px){ .team-btn{ width:36px; height:36px; } }
+/* Точки */
+#teamDots button{
+  width:28px; height:8px; border-radius:999px; border:1px solid rgba(0,0,0,.08);
+  background:rgba(0,0,0,.08); transition: width .25s ease, background .25s ease;
+}
+#teamDots button[aria-current="true"]{
+  width:42px; background:var(--mint); border-color:transparent;
+}
+
+.team-card img{ object-position: 50% 30%; }
+
+#team{
+  background:
+    radial-gradient(1200px 300px at 50% 0, rgba(255,255,255,.9), rgba(255,255,255,0)) ,
+    color-mix(in oklab, var(--beige) 45%, transparent);
+}
+
+/* --- Team carousel navigation --- */
+.team-nav {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.team-btn {
+  pointer-events: auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(33, 41, 36, .9);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, .12);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .18);
+  transition: transform .25s ease, background .25s ease;
+}
+
+.team-btn:hover {
+  transform: scale(1.06);
+  background: rgba(33, 41, 36, 1);
+}
+
+@media (max-width: 640px) {
+  .team-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Team — плавный fade во время перелистывания */
+#team #teamTrack{
+  transition: transform .6s cubic-bezier(.22,.61,.36,1), opacity .18s ease;
+  will-change: transform, opacity;
+}
+#team .is-fading #teamTrack{ opacity:.0; }          /* быстрая затухания перед сдвигом */
+#team .is-fading-soft #teamTrack{ opacity:.88; }     /* лёгкий «смягчитель» во время скролла */
+
+/* Больше воздуха (если ещё не выставлено) */
+#team #teamTrack{ gap:28px; } /* соответствует gap-7 */
+#team{ padding-top:4rem; padding-bottom:5rem; } /* py-16 md:py-20 (чуть больше внизу) */
+
+@media (min-width:768px){
+  #team{ padding-top:4.5rem; padding-bottom:5.5rem; }
+}
+
+/* ====== Team: инерция движения (blur/desaturate) + микро-параллакс подписи ====== */
+#team #teamTrack img{
+  transition: transform .6s cubic-bezier(.22,.61,.36,1),
+              filter .45s ease;
+  will-change: transform, filter;
+}
+#team #teamTrack figure{
+  overflow: hidden; /* чтобы масштаб не «выпирал» */
+}
+
+/* подпись — будем слегка сдвигать во время движения */
+#team #teamTrack figure figcaption{
+  transform: translateY(0);
+  transition: transform .6s cubic-bezier(.22,.61,.36,1),
+              opacity .3s ease;
+  will-change: transform, opacity;
+}
+
+/* состояние «движется»: включаем лёгкий зум, десатурацию и мягкий blur */
+#team .is-moving #teamTrack img{
+  transform: scale(1.03);
+  filter: saturate(.55) contrast(.96) brightness(.98) blur(1px);
+}
+
+/* подпись опускаем на пару пикселей — эффект параллакса */
+#team .is-moving #teamTrack figure figcaption{
+  transform: translateY(10px);
+  opacity: .98;
+}
+
+/* во время короткого pre-fade можно чуть сильнее смягчить */
+#team .is-fading #teamTrack img{
+  filter: saturate(.45) contrast(.94) brightness(.97) blur(1.2px);
+}
+
+/* уважение к reduce motion */
+@media (prefers-reduced-motion: reduce){
+  #team #teamTrack img,
+  #team #teamTrack figure figcaption{ transition: none !important; }
+  #team .is-moving #teamTrack img{ transform:none; filter:none; }
+  #team .is-fading #teamTrack img{ filter:none; }
+}
+
+/* ============ Team ambient zoom/parallax ============ */
+#team{
+  position: relative;
+  --team-zoom: 1;      /* управляется JS */
+  --team-glow: 0;      /* управляется JS */
+}
+#team::before{
+  content:"";
+  position:absolute; inset:-6% -2%;
+  z-index:0; pointer-events:none;
+  /* лёгкая «атмосфера» за карточками */
+  background:
+    radial-gradient(120% 100% at 50% 100%, rgba(185,146,106,.14), rgba(185,146,106,0) 60%),
+    radial-gradient(120% 120% at 0% 0%, rgba(140,148,120,.18), transparent 55%);
+  transform: scale(var(--team-zoom));
+  filter:
+    saturate(calc(1 + var(--team-glow)))
+    blur(calc(var(--team-glow) * 2px));
+  transition: transform .35s ease, filter .35s ease;
+}
+/* чтобы контент был выше фоновой «атмосферы» */
+#team > *{ position: relative; z-index: 1; }
+
+/* уважение к reduced motion */
+@media (prefers-reduced-motion: reduce){
+  #team::before{ transition: none !important; }
+}

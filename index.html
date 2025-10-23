@@ -285,94 +285,84 @@
   <!-- Unser Team Section -->
 
 
-<section id="team" class="section relative" aria-labelledby="teamTitle">
-  <!-- верхняя белая волна -->
+
+<section id="team" class="section relative py-16 md:py-20 bg-[color-mix(in_oklab,var(--beige)_30%,transparent)]" aria-labelledby="teamTitle">
+
+  <!-- Верхняя белая волна -->
   <div class="wave wave-top" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 1440 120"
-         preserveAspectRatio="none"
-         class="text-white/95"
-         fill="currentColor">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" class="text-white" fill="currentColor">
       <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
     </svg>
   </div>
 
-  
-  
-
   <div class="max-w-7xl mx-auto px-4">
-    <header class="text-center mb-8 fade-in">
-      <h2 id="teamTitle" class="text-3xl font-bold">Unser Team</h2>
-      <p class="text-slate-600 dark:text-slate-300 mt-2">Pflege, Pädagogik &amp; Therapie – gemeinsam für Sie da.</p>
+    <header class="text-center mb-10 fade-in">
+      <h2 id="teamTitle" class="text-4xl font-bold text-[var(--calm)] tracking-tight">Unser Team</h2>
+      <p class="text-slate-600 dark:text-slate-300 mt-3 text-lg">Pflege, Pädagogik &amp; Therapie – gemeinsam für Sie da.</p>
     </header>
 
-    <!-- Carousel -->
-    <div class="relative select-none" role="group" aria-roledescription="carousel" aria-label="Unser Team">
+    <!-- Карусель -->
+    <div class="relative select-none" role="region" aria-roledescription="carousel" aria-label="Unser Team">
       <!-- Viewport -->
-      <div id="teamViewport"
-           class="overflow-hidden rounded-2xl"
-           role="group"
-           aria-label="Team-Fotos">
-        <ul id="teamTrack"
-            class="flex gap-5 will-change-transform"
-            style="transform: translateX(0); transition: transform .6s cubic-bezier(.22,.61,.36,1);">
-          <!-- СЛАЙД 1 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%] fade-in" data-index="0">
-            <figure class="relative overflow-hidden rounded-2xl shadow">
-              <!-- путь на фото -->
-              <img src="./img/team-1.jpg" alt="Mitarbeiterin Anna, Pflegefachkraft" class="w-full h-[320px] object-cover">
-              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-4 text-white">
-                <strong class="block text-base">Kristina K.</strong>
+      <div id="teamViewport" class="overflow-hidden rounded-3xl shadow-inner" aria-live="polite">
+        <ul id="teamTrack" class="flex gap-7 will-change-transform transition-transform duration-700 ease-[cubic-bezier(.22,.61,.36,1)]">
+          
+          <!-- СЛАЙД -->
+          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31%] lg:basis-[23.5%]">
+            <figure class="relative overflow-hidden rounded-3xl shadow-lg group">
+              <img src="./img/team-1.jpg" alt="Mitarbeiterin Kristina" class="w-full h-[340px] object-cover transform group-hover:scale-[1.05] transition duration-700">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent p-5 text-white">
+                <strong class="block text-base font-semibold">Kristina K.</strong>
                 <span class="text-white/85 text-sm">Pflegeleiterin</span>
               </figcaption>
             </figure>
           </li>
-          <!-- СЛАЙД 2 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%] fade-in" data-index="1">
-            <figure class="relative overflow-hidden rounded-2xl shadow">
-              <img src="./img/team-2.jpg" alt="Mitarbeiter Jonas, Gesundheits- und Krankenpfleger" class="w-full h-[320px] object-cover">
-              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-4 text-white">
-                <strong class="block text-base">Jonas R.</strong>
-                <span class="text-white/85 text-sm">Gesundheits- und Krankenpfleger</span>
+
+          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31%] lg:basis-[23.5%]">
+            <figure class="relative overflow-hidden rounded-3xl shadow-lg group">
+              <img src="./img/team-2.jpg" alt="Mitarbeiter Jonas" class="w-full h-[340px] object-cover transform group-hover:scale-[1.05] transition duration-700">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent p-5 text-white">
+                <strong class="block text-base font-semibold">Jonas R.</strong>
+                <span class="text-white/85 text-sm">Gesundheits- & Krankenpfleger</span>
               </figcaption>
             </figure>
           </li>
-          <!-- СЛАЙД 3 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%] fade-in" data-index="2">
-            <figure class="relative overflow-hidden rounded-2xl shadow">
-              <img src="./img/team-3.jpg" alt="Mitarbeiterin Leyla, APP – Ambulante psychiatrische Pflege" class="w-full h-[320px] object-cover">
-              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-4 text-white">
-                <strong class="block text-base">Leyla K.</strong>
+
+          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31%] lg:basis-[23.5%]">
+            <figure class="relative overflow-hidden rounded-3xl shadow-lg group">
+              <img src="./img/team-3.jpg" alt="Mitarbeiterin Leyla" class="w-full h-[340px] object-cover transform group-hover:scale-[1.05] transition duration-700">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent p-5 text-white">
+                <strong class="block text-base font-semibold">Leyla K.</strong>
                 <span class="text-white/85 text-sm">APP – Ambulante psychiatrische Pflege</span>
               </figcaption>
             </figure>
           </li>
-          <!-- СЛАЙД 4 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%] fade-in" data-index="3">
-            <figure class="relative overflow-hidden rounded-2xl shadow">
-              <img src="./img/team-4.jpg" alt="Mitarbeiterin Sofia, Tagespflege & Aktivierung" class="w-full h-[320px] object-cover">
-              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-4 text-white">
-                <strong class="block text-base">Sofia P.</strong>
+
+          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31%] lg:basis-[23.5%]">
+            <figure class="relative overflow-hidden rounded-3xl shadow-lg group">
+              <img src="./img/team-4.jpg" alt="Mitarbeiterin Sofia" class="w-full h-[340px] object-cover transform group-hover:scale-[1.05] transition duration-700">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent p-5 text-white">
+                <strong class="block text-base font-semibold">Sofia P.</strong>
                 <span class="text-white/85 text-sm">Tagespflege &amp; Aktivierung</span>
               </figcaption>
             </figure>
           </li>
-          <!-- СЛАЙД 5 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%] fade-in" data-index="4">
-            <figure class="relative overflow-hidden rounded-2xl shadow">
-              <img src="./img/team-5.jpg" alt="Mitarbeiter Max, Pflegehelfer" class="w-full h-[320px] object-cover">
-              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-4 text-white">
-                <strong class="block text-base">Max T.</strong>
+
+          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31%] lg:basis-[23.5%]">
+            <figure class="relative overflow-hidden rounded-3xl shadow-lg group">
+              <img src="./img/team-5.jpg" alt="Mitarbeiter Max" class="w-full h-[340px] object-cover transform group-hover:scale-[1.05] transition duration-700">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent p-5 text-white">
+                <strong class="block text-base font-semibold">Max T.</strong>
                 <span class="text-white/85 text-sm">Pflegehelfer</span>
               </figcaption>
             </figure>
           </li>
-          <!-- СЛАЙД 6 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%] fade-in" data-index="5">
-            <figure class="relative overflow-hidden rounded-2xl shadow">
-              <img src="./img/team-6.jpg" alt="Mitarbeiterin Elena, Beratung & Koordination" class="w-full h-[320px] object-cover">
-              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent p-4 text-white">
-                <strong class="block text-base">Elena W.</strong>
+
+          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31%] lg:basis-[23.5%]">
+            <figure class="relative overflow-hidden rounded-3xl shadow-lg group">
+              <img src="./img/team-6.jpg" alt="Mitarbeiterin Elena" class="w-full h-[340px] object-cover transform group-hover:scale-[1.05] transition duration-700">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 via-black/25 to-transparent p-5 text-white">
+                <strong class="block text-base font-semibold">Elena W.</strong>
                 <span class="text-white/85 text-sm">Beratung &amp; Koordination</span>
               </figcaption>
             </figure>
@@ -380,47 +370,26 @@
         </ul>
       </div>
 
-      <!-- Prev / Next -->
+      <!-- Стрелки -->
       <div class="pointer-events-none absolute inset-0 flex items-center justify-between">
-        <button id="teamPrev"
-                class="pointer-events-auto ml-[-6px] md:ml-2 grid place-items-center w-10 h-10 rounded-full bg-white/90 dark:bg-slate-800/90 shadow border border-black/5 hover:scale-105 transition"
-                aria-label="Vorheriges Bild">
-          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6l6 6l1.41-1.41L10.83 12z"/></svg>
+        <button id="teamPrev" class="pointer-events-auto ml-[-8px] md:ml-4 grid place-items-center w-10 h-10 rounded-full bg-white/90 dark:bg-slate-800/90 shadow hover:scale-110 transition border border-black/10" aria-label="Vorheriges Bild">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6l6 6l1.41-1.41L10.83 12z"/></svg>
         </button>
-        <button id="teamNext"
-                class="pointer-events-auto mr-[-6px] md:mr-2 grid place-items-center w-10 h-10 rounded-full bg-white/90 dark:bg-slate-800/90 shadow border border-black/5 hover:scale-105 transition"
-                aria-label="Nächstes Bild">
-          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M8.59 16.59L10 18l6-6l-6-6l-1.41 1.41L13.17 12z"/></svg>
+        <button id="teamNext" class="pointer-events-auto mr-[-8px] md:mr-4 grid place-items-center w-10 h-10 rounded-full bg-white/90 dark:bg-slate-800/90 shadow hover:scale-110 transition border border-black/10" aria-label="Nächstes Bild">
+          <svg width="20" height="20" viewBox="0 0 24 24"><path fill="currentColor" d="M8.59 16.59L10 18l6-6l-6-6l-1.41 1.41L13.17 12z"/></svg>
         </button>
       </div>
 
-      <!-- Dots -->
-      <div class="mt-5 flex items-center justify-center gap-2" role="tablist" aria-label="Slides">
-        <!-- генерируются скриптом -->
+      <!-- Точки -->
+      <div class="mt-6 flex items-center justify-center gap-2" role="tablist" aria-label="Slides">
         <div id="teamDots" class="flex gap-2"></div>
       </div>
     </div>
-
-    <!-- Fallback Grid для пользователей без JS -->
-    <noscript>
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5 mt-8">
-        <img src="./img/team-1.jpg" alt="" class="w-full h-[260px] object-cover rounded-2xl shadow">
-        <img src="./img/team-2.jpg" alt="" class="w-full h-[260px] object-cover rounded-2xl shadow">
-        <img src="./img/team-3.jpg" alt="" class="w-full h-[260px] object-cover rounded-2xl shadow">
-        <img src="./img/team-4.jpg" alt="" class="w-full h-[260px] object-cover rounded-2xl shadow">
-        <img src="./img/team-5.jpg" alt="" class="w-full h-[260px] object-cover rounded-2xl shadow">
-        <img src="./img/team-6.jpg" alt="" class="w-full h-[260px] object-cover rounded-2xl shadow">
-      </div>
-    </noscript>
   </div>
 
-  <!-- Нижняя волна (опционально) -->
-   <div class="wave wave-bottom absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 1440 120"
-         preserveAspectRatio="none"
-         class="text-white"
-         fill="currentColor">
+  <!-- Нижняя белая волна (перевёрнутая) -->
+  <div class="wave wave-bottom rotate-180 mt-10" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" class="text-white" fill="currentColor">
       <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
     </svg>
   </div>
