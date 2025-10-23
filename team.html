@@ -3,213 +3,244 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Unser Team – Lebensanker Pflegedienst in Kaiserslautern</title>
-  <meta name="description" content="Lernen Sie das Team von Lebensanker kennen: Pflege, Pädagogik & Therapie – engagiert, erfahren, nah.">
+  <title>Unser Team – Lebensanker Pflegestützpunkt Kaiserslautern</title>
+  <meta name="description" content="Lernen Sie das Team des Lebensanker Pflegestützpunkts kennen: Pflege, Pädagogik und Therapie – gemeinsam für Sie da." />
   <meta name="theme-color" content="#8EA48B" />
   <meta name="color-scheme" content="light dark" />
 
-  <!-- Tailwind + Fonts (как на главной) -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Твои стили -->
+  <!-- Styles -->
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
-<body>
-  <!-- Header (тот же, что на главной, можно упростить) -->
+<body class="bg-[var(--body)] text-[var(--text)]">
+  <!-- Header -->
   <header class="sticky top-0 z-50 border-b border-white/10 bg-[#26352C]/90 dark:bg-[#1b2a22]/90" role="banner">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="./" class="flex items-center gap-3">
+      <div class="flex items-center gap-3">
         <img src="./img/LEBENSANKER-14.png" class="logo-light w-[42px] h-[42px] object-contain logo-pulse" alt="Lebensanker Logo" />
         <img src="./img/LEBENSANKER-05.png" class="logo-dark w-[42px] h-[42px] object-contain logo-pulse" alt="Lebensanker Logo Dark" />
         <span class="font-semibold text-white tracking-wide">Lebensanker Pflegestützpunkt</span>
-      </a>
-      <nav class="hidden md:flex items-center gap-5 text-sm text-white" aria-label="Hauptmenü">
-        <a href="./#about" class="nav-link hover:text-[var(--mint)]">Über uns</a>
-        <a href="./#angebote" class="nav-link hover:text-[var(--mint)]">Angebote</a>
-        <a href="./#team" class="nav-link hover:text-[var(--mint)]">Team</a>
-        <a href="./#kontakt" class="nav-link hover:text-[var(--mint)]">Kontakt</a>
-      </nav>
-      <div class="hidden md:block">
-        <a href="./#kontakt" class="btn">Jetzt Beratung</a>
       </div>
+
+      <nav class="hidden md:flex items-center gap-5 lg:gap-6 text-sm text-white" aria-label="Hauptmenü">
+        <a href="/#about" class="hover:text-[var(--mint)]">Über uns</a>
+        <div class="relative">
+          <button class="inline-flex items-center gap-1 hover:text-[var(--mint)]">
+            Angebote
+            <svg width="14" height="14" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+          </button>
+          <ul class="absolute left-0 mt-2 bg-white dark:bg-slate-800 border border-black/10 rounded-xl shadow-lg w-56 p-2 hidden group-hover:block">
+            <li><a href="/#angebot-pflege" class="block px-3 py-2 rounded hover:bg-[var(--mint-50)]">Ambulanter Pflegedienst</a></li>
+            <li><a href="/#tagespflege" class="block px-3 py-2 rounded hover:bg-[var(--mint-50)]">Tagespflege</a></li>
+            <li><a href="/#angebot-psy" class="block px-3 py-2 rounded hover:bg-[var(--mint-50)]">Psychiatrische Pflege</a></li>
+            <li><a href="/#beratung" class="block px-3 py-2 rounded hover:bg-[var(--mint-50)]">Allgemeine Beratung</a></li>
+          </ul>
+        </div>
+        <a href="/team.html" class="hover:text-[var(--mint)] text-[var(--mint)] font-semibold">Team</a>
+        <a href="/#news" class="hover:text-[var(--mint)]">News</a>
+        <a href="/#karriere" class="hover:text-[var(--mint)]">Karriere</a>
+        <a href="/#kontakt" class="hover:text-[var(--mint)]">Kontakt</a>
+      </nav>
+
+      <a href="/#kontakt" class="btn hidden md:inline-flex">Jetzt Beratung</a>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="relative section pt-16 pb-20" style="background:color-mix(in oklab, var(--beige) 45%, transparent);" aria-labelledby="teamHeroTitle">
-    <!-- верхняя волна -->
-    <div class="wave wave-top" aria-hidden="true">
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" class="text-[var(--body)]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
-      </svg>
-    </div>
-
-    <div class="max-w-7xl mx-auto px-4 text-center fade-in">
-      <p class="text-sm uppercase tracking-wider text-slate-500">Lebensanker</p>
-      <h1 id="teamHeroTitle" class="mt-2 text-4xl md:text-5xl font-extrabold text-[var(--calm)] tracking-tight">Unser Team</h1>
-      <p class="mt-3 max-w-2xl mx-auto text-slate-600 dark:text-slate-300">
-        Pflege, Pädagogik &amp; Therapie – engagiert, erfahren, nah. Gemeinsam an Ihrer Seite.
+  <!-- Hero -->
+  <section class="section relative py-16 md:py-20 text-center">
+    <div class="max-w-4xl mx-auto px-4 fade-in">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-[var(--calm)] tracking-tight">Unser Team</h1>
+      <p class="mt-3 text-lg text-slate-600 dark:text-slate-300">
+        Pflege, Pädagogik &amp; Therapie – gemeinsam für Sie da.
       </p>
-
-      <!-- мини-CTA -->
-      <div class="mt-6 flex items-center justify-center gap-3">
-        <a href="./#team" class="btn-secondary">Zurück zur Startseite</a>
-        <a href="./#kontakt" class="btn">Beratung vereinbaren</a>
-      </div>
     </div>
-
-    <!-- нижняя волна -->
-    <div class="wave wave-bottom rotate-180" aria-hidden="true">
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" class="text-[var(--body)]" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <div class="wave wave-bottom">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" class="text-white" fill="currentColor">
         <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
       </svg>
     </div>
   </section>
 
-  <!-- TEAM GRID -->
-  <section class="section relative py-14 md:py-20" aria-labelledby="teamGridTitle">
+  <!-- Team Section -->
+  <section data-team-page>
     <div class="max-w-7xl mx-auto px-4">
-      <header class="text-center mb-8">
-        <h2 id="teamGridTitle" class="text-2xl font-bold text-[var(--calm)]">Menschen hinter Lebensanker</h2>
-        <p class="text-slate-600 dark:text-slate-300 mt-2">Ein Team. Ein Herz. Viele Kompetenzen.</p>
-      </header>
 
-      <!-- Сетка 2–4 колонки -->
-      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        <!-- Карточка -->
+      <!-- Filters -->
+      <div data-team-chips class="flex flex-wrap justify-center gap-2 my-6">
+        <button class="chip is-active" data-filter="all">Alle</button>
+        <button class="chip" data-filter="pflege">Pflege</button>
+        <button class="chip" data-filter="psy">Psychiatrische Pflege</button>
+        <button class="chip" data-filter="tagespflege">Tagespflege</button>
+        <button class="chip" data-filter="koordination">Koordination</button>
+      </div>
+
+      <!-- Grid -->
+      <div data-team-grid class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-7">
         <!-- 1 -->
-        <article class="group relative rounded-2xl overflow-hidden shadow card p-0">
-          <figure class="relative">
-            <img src="./img/team-1.jpg" alt="Kristina K., Pflegeleiterin" class="w-full h-[320px] object-cover transition duration-700 ease-out group-hover:scale-[1.03]">
-            <figcaption class="absolute inset-x-0 bottom-0 p-4 text-white bg-gradient-to-t from-black/65 via-black/25 to-transparent">
-              <strong class="block text-base">Kristina K.</strong>
-              <span class="text-white/85 text-sm">Pflegeleiterin</span>
-            </figcaption>
-          </figure>
+        <article class="card overflow-hidden rounded-2xl " data-tags="pflege">
+          <button class="block text-left" data-team-open>
+            <figure class="relative">
+              <img src="./img/team-1.jpg" alt="Kristina K." class="w-full h-[300px] object-cover">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white">
+                <strong data-name>Kristina K.</strong>
+                <div class="text-sm text-white/80" data-role>Pflegeleiterin</div>
+              </figcaption>
+            </figure>
+          </button>
         </article>
-
         <!-- 2 -->
-        <article class="group relative rounded-2xl overflow-hidden shadow card p-0">
-          <figure class="relative">
-            <img src="./img/team-2.jpg" alt="Jonas R., Gesundheits- und Krankenpfleger" class="w-full h-[320px] object-cover transition duration-700 ease-out group-hover:scale-[1.03]">
-            <figcaption class="absolute inset-x-0 bottom-0 p-4 text-white bg-gradient-to-t from-black/65 via-black/25 to-transparent">
-              <strong class="block text-base">Jonas R.</strong>
-              <span class="text-white/85 text-sm">Gesundheits- und Krankenpfleger</span>
-            </figcaption>
-          </figure>
+        <article class="card overflow-hidden rounded-2xl " data-tags="pflege">
+          <button class="block text-left" data-team-open>
+            <figure class="relative">
+              <img src="./img/team-2.jpg" alt="Jonas R." class="w-full h-[300px] object-cover">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white">
+                <strong data-name>Jonas R.</strong>
+                <div class="text-sm text-white/80" data-role>Gesundheits- und Krankenpfleger</div>
+              </figcaption>
+            </figure>
+          </button>
         </article>
-
         <!-- 3 -->
-        <article class="group relative rounded-2xl overflow-hidden shadow card p-0">
-          <figure class="relative">
-            <img src="./img/team-3.jpg" alt="Leyla K., APP – Ambulante psychiatrische Pflege" class="w-full h-[320px] object-cover transition duration-700 ease-out group-hover:scale-[1.03]">
-            <figcaption class="absolute inset-x-0 bottom-0 p-4 text-white bg-gradient-to-t from-black/65 via-black/25 to-transparent">
-              <strong class="block text-base">Leyla K.</strong>
-              <span class="text-white/85 text-sm">APP – Ambulante psychiatrische Pflege</span>
-            </figcaption>
-          </figure>
+        <article class="card overflow-hidden rounded-2xl " data-tags="psy">
+          <button class="block text-left" data-team-open>
+            <figure class="relative">
+              <img src="./img/team-3.jpg" alt="Leyla K." class="w-full h-[300px] object-cover">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white">
+                <strong data-name>Leyla K.</strong>
+                <div class="text-sm text-white/80" data-role>APP – Ambulante psychiatrische Pflege</div>
+              </figcaption>
+            </figure>
+          </button>
         </article>
-
         <!-- 4 -->
-        <article class="group relative rounded-2xl overflow-hidden shadow card p-0">
-          <figure class="relative">
-            <img src="./img/team-4.jpg" alt="Sofia P., Tagespflege & Aktivierung" class="w-full h-[320px] object-cover transition duration-700 ease-out group-hover:scale-[1.03]">
-            <figcaption class="absolute inset-x-0 bottom-0 p-4 text-white bg-gradient-to-t from-black/65 via-black/25 to-transparent">
-              <strong class="block text-base">Sofia P.</strong>
-              <span class="text-white/85 text-sm">Tagespflege &amp; Aktivierung</span>
-            </figcaption>
-          </figure>
+        <article class="card overflow-hidden rounded-2xl " data-tags="tagespflege">
+          <button class="block text-left" data-team-open>
+            <figure class="relative">
+              <img src="./img/team-4.jpg" alt="Sofia P." class="w-full h-[300px] object-cover">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white">
+                <strong data-name>Sofia P.</strong>
+                <div class="text-sm text-white/80" data-role>Tagespflege &amp; Aktivierung</div>
+              </figcaption>
+            </figure>
+          </button>
         </article>
-
         <!-- 5 -->
-        <article class="group relative rounded-2xl overflow-hidden shadow card p-0">
-          <figure class="relative">
-            <img src="./img/team-5.jpg" alt="Max T., Pflegehelfer" class="w-full h-[320px] object-cover transition duration-700 ease-out group-hover:scale-[1.03]">
-            <figcaption class="absolute inset-x-0 bottom-0 p-4 text-white bg-gradient-to-t from-black/65 via-black/25 to-transparent">
-              <strong class="block text-base">Max T.</strong>
-              <span class="text-white/85 text-sm">Pflegehelfer</span>
-            </figcaption>
-          </figure>
+        <article class="card overflow-hidden rounded-2xl " data-tags="pflege">
+          <button class="block text-left" data-team-open>
+            <figure class="relative">
+              <img src="./img/team-5.jpg" alt="Max T." class="w-full h-[300px] object-cover">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t  to-transparent p-4 text-white">
+                <strong data-name>Max T.</strong>
+                <div class="text-sm text-white/80" data-role>Pflegehelfer</div>
+              </figcaption>
+            </figure>
+          </button>
         </article>
-
         <!-- 6 -->
-        <article class="group relative rounded-2xl overflow-hidden shadow card p-0">
-          <figure class="relative">
-            <img src="./img/team-6.jpg" alt="Elena W., Beratung & Koordination" class="w-full h-[320px] object-cover transition duration-700 ease-out group-hover:scale-[1.03]">
-            <figcaption class="absolute inset-x-0 bottom-0 p-4 text-white bg-gradient-to-t from-black/65 via-black/25 to-transparent">
-              <strong class="block text-base">Elena W.</strong>
-              <span class="text-white/85 text-sm">Beratung &amp; Koordination</span>
-            </figcaption>
-          </figure>
+        <article class="card overflow-hidden rounded-2xl " data-tags="koordination">
+          <button class="block text-left" data-team-open>
+            <figure class="relative">
+              <img src="./img/team-6.jpg" alt="Elena W." class="w-full h-[300px] object-cover">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white">
+                <strong data-name>Elena W.</strong>
+                <div class="text-sm text-white/80" data-role>Beratung &amp; Koordination</div>
+              </figcaption>
+            </figure>
+          </button>
         </article>
-
         <!-- 7 -->
-        <article class="group relative rounded-2xl overflow-hidden shadow card p-0">
-          <figure class="relative">
-            <img src="./img/team-7.jpg" alt="Daniela S., Pflegeassistenz" class="w-full h-[320px] object-cover transition duration-700 ease-out group-hover:scale-[1.03]">
-            <figcaption class="absolute inset-x-0 bottom-0 p-4 text-white bg-gradient-to-t from-black/65 via-black/25 to-transparent">
-              <strong class="block text-base">Daniela S.</strong>
-              <span class="text-white/85 text-sm">Pflegeassistenz</span>
-            </figcaption>
-          </figure>
+        <article class="card overflow-hidden rounded-2xl " data-tags="pflege">
+          <button class="block text-left" data-team-open>
+            <figure class="relative">
+              <img src="./img/team-7.jpg" alt="Daniela S." class="w-full h-[300px] object-cover">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white">
+                <strong data-name>Daniela S.</strong>
+                <div class="text-sm text-white/80" data-role>Pflegeassistenz</div>
+              </figcaption>
+            </figure>
+          </button>
         </article>
-
         <!-- 8 -->
-        <article class="group relative rounded-2xl overflow-hidden shadow card p-0">
-          <figure class="relative">
-            <img src="./img/team-8.jpg" alt="Tobias H., Verwaltung & Organisation" class="w-full h-[320px] object-cover transition duration-700 ease-out group-hover:scale-[1.03]">
-            <figcaption class="absolute inset-x-0 bottom-0 p-4 text-white bg-gradient-to-t from-black/65 via-black/25 to-transparent">
-              <strong class="block text-base">Tobias H.</strong>
-              <span class="text-white/85 text-sm">Verwaltung &amp; Organisation</span>
-            </figcaption>
-          </figure>
+        <article class="card overflow-hidden rounded-2xl " data-tags="koordination">
+          <button class="block text-left" data-team-open>
+            <figure class="relative">
+              <img src="./img/team-8.jpg" alt="Tobias H." class="w-full h-[300px] object-cover">
+              <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4 text-white">
+                <strong data-name>Tobias H.</strong>
+                <div class="text-sm text-white/80" data-role>Verwaltung &amp; Organisation</div>
+              </figcaption>
+            </figure>
+          </button>
         </article>
       </div>
+    </div>
 
-      <!-- CTA блок -->
-      <div class="mt-10 text-center">
-        <a href="./#kontakt" class="btn inline-flex">Mit uns sprechen</a>
+    <!-- Modal -->
+    <div data-team-modal class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-150">
+      <div data-team-modal-bg class="absolute inset-0 bg-black/50"></div>
+      <div class="relative z-10 max-w-3xl mx-auto my-10 bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-xl">
+        <button data-team-modal-close class="absolute top-3 right-3 w-9 h-9 grid place-items-center rounded-full bg-white/90 shadow border">&times;</button>
+        <img data-team-modal-img alt="" class="w-full max-h-[70vh] object-cover">
+        <div class="p-4 text-center text-slate-700 dark:text-slate-200">
+          <div data-team-modal-cap class="text-sm"></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- QUOTE / VALUES -->
-  <section class="section relative py-16" style="background:color-mix(in oklab, var(--pistage) 12%, transparent);">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <blockquote class="text-xl md:text-2xl italic text-[var(--calm)]">
-        „Pflege ist nicht nur Betreuung, sondern auch Herz. Wir nehmen uns Zeit, hören zu und handeln verlässlich.“
-      </blockquote>
+  <!-- CTA -->
+  <section class="py-14 text-center bg-[color-mix(in_oklab,var(--beige)_40%,transparent)]">
+    <h2 class="text-2xl md:text-3xl font-bold text-[var(--calm)]">Lernen Sie uns persönlich kennen</h2>
+    <p class="mt-3 text-slate-600 dark:text-slate-300">Wir beraten ruhig, verlässlich und auf Augenhöhe.</p>
+    <div class="mt-6 flex items-center justify-center gap-3">
+      <a href="/#kontakt" class="btn">Beratung vereinbaren</a>
+      <a href="/#angebote" class="btn-secondary">Unsere Angebote</a>
     </div>
   </section>
 
-  <!-- Footer (как на главной, сокращён) -->
-  <footer class="bg-[#26352C] text-white py-12" role="contentinfo">
-    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-3 gap-8 text-sm">
+  <!-- Footer -->
+  <footer class="bg-[#26352C] text-white py-12 text-sm">
+    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8">
       <div>
         <h4 class="font-semibold mb-3">Lebensanker</h4>
         <p>Pflegestützpunkt & Mehrgenerationenhaus</p>
       </div>
       <div>
-        <h4 class="font-semibold mb-3">Kontakt</h4>
-        <p>Raiffeisenstraße 6, 67555 Kaiserslautern</p>
-        <p>📞 +49 631 31 17 94 99</p>
-        <p>✉️ mail@lebensanker-kaiserslautern.de</p>
+        <h4 class="font-semibold mb-3">Seiten</h4>
+        <ul class="space-y-2 opacity-90">
+          <li><a href="/#angebote" class="hover:underline">Angebote</a></li>
+          <li><a href="/team.html" class="hover:underline">Team</a></li>
+          <li><a href="/#partner" class="hover:underline">Kooperationspartner</a></li>
+          <li><a href="/#news" class="hover:underline">News</a></li>
+          <li><a href="/#karriere" class="hover:underline">Karriere</a></li>
+          <li><a href="/#kontakt" class="hover:underline">Kontakt</a></li>
+        </ul>
       </div>
       <div>
-        <h4 class="font-semibold mb-3">Links</h4>
-        <p><a href="./" class="hover:underline">Startseite</a></p>
-        <p><a href="./#angebote" class="hover:underline">Angebote</a></p>
-        <p><a href="./#kontakt" class="hover:underline">Kontakt</a></p>
+        <h4 class="font-semibold mb-3">Rechtliches</h4>
+        <ul class="space-y-2 opacity-90">
+          <li><a href="#" class="hover:underline">Impressum</a></li>
+          <li><a href="#" class="hover:underline">Datenschutz</a></li>
+          <li><a href="#" class="hover:underline">Cookie-Hinweis</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-3">Sprachen</h4>
+        <p>DEU · RUS · UKR · ENG · ARA</p>
       </div>
     </div>
     <p class="text-center mt-8 text-white/70">© 2025 Lebensanker Pflegestützpunkt GmbH</p>
   </footer>
 
-  <!-- Твой скрипт (если что-то нужно оттуда) -->
   <script src="./app.js" defer></script>
 </body>
 </html>

@@ -541,3 +541,143 @@ on(window, 'keydown', e => { if (e.key === 'Escape') toggleDrawer(false); });
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update, { passive: true });
 })();
+
+/* ===============================
+   TEAM PAGE — Filter & Modal (final)
+=============================== */
+(() => {
+  // Корневой блок отдельной страницы команды
+  const teamPage = document.querySelector('[data-team-page]');
+  if (!teamPage) return;
+
+  const chipsWrap = teamPage.querySelector('[data-team-chips]');
+  const grid      = teamPage.querySelector('[data-team-grid]');
+  const modal     = teamPage.querySelector('[data-team-modal]');
+  const modalImg  = modal?.querySelector('[data-team-modal-img]');
+  const modalCap  = modal?.querySelector('[data-team-modal-cap]');
+  const modalClose= modal?.querySelector('[data-team-modal-close]');
+  const modalBg   = modal?.querySelector('[data-team-modal-bg]');
+
+  if (!chipsWrap || !grid) return;
+
+  const chips  = Array.from(chipsWrap.querySelectorAll('[data-filter]'));
+  const cards  = Array.from(grid.querySelectorAll('[data-tags]'));
+
+  // Утилита: плавное появление карточек
+  function fadeIn(el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(10px)';
+    el.style.willChange = 'opacity, transform';
+    requestAnimationFrame(() => {
+      el.style.transition = 'opacity .35s ease, transform .35s ease';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    });
+  }
+
+  // Фильтрация по тегу
+  function apply(filterKey = 'all') {
+    const key = (filterKey || 'all').toLowerCase();
+
+    cards.forEach(card => {
+      const tags = (card.getAttribute('data-tags') || '').toLowerCase();
+      const show = key === 'all' || tags.split(',').some(t => t.trim() === key);
+
+      // скрываем/показываем без перекомпоновки сетки
+      if (show) {
+        card.classList.remove('hidden');
+        // небольшая пауза, чтобы браузер применил display, и затем анимация
+        requestAnimationFrame(() => fadeIn(card));
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    // Обновляем активное состояние чипов
+    chips.forEach(c => c.classList.toggle('is-active', c.dataset.filter?.toLowerCase() === key));
+  }
+
+  // Навешиваем клики на чипы
+  chips.forEach(chip => {
+    chip.addEventListener('click', (e) => {
+      e.preventDefault();
+      const key = chip.dataset.filter || 'all';
+      apply(key);
+    });
+  });
+
+  // ==== МОДАЛКА (по клику на карточку) ====
+  function openModal(imgSrc, title, role) {
+    if (!modal) return;
+    modalImg.src = imgSrc;
+    modalImg.alt = title || '';
+    modalCap.textContent = [title, role].filter(Boolean).join(' — ');
+    modal.removeAttribute('hidden');
+    document.body.classList.add('overflow-hidden');
+    // небольшое появление
+    requestAnimationFrame(() => modal.classList.add('open'));
+  }
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('open');
+    // дождаться окончания анимации
+    setTimeout(() => {
+      modal.setAttribute('hidden', 'true');
+      modalImg.src = '';
+      document.body.classList.remove('overflow-hidden');
+    }, 180);
+  }
+
+  // Клик по карточке
+  cards.forEach(card => {
+    const btn = card.querySelector('[data-team-open]');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const img = card.querySelector('img');
+      const title = card.querySelector('[data-name]')?.textContent?.trim() || '';
+      const role  = card.querySelector('[data-role]')?.textContent?.trim() || '';
+      openModal(img?.getAttribute('src') || '', title, role);
+    });
+  });
+
+  // Закрытие модалки
+  modalClose?.addEventListener('click', closeModal);
+  modalBg?.addEventListener('click', closeModal);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+  // ===== ИНИЦИАЛИЗАЦИЯ ПОСЛЕ ЗАГРУЗКИ =====
+  window.addEventListener('DOMContentLoaded', () => {
+    apply('all'); // ← ключевая правка: вызываем после DOMContentLoaded
+    // страховка: активируем визуально "Alle"
+    chips.find(c => c.dataset.filter?.toLowerCase() === 'all')?.classList.add('is-active');
+  });
+})();
+
+/* ===============================
+   Team grid: reveal on scroll
+=============================== */
+(() => {
+  const cards = Array.from(document.querySelectorAll('[data-team-grid] article'));
+  if (!cards.length) return;
+
+  // Добавим класс + стэггер по ряду (чтобы появлялись «лесенкой»)
+  cards.forEach((card, i) => {
+    // задержка — по колонке: 0/80/160/240 мс для 4 колонок
+    card.style.setProperty('--reveal-delay', `${(i % 4) * 80}ms`);
+    card.classList.add('reveal');
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {
+    threshold: 0.14,
+    rootMargin: '0px 0px -10% 0px'
+  });
+
+  cards.forEach(c => io.observe(c));
+})();
