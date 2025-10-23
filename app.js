@@ -337,3 +337,93 @@ on(window, 'keydown', e => { if (e.key === 'Escape') toggleDrawer(false); });
   window.addEventListener('resize', onScroll);
 })();
 
+
+
+
+/*  Наш мини-скрипт для карусели (без зависимостей) */
+
+(() => {
+  const track = document.getElementById('teamTrack');
+  const viewport = document.getElementById('teamViewport');
+  const prev = document.getElementById('teamPrev');
+  const next = document.getElementById('teamNext');
+  const dotsWrap = document.getElementById('teamDots');
+  if (!track || !viewport) return;
+
+  const slides = Array.from(track.children);
+  let index = 0;
+  let timer;
+  let isHover = false;
+
+  // создаём точки
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className =
+      'w-2.5 h-2.5 rounded-full border border-[var(--early)]/30 aria-[current=true]:w-6 aria-[current=true]:bg-[var(--mint)] aria-[current=true]:border-[var(--mint)] transition-[width,background]';
+    b.setAttribute('aria-label', 'Slide ' + (i+1));
+    b.addEventListener('click', () => go(i, true));
+    dotsWrap.appendChild(b);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function slideWidth() {
+    // ширина с учётом gap
+    const first = slides[0];
+    return first.getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap || 0);
+  }
+
+  function visiblePerView() {
+    const w = viewport.clientWidth;
+    if (w >= 1024) return 4;
+    if (w >= 768)  return 3;
+    if (w >= 640)  return 2;
+    return 1;
+  }
+
+  function go(i, manual=false) {
+    const maxIndex = Math.max(0, slides.length - visiblePerView());
+    index = Math.max(0, Math.min(maxIndex, i));
+    const x = -index * slideWidth();
+    track.style.transform = `translateX(${x}px)`;
+    dots.forEach((d, di) => d.setAttribute('aria-current', di === index ? 'true' : 'false'));
+    if (manual) restart();
+  }
+
+  function nextAuto() {
+    const maxIndex = Math.max(0, slides.length - visiblePerView());
+    if (index >= maxIndex) go(0); else go(index + 1);
+  }
+
+  function start() {
+    clearInterval(timer);
+    timer = setInterval(() => { if (!isHover && document.visibilityState === 'visible') nextAuto(); }, 3800);
+  }
+  function stop() { clearInterval(timer); }
+  function restart() { stop(); start(); }
+
+  // кнопки
+  prev?.addEventListener('click', () => go(index - 1, true));
+  next?.addEventListener('click', () => go(index + 1, true));
+
+  // пауза на hover/focus
+  viewport.addEventListener('mouseenter', () => { isHover = true; });
+  viewport.addEventListener('mouseleave', () => { isHover = false; });
+  viewport.addEventListener('focusin', stop);
+  viewport.addEventListener('focusout', start);
+
+  // ресайз
+  let ro;
+  const onResize = () => { go(index); };
+  window.addEventListener('resize', onResize);
+  if ('ResizeObserver' in window) {
+    ro = new ResizeObserver(onResize);
+    ro.observe(viewport);
+  }
+
+  // init
+  go(0);
+  start();
+})();
+
+
