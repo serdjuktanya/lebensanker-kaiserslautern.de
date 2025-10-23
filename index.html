@@ -18,7 +18,6 @@
   <!-- Tailwind CDN -->
   <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js" defer></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
@@ -308,7 +307,7 @@
     </header>
 
     <!-- Carousel -->
-    <div class="relative select-none" aria-roledescription="carousel">
+    <div class="relative select-none" role="group" aria-roledescription="carousel" aria-label="Unser Team">
       <!-- Viewport -->
       <div id="teamViewport"
            class="overflow-hidden rounded-2xl"
@@ -541,12 +540,21 @@
             <iframe title="Standortkarte Lebensanker Kaiserslautern" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2646.295586403689!2d7.7700!3d49.4400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47961cf09c9a4e1b%3A0x0000000000000000!2sRaiffeisenstra%C3%9Fe%206%2C%2067555%20Kaiserslautern%2C%20Deutschland!5e0!3m2!1sde!2sde!4v1690000000000!5m2!1sde!2sde" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
           <div class="mt-3 flex flex-col md:flex-row md:flex-wrap gap-2">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Raiffeisenstra%C3%9Fe+6+67555+Kaiserslautern" target="_blank" class="chip inline-flex items-center gap-2 w-full md:w-auto justify-center" aria-label="Route in Google Maps planen">
-              <span>📍 Route planen</span>
-            </a>
-            <a href="https://maps.apple.com/?address=Raiffeisenstra%C3%9Fe%206,%2067555%20Kaiserslautern,%20Deutschland&daddr=Raiffeisenstra%C3%9Fe%206,%2067555%20Kaiserslautern" target="_blank" class="chip inline-flex items-center gap-2 w-full md:w-auto justify-center" aria-label="In Apple Karten öffnen">
-              <span> In Apple Karten öffnen</span>
-            </a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Raiffeisenstra%C3%9Fe+6+67555+Kaiserslautern"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="chip inline-flex items-center gap-2 w-full md:w-auto justify-center"
+   aria-label="Route in Google Maps planen">
+  <span>📍 Route planen</span>
+</a>
+
+<a href="https://maps.apple.com/?address=Raiffeisenstra%C3%9Fe%206,%2067555%20Kaiserslautern,%20Deutschland&daddr=Raiffeisenstra%C3%9Fe%206,%2067555%20Kaiserslautern"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="chip inline-flex items-center gap-2 w-full md:w-auto justify-center"
+   aria-label="In Apple Karten öffnen">
+  <span> In Apple Karten öffnen</span>
+</a>
           </div>
           <div class="mt-6 text-sm text-slate-600 dark:text-slate-300">
             <strong>Einsatzgebiet:</strong> Kaiserslautern, Einsiedlerhof, Hohenecken, Morlautern, Dansenberg, Otterbach, Otterberg.

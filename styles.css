@@ -1150,3 +1150,240 @@
 #team .team-slide figcaption{
   background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 60%, rgba(0,0,0,.78) 100%);
 }
+
+/* =========================
+   Unser Team – Carousel CSS
+   (под последний JS)
+========================= */
+
+#team {
+  position: relative;
+  background: color-mix(in oklab, var(--beige) 35%, transparent);
+  --team-gap: 24px;              /* единый источник правды для gap */
+  --arrow-size: 44px;
+  --caption-pad: 14px 16px;
+}
+
+/* Волны — белые только в этой секции */
+#team .wave svg {
+  width: 100%;
+  height: 40px;
+  color: #fff !important;        /* чтобы не «сливалось» */
+}
+
+/* Обёртка карусели (совпадает с JS: .team-wrap = viewport) */
+#team .team-wrap {
+  position: relative;
+  max-width: 1180px;
+  margin: 28px auto 8px;
+  padding: 0 calc(var(--arrow-size) + 12px); /* простор под стрелки слева/справа */
+  overflow: hidden;              /* скрываем ленту вне окна */
+}
+
+/* Лента */
+#team .team-track {
+  display: flex;
+  gap: var(--team-gap);
+  will-change: transform;
+  transform: translateX(0);      /* JS меняет это свойство */
+  transition: transform .45s cubic-bezier(.22,.61,.36,1);
+  user-select: none;
+}
+
+/* Слайд */
+#team .team-slide {
+  position: relative;
+  flex: 0 0 calc((100% - 2 * var(--team-gap)) / 3);   /* 3 карточки на десктопе */
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  transition: transform .28s ease, box-shadow .28s ease;
+}
+#team .team-slide:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.10);
+}
+
+/* Адаптив: 2 на планшете, 1 на мобиле */
+@media (max-width: 1024px) {
+  #team .team-slide { flex-basis: calc((100% - var(--team-gap)) / 2); }
+}
+@media (max-width: 640px) {
+  #team .team-slide { flex-basis: 100%; }
+}
+
+/* Картинка */
+#team .team-slide img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+  transition: transform 6s ease;
+}
+#team .team-slide:hover img { transform: scale(1.04); }
+
+/* Подпись (тёмный градиент) */
+#team .team-slide figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: var(--caption-pad);
+  color: #fff;
+  background: linear-gradient(180deg,
+              rgba(0,0,0,0) 0%,
+              rgba(0,0,0,.55) 58%,
+              rgba(0,0,0,.78) 100%);
+  text-shadow: 0 1px 2px rgba(0,0,0,.35);
+}
+#team .team-slide figcaption strong {
+  display: block;
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+#team .team-slide figcaption span {
+  opacity: .95;
+  font-size: .95rem;
+}
+
+/* Стрелки */
+#team .team-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--arrow-size);
+  height: var(--arrow-size);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
+  transition: transform .18s ease, opacity .18s ease, background-color .2s ease;
+  z-index: 2;
+}
+#team .team-prev { left: 8px; }
+#team .team-next { right: 8px; }
+#team .team-nav:hover { transform: translateY(-50%) scale(1.06); }
+#team .team-nav[disabled] { opacity: .35; pointer-events: none; }
+
+/* Доступность для клавиатуры */
+#team .team-nav:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--mint) 55%, #fff);
+  outline-offset: 2px;
+}
+
+/* Точки */
+#team .team-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 12px auto 0;
+}
+#team .team-dots button {
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  border: 0;
+  background: color-mix(in oklab, var(--mint) 35%, #ffffff);
+  opacity: .55;
+  transition: width .25s ease, opacity .25s ease, background-color .25s ease, transform .2s ease;
+}
+#team .team-dots button:hover { opacity: .85; transform: scale(1.1); }
+#team .team-dots button[aria-current="true"] {
+  width: 26px;                  /* таблетка */
+  opacity: 1;
+  background: var(--mint);
+}
+
+/* Уважение к reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  #team .team-track,
+  #team .team-slide,
+  #team .team-slide img { transition: none !important; }
+}
+
+/* Тёмная тема — лёгкие корректировки */
+.dark #team .team-nav {
+  background: var(--card);
+  border-color: var(--line);
+  box-shadow: 0 8px 22px rgba(0,0,0,.28);
+}
+.dark #team .team-dots button {
+  background: color-mix(in oklab, var(--mint-50) 55%, var(--card));
+  opacity: .8;
+}
+.dark #team .team-dots button[aria-current="true"] {
+  background: color-mix(in oklab, var(--mint-600) 70%, var(--card));
+}
+/* Подпись с более выраженным затемнением (для мобильных тоже) */
+#team .team-slide figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 18px 18px 16px;
+  color: #fff;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.55) 45%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px); /* делает низ чуть мягче */
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+
+/* На мобильных делаем градиент чуть выше */
+@media (max-width: 640px) {
+  #team .team-slide figcaption {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 20%,
+      rgba(0, 0, 0, 0.65) 60%,
+      rgba(0, 0, 0, 0.9) 100%
+    );
+  }
+}
+
+/* --- Более тёмная подложка под подпись в Team --- */
+#team .team-slide figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 18px 18px 16px;
+  color: #fff;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.55) 35%,
+    rgba(0, 0, 0, 0.96) 100%
+  );
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  backdrop-filter: blur(3px);
+}
+
+/* Небольшая плотная подложка именно под текст */
+#team .team-slide figcaption strong,
+#team .team-slide figcaption span {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.45);
+  padding: 3px 8px;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* На мобильных ещё чуть темнее */
+@media (max-width: 640px) {
+  #team .team-slide figcaption {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.1) 10%,
+      rgba(0, 0, 0, 0.65) 45%,
+      rgba(0, 0, 0, 1) 100%
+    );
+  }
+}
+
+-webkit-backdrop-filter: blur(3px);
+backdrop-filter: blur(3px);
