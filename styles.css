@@ -1563,3 +1563,68 @@ backdrop-filter: blur(3px);
 @media (prefers-reduced-motion: reduce){
   #team::before{ transition: none !important; }
 }
+
+/* --- Team card hover-glow --- */
+.team-card {
+  position: relative;
+  border-radius: 1.25rem;            /* ~rounded-2xl */
+  overflow: hidden;
+  transition: transform .35s cubic-bezier(.22,.61,.36,1), 
+              box-shadow .35s cubic-bezier(.22,.61,.36,1), 
+              filter .35s;
+  box-shadow: 0 8px 20px -12px rgb(0 0 0 / .20);
+  will-change: transform, box-shadow, filter;
+}
+
+/* светящийся “ковёр” под карточкой */
+.team-card::before {
+  content: "";
+  position: absolute;
+  inset: 70% -20% -40% -20%;         /* узкая полоска снизу, выступает наружу */
+  background: radial-gradient(120% 90% at 50% 0%,
+              color-mix(in oklab, var(--mint) 35%, transparent) 0%,
+              transparent 70%);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .35s ease, transform .35s ease;
+  pointer-events: none;
+}
+
+/* состояние при hover / focus-visible */
+.team-card:is(:hover, :focus-within) {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 45px -22px rgb(16 24 40 / .35);
+  filter: saturate(1.05);
+}
+.team-card:is(:hover, :focus-within)::before {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* плавный zoom у изображения */
+.team-card .team-photo {
+  transform: scale(1);
+  transition: transform .6s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+.team-card:is(:hover, :focus-within) .team-photo {
+  transform: scale(1.03);
+}
+
+/* подпись чуть яснее при hover */
+.team-card .team-caption {
+  background: linear-gradient(to top, rgb(0 0 0 / .55), transparent);
+  transition: opacity .35s ease, backdrop-filter .35s ease;
+  backdrop-filter: blur(0px);
+}
+.team-card:is(:hover, :focus-within) .team-caption {
+  opacity: .98;
+  backdrop-filter: blur(1.5px);
+}
+
+/* уважение к сниженной анимации */
+@media (prefers-reduced-motion: reduce) {
+  .team-card, .team-card::before, .team-card .team-photo {
+    transition: none !important;
+  }
+}
