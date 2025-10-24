@@ -2004,3 +2004,82 @@ backdrop-filter: blur(3px);
 /* reveal on view */
 .reviews-in .review-badge{ opacity:1; transform:none; transition:opacity .6s, transform .6s; }
 
+.review-badge svg {
+  transition: transform 0.25s ease;
+}
+.review-badge:hover svg {
+  transform: rotate(-5deg) scale(1.08);
+}
+
+/* --- Feedback section icon hover effect --- */
+.review-badge {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  transition: all 0.35s cubic-bezier(.22,.61,.36,1);
+}
+
+.review-badge:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  transform: translateY(-3px);
+}
+
+.review-badge svg,
+.review-badge img {
+  transition: transform 0.35s cubic-bezier(.22,.61,.36,1);
+  transform-origin: center;
+}
+
+.review-badge:hover svg,
+.review-badge:hover img {
+  transform: rotate(-6deg) scale(1.08);
+}
+
+/* --- Feedback: lock to light palette + softer shadows --- */
+#reviews {
+  /* локально переопределяем переменные, чтобы секция всегда была светлой */
+  --card: #ffffff;
+  --chip: #ffffff;
+  --ink:  #1E1F1B;
+  --line: rgba(0,0,0,.08);
+  color-scheme: only light; /* убираем авто-тёмную схему браузера внутри секции */
+}
+
+/* карточки всегда светлые и без резкой тени */
+#reviews .review-badge{
+  background: #fff !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06) !important;
+  transition: background .35s ease, box-shadow .35s ease, transform .35s ease;
+}
+#reviews .review-badge:hover{
+  box-shadow: 0 8px 20px rgba(0,0,0,.10) !important;
+  transform: translateY(-3px);
+}
+
+/* отключаем тёмную тему именно тут */
+#reviews .dark, .dark #reviews, .dark #reviews .review-badge{
+  background: #fff !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 3px 12px rgba(0,0,0,.06) !important;
+}
+
+/* круглые бейджи-иконки в углу */
+.review-badge__pin {
+  position: absolute;
+  top: -6px; left: -6px;
+  width: 40px; height: 40px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,.10);
+  display: grid; place-items: center;
+  border: 1px solid rgba(0,0,0,.06);
+}
+.review-badge__pin svg,
+.review-badge__pin img{
+  width: 22px; height: 22px;
+  display:block;
+}
+
+/* чутка приглушаем серый текст */
+#reviews .review-badge__text { color:#475569; }

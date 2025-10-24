@@ -1,0 +1,20 @@
+{
+  "name": "Lebensanker Pflegestützpunkt GmbH",
+  "short_name": "Lebensanker",
+  "description": "Ambulanter Pflegedienst, Tagespflege & ambulante psychiatrische Pflege in Kaiserslautern.",
+  "start_url": "/lebensanker-kaiserslautern.de/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F4EFE2",
+  "theme_color": "#8C9478",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icons/icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Kontakt", "short_name": "Kontakt", "url": "/lebensanker-kaiserslautern.de/#kontakt" },
+    { "name": "Angebote", "short_name": "Angebote", "url": "/lebensanker-kaiserslautern.de/#angebote" }
+  ]
+}

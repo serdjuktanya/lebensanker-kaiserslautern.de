@@ -3,6 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Canonical -->
+<link rel="canonical" href="https://serdjuktanya.github.io/lebensanker-kaiserslautern.de/" />
+
+<!-- PWA / Manifest -->
+<link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials">
+<meta name="theme-color" content="#8C9478">
+
+<!-- Favicons -->
+<link rel="icon" href="/icons/favicon.svg" type="image/svg+xml">
+<link rel="alternate icon" href="/icons/favicon.ico" sizes="32x32">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+<link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#2B2C24">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lebensanker Pflegestützpunkt GmbH">
+<meta property="og:title" content="Lebensanker Pflegedienst in Kaiserslautern">
+<meta property="og:description" content="Ambulanter Pflegedienst, Tagespflege und ambulante psychiatrische Pflege. Ruhig, verlässlich, nah.">
+<meta property="og:url" content="https://serdjuktanya.github.io/lebensanker-kaiserslautern.de/">
+<meta property="og:image" content="https://serdjuktanya.github.io/lebensanker-kaiserslautern.de/img/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lebensanker Pflegedienst in Kaiserslautern">
+<meta name="twitter:description" content="Ambulanter Pflegedienst, Tagespflege und ambulante psychiatrische Pflege.">
+<meta name="twitter:image" content="https://serdjuktanya.github.io/lebensanker-kaiserslautern.de/img/og-cover.jpg">
+
+<!-- Preload hero image ( Largest Contentful Paint ) -->
+<link rel="preload" as="image" href="/img/pflegedienst-1.jpg" imagesrcset="/img/pflegedienst-1.jpg 1920w" imagesizes="100vw">
   <title>Lebensanker Pflegedienst in Kaiserslautern – Ambulanter Pflegedienst, Tagespflege & Psychiatrische Pflege</title>
   <meta name="description" content="Pflegedienst in Kaiserslautern: Ambulanter Pflegedienst, Tagespflege und ambulante psychiatrische Pflege. Ruhig, verlässlich, nah. Jetzt Beratung vereinbaren.">
   <meta name="theme-color" content="#8EA48B" />
@@ -534,10 +565,12 @@
     </div>
   </section>
 
-  <!-- Feedback -->
-
-<section id="reviews" class="section relative overflow-hidden"
-         aria-labelledby="reviewsTitle">
+ <!-- Feedback -->
+<!-- =========================
+     Testimonials / Feedback
+     (light badges + photo slider)
+========================= -->
+<section id="reviews" class="section relative overflow-hidden" aria-labelledby="reviewsTitle">
 
   <!-- Top decorative wave -->
   <div class="wave wave-top" aria-hidden="true">
@@ -548,56 +581,63 @@
   </div>
 
   <div class="max-w-7xl mx-auto px-4 relative z-[1]">
-    <!-- Section heading -->
+    <!-- Heading -->
     <header class="mb-10 text-center">
-      <h2 id="reviewsTitle" class="text-4xl font-bold text-[var(--calm)] tracking-tight mb-3">
-        Feedback 
-      </h2>
+      <h2 id="reviewsTitle" class="text-4xl font-bold text-[var(--calm)] tracking-tight mb-3">Feedback</h2>
       <p class="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto text-lg">
         Was Familien über unsere Arbeit sagen.
       </p>
     </header>
 
-    <!-- Row 1: Official badges (Google / ProvenExpert) -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 max-w-5xl mx-auto mb-12"
-         data-reviews-badges>
-      
-      <!-- Google Review -->
-      <article class="review-badge">
-        <div class="review-badge__head">
-          <img src="./img/google-g.svg" alt="Google logo" class="w-7 h-7" />
-          <div>
-            <strong class="block">Google-Rezensionen</strong>
-            <span class="text-slate-500 dark:text-slate-300 text-sm">Ø 4,9 / 5</span>
-          </div>
+    <!-- Row 1: Official badges -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 max-w-5xl mx-auto mb-12" data-reviews-badges>
+
+      <!-- Google Review badge -->
+      <article class="review-badge relative overflow-hidden rounded-2xl p-6">
+        <!-- round Google pin -->
+        <span class="review-badge__pin" aria-hidden="true">
+          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Google">
+            <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303C33.722,31.657,29.223,35,24,35c-7.18,0-13-5.82-13-13
+            s5.82-13,13-13c3.14,0,6.022,1.115,8.269,2.951l5.657-5.657C34.676,3.053,29.645,1,24,1C11.85,1,2,10.85,2,23s9.85,22,22,22
+            c12.15,0,22-9.85,22-22C46,22.659,44.96,21.164,43.611,20.083z"/>
+            <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.283,16.381,18.855,13,24,13c3.14,0,6.022,1.115,8.269,2.951l5.657-5.657
+            C34.676,7.053,29.645,5,24,5C16.318,5,9.689,9.337,6.306,14.691z"/>
+            <path fill="#4CAF50" d="M24,41c5.152,0,9.799-1.977,13.274-5.184l-6.122-4.999C29.005,32.941,26.63,34,24,34
+            c-5.201,0-9.688-3.317-11.292-7.946l-6.54,5.036C9.548,36.787,16.198,41,24,41z"/>
+            <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-1.218,3.48-4.281,6.142-8.129,6.817l6.122,4.999
+            C36.131,37.104,42,31.5,42,23C42,22.003,41.903,21.024,43.611,20.083z"/>
+          </svg>
+        </span>
+
+        <div class="review-badge__head mt-2">
+          <strong class="block text-lg">Google-Rezensionen</strong>
+          <span class="text-slate-500 text-sm">Ø 4,9 / 5</span>
         </div>
-        <p class="review-badge__text">
+        <p class="review-badge__text mt-3">
           „Die beste Entscheidung für unsere Mutter. Regelmäßige Berichte, deutlich bessere Lebensqualität.“
         </p>
-        <div class="review-badge__stars" aria-label="5 Sterne">
-          ★★★★★
-        </div>
+        <div class="review-badge__stars mt-2" aria-label="5 Sterne">★★★★★</div>
       </article>
 
-      <!-- ProvenExpert Review -->
-      <article class="review-badge">
-        <div class="review-badge__head">
-          <img src="./img/provenexpert.svg" alt="ProvenExpert logo" class="h-6" />
-          <div>
-            <strong class="block">ProvenExpert</strong>
-            <span class="text-slate-500 dark:text-slate-300 text-sm">100% Empfehlungen</span>
-          </div>
+      <!-- ProvenExpert badge -->
+      <article class="review-badge relative overflow-hidden rounded-2xl p-6">
+        <!-- round ProvenExpert pin (use your svg/png path) -->
+        <span class="review-badge__pin" aria-hidden="true">
+          <img src="./img/provenexpert.svg" alt="ProvenExpert" width="22" height="22" />
+        </span>
+
+        <div class="review-badge__head mt-2">
+          <strong class="block text-lg">ProvenExpert</strong>
+          <span class="text-slate-500 text-sm">100% Empfehlungen</span>
         </div>
-        <p class="review-badge__text">
+        <p class="review-badge__text mt-3">
           „Kompetent, herzlich und zuverlässig. Wir fühlen uns in jeder Situation gut begleitet.“
         </p>
-        <div class="review-badge__stars" aria-label="5 Sterne">
-          ★★★★★
-        </div>
+        <div class="review-badge__stars mt-2" aria-label="5 Sterne">★★★★★</div>
       </article>
     </div>
 
-    <!-- Row 2: Warm emotional slider with photos -->
+    <!-- Row 2: warm photo slider -->
     <div id="reviewsViewport" class="review-viewport">
       <div id="reviewsTrack" class="review-track">
 
@@ -605,7 +645,7 @@
         <figure class="review-hero">
           <img src="./img/rev-1.jpg" alt="Familienfoto" class="review-hero__img" />
           <figcaption class="review-hero__cap">
-            <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80">
+            <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
               <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z"/>
             </svg>
             <blockquote>
@@ -620,7 +660,7 @@
         <figure class="review-hero">
           <img src="./img/rev-2.jpg" alt="Zufriedene Familie" class="review-hero__img" />
           <figcaption class="review-hero__cap">
-            <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80">
+            <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
               <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z"/>
             </svg>
             <blockquote>
@@ -634,18 +674,18 @@
         <figure class="review-hero">
           <img src="./img/rev-3.jpg" alt="Betreuung zu Hause" class="review-hero__img" />
           <figcaption class="review-hero__cap">
-            <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80">
+            <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
               <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z"/>
             </svg>
             <blockquote>
               Durch die regelmäßigen Besuche ist unsere Mutter viel ruhiger. Wir vertrauen Ihnen zu 100 %.
             </blockquote>
-            <div class="review-hero__who">— Anna & Michael</div>
+            <div class="review-hero__who">— Anna &amp; Michael</div>
           </figcaption>
         </figure>
       </div>
 
-      <!-- Dots / Pagination -->
+      <!-- Dots -->
       <div id="reviewsDots" class="review-dots" aria-label="Slides der Bewertungen"></div>
     </div>
   </div>
@@ -661,13 +701,7 @@
 
 
 
-
-
-
-
-
-
-  <!-- FAQ -->
+                                               <!-- FAQ -->
   <section id="faq" class="section" aria-labelledby="faqTitle">
     <div class="wave wave-top" aria-hidden="true">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" class="text-[var(--body)]" fill="currentColor"><path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"/></svg>
@@ -851,6 +885,13 @@
   </symbol>
 </svg>
   <!-- Скрипты проекта -->
+   <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js');
+    });
+  }
+</script>
   <script src="./app.js" defer></script>
  
 </body>
