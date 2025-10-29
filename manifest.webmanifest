@@ -2,7 +2,7 @@
   "name": "Lebensanker Pflegestützpunkt GmbH",
   "short_name": "Lebensanker",
   "description": "Ambulanter Pflegedienst, Tagespflege & ambulante psychiatrische Pflege in Kaiserslautern.",
-  "start_url": "/lebensanker-kaiserslautern.de/",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#F4EFE2",
