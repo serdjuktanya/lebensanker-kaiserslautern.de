@@ -1,4 +1,4 @@
-// ---- SW config ----
+м// ---- SW config ----
 const CACHE_NAME = "app-v3";            // меняй версию при обновлениях
 const PRECACHE = [
   // опционально: "/index.html", "/styles.css", "/script.js", "/icons/icon-192.png"
@@ -93,3 +93,4 @@ async function networkFirst(request) {
     });
   }
 }
+
