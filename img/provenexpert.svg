@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="ProvenExpert">
+<!-- Внутренний круг -->
+<circle class="pe-core" cx="24" cy="24" r="16.5"/>
+
+<!-- Верхняя чёрная дуга -->
+<path class="pe-ring-black" d="M24,6 a18,18 0 0 1 0,36" fill="none" stroke-width="4" stroke-linecap="round"/>
+
+<!-- Нижняя бирюзовая дуга -->
+<path class="pe-ring-teal" d="M24,42 a18,18 0 0 1 0,-36" fill="none" stroke-width="4" stroke-linecap="round"/>
+
+<!-- Золотая звезда -->
+<path class="pe-star" d="M24 14.5l3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3 1.2-6.9-5-4.9 6.9-1z"/>
+</svg>

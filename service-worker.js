@@ -1,96 +1,59 @@
-м// ---- SW config ----
-const CACHE_NAME = "app-v3";            // меняй версию при обновлениях
-const PRECACHE = [
-  // опционально: "/index.html", "/styles.css", "/script.js", "/icons/icon-192.png"
+// ==============================
+// Лёгкий Service Worker для GitHub Pages
+// Без агрессивного кэширования CSS и SVG
+// ==============================
+
+// Имя кэша (можно менять при каждом обновлении)
+const CACHE_NAME = "lebensanker-cache-v3";
+
+// Список файлов, которые можно хранить оффлайн (минимально)
+const OFFLINE_URLS = [
+  "/",               // главная
+  "/index.html",
+  "/styles.css",
+  "/app.js",
+  "/img/og-cover.jpg"
 ];
 
-// ---- Install: предварительный кэш + skipWaiting ----
+// Установка SW и добавление файлов в кэш
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    (async () => {
-      try {
-        const cache = await caches.open(CACHE_NAME);
-        if (PRECACHE.length) await cache.addAll(PRECACHE);
-      } catch (_) { /* молча игнорируем */ }
-      await self.skipWaiting();
-    })()
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(OFFLINE_URLS))
   );
+  self.skipWaiting();
 });
 
-// ---- Activate: чистим старые кэши + захватываем клиентов ----
+// Активация и удаление старых кэшей
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    (async () => {
-      const keys = await caches.keys();
-      await Promise.all(keys.map(k => (k !== CACHE_NAME ? caches.delete(k) : Promise.resolve())));
-      await self.clients.claim();
-    })()
+    caches.keys().then((keys) =>
+      Promise.all(keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key)))
+    )
   );
+  self.clients.claim();
 });
 
-// ---- Helpers ----
-const isHttp = (req) => {
-  try { return /^https?:$/.test(new URL(req.url).protocol); }
-  catch { return false; }
-};
-const sameOrigin = (req) => {
-  try { return new URL(req.url).origin === self.location.origin; }
-  catch { return false; }
-};
-
-// ---- Fetch: безопасные стратегии ----
+// Стратегия: сначала сеть, если нет — кэш
 self.addEventListener("fetch", (event) => {
-  const req = event.request;
+  const { request } = event;
 
-  // Кэшируем только http(s) GET; не трогаем chrome-extension, data:, ws:, POST и т.д.
-  if (!isHttp(req) || req.method !== "GET") return;
-
-  // Для переходов/HTML — network-first (чтобы не застревала старая версия)
-  const isNavigation = req.mode === "navigate" ||
-                       (req.headers.get("accept") || "").includes("text/html");
-
-  if (isNavigation) {
-    event.respondWith(networkFirst(req));
+  // Пропускаем chrome-extension, data:, blob:, и POST-запросы
+  if (
+    !request.url.startsWith("http") ||
+    request.method !== "GET"
+  ) {
     return;
   }
 
-  // Для статики своего домена — cache-first; чужие домены оставляем как есть
-  if (sameOrigin(req)) {
-    event.respondWith(cacheFirst(req));
-  }
-  // Иначе не вмешиваемся (CDN, шрифты и т.п.)
+  event.respondWith(
+    fetch(request)
+      .then((response) => {
+        // Успешный ответ → клонируем в кэш
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+        return response;
+      })
+      .catch(() => caches.match(request)) // оффлайн-резерв
+  );
 });
-
-// ---- Strategies ----
-async function cacheFirst(request) {
-  const cache = await caches.open(CACHE_NAME);
-  const cached = await cache.match(request);
-  if (cached) return cached;
-
-  try {
-    const resp = await fetch(request);
-    // Кладём только успешные «basic» ответы (same-origin)
-    if (resp.ok && resp.type === "basic") cache.put(request, resp.clone());
-    return resp;
-  } catch {
-    return cached || Response.error();
-  }
-}
-
-async function networkFirst(request) {
-  const cache = await caches.open(CACHE_NAME);
-  try {
-    const resp = await fetch(request, { cache: "no-store" });
-    if (resp.ok && (resp.type === "basic" || resp.type === "cors")) {
-      cache.put(request, resp.clone());
-    }
-    return resp;
-  } catch {
-    const cached = await cache.match(request);
-    return cached || new Response("<h1>Offline</h1>", {
-      headers: { "Content-Type": "text/html; charset=utf-8" },
-      status: 503
-    });
-  }
-}
 

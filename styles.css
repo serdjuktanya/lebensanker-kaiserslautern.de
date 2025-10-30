@@ -2636,15 +2636,19 @@ backdrop-filter: blur(3px);
 
 /* ---- Badges (Google / ProvenExpert) ---- */
 .review-badge {
+  position: relative;
   background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  border-radius: 18px;
-  padding: 18px 18px 16px;
+  border-radius: 1rem;
+  padding: 3.5rem 1.5rem 1.5rem; /* ⬅ увеличиваем верхний паддинг */
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-  opacity: 0;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: visible; /* ⬅ чтобы круг не обрезался */
   transform: translateY(12px); /* для плавного появления */
+  opacity: 0;
 }
+
 .review-badge__head {
   display: flex;
   align-items: center;
@@ -2825,24 +2829,50 @@ backdrop-filter: blur(3px);
 }
 
 /* круглые бейджи-иконки в углу */
+/* Центрированный круглый значок (иконка) над карточкой */
 .review-badge__pin {
   position: absolute;
-  top: -6px;
-  left: -6px;
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
+  top: -26px;                /* поднимаем кружок над карточкой */
+  left: 50%;                 /* центрируем по горизонтали */
+  transform: translateX(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 9999px;
   background: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   display: grid;
   place-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  z-index: 2;
+  transition: transform .25s ease, box-shadow .25s ease;
 }
+
+.review-badge__pin:hover {
+  transform: translateX(-50%) scale(1.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Иконки внутри (SVG или IMG) */
 .review-badge__pin svg,
 .review-badge__pin img {
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   display: block;
+}
+
+/* адаптив — чуть крупнее на телефонах */
+@media (max-width: 640px) {
+  .review-badge__pin {
+    width: 64px;
+    height: 64px;
+    top: -32px;
+  }
+
+  .review-badge__pin svg,
+  .review-badge__pin img {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 /* чутка приглушаем серый текст */
@@ -2970,7 +3000,7 @@ backdrop-filter: blur(3px);
 }
 
 /* На всякий случай: не давать глобальным стилям перекрашивать SVG */
-.review-badge svg path { fill: inherit; }
+/* .review-badge svg path { fill: inherit; } */
 .brand-badge .gmark path { fill: currentColor; }    /* временно назначим currentColor... */
 .brand-badge .gmark { color: transparent; }         /* ...и сразу обнулим цвет, чтобы ниже задать точные заливки */
 
@@ -2984,16 +3014,7 @@ backdrop-filter: blur(3px);
 .dark .brand-badge { background: #ffffff; border-color: rgba(255,255,255,.18); }
 
 
-.review-badge {
-  position: relative;
-  background: #fff;
-  border-radius: 1rem;
-  padding: 2.5rem 1.5rem 1.5rem;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  text-align: left;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+
 .review-badge:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
@@ -3029,7 +3050,7 @@ backdrop-filter: blur(3px);
 .review-badge__stars {
   margin-top: 0.5rem;
   font-size: 1.2rem;
-  color: var(--mint, #27c5a5);
+
 }
 
 /* Тёмная тема */
@@ -3152,3 +3173,123 @@ backdrop-filter: blur(3px);
     max-width: clamp(260px, 90%, 320px);
   }
 
+
+
+.brand-badge {
+  position: absolute;
+  top: .6rem;
+  left: .6rem;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+
+.review-badge .brand-icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.review-badge__pin{
+  position:absolute; inset:12px auto auto 12px;
+  width:28px; height:28px; display:grid; place-items:center;
+  background:#fff; border:1px solid var(--line); border-radius:9999px;
+  box-shadow:0 1px 0 rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.08);
+}
+.review-badge__pin img,
+.review-badge__pin svg{ width:18px; height:18px; }
+
+.review-badge__stars.gold{ color:#B9926A; }           /* альтернатива */
+
+.review-badge__pin {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+}
+
+.review-badge__pin svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* --- FIX: многоцветный логотип Google в пине --- */
+/* Жёстко вернём фирменные цвета по hex, чтобы никакие общие правила их не перебивали */
+.review-badge__pin svg path[fill="#FFC107"] { fill: #FFC107 !important; } /* yellow */
+.review-badge__pin svg path[fill="#FF3D00"] { fill: #FF3D00 !important; } /* red   */
+.review-badge__pin svg path[fill="#4CAF50"] { fill: #4CAF50 !important; } /* green */
+.review-badge__pin svg path[fill="#1976D2"] { fill: #1976D2 !important; } /* blue  */
+
+/* --- FIX: звезды всегда золотые, независимо от мобильных блоков ниже --- */
+.review-badge__stars { color: #D4AF37 !important; } /* золото */
+
+/* --- ЛОГОТИП GOOGLE: вернуть фирменные цвета --- */
+.review-badge__pin svg path[fill="#FFC107"] { fill: #FFC107 !important; }
+.review-badge__pin svg path[fill="#FF3D00"] { fill: #FF3D00 !important; }
+.review-badge__pin svg path[fill="#4CAF50"] { fill: #4CAF50 !important; }
+.review-badge__pin svg path[fill="#1976D2"] { fill: #1976D2 !important; }
+
+/* --- ЗВЁЗДЫ: всегда золотые --- */
+.review-badge__stars { color: #D4AF37 !important; }
+
+/* ===== ProvenExpert Icon ===== */
+.pe-core {
+  fill: #ffffff; /* белая подложка */
+}
+
+.pe-ring-black {
+  stroke: #1f2937; /* тёмно-серый */
+  stroke-width: 4;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.pe-ring-teal {
+  stroke: #16a3a3; /* фирменный бирюзовый цвет ProvenExpert */
+  stroke-width: 4;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.pe-star {
+  fill: #d4af37; /* золотая звезда */
+}
+
+/* Для надёжности, чтобы CSS dark-mode не перекрашивал */
+.dark .pe-core { fill: #ffffff; }
+.dark .pe-ring-black { stroke: #e5e7eb; }
+.dark .pe-ring-teal { stroke: #27c5a5; }
+.dark .pe-star { fill: #d4af37; }
+/* Стартовое состояние — бейдж невидим и чуть уменьшен */
+.brand-badge--center {
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  filter: blur(2px);
+  transition:
+    opacity 0.6s cubic-bezier(.22,.61,.36,1),
+    transform 0.6s cubic-bezier(.22,.61,.36,1),
+    filter 0.6s ease;
+}
+
+/* Когда бейдж становится видимым — плавно проявляется */
+.brand-badge--center.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* При наведении — лёгкий эффект "всплытия" */
+.review-badge--centered:hover .brand-badge--center {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
