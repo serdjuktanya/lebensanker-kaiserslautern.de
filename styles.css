@@ -1920,8 +1920,7 @@ select[data-enhance-select] {
   }
 }
 
--webkit-backdrop-filter: blur(3px);
-backdrop-filter: blur(3px);
+
 
 .team-card {
   position: relative;
@@ -2613,12 +2612,21 @@ backdrop-filter: blur(3px);
   }
 }
 
-/* ---- feedback ---- */
+/* ===============================
+   Секция отзывов (#reviews)
+=============================== */
 #reviews {
   position: relative;
   isolation: isolate;
   background: color-mix(in oklab, var(--beige) 40%, white);
+  /* Блокировка на светлой палитре */
+  --card: #ffffff;
+  --chip: #ffffff;
+  --ink: #1e1f1b;
+  --line: rgba(0, 0, 0, 0.08);
+  color-scheme: only light;
 }
+
 #reviews::before {
   content: "";
   position: absolute;
@@ -2629,118 +2637,260 @@ backdrop-filter: blur(3px);
     radial-gradient(900px 220px at 50% -60px, rgba(255, 255, 255, 0.9), transparent 70%);
   opacity: 0.8;
 }
+
 #reviews > * {
   position: relative;
   z-index: 1;
 }
 
-/* ---- Badges (Google / ProvenExpert) ---- */
-.review-badge {
-  position: relative;
-  background: #fff;
-  border-radius: 1rem;
-  padding: 3.5rem 1.5rem 1.5rem; /* ⬅ увеличиваем верхний паддинг */
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  text-align: left;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: visible; /* ⬅ чтобы круг не обрезался */
-  transform: translateY(12px); /* для плавного появления */
-  opacity: 0;
+/* Отключение тёмной темы внутри секции */
+#reviews .dark,
+.dark #reviews {
+  background: #fff !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
 }
 
+/* ===============================
+   Карточки бейджей (.review-badge)
+=============================== */
+.review-badge {
+  position: relative;
+  /* Всегда светлые стили */
+  background: #fff !important;
+  border-radius: 1rem;
+  padding: 3.5rem 1.5rem 1.5rem;
+  border: 1px solid var(--line) !important;
+  color: var(--ink) !important;
+  text-align: left;
+  overflow: visible;
+  /* Базовые стили для появления и теней (объединены) */
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06) !important;
+  transform: translateY(12px);
+  opacity: 0;
+  transition:
+    background 0.35s ease,
+    box-shadow 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.6s; /* для анимации появления */
+}
+
+/* Тёмная тема для карточки (переопределена выше в #reviews) */
+.dark .review-badge {
+  background: #fff !important;
+  color: var(--ink) !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Ховер эффект для карточки (объединены) */
+.review-badge:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+  border-color: color-mix(in oklab, var(--mint) 26%, transparent);
+}
+
+/* Эффект при появлении в области видимости */
+.reviews-in .review-badge {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.6s, transform 0.6s;
+}
+
+/* Стили для дочерних элементов карточки */
 .review-badge__head {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 0.35rem;
 }
-.review-badge__text {
-  color: #475569;
-  margin: 0.35rem 0 0.5rem;
-}
-.review-badge__stars {
-  letter-spacing: 2px;
-  color: var(--camel);
-  font-size: 1.05rem;
-}
-.review-badge:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(16, 24, 40, 0.12);
-  border-color: color-mix(in oklab, var(--mint) 26%, transparent);
-}
-.dark .review-badge {
-  background: var(--card);
-  border-color: var(--line);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
-}
-.dark .review-badge__text {
-  color: #cbd5e1;
-}
 
-/* ---- Hero slider ---- */
-.review-viewport {
-  position: relative;
-  overflow: hidden;
-  max-width: 980px;
-  margin: 0 auto;
-}
-.review-track {
-  display: flex;
-  gap: 24px;
-  will-change: transform;
-  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-.review-hero {
-  position: relative;
-  flex: 0 0 100%;
-  border-radius: 20px;
-  overflow: hidden;
-  background: #0b0b0b;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-.review-hero__img {
-  width: 100%;
-  height: 360px;
-  object-fit: cover;
-  display: block;
-  filter: saturate(0.98);
-}
-.review-hero__cap {
-  position: absolute;
-  inset-inline: 0;
-  bottom: 0;
-  display: grid;
-  gap: 0.5rem;
-  padding: 18px 18px 16px;
-  color: #fff;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 48%, rgba(0, 0, 0, 0.9) 100%);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-.review-hero__cap blockquote {
-  font-size: 1.05rem;
+.review-badge__text {
+  color: #475569; /* чутка приглушаем серый текст */
+  margin: 0.8rem 0 0.5rem; /* берем последний актуальный маржин */
+  font-size: 1rem;
   line-height: 1.5;
 }
+
+.review-badge__stars {
+  letter-spacing: 2px;
+  color: #D4AF37 !important; /* Жёстко фиксируем золото */
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+/* ===============================
+   Иконка в углу (Google / ProvenExpert) - .review-badge__pin
+=============================== */
+/* Самый полный и последний вариант стилей для пина в углу */
+.review-badge__pin {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.review-badge__pin svg,
+.review-badge__pin img {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transform-origin: center;
+}
+
+.review-badge:hover .review-badge__pin svg,
+.review-badge:hover .review-badge__pin img {
+  transform: rotate(-6deg) scale(1.08);
+}
+
+/* Жёсткая фиксация цветов для многоцветных логотипов (Google) */
+.review-badge__pin svg path[fill="#FFC107"], /* yellow */
+.review-badge__pin svg path[fill="#FF3D00"], /* red   */
+.review-badge__pin svg path[fill="#4CAF50"], /* green */
+.review-badge__pin svg path[fill="#1976D2"] {
+  fill: inherit; /* сброс для возможности переопределения */
+}
+/* Фиксация фирменных цветов Google */
+.review-badge__pin svg path[fill="#FFC107"] { fill: #FBBC05 !important; } /* Желтый */
+.review-badge__pin svg path[fill="#FF3D00"] { fill: #EA4335 !important; } /* Красный */
+.review-badge__pin svg path[fill="#4CAF50"] { fill: #34A853 !important; } /* Зеленый */
+.review-badge__pin svg path[fill="#1976D2"] { fill: #4285F4 !important; } /* Синий */
+
+/* Адаптив для углового пина */
+@media (max-width: 640px) {
+  .review-badge__pin {
+    width: 64px;
+    height: 64px;
+    top: -32px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    transition: transform .25s ease, box-shadow .25s ease; /* Добавляем переходы для ховера */
+  }
+
+  .review-badge__pin svg,
+  .review-badge__pin img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .review-badge__pin:hover {
+    transform: translateX(-50%) scale(1.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* ===============================
+   Центральный круглый бейдж (для карточек с текстом по центру)
+=============================== */
+.review-badge--centered {
+  padding-top: 3.2rem;
+  text-align: center;
+}
+
+/* Общий стиль для центрального бейджа (объединены brand-badge--center и brand-badge) */
+.brand-badge,
+.brand-badge--center {
+  position: absolute;
+  top: -32px; /* Последний актуальный top для центрального */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px; /* Последний актуальный размер */
+  height: 60px;
+  border-radius: 50%;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.06);
+  z-index: 2;
+  /* Стили для анимации появления (Trigger fade-in only when in viewport) */
+  opacity: 0;
+  transform: translateX(-50%) scale(.85);
+  filter: blur(1px);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1),
+    filter 0.55s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Эффект "всплытия" при наведении */
+.review-badge--centered:hover .brand-badge--center,
+.review-badge--centered:hover .brand-badge {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 10px 26px rgba(0,0,0,.15);
+}
+
+/* Стиль иконки внутри центрального бейджа */
+.brand-badge svg,
+.brand-badge .gmark,
+.brand-badge--center svg {
+  width: 30px; /* Последний актуальный размер */
+  height: 30px;
+  display: block;
+}
+
+/* Тёмная тема для центрального бейджа (круг всегда белый) */
+.dark .brand-badge,
+.dark .brand-badge--center {
+  background: #ffffff;
+  border-color: rgba(255,255,255,.18);
+  box-shadow: 0 8px 22px rgba(0,0,0,.28);
+}
+
+/* Видимость центрального бейджа при попадании во вьюпорт */
+.brand-badge--center.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  filter: blur(0);
+}
+
+/* Адаптив для центрального бейджа */
+@media (max-width: 640px) {
+  .brand-badge,
+  .brand-badge--center {
+    width: 72px;
+    height: 72px;
+    top: -38px;
+  }
+  .brand-badge svg,
+  .brand-badge .gmark,
+  .brand-badge--center svg {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* ===============================
+   Слайдер (Hero slider)
+=============================== */
+
+
 .review-hero__who {
   opacity: 0.9;
   font-size: 0.95rem;
-}
-@media (max-width: 640px) {
-  .review-hero__img {
-    height: 300px;
-  }
-  .review-hero__cap blockquote {
-    font-size: 1rem;
-  }
+  margin-top: 0.4rem;
 }
 
-/* Dots */
+/* ===============================
+   Точки навигации (.review-dots)
+=============================== */
 .review-dots {
   display: flex;
   justify-content: center;
   gap: 8px;
   margin: 12px auto 0;
 }
+
 .review-dots button {
   width: 8px;
   height: 8px;
@@ -2750,383 +2900,53 @@ backdrop-filter: blur(3px);
   opacity: 0.55;
   transition: width 0.25s, opacity 0.25s, transform 0.2s, background-color 0.25s;
 }
+
 .review-dots button[aria-current="true"] {
   width: 26px;
   opacity: 1;
   background: var(--mint);
 }
+
 .review-dots button:hover {
   transform: scale(1.1);
 }
 
-/* reveal on view */
-.reviews-in .review-badge {
-  opacity: 1;
-  transform: none;
-  transition: opacity 0.6s, transform 0.6s;
-}
-
-.review-badge svg {
-  transition: transform 0.25s ease;
-}
-.review-badge:hover svg {
-  transform: rotate(-5deg) scale(1.08);
-}
-
-/* --- Feedback section icon hover effect --- */
-.review-badge {
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-  transition: all 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-.review-badge:hover {
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-  transform: translateY(-3px);
-}
-
-.review-badge svg,
-.review-badge img {
-  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
-  transform-origin: center;
-}
-
-.review-badge:hover svg,
-.review-badge:hover img {
-  transform: rotate(-6deg) scale(1.08);
-}
-
-/* --- Feedback: lock to light palette + softer shadows --- */
-#reviews {
-  /* локально переопределяем переменные, чтобы секция всегда была светлой */
-  --card: #ffffff;
-  --chip: #ffffff;
-  --ink: #1e1f1b;
-  --line: rgba(0, 0, 0, 0.08);
-  color-scheme: only light; /* убираем авто-тёмную схему браузера внутри секции */
-}
-
-/* карточки всегда светлые и без резкой тени */
-#reviews .review-badge {
-  background: #fff !important;
-  color: var(--ink) !important;
-  border: 1px solid var(--line) !important;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06) !important;
-  transition: background 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
-}
-#reviews .review-badge:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
-  transform: translateY(-3px);
-}
-
-/* отключаем тёмную тему именно тут */
-#reviews .dark,
-.dark #reviews,
-.dark #reviews .review-badge {
-  background: #fff !important;
-  color: var(--ink) !important;
-  border-color: var(--line) !important;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06) !important;
-}
-
-/* круглые бейджи-иконки в углу */
-/* Центрированный круглый значок (иконка) над карточкой */
-.review-badge__pin {
-  position: absolute;
-  top: -26px;                /* поднимаем кружок над карточкой */
-  left: 50%;                 /* центрируем по горизонтали */
-  transform: translateX(-50%);
-  width: 52px;
-  height: 52px;
-  border-radius: 9999px;
-  background: #fff;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  z-index: 2;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.review-badge__pin:hover {
-  transform: translateX(-50%) scale(1.06);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
-
-/* Иконки внутри (SVG или IMG) */
-.review-badge__pin svg,
-.review-badge__pin img {
-  width: 26px;
-  height: 26px;
-  display: block;
-}
-
-/* адаптив — чуть крупнее на телефонах */
+/* ===============================
+   Адаптивность (Mobile view до 640px)
+=============================== */
 @media (max-width: 640px) {
-  .review-badge__pin {
-    width: 64px;
-    height: 64px;
-    top: -32px;
+  .review-hero__img {
+    height: 300px;
   }
-
-  .review-badge__pin svg,
-  .review-badge__pin img {
-    width: 32px;
-    height: 32px;
+  .review-hero__cap blockquote {
+    font-size: 1rem;
   }
-}
-
-/* чутка приглушаем серый текст */
-#reviews .review-badge__text {
-  color: #475569;
-}
-
-/* ====== Feedback: centered brand badge ====== */
-.review-badge--centered {
-  position: relative;
-  padding-top: 3.2rem; /* место под логотип */
-  text-align: center;
-}
-
-.brand-badge--center {
-  position: absolute;
-  top: -22px; left: 50%;
-  transform: translateX(-50%);
-  width: 56px; height: 56px;
-  border-radius: 999px;
-  display: grid; place-items: center;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,.10);
-  z-index: 2;
-  transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.review-badge--centered:hover .brand-badge--center {
-  transform: translateX(-50%) scale(1.05);
-  box-shadow: 0 10px 26px rgba(0,0,0,.15);
-}
-
-.dark .brand-badge--center {
-  background: var(--card);
-  border-color: var(--line);
-  box-shadow: 0 8px 22px rgba(0,0,0,.28);
-}
-.brand-badge--center svg {
-  width: 32px; height: 32px;
-}
-/* ====== Brand badge: pop-in on load ====== */
-@keyframes brandPopIn {
-  0%   { opacity: 0; transform: translateX(-50%) scale(.82); filter: blur(1px); }
-  100% { opacity: 1; transform: translateX(-50%) scale(1);   filter: blur(0); }
-}
-
-/* базовое появление */
-.review-badge--centered .brand-badge--center {
-  opacity: 0;                /* стартовое состояние */
-  animation: brandPopIn .55s cubic-bezier(.22,.61,.36,1) .12s forwards;
-}
-
-/* лёгкий стаггер для нескольких карточек */
-[data-reviews-badges] .review-badge--centered:nth-child(1) .brand-badge--center { animation-delay: .10s; }
-[data-reviews-badges] .review-badge--centered:nth-child(2) .brand-badge--center { animation-delay: .22s; }
-[data-reviews-badges] .review-badge--centered:nth-child(3) .brand-badge--center { animation-delay: .34s; }
-
-/* hover-эффект остаётся прежним */
-.review-badge--centered:hover .brand-badge--center {
-  transform: translateX(-50%) scale(1.05);
-  box-shadow: 0 10px 26px rgba(0,0,0,.15);
-}
-
-/* тёмная тема — те же корректировки, что и раньше */
-.dark .brand-badge--center {
-  background: var(--card);
-  border-color: var(--line);
-  box-shadow: 0 8px 22px rgba(0,0,0,.28);
-}
-
-/* Уважение к reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .review-badge--centered .brand-badge--center {
-    animation: none !important;
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-    filter: none;
-  }
-}
-/* ====== Trigger fade-in only when in viewport ====== */
-.review-badge--centered .brand-badge--center {
-  opacity: 0;
-  transform: translateX(-50%) scale(.85);
-  filter: blur(1px);
-  transition:
-    opacity .55s cubic-bezier(.22,.61,.36,1),
-    transform .55s cubic-bezier(.22,.61,.36,1),
-    filter .55s ease;
-}
-
-.review-badge--centered .brand-badge--center.is-visible {
-  opacity: 1;
-  transform: translateX(-50%) scale(1);
-  filter: blur(0);
-}
-
-/* Центрированный круглый бейдж под Google G */
-.brand-badge {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 64px;                 /* базовый размер бейджа */
-  height: 64px;
-  margin: -38px auto 10px;     /* “висит” над карточкой, по центру */
-  border-radius: 999px;
-  background: #fff;            /* всегда белый круг */
-  box-shadow: 0 6px 18px rgba(0,0,0,.12);
-  border: 1px solid rgba(0,0,0,.06);
-  isolation: isolate;          /* защищает от mix-blend и наложений */
-  z-index: 1;
-}
-
-/* Сам многоцветный G — не перекрашиваем! */
-.brand-badge .gmark {
-  width: 30px;
-  height: 30px;
-  display: block;
-}
-
-/* На мобильных — чуть крупнее, как ты хотела */
-@media (max-width: 640px) {
-  .brand-badge { width: 74px; height: 74px; margin-top: -42px; }
-  .brand-badge .gmark { width: 34px; height: 34px; }
-}
-
-/* На всякий случай: не давать глобальным стилям перекрашивать SVG */
-/* .review-badge svg path { fill: inherit; } */
-.brand-badge .gmark path { fill: currentColor; }    /* временно назначим currentColor... */
-.brand-badge .gmark { color: transparent; }         /* ...и сразу обнулим цвет, чтобы ниже задать точные заливки */
-
-/* ЖЁСТКО фиксируем фирменные цвета (чтобы ни тема, ни dark-mode не перебили) */
-.brand-badge .gmark path:nth-child(1) { fill: #4285F4 !important; }  /* синий */
-.brand-badge .gmark path:nth-child(2) { fill: #34A853 !important; }  /* зелёный */
-.brand-badge .gmark path:nth-child(3) { fill: #FBBC05 !important; }  /* жёлтый */
-.brand-badge .gmark path:nth-child(4) { fill: #EA4335 !important; }  /* красный */
-
-/* Если карточки имеют тёмный фон — белый круг остаётся белым */
-.dark .brand-badge { background: #ffffff; border-color: rgba(255,255,255,.18); }
-
-
-
-.review-badge:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-/* Круглый бейдж (центр над карточкой) */
-.brand-badge {
-  position: absolute;
-  top: -32px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(0,0,0,0.06);
-}
-.brand-icon {
-  width: 30px;
-  height: 30px;
-  display: block;
-}
-.review-badge__text {
-  margin-top: 0.8rem;
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #444;
-}
-.review-badge__stars {
-  margin-top: 0.5rem;
-  font-size: 1.2rem;
-
-}
-
-/* Тёмная тема */
-.dark .review-badge { background: #1e1e1e; color: #eee; border-color: #333; }
-.dark .brand-badge { background: #fff; }
-
-/* Фото-слайдер */
-.review-viewport { position: relative; overflow: hidden; border-radius: 1rem; }
-.review-track { display: flex; transition: transform .6s ease; }
-.review-hero { min-width: 100%; position: relative; overflow: hidden; }
-.review-hero__img { width: 100%; height: auto; display: block; border-radius: 1rem; }
-.review-hero__cap {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 1rem 1.5rem 1.5rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 80%);
-  color: #fff;
-  border-radius: 0 0 1rem 1rem;
-}
-.review-hero__who { margin-top: 0.4rem; font-size: .9rem; opacity: .9; }
-.review-dots {
-  display: flex; justify-content: center; gap: 8px; margin-top: 12px;
-}
-.review-dots button {
-  width: 10px; height: 10px; border-radius: 50%;
-  background: #ccc; border: none; cursor: pointer;
-  transition: background .3s;
-}
-.review-dots button.active { background: var(--mint, #27c5a5); }
-
-/* адаптив */
-@media (max-width: 640px){
-  .brand-badge{width:72px;height:72px;top:-38px;}
-  .brand-icon{width:34px;height:34px;}
-}
-/* ===== Team Card Hover Effects ===== */
-.team-card {
-  position: relative;
-  border-radius: 18px;
-  overflow: hidden;
-  background: #0b0b0b;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
-  transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
-  will-change:  transform, box-shadow, filter;
-}
-.team-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-  filter: brightness(1.1);
 }
 
 /* ===============================
-   Mobile view (до 640px)
+   Partner Logos (объединены)
 =============================== */
-@media (max-width: 640px) {
-  .partner-grid { gap: 2.25rem; justify-items: center; }
-  .partner-card {
-    width: 100%;
-    max-width: 340px;
-    background: rgba(255,255,255,.85);
-    backdrop-filter: blur(6px);
-    border-radius: 1.25rem;
-    padding: 1.25rem 0;
-    box-shadow: 0 6px 16px rgba(0,0,0,.06);
-    transition: box-shadow .3s ease, transform .3s ease;
-  }
-  .partner-card:active { transform: scale(.98); box-shadow: 0 4px 10px rgba(0,0,0,.08); }
-  .partner-grid img.partner-logo { max-width: clamp(260px, 90%, 320px); }
+.partner-grid {
+  gap: 2.25rem;
+  justify-items: center;
 }
-
-
-/* ===============================
-   Partner Logos – Premium Responsive Design
-=============================== */
+.partner-card {
+  width: 100%;
+  max-width: 340px;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(6px);
+  border-radius: 1.25rem;
+  padding: 1.25rem 0;
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+  transition: box-shadow .3s ease, transform .3s ease;
+}
+.partner-card:active {
+  transform: scale(.98);
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
 .partner-grid img.partner-logo {
   width: 100%;
-  max-width: clamp(220px, 85%, 280px); /* Автоматическая адаптация под экран */
+  max-width: clamp(260px, 90%, 320px); /* берем больший размер из последних стилей */
   height: auto;
   border-radius: 1rem;
   transition:
@@ -3145,151 +2965,759 @@ backdrop-filter: blur(3px);
 }
 
 /* ===============================
-   Mobile view (до 640px)
+   ProvenExpert Icon (объединены)
 =============================== */
-@media (max-width: 640px) {
-  .partner-grid {
-    gap: 2.25rem; /* немного больше расстояние между карточками */
-    justify-items: center;
-  }
-
-  .partner-card {
-    width: 100%;
-    max-width: 340px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(6px);
-    border-radius: 1.25rem;
-    padding: 1.25rem 0;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-  }
-
-  .partner-card:active {
-    transform: scale(0.98);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  }
-
-  .partner-grid img.partner-logo {
-    max-width: clamp(260px, 90%, 320px);
-  }
-
-
-
-.brand-badge {
-  position: absolute;
-  top: .6rem;
-  left: .6rem;
-  width: 28px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,.08);
-}
-
-.review-badge .brand-icon {
-  width: 22px;
-  height: 22px;
-  display: block;
-}
-
-.review-badge__pin{
-  position:absolute; inset:12px auto auto 12px;
-  width:28px; height:28px; display:grid; place-items:center;
-  background:#fff; border:1px solid var(--line); border-radius:9999px;
-  box-shadow:0 1px 0 rgba(0,0,0,.04),0 6px 18px rgba(0,0,0,.08);
-}
-.review-badge__pin img,
-.review-badge__pin svg{ width:18px; height:18px; }
-
-.review-badge__stars.gold{ color:#B9926A; }           /* альтернатива */
-
-.review-badge__pin {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #fff;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-}
-
-.review-badge__pin svg {
-  width: 20px;
-  height: 20px;
-}
-
-/* --- FIX: многоцветный логотип Google в пине --- */
-/* Жёстко вернём фирменные цвета по hex, чтобы никакие общие правила их не перебивали */
-.review-badge__pin svg path[fill="#FFC107"] { fill: #FFC107 !important; } /* yellow */
-.review-badge__pin svg path[fill="#FF3D00"] { fill: #FF3D00 !important; } /* red   */
-.review-badge__pin svg path[fill="#4CAF50"] { fill: #4CAF50 !important; } /* green */
-.review-badge__pin svg path[fill="#1976D2"] { fill: #1976D2 !important; } /* blue  */
-
-/* --- FIX: звезды всегда золотые, независимо от мобильных блоков ниже --- */
-.review-badge__stars { color: #D4AF37 !important; } /* золото */
-
-/* --- ЛОГОТИП GOOGLE: вернуть фирменные цвета --- */
-.review-badge__pin svg path[fill="#FFC107"] { fill: #FFC107 !important; }
-.review-badge__pin svg path[fill="#FF3D00"] { fill: #FF3D00 !important; }
-.review-badge__pin svg path[fill="#4CAF50"] { fill: #4CAF50 !important; }
-.review-badge__pin svg path[fill="#1976D2"] { fill: #1976D2 !important; }
-
-/* --- ЗВЁЗДЫ: всегда золотые --- */
-.review-badge__stars { color: #D4AF37 !important; }
-
-/* ===== ProvenExpert Icon ===== */
-.pe-core {
-  fill: #ffffff; /* белая подложка */
-}
-
+.pe-core { fill: #ffffff; }
 .pe-ring-black {
-  stroke: #1f2937; /* тёмно-серый */
+  stroke: #1f2937;
   stroke-width: 4;
   stroke-linecap: round;
   fill: none;
 }
-
 .pe-ring-teal {
-  stroke: #16a3a3; /* фирменный бирюзовый цвет ProvenExpert */
+  stroke: #16a3a3;
   stroke-width: 4;
   stroke-linecap: round;
   fill: none;
 }
+.pe-star { fill: #d4af37; }
 
-.pe-star {
-  fill: #d4af37; /* золотая звезда */
-}
-
-/* Для надёжности, чтобы CSS dark-mode не перекрашивал */
+/* Тёмная тема для иконки */
 .dark .pe-core { fill: #ffffff; }
 .dark .pe-ring-black { stroke: #e5e7eb; }
 .dark .pe-ring-teal { stroke: #27c5a5; }
 .dark .pe-star { fill: #d4af37; }
-/* Стартовое состояние — бейдж невидим и чуть уменьшен */
-.brand-badge--center {
+
+/* ===============================
+   Team Card (оставлен как есть, не относится к отзывам, но не дублируется)
+=============================== */
+.team-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0b0b0b;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
+  will-change:  transform, box-shadow, filter;
+}
+.team-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  filter: brightness(1.1);
+}
+
+/* ===============================
+   Reduced Motion (оставлен)
+=============================== */
+@media (prefers-reduced-motion: reduce) {
+  .review-badge--centered .brand-badge--center {
+    animation: none !important;
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    filter: none;
+  }
+}
+/* ===============================
+   Иконка-пин над карточкой (.review-badge__pin)
+   Теперь центрируется сверху над карточкой,
+   как на вашем примере.
+=============================== */
+.review-badge__pin {
+  position: absolute;
+  top: -26px; /* Поднимаем кружок над карточкой */
+  left: 50%; /* Центрируем по горизонтали */
+  transform: translateX(-50%);
+  width: 52px; /* Увеличим размер для лучшей видимости */
+  height: 52px;
+  border-radius: 9999px;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  z-index: 2;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.review-badge__pin:hover {
+  transform: translateX(-50%) scale(1.06);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Иконки внутри пина (SVG или IMG) */
+.review-badge__pin svg,
+.review-badge__pin img {
+  width: 26px; /* Размер иконки внутри пина */
+  height: 26px;
+  display: block;
+  /* Убираем rotate, если он не нужен для этих иконок */
+  transition: none; /* Убираем эффект вращения, если он был, для этих иконок */
+  transform: none; /* Сбрасываем трансформации для иконки внутри пина */
+}
+
+/* Адаптив — чуть крупнее на телефонах */
+@media (max-width: 640px) {
+  .review-badge__pin {
+    width: 64px;
+    height: 64px;
+    top: -32px; /* Поднимаем еще выше на мобильных */
+  }
+
+  .review-badge__pin svg,
+  .review-badge__pin img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Убедимся, что у самой карточки есть достаточный верхний паддинг,
+   чтобы содержимое не перекрывалось пином. */
+.review-badge {
+  padding-top: 3.5rem; /* Уже установлен в вашем коде, это хорошо */
+  /* ... остальные стили .review-badge ... */
+}
+
+/* ==============================
+   FEEDBACK (desktop: diagonal cut + old mobile)
+============================== */
+
+/* Viewport + track */
+.feedback-viewport{
+  position:relative; width:100%; overflow:hidden;
+  border-radius:22px; background:#fff;
+  box-shadow:0 8px 28px rgba(0,0,0,.06);
+  isolation:isolate;
+}
+.feedback-track{
+  display:flex; width:100%;
+  transition:transform 600ms cubic-bezier(.22,.61,.36,1);
+  will-change:transform;
+}
+
+/* ===== Slide ===== */
+.feedback-card{
+  position:relative;
+  flex:0 0 100%;
+  display:grid; grid-template-columns:48% 52%;
+  align-items:stretch;
+  overflow:hidden; background:#fff;
+  min-height:460px; border-radius:24px;
+}
+
+/* Photo (left) */
+.feedback-img{
+  width:100%; height:100%;
+  object-fit:cover; object-position:40% 50%;
+  display:block; transition:transform .5s ease;
+}
+
+/* Diagonal caption (right) */
+:root{ --ink: oklch(24% 0.035 160); }
+.feedback-cap{
+  position:relative;
+  background:#fff; color:#26352C;
+  display:flex; flex-direction:column; justify-content:center;
+  padding:64px 72px; max-width:680px;
+
+  /* Диагональный срез слева: чуть заходит на фото */
+  /* Верхняя точка дальше вправо, нижняя — ближе, = лёгкий наклон */
+  clip-path: polygon(
+    14% 0%,   /* верхняя точка среза */
+    100% 0%,
+    100% 100%,
+    6% 100%   /* нижняя точка среза */
+  );
+
+  /* Лёгкая тень по границе */
+  box-shadow: -12px 0 30px rgba(0,0,0,.06), inset 1px 0 0 rgba(0,0,0,.04);
+}
+
+/* Тонкая граница-градиент по диагонали (премиум штрих) */
+.feedback-cap::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  /* рисуем тонкую диагональную линию от верхнего к нижнему срезу */
+  background:
+    linear-gradient(190deg, rgba(0,0,0,.06), rgba(0,0,0,0)) left / 1px 100% no-repeat;
+  /* подгоняем «линейку» к диагонали: смещаем влево внутрь панели */
+  transform: translateX(-2px);
+  mix-blend-mode: multiply;
+}
+
+/* Typography */
+.feedback-cap blockquote{
+  max-width:54ch;
+  font-size:clamp(20px,1.6vw,24px);
+  line-height:1.45; letter-spacing:.01em;
+  font-weight:600; margin:0 0 14px; color:var(--ink);
+}
+.feedback-who{
+  font-size:clamp(14px,1.2vw,16px);
+  color:color-mix(in oklab, var(--ink) 75%, black);
+  opacity:.7; margin-top:.35rem;
+}
+
+/* Arrows (desktop only) */
+.feedback-arrow{
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:42px; height:42px; border-radius:999px;
+  background:#fff; border:1px solid rgba(0,0,0,.06);
+  box-shadow:0 8px 24px rgba(0,0,0,.1);
+  display:grid; place-items:center; cursor:pointer; z-index:2;
+}
+.feedback-arrow--prev{ left:12px; }
+.feedback-arrow--next{ right:12px; }
+.feedback-arrow svg{ width:18px; height:18px; }
+
+/* Dots */
+.feedback-dots{
+  position:absolute; left:50%; bottom:16px; transform:translateX(-50%);
+  display:flex; gap:8px; z-index:2;
+}
+.feedback-dots>button{
+  width:8px; height:8px; border-radius:999px;
+  background:#DDE5DD; border:0; opacity:.55; transition:all .25s ease;
+}
+.feedback-dots>button[aria-current="true"]{
+  width:28px; background:var(--mint,#27C5A5); opacity:1;
+}
+
+/* Hover */
+@media (hover:hover){
+  .feedback-card:hover .feedback-img{ transform:translateX(-1%) scale(1.03); }
+}
+
+/* A11y + perf */
+.feedback-dots>button:focus-visible,
+.feedback-arrow:focus-visible{ outline:2px solid var(--mint,#27C5A5); outline-offset:2px; }
+@media (prefers-reduced-motion: reduce){
+  .feedback-track, .feedback-img{ transition:none !important; }
+}
+
+/* Подстройка диагонали на очень широких контейнерах */
+#reviews{ container-type:inline-size; }
+@container (min-width:1080px){
+  .feedback-cap{
+    clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 5% 100%);
+  }
+}
+
+/* ===== Mobile — прежний вид (оверлей снизу) ===== */
+@media (max-width:820px){
+  .feedback-card{ display:block; min-height:420px; }
+  .feedback-img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; object-position:45% 50%;
+  }
+  .feedback-cap{
+    position:absolute; inset:auto 0 0 0; width:100%; min-height:42%;
+    background:color-mix(in oklab,#ffffff 92%, var(--beige,#F4EFE2) 8%);
+    padding:20px clamp(16px,5vw,28px);
+    -webkit-mask-image:linear-gradient(to top, #000 70%, transparent 100%);
+            mask-image:linear-gradient(to top, #000 70%, transparent 100%);
+    clip-path:none; box-shadow:none; max-width:none;
+  }
+  .feedback-arrow{ display:none; }
+}
+
+
+
+
+/* =========================
+   NEWS (Panorama-like)
+========================= */
+
+/* Сетка */
+#news .news-grid{
+  display:grid;
+  gap:24px;
+  grid-template-columns: 1fr; /* мобайл по одной колонке */
+}
+
+/* Карточка = фото-плитка без белых рамок */
+#news article{
+  position:relative;
+  overflow:hidden;
+  border-radius:18px;
+  color:#fff;
+  isolation:isolate;
+  background: transparent;
+  box-shadow: 0 14px 40px rgba(0,0,0,.18);
+  transition: transform .35s cubic-bezier(.22,.61,.36,1),
+              box-shadow .35s cubic-bezier(.22,.61,.36,1);
+}
+#news article:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 22px 68px rgba(0,0,0,.30);
+}
+
+/* Фото */
+#news .news-thumb{ position:absolute; inset:0; }
+#news .news-thumb, #news .news-thumb img{
+  width:100%; height:100%; display:block;
+}
+#news .news-thumb img{
+  object-fit:cover;
+  transform:scale(1.001);
+  transition:transform .7s ease;
+}
+#news article:hover .news-thumb img{ transform:scale(1.06); }
+
+/* Градиент (чуть «повыше», как на макете) */
+#news .thumb-grad{
+  position:absolute; inset:0; pointer-events:none; z-index:1;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.78) 0%,
+    rgba(0,0,0,.54) 28%,
+    rgba(0,0,0,.25) 55%,
+    rgba(0,0,0,0)   80%
+  );
+}
+
+/* Контент поверх фото — прижимаем вниз */
+#news article .p-5,
+#news article .p-4{
+  position:absolute; z-index:2;
+  left:28px; right:28px; bottom:28px;
+  text-shadow:0 2px 12px rgba(0,0,0,.45);
+}
+
+/* Чип */
+#news .chip{
+  display:inline-block; margin-bottom:8px;
+  padding:.35rem .8rem; font-size:12px; font-weight:700;
+  border-radius:999px; background:rgba(255,255,255,.92);
+  color:var(--calm,#26352C);
+}
+
+/* Заголовки/тексты */
+#news .news-title{
+  margin:4px 0 6px;
+  font-weight:800;
+  font-size:clamp(20px,2.2vw,28px);
+  letter-spacing:.2px;
+}
+#news .news-teaser{
+  margin:0 0 10px;
+  font-size:clamp(14px,1.2vw,16px);
+  color:rgba(255,255,255,.92);
+}
+#news .news-meta{
+  display:flex; justify-content:space-between;
+  font-size:13.5px; color:rgba(255,255,255,.82);
+}
+
+/* Малые карточки (правая колонка) */
+#news .small-title{ font-weight:800; font-size:clamp(16px,1.4vw,18px); }
+#news .small-teaser{ font-size:14.5px; color:rgba(255,255,255,.9); }
+
+/* ===== Desktop ≥1024px: 64% / 36% ===== */
+@media (min-width:1024px){
+  #news .news-grid{
+    grid-template-columns: 64% 36%;
+    grid-template-rows: repeat(2, minmax(0, 1fr)); /* две равные строки */
+    align-items:stretch;
+  }
+
+  /* Левая feature: занимает обе строки (высота = высота двух правых + gap) */
+  #news .news-feature{
+    grid-column:1 / 2;
+    grid-row:1 / span 2;
+    aspect-ratio:auto;          /* критично: никакого AR здесь */
+    height:auto; min-height:0;  /* высоту даст грид */
+  }
+
+  /* Две правых карточки: одинаковая высота за счёт AR */
+  #news .news-card{
+    grid-column:2 / 3;
+    aspect-ratio: 16 / 8.6;     /* приплюснутая, как на референсе */
+    height:auto;                /* высоту даст AR */
+  }
+  #news .news-card:nth-of-type(2){ grid-row:1 / 2; }
+  #news .news-card:nth-of-type(3){ grid-row:2 / 3; }
+}
+
+/* Tablet */
+@media (min-width:640px) and (max-width:1023px){
+  #news .news-feature{ aspect-ratio:16 / 8.8; }
+  #news .news-card{ aspect-ratio:16 / 10; }
+  #news article .p-5, #news article .p-4{ left:20px; right:20px; bottom:20px; }
+}
+
+/* Mobile */
+@media (max-width:639px){
+  #news .news-feature{ aspect-ratio:16 / 10; }
+  #news .news-card{ aspect-ratio:16 / 11; }
+  #news article .p-5, #news article .p-4{ left:16px; right:16px; bottom:18px; }
+}
+
+/* === Коррекция текстового блока и локальной тени === */
+
+/* Опускаем текст ниже */
+#news article .p-5,
+#news article .p-4 {
+  bottom: 16px !important; /* ближе к низу */
+  left: 24px;
+  right: 24px;
+}
+
+/* Делаем тень под текстом интенсивнее, но ограниченной зоной */
+#news .thumb-grad {
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85) 0%,   /* насыщенная внизу */
+    rgba(0,0,0,0.7) 35%,   /* быстро рассеивается */
+    rgba(0,0,0,0.3) 60%,   /* выше почти нет */
+    rgba(0,0,0,0) 80%
+  );
+}
+
+/* Небольшой “glow” для букв, чтобы они выделялись */
+#news article .p-5 h3,
+#news article .p-4 h3,
+#news article p {
+  text-shadow: 0 3px 12px rgba(0,0,0,0.9);
+}
+/* === NEWS: текст прямо у нижнего края + локальная тёмная подложка === */
+
+/* 1) Прибиваем текст к низу и убираем паддинги p-5 / p-4 */
+#news article .p-5,
+#news article .p-4{
+  position: absolute !important;
+  left: 22px !important;
+  right: 22px !important;
+  bottom: 12px !important;       /* ближе к краю */
+  padding: 0 !important;         /* убираем внутренний отступ */
+  z-index: 3;                    /* поверх градиента */
+  text-shadow: 0 3px 12px rgba(0,0,0,.9);
+}
+
+/* Чуть меньше отступов на мобильных */
+@media (max-width: 640px){
+  #news article .p-5,
+  #news article .p-4{
+    left: 16px !important;
+    right: 16px !important;
+    bottom: 10px !important;
+  }
+}
+
+/* 2) Узкая насыщенная подложка ТОЛЬКО снизу карточки */
+#news article{
+  position: relative;
+  overflow: hidden;
+}
+
+#news article::after{
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 42%;                    /* зона затемнения только снизу */
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.88) 0%,
+    rgba(0,0,0,.70) 35%,
+    rgba(0,0,0,.35) 65%,
+    rgba(0,0,0,0)   100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 3) Если у тебя ещё есть старый общий градиент .thumb-grad — делаем его мягче,
+      чтобы не дублировал тень (или можешь вообще убрать) */
+#news .thumb-grad{
+  background: linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 100%) !important;
+}
+
+/* 4) Небольшая подстройка типографики, чтобы блок «сел» ниже визуально */
+#news .news-title{ margin: 6px 0 4px !important; }
+#news .news-teaser{ margin: 0 0 8px !important; }
+#news .chip{ margin-bottom: 8px !important; }
+
+/* === Градиентный эффект для заголовков NEWS === */
+
+/* Основной (крупный) заголовок — плавный переход от мятного к белому */
+#news .news-title {
+  background: linear-gradient(90deg,
+    var(--mint, #27c5a5) 0%,
+    #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-weight: 800;
+  text-shadow: none; /* убираем лишнюю тень, чтобы градиент был чистым */
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  margin-bottom: 4px;
+  transition: background-position 0.6s ease;
+}
+
+/* Эффект подсветки при наведении — мягкое «переливание» */
+#news article:hover .news-title {
+  background-position: 100% 0;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+}
+
+/* Малые заголовки справа — тот же эффект, но чуть слабее */
+#news .small-title {
+  background: linear-gradient(90deg,
+    var(--mint, #27c5a5) 10%,
+    #e8fff9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  transition: background-position 0.6s ease;
+}
+
+#news article:hover .small-title {
+  background-position: 100% 0;
+  filter: drop-shadow(0 1px 5px rgba(0,0,0,0.5));
+}
+
+/* === Анимация появления NEWS-блоков (fade-up) === */
+
+/* Исходное состояние — невидимы и чуть ниже */
+#news article {
   opacity: 0;
-  transform: translateY(20px) scale(0.9);
-  filter: blur(2px);
-  transition:
-    opacity 0.6s cubic-bezier(.22,.61,.36,1),
-    transform 0.6s cubic-bezier(.22,.61,.36,1),
-    filter 0.6s ease;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
 }
 
-/* Когда бейдж становится видимым — плавно проявляется */
-.brand-badge--center.is-visible {
+/* Когда попадают в зону видимости — проявляются */
+#news article.is-visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+  transform: translateY(0);
 }
 
-/* При наведении — лёгкий эффект "всплытия" */
-.review-badge--centered:hover .brand-badge--center {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+/* Небольшие задержки, чтобы появлялись каскадом */
+#news .news-feature { transition-delay: 0.1s; }
+#news .news-card:nth-of-type(2) { transition-delay: 0.25s; }
+#news .news-card:nth-of-type(3) { transition-delay: 0.4s; }
+
+/* Для Safari/старых — fallback */
+@supports not (will-change: opacity) {
+  #news article { transition: all 0.9s ease; }
+}
+
+/* --- Параллакс-режим для картинок внутри news --- */
+#news article .news-thumb img{
+  /* было: transform: scale(1.001); */
+  transform: translate(var(--tx,0), var(--ty,0)) scale(var(--scale,1.03));
+  transition: transform .35s ease;   /* быстро откликаться на мышь */
+  will-change: transform;
+}
+
+/* немного сильнее зум при hover (и когда есть мышь) */
+@media (hover:hover){
+  #news article:hover .news-thumb img{
+    --scale: 1.06;
+  }
+}
+
+/* если включено “уменьшение анимаций” — параллакс отключаем */
+@media (prefers-reduced-motion: reduce){
+  #news article .news-thumb img{ transition: none; }
+}
+
+/* === Заголовок секции NEWS (верхний H2) === */
+#news h2#blogTitle {
+  font-weight: 800;
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  line-height: 1.1;
+
+  /* красивый градиент от мятного к бежевому */
+  background: linear-gradient(90deg,
+    var(--mint, #27c5a5) 0%,
+    #dbe7dd 40%,
+    #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+
+  /* лёгкая подсветка */
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+  transition: filter .5s ease, letter-spacing .4s ease;
+}
+
+/* эффект при наведении */
+#news h2#blogTitle:hover {
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.45));
+  letter-spacing: 1.5px;
+}
+
+/* плавное появление при скролле (анимация) */
+#news h2#blogTitle {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity .9s ease-out, transform .9s ease-out;
+}
+#news h2#blogTitle.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Заголовок секции NEWS (верхний H2) === */
+#news h2#blogTitle {
+  position: relative;
+  display: inline-block;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  line-height: 1.1;
+
+  /* фирменный градиент */
+  background: linear-gradient(90deg,
+    var(--mint, #27c5a5) 0%,
+    #dbe7dd 45%,
+    #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+  transition: filter .5s ease, letter-spacing .4s ease;
+}
+
+/* Подчеркивание: тонкая мятная линия */
+#news h2#blogTitle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  height: 3px;
+  width: 0%;
+  background: var(--mint, #27c5a5);
+  border-radius: 999px;
+  transition: width 1s cubic-bezier(.25, .8, .25, 1);
+}
+
+/* Активное состояние (при появлении) */
+#news h2#blogTitle.is-visible::after {
+  width: 100%;
+}
+
+/* эффект при наведении */
+#news h2#blogTitle:hover {
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.45));
+  letter-spacing: 1.4px;
+}
+
+/* плавное появление заголовка */
+#news h2#blogTitle {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity .9s ease-out, transform .9s ease-out;
+}
+#news h2#blogTitle.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Заголовок секции NEWS (верхний H2) === */
+#news h2#blogTitle {
+  position: relative;
+  display: inline-block;
+  font-weight: 800;
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+
+  /* градиент текста */
+  background: linear-gradient(90deg,
+    var(--mint, #27c5a5) 0%,
+    #dbe7dd 45%,
+    #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+  transition: filter .5s ease, letter-spacing .4s ease, transform .9s ease;
+}
+
+/* Подчеркивающая линия */
+#news h2#blogTitle::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0) 0%,
+    var(--mint, #27c5a5) 15%,
+    var(--mint, #27c5a5) 85%,
+    rgba(255,255,255,0) 100%);
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(39,197,165,0.6);
+  transition: width 1.2s cubic-bezier(.25, .8, .25, 1),
+              box-shadow .8s ease;
+}
+
+/* Когда появляется */
+#news h2#blogTitle.is-visible::after {
+  width: 100%;
+  box-shadow: 0 0 14px rgba(39,197,165,0.8), 0 0 20px rgba(255,255,255,0.25);
+}
+
+/* При наведении */
+#news h2#blogTitle:hover {
+  letter-spacing: 1.3px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.45));
+}
+
+/* Плавное появление текста */
+#news h2#blogTitle {
+  opacity: 0;
+  transform: translateY(25px);
+}
+#news h2#blogTitle.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+
+/* Волны — позиционирование (без влияния на layout) */
+.section { position: relative; overflow: hidden; }
+
+.wave {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 120px;            /* высота SVG-волны */
+  pointer-events: none;
+  z-index: 0;               /* под контентом */
+}
+.wave svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* верхняя волна “пристыкована” к верху секции */
+.wave-top { top: 0; transform: translateY(-100%); }
+/* нижняя волна к низу секции */
+.wave-bottom { bottom: 0; transform: translateY(100%); }
+
+/* чтобы контент всегда был над волнами */
+.section > .relative,
+.section > .container,
+.section > .max-w-6xl,
+.section > .max-w-7xl {
+  position: relative;
+  z-index: 1;
 }

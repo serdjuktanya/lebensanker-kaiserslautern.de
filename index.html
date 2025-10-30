@@ -82,9 +82,7 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body>
-    <!-- Header -->
-    </head>
+
 <body>
   <!-- Header -->
   <header class="sticky top-0 z-50 border-b border-white/10 bg-[#26352C]/90 dark:bg-[#1b2a22]/90" role="banner">
@@ -94,7 +92,7 @@
          <!-- ЛОГО в шапке -->
         <div class="flex items-center gap-3">
         <img src="./img/LEBENSANKER-14.png" class="logo-light w-[42px] h-[42px] object-contain logo-pulse" alt="Lebensanker Logo" />
-        <img src="./img/LEBENSANKER-05.png" class="logo-dark w-[42px] h-[42px] object-contain logo-pulse" alt="Lebensanker Logo Dark" />
+        <!--<img src="./img/LEBENSANKER-05.png" class="logo-dark w-[42px] h-[42px] object-contain logo-pulse" alt="Lebensanker Logo Dark" />-->
         <span class="font-semibold text-white tracking-wide">Lebensanker Pflegestützpunkt</span>
         </div>
       </div>
@@ -517,6 +515,7 @@
         Gemeinsam stark – mit unseren regionalen und überregionalen Partnern für eine verlässliche Versorgung.
       </p>
     </header>
+    <hr class="max-w-6xl mx-auto my-10 border-0 h-[1px] bg-black/5 rounded">
 
     <!-- Логотипы -->
     <div
@@ -560,35 +559,81 @@
   </div>
 </section>
 
-  <!-- News -->
-  <section id="news" class="section" aria-labelledby="blogTitle" style="background:color-mix(in oklab, var(--beige) 45%, transparent);">
-    <div class="wave wave-top" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" class="text-[var(--body)]" fill="currentColor"><path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"/></svg>
+
+  <!-- =========================
+     NEWS Section
+========================= -->
+<section id="news" class="section relative" aria-labelledby="blogTitle"
+  style="background:color-mix(in oklab, var(--beige) 45%, transparent);">
+
+  <!-- wave -->
+  <div class="wave wave-top" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none"
+         class="text-[var(--body)]" fill="currentColor"><path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"/></svg>
+  </div>
+
+  <div class="max-w-6xl xl:max-w-7xl mx-auto px-4 relative z-[1]">
+    <header class="mb-8 text-center">
+      <h2 id="blogTitle" class="text-3xl xl:text-4xl font-bold text-[var(--calm)] tracking-tight mb-2">News</h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">Aktuelles, Hinweise & Tipps.</p>
+    </header>
+
+    <div class="news-grid">
+      <!-- Featured -->
+      <article class="news-feature card">
+        <a href="#" class="stretched"></a>
+        <div class="news-thumb">
+          <img src="img/news-feature1.jpeg"" alt="">
+          <div class="thumb-grad"></div>
+        </div>
+        <div class="p-5 sm:p-6">
+          <span class="chip">Leitfaden</span>
+          <h3 class="news-title">Pflegegrad beantragen – kompakter Leitfaden</h3>
+          <p class="news-teaser">Voraussetzungen, Unterlagen, MD-Termin, Widerspruch und Checkliste.</p>
+          <div class="news-meta"><span>⏱️ 6–8 Min</span><time datetime="2025-10-25">25.10.2025</time></div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="news-card card">
+        <a href="#" class="stretched"></a>
+        <div class="news-thumb sm:aspect-[16/10]">
+          <img src="img/news-feature.jpg"" alt="">
+          <span class="chip chip--small">Alltag</span>
+          <div class="thumb-grad"></div>
+        </div>
+        <div class="p-4 sm:p-5">
+          <h3 class="small-title">Entlastung im Alltag</h3>
+          <p class="small-teaser">Ambulante Pflege in planbaren Schritten.</p>
+          <div class="news-meta"><span>⏱️ 4 Min</span><time datetime="2025-10-18">18.10.2025</time></div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="news-card card">
+        <a href="#" class="stretched"></a>
+        <div class="news-thumb sm:aspect-[16/10]">
+          <img src="img/news-feature2.jpeg" alt="">
+          <span class="chip chip--small">Konzept</span>
+          <div class="thumb-grad"></div>
+        </div>
+        <div class="p-4 sm:p-5">
+          <h3 class="small-title">Sanfte Integration</h3>
+          <p class="small-teaser">Mehrgenerationen: Wärme, Struktur, Sicherheit.</p>
+          <div class="news-meta"><span>⏱️ 3 Min</span><time datetime="2025-10-10">10.10.2025</time></div>
+        </div>
+      </article>
     </div>
-    <div class="fade-in max-w-7xl mx-auto px-4 text-center">
-      <h2 id="blogTitle" class="text-3xl font-bold mb-6">News</h2>
-      <div class="grid md:grid-cols-3 gap-6 text-left">
-        <article class="card flex flex-col">
-          <img src="https://placehold.co/600x300" alt="Pflegegrad beantragen – Leitfaden" class="rounded-lg mb-3" />
-          <strong class="text-lg">Pflegegrad beantragen – Leitfaden</strong>
-          <p class="mt-2 text-slate-600 dark:text-slate-300 flex-grow">Schritte, Tipps, Checkliste</p>
-          <div class="mt-4 flex justify-center"><a href="#" class="btn-secondary self-center">Mehr lesen</a></div>
-        </article>
-        <article class="card flex flex-col">
-          <img src="https://placehold.co/600x300" alt="Entlastung im Alltag – so hilft ambulante Pflege" class="rounded-lg mb-3" />
-          <strong class="text-lg">Entlastung im Alltag</strong>
-          <p class="mt-2 text-slate-600 dark:text-slate-300 flex-grow">So hilft ambulante Pflege</p>
-          <div class="mt-4 flex justify-center"><a href="#" class="btn-secondary self-center">Mehr lesen</a></div>
-        </article>
-        <article class="card flex flex-col">
-          <img src="https://placehold.co/600x300" alt="Sanfte Integration – Mehrgenerationen im Alltag" class="rounded-lg mb-3" />
-          <strong class="text-lg">Sanfte Integration</strong>
-          <p class="mt-2 text-slate-600 dark:text-slate-300 flex-grow">Mehrgenerationen im Alltag</p>
-          <div class="mt-4 flex justify-center"><a href="#" class="btn-secondary self-center">Mehr lesen</a></div>
-        </article>
-      </div>
+
+    <div class="mt-8 text-center">
+      <a href="#" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[var(--mint)] text-white font-semibold shadow hover:opacity-95 transition">
+        Alle Artikel ansehen
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 5l7 7-7 7v-4H4v-6h9z"/></svg>
+      </a>
     </div>
-  </section>
+  </div>
+</section>
+
 
  <!-- Feedback -->
 
@@ -667,65 +712,64 @@
     </div>
 
     <!-- Row 2: warm photo slider -->
-    <div id="reviewsViewport" class="review-viewport">
-      <div id="reviewsTrack" class="review-track">
+<div id="feedbackViewport" class="feedback-viewport">
+  <div id="feedbackTrack" class="feedback-track">
 
-        <!-- Slide 1 -->
-        <figure class="review-hero">
-          <img src="./img/rev-1.jpg" alt="Familienfoto" class="review-hero__img" />
-          <figcaption class="review-hero__cap">
-            <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
-              <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z"/>
-            </svg>
-            <blockquote>
-              Das ist Ihr Verdienst! Meine Mutter schreibt selten Bewertungen, aber über Ihre Hilfe – nur warme Worte.
-              Herzlichen Dank für Ihre Fürsorge und Ihren Respekt.
-            </blockquote>
-            <div class="review-hero__who">— Margo S.</div>
-          </figcaption>
-        </figure>
+    <!-- Slide 1 -->
+    <figure class="feedback-card">
+      <img src="./img/rev-1.jpg" alt="Familienfoto" class="feedback-img" />
+      <figcaption class="feedback-cap">
+        <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
+          <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z"/>
+        </svg>
+        <blockquote>
+          Das ist Ihr Verdienst! Meine Mutter schreibt selten Bewertungen, aber über Ihre Hilfe – nur warme Worte.
+          Herzlichen Dank für Ihre Fürsorge und Ihren Respekt.
+        </blockquote>
+        <div class="feedback-who">— Margo S.</div>
+      </figcaption>
+    </figure>
 
-        <!-- Slide 2 -->
-        <figure class="review-hero">
-          <img src="./img/rev-2.jpg" alt="Zufriedene Familie" class="review-hero__img" />
-          <figcaption class="review-hero__cap">
-            <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
-              <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z"/>
-            </svg>
-            <blockquote>
-              Wir sind sehr zufrieden: klare Kommunikation, verlässlich und herzlich. Absolute Empfehlung!
-            </blockquote>
-            <div class="review-hero__who">— Familie K.</div>
-          </figcaption>
-        </figure>
+    <!-- Slide 2 -->
+    <figure class="feedback-card">
+      <img src="./img/rev-2.jpg" alt="Zufriedene Familie" class="feedback-img" />
+      <figcaption class="feedback-cap">
+        <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
+          <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z"/>
+        </svg>
+        <blockquote>
+          Wir sind sehr zufrieden: klare Kommunikation, verlässlich und herzlich. Absolute Empfehlung!
+        </blockquote>
+        <div class="feedback-who">— Familie K.</div>
+      </figcaption>
+    </figure>
 
-        <!-- Slide 3 -->
-        <figure class="review-hero">
-          <img src="./img/rev-3.jpg" alt="Betreuung zu Hause" class="review-hero__img" />
-          <figcaption class="review-hero__cap">
-            <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
-              <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z"/>
-            </svg>
-            <blockquote>
-              Durch die regelmäßigen Besuche ist unsere Mutter viel ruhiger. Wir vertrauen Ihnen zu 100 %.
-            </blockquote>
-            <div class="review-hero__who">— Anna &amp; Michael</div>
-          </figcaption>
-        </figure>
-      </div>
-
-      <!-- Dots -->
-      <div id="reviewsDots" class="review-dots" aria-label="Slides der Bewertungen"></div>
-    </div>
+    <!-- Slide 3 -->
+    <figure class="feedback-card">
+      <img src="./img/rev-3.jpg" alt="Betreuung zu Hause" class="feedback-img" />
+      <figcaption class="feedback-cap">
+        <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
+          <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z"/>
+        </svg>
+        <blockquote>
+          Durch die regelmäßigen Besuche ist unsere Mutter viel ruhiger. Wir vertrauen Ihnen zu 100 %.
+        </blockquote>
+        <div class="feedback-who">— Anna &amp; Michael</div>
+      </figcaption>
+    </figure>
   </div>
+
+  <!-- Dots -->
+  <div id="feedbackDots" class="feedback-dots" aria-label="Slides der Bewertungen"></div>
+</div>
 
   <!-- Bottom decorative wave -->
-  <div class="wave wave-bottom rotate-180 mt-10" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none"
-         class="text-white" fill="currentColor">
-      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"/>
-    </svg>
-  </div>
+  <!--<button class="feedback-arrow feedback-arrow--prev" aria-label="Zurück">
+  <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+</button>
+<button class="feedback-arrow feedback-arrow--next" aria-label="Weiter">
+  <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+</button>-->
 </section>
 
 
@@ -922,5 +966,9 @@
       }*/
     </script>
     <script src="./app.js" defer></script>
+
+ <script src="./js/video-embed.js"></script>
+<script src="./js/reveal.js"></script>
+
   </body>
 </html>

@@ -934,3 +934,284 @@ document.addEventListener("DOMContentLoaded", () => {
   badges.forEach(el => observer.observe(el));
 });
 
+/* ===============================
+   FEEDBACK SLIDER (copy of reviews)
+=============================== */
+(() => {
+  const viewport = document.getElementById("feedbackViewport");
+  const track = document.getElementById("feedbackTrack");
+  const dotsWrap = document.getElementById("feedbackDots");
+  if (!viewport || !track) return;
+
+  const slides = Array.from(track.children);
+  let index = 0, timer, isHover = false;
+  const AUTOPLAY = true, INTERVAL = 5000;
+
+  function buildDots() {
+    dotsWrap.innerHTML = "";
+    slides.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", `Slide ${i + 1}`);
+      b.addEventListener("click", () => {
+        index = i;
+        render(true);
+        restart();
+      });
+      dotsWrap.appendChild(b);
+    });
+  }
+
+  function render(animate = true) {
+    const x = -(index * viewport.clientWidth);
+    track.style.transitionDuration = animate ? "600ms" : "0ms";
+    track.style.transform = `translateX(${x}px)`;
+    Array.from(dotsWrap.children).forEach((d, i) =>
+      d.setAttribute("aria-current", i === index ? "true" : "false")
+    );
+  }
+
+  function next() {
+    index = (index + 1) % slides.length;
+    render(true);
+  }
+
+  function start() {
+    if (!AUTOPLAY) return;
+    stop();
+    timer = setInterval(() => {
+      if (!isHover && document.visibilityState === "visible") next();
+    }, INTERVAL);
+  }
+
+  function stop() {
+    if (timer) clearInterval(timer);
+  }
+
+  function restart() {
+    stop();
+    start();
+  }
+
+  viewport.addEventListener("mouseenter", () => (isHover = true));
+  viewport.addEventListener("mouseleave", () => (isHover = false));
+  window.addEventListener("resize", () => render(false), { passive: true });
+  document.addEventListener("visibilitychange", () =>
+    document.visibilityState === "hidden" ? stop() : start()
+  );
+
+  buildDots();
+  render(false);
+  start();
+})();
+
+/* ============================
+   YouTube Embed (.video-embed)*/
+(function () {
+  function ytId(url){
+    try{
+      const u=new URL(url), h=u.hostname.replace('www.','');
+      if (h==='youtu.be') return u.pathname.slice(1);
+      if (h.includes('youtube.com')) {
+        if (u.searchParams.get('v')) return u.searchParams.get('v');
+        const m=u.pathname.match(/\/embed\/([^/?#]+)/); if (m) return m[1];
+      }
+    }catch(e){}
+    return null;
+  }
+
+  document.querySelectorAll('.video-embed').forEach(box=>{
+    const url = box.getAttribute('data-youtube');
+    const id  = ytId(url || '');
+    if(!id) return;
+
+    // Постер
+    const poster = new Image();
+    poster.alt = 'Video Vorschau';
+    poster.className = 'w-full h-full object-cover';
+    poster.src = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+    box.prepend(poster);
+
+    // Клик → вставляем iframe
+    box.addEventListener('click', () => {
+      const iframe = document.createElement('iframe');
+      iframe.className = 'w-full h-full';
+      iframe.allow =
+        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      iframe.title = 'YouTube video';
+      iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
+      box.replaceChildren(iframe); // убираем постер и кнопку → вставляем видео
+    }, { once:true });
+  });
+})();
+
+document.querySelectorAll('.video-embed').forEach(el => {
+  const url = el.dataset.youtube;
+  const idMatch = url.match(/(?:v=|shorts\/)([\w-]+)/);
+  const id = idMatch ? idMatch[1] : null;
+  if (!id) return;
+
+  el.style.background = `url(https://img.youtube.com/vi/${id}/maxresdefault.jpg) center/cover`;
+  el.querySelector('button').addEventListener('click', () => {
+    el.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0"
+      title="YouTube video player" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>`;
+  });
+});
+// ===== Reveal on scroll =====
+(function(){
+  const items = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window) || items.length === 0){
+    items.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target); // анимируем один раз
+      }
+    });
+  }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: .15 });
+
+  items.forEach(el => io.observe(el));
+})();
+
+
+document.addEventListener("scroll", () => {
+  document.querySelectorAll(".reveal").forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.85) el.classList.add("visible");
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const elements = document.querySelectorAll("#news article");
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  elements.forEach(el => observer.observe(el));
+});
+
+// === Fade-up, если ещё не вставлял ===
+document.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll("#news article");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("is-visible");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  cards.forEach(c => io.observe(c));
+});
+
+// === Parallax hover для картинок в News ===
+// Работает только на устройствах с hover (мышь/трекпад)
+(function () {
+  const canHover = window.matchMedia("(hover:hover)").matches;
+  if (!canHover) return;
+
+  const cards = document.querySelectorAll("#news article");
+
+  cards.forEach(card => {
+    const img = card.querySelector(".news-thumb img");
+    if (!img) return;
+
+    let rafId = null;
+
+    function onMove(ev){
+      const rect = card.getBoundingClientRect();
+      // нормируем координаты -1..1 (центр = 0)
+      const x = ((ev.clientX - rect.left) / rect.width) * 2 - 1;
+      const y = ((ev.clientY - rect.top) / rect.height) * 2 - 1;
+
+      // амплитуда смещения (в пикселях)
+      const max = 10; // сделай 12-14 если хочешь сильнее
+
+      const tx = (-x * max).toFixed(2) + "px";
+      const ty = (-y * max).toFixed(2) + "px";
+
+      // легкий throttle через rAF
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        img.style.setProperty("--tx", tx);
+        img.style.setProperty("--ty", ty);
+      });
+    }
+
+    function onLeave(){
+      if (rafId) cancelAnimationFrame(rafId);
+      img.style.setProperty("--tx", "0px");
+      img.style.setProperty("--ty", "0px");
+    }
+
+    card.addEventListener("mousemove", onMove);
+    card.addEventListener("mouseleave", onLeave);
+  });
+})();
+
+// === Плавное появление заголовка NEWS ===
+document.addEventListener("DOMContentLoaded", () => {
+  const title = document.querySelector("#news h2#blogTitle");
+  if (!title) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("is-visible");
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  io.observe(title);
+});
+
+
+
+
+/* ===============================
+   волны
+=============================== */
+// Parallax для волн — мягко и безопасно
+(() => {
+  const els = document.querySelectorAll('.wave [data-parallax], .wave[data-parallax]');
+  if (!els.length) return;
+
+  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+
+  const onScroll = () => {
+    const y = window.scrollY || 0;
+    els.forEach(el => {
+      const speed = parseFloat(el.dataset.speed || '0.3');   // скорость можно менять в HTML
+      const offset = clamp(y * speed, -200, 200);
+      // не трогаем rotate/scale — только сдвиг по Y
+      el.style.translate = `0 ${offset}px`;
+      if (!('translate' in el.style)) {
+        // старые браузеры — мягкий фолбэк
+        el.style.transform = `translateY(${offset}px)`;
+      }
+    });
+  };
+
+  let ticking = false;
+  const rafScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(() => { onScroll(); ticking = false; });
+      ticking = true;
+    }
+  };
+
+  window.addEventListener('scroll', rafScroll, { passive: true });
+  window.addEventListener('resize', rafScroll, { passive: true });
+  onScroll();
+})();
