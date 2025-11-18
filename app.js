@@ -1182,36 +1182,270 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ===============================
    волны
 =============================== */
-// Parallax для волн — мягко и безопасно
+// Parallax waves — лёгкий, безопасный и производительный
 (() => {
-  const els = document.querySelectorAll('.wave [data-parallax], .wave[data-parallax]');
-  if (!els.length) return;
+  const waves = Array.from(document.querySelectorAll('.wave[data-parallax]'));
+  if (!waves.length) return;
 
-  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
-
-  const onScroll = () => {
-    const y = window.scrollY || 0;
-    els.forEach(el => {
-      const speed = parseFloat(el.dataset.speed || '0.3');   // скорость можно менять в HTML
-      const offset = clamp(y * speed, -200, 200);
-      // не трогаем rotate/scale — только сдвиг по Y
-      el.style.translate = `0 ${offset}px`;
-      if (!('translate' in el.style)) {
-        // старые браузеры — мягкий фолбэк
-        el.style.transform = `translateY(${offset}px)`;
-      }
+  const state = new Set(); // только видимые волны
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) state.add(e.target); else state.delete(e.target);
     });
-  };
+  }, { rootMargin: '100px 0px' });
+  waves.forEach(w => io.observe(w));
 
   let ticking = false;
-  const rafScroll = () => {
-    if (!ticking) {
-      requestAnimationFrame(() => { onScroll(); ticking = false; });
-      ticking = true;
-    }
-  };
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const vh = window.innerHeight;
+      state.forEach(wave => {
+        const speed = parseFloat(wave.dataset.speed || '0.28'); // дефолт
+        const rect = wave.getBoundingClientRect();
+        // центрируем расчёт — чем ближе к центру экрана, тем эффект заметнее
+        const centerOffset = (rect.top + rect.height / 2) - (vh / 2);
+        const amount = -centerOffset * speed * 0.15; // 0.15 — мягкость
+        wave.style.setProperty('--wy', `${amount.toFixed(2)}px`);
+      });
+      ticking = false;
+    });
+  }
 
-  window.addEventListener('scroll', rafScroll, { passive: true });
-  window.addEventListener('resize', rafScroll, { passive: true });
+  // первый прогон + слушатели
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
   onScroll();
+})();
+
+
+
+/* ===============================
+   дополнительные настройки анимации заголовков секций
+=============================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const titles = document.querySelectorAll('section h2.fx-title');
+  if (!('IntersectionObserver' in window) || titles.length === 0) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  titles.forEach(t => io.observe(t));
+});
+
+// Karriere: плавное появление карточек
+(() => {
+  const cards = document.querySelectorAll('#karriere .job-card');
+  if (!cards.length || 'IntersectionObserver' in window === false) return;
+
+  // каскад: задаём небольшие задержки через custom property
+  cards.forEach((el, i) => {
+    el.style.setProperty('--reveal-delay', `${100 + i * 120}ms`);
+  });
+
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px 0px -10% 0px', // чутка раньше триггер
+    threshold: 0.12
+  });
+
+  cards.forEach(el => io.observe(el));
+})();
+
+// Karriere: каскадное проявление карточек при скролле
+(function () {
+  const cards = document.querySelectorAll('#karriere .job-card');
+  if (!cards.length) return;
+
+  // если пользователь просит меньше анимаций — показываем сразу
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) {
+    cards.forEach(c => c.classList.add('is-visible'));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target); // один раз
+      }
+    });
+  }, {
+    root: null,
+    threshold: 0.2,           // как только ~20% карточки видны — запускаем
+    rootMargin: '0px 0px -10% 0px'
+  });
+
+  cards.forEach(card => io.observe(card));
+})();
+
+// === Универсальное появление секций (.fade-in) ===
+(function () {
+  const elements = document.querySelectorAll('.fade-in');
+  if (!elements.length) return;
+
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -10% 0px'
+  });
+
+  elements.forEach(el => io.observe(el));
+})();
+
+
+// ===== FAQ unified: search + highlight + deep-link + sticky-safe scroll =====
+(function () {
+  const scope   = document.querySelector('#faq');
+  if (!scope) return;
+
+  const list    = scope.querySelector('#faqList');
+  const search  = scope.querySelector('#faqSearch');
+  const clear   = scope.querySelector('#faqClear');
+  const emptyUI = scope.querySelector('#faqEmpty');
+  const counter = scope.querySelector('#faqCounter'); // опционально
+
+  const items   = Array.from(scope.querySelectorAll('details.faq-item, #faqList details'));
+  const summaries = items.map(d => d.querySelector('summary.faq-q'));
+
+  // Нежно обернуть текст вопроса в .faq-label (иконку не трогаем)
+  summaries.forEach(sum => {
+    if (!sum) return;
+    if (sum.querySelector('.faq-label')) { // уже есть
+      const lbl = sum.querySelector('.faq-label');
+      if (lbl && !lbl.dataset.label) lbl.dataset.label = lbl.textContent.trim();
+      return;
+    }
+    const ico = sum.querySelector('.faq-ico');
+    const lbl = document.createElement('span');
+    lbl.className = 'faq-label';
+    const nodes = Array.from(sum.childNodes);
+
+    // собрать всё после иконки (или всё, если иконки нет)
+    let take = !ico;
+    nodes.forEach(n => {
+      if (n === ico) { take = true; return; }
+      if (take) lbl.appendChild(n);
+    });
+    lbl.dataset.label = (lbl.textContent || '').trim();
+    sum.appendChild(lbl);
+  });
+
+  const labels = summaries.map(s => s?.querySelector('.faq-label'));
+
+  // Нормализация только для фильтра, не для подсветки (чтобы не «уезжали» индексы)
+  const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu,'');
+  const debounce = (fn, ms=140) => { let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms); }; };
+
+  // Снять существующие <mark>
+  function unmark(labelEl) {
+    if (!labelEl) return;
+    labelEl.querySelectorAll('mark.faq-hit').forEach(m=>{
+      m.replaceWith(document.createTextNode(m.textContent));
+    });
+  }
+
+  // Подсветка в .faq-label (ищем без диакритик, но выделяем в исходном тексте)
+  function highlight(labelEl, qRaw) {
+    unmark(labelEl);
+    if (!qRaw) return;
+    const raw = labelEl.dataset.label || labelEl.textContent || '';
+    const rawLower = raw.toLowerCase();
+    const qLower = qRaw.toLowerCase();
+
+    // Простой case-insensitive поиск без удаления диакритик — стабильно режет строку
+    const i = rawLower.indexOf(qLower);
+    if (i < 0) { labelEl.textContent = raw; return; }
+
+    const before = raw.slice(0, i);
+    const hit    = raw.slice(i, i + qRaw.length);
+    const after  = raw.slice(i + qRaw.length);
+
+    labelEl.innerHTML = '';
+    const mark = document.createElement('mark');
+    mark.className = 'faq-hit';
+    mark.textContent = hit;
+    labelEl.append(document.createTextNode(before), mark, document.createTextNode(after));
+  }
+
+  function applyFilter() {
+    const qRaw = (search?.value || '').trim();
+    const q = norm(qRaw);
+    let visible = 0;
+
+    items.forEach((d, idx) => {
+      const lbl = labels[idx];
+      const sumTxt = lbl?.dataset?.label || '';
+      const ansTxt = d.querySelector('.faq-a')?.textContent || '';
+      const hay = norm(sumTxt + ' ' + ansTxt);
+      const match = !q || hay.includes(q);
+
+      d.classList.toggle('is-hidden', !match);
+      if (match) visible++;
+      highlight(lbl, qRaw);
+      if (q && match) d.open = false; // компактный список при поиске
+    });
+
+    // Пустая выдача / счётчик
+    emptyUI?.classList.toggle('hidden', !(qRaw && visible === 0));
+    if (counter) counter.textContent = qRaw ? (visible ? `${visible} Treffer` : 'Keine Ergebnisse') : '';
+
+    // Открыть первый видимый для превью
+    if (qRaw) {
+      const first = items.find(d => !d.classList.contains('is-hidden'));
+      if (first && !first.open) first.open = true;
+    }
+
+    // Показ/скрытие кнопки очистки
+    if (clear) clear.hidden = (qRaw.length === 0);
+  }
+
+  // Слушатели
+  search?.addEventListener('input', debounce(applyFilter, 120));
+  search?.addEventListener('keydown', e => { if (e.key === 'Escape') { search.value=''; applyFilter(); } });
+  clear?.addEventListener('click', () => { if (!search) return; search.value=''; applyFilter(); search.focus(); });
+
+  // Аккордеон: открыли один — закрыли остальные + безопасная прокрутка + hash
+  scope.addEventListener('toggle', (e) => {
+    const d = e.target;
+    if (d.tagName !== 'DETAILS' || !d.open) return;
+    items.forEach(i => { if (i !== d) i.open = false; });
+    d.scrollIntoView({ behavior:'smooth', block:'start' });
+    if (d.id) history.replaceState(null, '', `#${d.id}`);
+  });
+
+  // Открыть по hash (/#faq-app) — учитывает липкую шапку через CSS scroll-margin-top
+  function openFromHash() {
+    const id = location.hash.replace('#','');
+    if (!id) return;
+    const target = scope.querySelector(`details#${CSS.escape(id)}`);
+    if (target) {
+      target.open = true;
+      target.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+  }
+  window.addEventListener('hashchange', openFromHash);
+
+  // init
+  applyFilter();
+  openFromHash();
 })();

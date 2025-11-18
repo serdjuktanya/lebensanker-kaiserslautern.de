@@ -247,7 +247,7 @@ textarea:focus {
 }
 
 /* Dark forms */
-.dark input[type="text"],
+/*.dark input[type="text"],
 .dark input[type="tel"],
 .dark input[type="email"],
 .dark textarea {
@@ -265,7 +265,7 @@ textarea:focus {
       no-repeat right 0.9rem center/20px 20px;
   color: #d1d5db;
   border-color: #374151;
-}
+}. */
 
 /* Enhanced select (data-enhance-select) */
 .enhanced-select {
@@ -343,7 +343,7 @@ select[data-enhance-select] {
   border: 1px solid color-mix(in oklab, var(--camel) 35%, transparent);
   font-weight: 600;
 }
-.dark .enhanced-select__btn {
+/* .dark .enhanced-select__btn {
   background: var(--card);
   color: var(--ink);
   border-color: var(--line);
@@ -362,7 +362,7 @@ select[data-enhance-select] {
 .dark .enhanced-select__option[aria-selected="true"] {
   background: color-mix(in oklab, var(--mint-50) 55%, var(--card));
   border: 1px solid color-mix(in oklab, var(--camel) 30%, transparent);
-}
+}*/
 
 /* Активные пункты */
 .sub-link.active {
@@ -2348,16 +2348,13 @@ select[data-enhance-select] {
   color: grey;
 }
 
-/* ============================
-   Kooperationspartner — CLEAN
-   (namespaced под #partner)
-============================ */
+/* ============================ Kooperationspartner ============================ */
 
 /* Сетка */
 #partner .partner-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: clamp(1.4rem, 2vw, 2.2rem);
+  gap: clamp(1.4rem, 2vw, 2.2rem); /* единый gap */
   justify-items: center;
   align-items: center;
   padding-block: clamp(1.2rem, 3vw, 2.4rem);
@@ -2381,9 +2378,14 @@ select[data-enhance-select] {
   /* reveal */
   opacity: 0;
   transform: translateY(26px) scale(0.97);
-  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.35s ease,
-    border-color 0.35s ease, filter 0.35s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.35s ease,
+    border-color 0.35s ease,
+    filter 0.35s ease;
   will-change: transform, opacity;
+  margin-inline: auto; /* перенесено из дублирующего правила */
 }
 
 /* Показ при входе в вьюпорт */
@@ -2432,116 +2434,16 @@ select[data-enhance-select] {
 
 /* Пульс логотипа (аккуратно) */
 @keyframes partnerPulse {
-  0%,
-  100% {
-    --pulse: 1;
-  }
-  50% {
-    --pulse: 1.05;
-  }
+  0%, 100% { --pulse: 1; }
+  50%      { --pulse: 1.05; }
 }
 
-/* Респонсив */
-@media (max-width: 768px) {
-  #partner .partner-card {
-    height: 130px;
-    max-width: 240px;
-  }
-}
-@media (max-width: 480px) {
-  #partner .partner-card {
-    height: 120px;
-    max-width: 200px;
-  }
-}
-
-/* Предпочтение без анимаций */
-@media (prefers-reduced-motion: reduce) {
-  #partner .partner-card,
-  #partner .partner-logo {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-/* ============================
-   Fix layout: 3×3 Partner Grid
-============================ */
-#partner .partner-grid {
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  gap: 2rem;
-  /* По умолчанию — мобильная версия: 1 колонка */
-  grid-template-columns: 1fr;
-}
-
-/* ≥640px (планшет): 2 колонки */
-@media (min-width: 640px) {
-  #partner .partner-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* ≥1024px (десктоп): 3 колонки */
-@media (min-width: 1024px) {
-  #partner .partner-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-#partner .partner-card {
-  margin-inline: auto;
-}
-
-/* Partner section background polish */
-#partner {
-  position: relative;
-  isolation: isolate; /* чтобы псевдо-элемент не протекал наружу */
-  background: color-mix(in oklab, var(--beige) 35%, white);
-}
-
-#partner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  /* слои: 1) паттерн, 2) мягкий градиент сверху, 3) еле-заметный vignette */
-  background: url("./img/partner-bg.jpg") center/260px repeat,
-    linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.9) 0%,
-      rgba(255, 255, 255, 0.65) 28%,
-      rgba(255, 255, 255, 0.4) 60%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    radial-gradient(1200px 300px at 50% -80px, rgba(255, 255, 255, 0.9), transparent 70%);
-  opacity: 0.28; /* сила паттерна */
-  mix-blend-mode: multiply; /* чтобы не вырывалось по цвету */
-  z-index: -1;
-}
-
-/* чуть тише на мобильных и в тёмной теме */
-@media (max-width: 768px) {
-  #partner::before {
-    opacity: 0.22;
-    background-size: 220px, auto, auto;
-  }
-}
-@media (prefers-color-scheme: dark) {
-  #partner::before {
-    opacity: 0.2;
-    mix-blend-mode: normal;
-  }
-}
 /* ===== Reveal-on-scroll base ===== */
 [data-reveal]{
   opacity: 0;
   transform: translateY(18px) scale(.985);
   filter: saturate(.9) blur(.3px);
-  transition:
-    opacity .7s ease,
-    transform .7s ease,
-    filter .7s ease;
+  transition: opacity .7s ease, transform .7s ease, filter .7s ease;
   will-change: opacity, transform, filter;
 }
 [data-reveal].in{
@@ -2570,7 +2472,30 @@ select[data-enhance-select] {
   [data-reveal]{ opacity:1; transform:none; filter:none; transition:none; }
   [data-reveal].in .partner-logo{ animation: none !important; }
 }
-/* Фон партнёрской секции */
+
+/* ===== Респонсив сетки ===== */
+
+/* ≥640px (планшет): 2 колонки */
+@media (min-width: 640px) {
+  #partner .partner-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ≥1024px (десктоп): 3 колонки */
+@media (min-width: 1024px) {
+  #partner .partner-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* чуть компактнее карточки на маленьких экранах */
+@media (max-width: 768px) {
+  #partner .partner-card { height: 130px; max-width: 240px; }
+}
+@media (max-width: 480px) {
+  #partner .partner-card { height: 120px; max-width: 200px; }
+}
+
+/* ============================
+   Partner section background
+============================ */
 
 #partner {
   position: relative;
@@ -2582,9 +2507,10 @@ select[data-enhance-select] {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -1; /* под контентом секции, но ВНУТРИ неё */
+  z-index: -1; /* под контентом секции, но внутри неё */
   pointer-events: none;
-  background: url("./img/partner-bg.jpg") center/260px repeat,
+  background:
+    url("./img/partner-bg.jpg") center/260px repeat,
     linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0.96) 0%,
@@ -2592,8 +2518,8 @@ select[data-enhance-select] {
       rgba(255, 255, 255, 0.48) 60%,
       rgba(255, 255, 255, 0.2) 100%
     );
-  opacity: 0.38; /* сделай .45 если хочешь ярче */
-  mix-blend-mode: multiply;
+  opacity: 0.38;           /* единое значение прозрачности */
+  mix-blend-mode: multiply; /* сочнее на светлой теме */
 }
 
 /* чуть мягче на мобильных */
@@ -2611,6 +2537,40 @@ select[data-enhance-select] {
     opacity: 0.24;
   }
 }
+
+@media (max-width: 768px) {
+  #partner .max-w-7xl {
+    max-width: none;
+    width: 100%;
+    padding-left: 0.75rem; /* чуть меньше боковых отступов */
+    padding-right: 0.75rem;
+  }
+}
+
+/* Мобильные размеры карточек партнёров */
+@media (max-width: 768px) {
+  #partner .partner-card {
+    max-width: min(420px, 88vw);  /* было 92–94vw */
+    height: 120px;                 /* было 140px */
+    border-radius: 16px;
+  }
+  #partner .partner-logo {
+    max-width: 78%;
+    max-height: 60%;
+  }
+}
+@media (max-width: 480px) {
+  #partner .partner-card {
+    max-width: min(380px, 90vw);
+    height: 112px;
+    border-radius: 14px;
+  }
+  #partner .partner-logo {
+    max-width: 74%;
+    max-height: 58%;
+  }
+}
+
 
 /* ===============================
    Секция отзывов (#reviews)
@@ -3227,114 +3187,180 @@ select[data-enhance-select] {
 ========================= */
 
 /* Сетка */
-#news .news-grid{
-  display:grid;
-  gap:24px;
+#news .news-grid {
+  display: grid;
+  gap: 24px;
   grid-template-columns: 1fr; /* мобайл по одной колонке */
 }
 
 /* Карточка = фото-плитка без белых рамок */
-#news article{
-  position:relative;
-  overflow:hidden;
-  border-radius:18px;
-  color:#fff;
-  isolation:isolate;
+#news article {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  color: #fff;
+  isolation: isolate;
   background: transparent;
   box-shadow: 0 14px 40px rgba(0,0,0,.18);
-  transition: transform .35s cubic-bezier(.22,.61,.36,1),
-              box-shadow .35s cubic-bezier(.22,.61,.36,1);
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity .8s ease-out,
+    transform .8s ease-out,
+    box-shadow .35s cubic-bezier(.22,.61,.36,1),
+    transform .35s cubic-bezier(.22,.61,.36,1);
 }
-#news article:hover{
+#news article.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+#news article:hover {
   transform: translateY(-4px);
   box-shadow: 0 22px 68px rgba(0,0,0,.30);
 }
 
 /* Фото */
-#news .news-thumb{ position:absolute; inset:0; }
-#news .news-thumb, #news .news-thumb img{
-  width:100%; height:100%; display:block;
+#news .news-thumb { position: absolute; inset: 0; }
+#news .news-thumb, #news .news-thumb img {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
-#news .news-thumb img{
-  object-fit:cover;
-  transform:scale(1.001);
-  transition:transform .7s ease;
+#news .news-thumb img {
+  object-fit: cover;
+  transform: translate(var(--tx,0), var(--ty,0)) scale(var(--scale,1.03));
+  transition: transform .35s ease;
+  will-change: transform;
 }
-#news article:hover .news-thumb img{ transform:scale(1.06); }
+@media (hover:hover) {
+  #news article:hover .news-thumb img { --scale: 1.06; }
+}
 
-/* Градиент (чуть «повыше», как на макете) */
-#news .thumb-grad{
-  position:absolute; inset:0; pointer-events:none; z-index:1;
+/* Узкая насыщенная подложка только снизу */
+#news article::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 42%;
   background: linear-gradient(
     to top,
-    rgba(0,0,0,.78) 0%,
-    rgba(0,0,0,.54) 28%,
-    rgba(0,0,0,.25) 55%,
-    rgba(0,0,0,0)   80%
-  );
+    rgba(0,0,0,.88) 0%,
+    rgba(0,0,0,.70) 35%,
+    rgba(0,0,0,.35) 65%,
+    rgba(0,0,0,0) 100%);
+  z-index: 2;
+  pointer-events: none;
 }
+/* старый общий градиент отключаем */
+#news .thumb-grad { background: transparent !important; }
 
-/* Контент поверх фото — прижимаем вниз */
+/* Контент поверх фото — ближе к низу */
 #news article .p-5,
-#news article .p-4{
-  position:absolute; z-index:2;
-  left:28px; right:28px; bottom:28px;
-  text-shadow:0 2px 12px rgba(0,0,0,.45);
+#news article .p-4 {
+  position: absolute !important;
+  left: 22px !important;
+  right: 22px !important;
+  bottom: 12px !important;
+  padding: 0 !important;
+  z-index: 3;
+  text-shadow: 0 3px 12px rgba(0,0,0,.9);
+}
+@media (max-width:640px){
+  #news article .p-5, #news article .p-4 {
+    left: 16px !important; right: 16px !important; bottom: 10px !important;
+  }
 }
 
 /* Чип */
-#news .chip{
-  display:inline-block; margin-bottom:8px;
-  padding:.35rem .8rem; font-size:12px; font-weight:700;
-  border-radius:999px; background:rgba(255,255,255,.92);
-  color:var(--calm,#26352C);
+#news .chip {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: .35rem .8rem;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  background: rgba(255,255,255,.92);
+  color: var(--calm,#26352C);
 }
 
 /* Заголовки/тексты */
-#news .news-title{
-  margin:4px 0 6px;
-  font-weight:800;
-  font-size:clamp(20px,2.2vw,28px);
-  letter-spacing:.2px;
+#news .news-title {
+  margin: 6px 0 4px;
+  font-weight: 800;
+  font-size: clamp(20px,2.2vw,28px);
+  letter-spacing: .2px;
+  background: linear-gradient(90deg,
+    var(--mint, #27c5a5) 0%,
+    #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-weight: 800;
+  text-shadow: none;
+  line-height: 1.2;
+  transition: background-position .6s ease;
 }
-#news .news-teaser{
-  margin:0 0 10px;
-  font-size:clamp(14px,1.2vw,16px);
-  color:rgba(255,255,255,.92);
-}
-#news .news-meta{
-  display:flex; justify-content:space-between;
-  font-size:13.5px; color:rgba(255,255,255,.82);
+#news article:hover .news-title {
+  background-position: 100% 0;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.6));
 }
 
-/* Малые карточки (правая колонка) */
-#news .small-title{ font-weight:800; font-size:clamp(16px,1.4vw,18px); }
-#news .small-teaser{ font-size:14.5px; color:rgba(255,255,255,.9); }
+#news .news-teaser {
+  margin: 0 0 8px;
+  font-size: clamp(14px,1.2vw,16px);
+  color: rgba(255,255,255,.92);
+}
+#news .news-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13.5px;
+  color: rgba(255,255,255,.82);
+}
 
-/* ===== Desktop ≥1024px: 64% / 36% ===== */
+/* Малые карточки справа */
+#news .small-title {
+  font-weight: 800;
+  font-size: clamp(16px,1.4vw,18px);
+  background: linear-gradient(90deg,
+    var(--mint, #27c5a5) 10%,
+    #e8fff9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  transition: background-position .6s ease;
+}
+#news article:hover .small-title {
+  background-position: 100% 0;
+  filter: drop-shadow(0 1px 5px rgba(0,0,0,.5));
+}
+#news .small-teaser {
+  font-size: 14.5px;
+  color: rgba(255,255,255,.9);
+}
+
+/* ===== Desktop ≥1024px ===== */
 @media (min-width:1024px){
-  #news .news-grid{
+  #news .news-grid {
     grid-template-columns: 64% 36%;
-    grid-template-rows: repeat(2, minmax(0, 1fr)); /* две равные строки */
-    align-items:stretch;
+    grid-template-rows: repeat(2, minmax(0,1fr));
+    align-items: stretch;
   }
-
-  /* Левая feature: занимает обе строки (высота = высота двух правых + gap) */
-  #news .news-feature{
-    grid-column:1 / 2;
-    grid-row:1 / span 2;
-    aspect-ratio:auto;          /* критично: никакого AR здесь */
-    height:auto; min-height:0;  /* высоту даст грид */
+  #news .news-feature {
+    grid-column: 1 / 2;
+    grid-row: 1 / span 2;
+    aspect-ratio: auto;
+    height: auto;
+    min-height: 0;
+    transition-delay: .1s;
   }
-
-  /* Две правых карточки: одинаковая высота за счёт AR */
-  #news .news-card{
-    grid-column:2 / 3;
-    aspect-ratio: 16 / 8.6;     /* приплюснутая, как на референсе */
-    height:auto;                /* высоту даст AR */
+  #news .news-card {
+    grid-column: 2 / 3;
+    aspect-ratio: 16 / 8.6;
+    height: auto;
   }
-  #news .news-card:nth-of-type(2){ grid-row:1 / 2; }
-  #news .news-card:nth-of-type(3){ grid-row:2 / 3; }
+  #news .news-card:nth-of-type(2){ grid-row:1 / 2; transition-delay:.25s; }
+  #news .news-card:nth-of-type(3){ grid-row:2 / 3; transition-delay:.4s; }
 }
 
 /* Tablet */
@@ -3348,305 +3374,39 @@ select[data-enhance-select] {
 @media (max-width:639px){
   #news .news-feature{ aspect-ratio:16 / 10; }
   #news .news-card{ aspect-ratio:16 / 11; }
-  #news article .p-5, #news article .p-4{ left:16px; right:16px; bottom:18px; }
 }
 
-/* === Коррекция текстового блока и локальной тени === */
-
-/* Опускаем текст ниже */
-#news article .p-5,
-#news article .p-4 {
-  bottom: 16px !important; /* ближе к низу */
-  left: 24px;
-  right: 24px;
-}
-
-/* Делаем тень под текстом интенсивнее, но ограниченной зоной */
-#news .thumb-grad {
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.85) 0%,   /* насыщенная внизу */
-    rgba(0,0,0,0.7) 35%,   /* быстро рассеивается */
-    rgba(0,0,0,0.3) 60%,   /* выше почти нет */
-    rgba(0,0,0,0) 80%
-  );
-}
-
-/* Небольшой “glow” для букв, чтобы они выделялись */
-#news article .p-5 h3,
-#news article .p-4 h3,
-#news article p {
-  text-shadow: 0 3px 12px rgba(0,0,0,0.9);
-}
-/* === NEWS: текст прямо у нижнего края + локальная тёмная подложка === */
-
-/* 1) Прибиваем текст к низу и убираем паддинги p-5 / p-4 */
-#news article .p-5,
-#news article .p-4{
-  position: absolute !important;
-  left: 22px !important;
-  right: 22px !important;
-  bottom: 12px !important;       /* ближе к краю */
-  padding: 0 !important;         /* убираем внутренний отступ */
-  z-index: 3;                    /* поверх градиента */
-  text-shadow: 0 3px 12px rgba(0,0,0,.9);
-}
-
-/* Чуть меньше отступов на мобильных */
-@media (max-width: 640px){
-  #news article .p-5,
-  #news article .p-4{
-    left: 16px !important;
-    right: 16px !important;
-    bottom: 10px !important;
-  }
-}
-
-/* 2) Узкая насыщенная подложка ТОЛЬКО снизу карточки */
-#news article{
-  position: relative;
-  overflow: hidden;
-}
-
-#news article::after{
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 42%;                    /* зона затемнения только снизу */
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,.88) 0%,
-    rgba(0,0,0,.70) 35%,
-    rgba(0,0,0,.35) 65%,
-    rgba(0,0,0,0)   100%
-  );
-  z-index: 2;
-  pointer-events: none;
-}
-
-/* 3) Если у тебя ещё есть старый общий градиент .thumb-grad — делаем его мягче,
-      чтобы не дублировал тень (или можешь вообще убрать) */
-#news .thumb-grad{
-  background: linear-gradient(to top, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 100%) !important;
-}
-
-/* 4) Небольшая подстройка типографики, чтобы блок «сел» ниже визуально */
-#news .news-title{ margin: 6px 0 4px !important; }
-#news .news-teaser{ margin: 0 0 8px !important; }
-#news .chip{ margin-bottom: 8px !important; }
-
-/* === Градиентный эффект для заголовков NEWS === */
-
-/* Основной (крупный) заголовок — плавный переход от мятного к белому */
-#news .news-title {
-  background: linear-gradient(90deg,
-    var(--mint, #27c5a5) 0%,
-    #ffffff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-  font-weight: 800;
-  text-shadow: none; /* убираем лишнюю тень, чтобы градиент был чистым */
-  line-height: 1.2;
-  letter-spacing: 0.3px;
-  margin-bottom: 4px;
-  transition: background-position 0.6s ease;
-}
-
-/* Эффект подсветки при наведении — мягкое «переливание» */
-#news article:hover .news-title {
-  background-position: 100% 0;
-  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
-}
-
-/* Малые заголовки справа — тот же эффект, но чуть слабее */
-#news .small-title {
-  background: linear-gradient(90deg,
-    var(--mint, #27c5a5) 10%,
-    #e8fff9 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: none;
-  transition: background-position 0.6s ease;
-}
-
-#news article:hover .small-title {
-  background-position: 100% 0;
-  filter: drop-shadow(0 1px 5px rgba(0,0,0,0.5));
-}
-
-/* === Анимация появления NEWS-блоков (fade-up) === */
-
-/* Исходное состояние — невидимы и чуть ниже */
-#news article {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  will-change: opacity, transform;
-}
-
-/* Когда попадают в зону видимости — проявляются */
-#news article.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Небольшие задержки, чтобы появлялись каскадом */
-#news .news-feature { transition-delay: 0.1s; }
-#news .news-card:nth-of-type(2) { transition-delay: 0.25s; }
-#news .news-card:nth-of-type(3) { transition-delay: 0.4s; }
-
-/* Для Safari/старых — fallback */
-@supports not (will-change: opacity) {
-  #news article { transition: all 0.9s ease; }
-}
-
-/* --- Параллакс-режим для картинок внутри news --- */
-#news article .news-thumb img{
-  /* было: transform: scale(1.001); */
-  transform: translate(var(--tx,0), var(--ty,0)) scale(var(--scale,1.03));
-  transition: transform .35s ease;   /* быстро откликаться на мышь */
-  will-change: transform;
-}
-
-/* немного сильнее зум при hover (и когда есть мышь) */
-@media (hover:hover){
-  #news article:hover .news-thumb img{
-    --scale: 1.06;
-  }
-}
-
-/* если включено “уменьшение анимаций” — параллакс отключаем */
-@media (prefers-reduced-motion: reduce){
-  #news article .news-thumb img{ transition: none; }
-}
-
-/* === Заголовок секции NEWS (верхний H2) === */
-#news h2#blogTitle {
-  font-weight: 800;
-  font-size: clamp(2.2rem, 3.5vw, 3rem);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  line-height: 1.1;
-
-  /* красивый градиент от мятного к бежевому */
-  background: linear-gradient(90deg,
-    var(--mint, #27c5a5) 0%,
-    #dbe7dd 40%,
-    #ffffff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-
-  /* лёгкая подсветка */
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
-  transition: filter .5s ease, letter-spacing .4s ease;
-}
-
-/* эффект при наведении */
-#news h2#blogTitle:hover {
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.45));
-  letter-spacing: 1.5px;
-}
-
-/* плавное появление при скролле (анимация) */
-#news h2#blogTitle {
-  opacity: 0;
-  transform: translateY(25px);
-  transition: opacity .9s ease-out, transform .9s ease-out;
-}
-#news h2#blogTitle.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* === Заголовок секции NEWS (верхний H2) === */
+/* === Заголовок секции NEWS (верхний H2) — финал === */
 #news h2#blogTitle {
   position: relative;
   display: inline-block;
   font-weight: 800;
-  font-size: clamp(2.2rem, 3.5vw, 3rem);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  line-height: 1.1;
-
-  /* фирменный градиент */
-  background: linear-gradient(90deg,
-    var(--mint, #27c5a5) 0%,
-    #dbe7dd 45%,
-    #ffffff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
-  transition: filter .5s ease, letter-spacing .4s ease;
-}
-
-/* Подчеркивание: тонкая мятная линия */
-#news h2#blogTitle::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  height: 3px;
-  width: 0%;
-  background: var(--mint, #27c5a5);
-  border-radius: 999px;
-  transition: width 1s cubic-bezier(.25, .8, .25, 1);
-}
-
-/* Активное состояние (при появлении) */
-#news h2#blogTitle.is-visible::after {
-  width: 100%;
-}
-
-/* эффект при наведении */
-#news h2#blogTitle:hover {
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.45));
-  letter-spacing: 1.4px;
-}
-
-/* плавное появление заголовка */
-#news h2#blogTitle {
-  opacity: 0;
-  transform: translateY(25px);
-  transition: opacity .9s ease-out, transform .9s ease-out;
-}
-#news h2#blogTitle.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* === Заголовок секции NEWS (верхний H2) === */
-#news h2#blogTitle {
-  position: relative;
-  display: inline-block;
-  font-weight: 800;
-  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-size: clamp(2.2rem,3.5vw,3rem);
   text-transform: uppercase;
   letter-spacing: 0.8px;
   line-height: 1.1;
   margin-bottom: 1.5rem;
 
-  /* градиент текста */
+  /* тот же цвет, но без слепящей белизны */
   background: linear-gradient(90deg,
     var(--mint, #27c5a5) 0%,
-    #dbe7dd 45%,
-    #ffffff 100%);
+    #dbe7dd 40%,
+    #eaf2ee 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
 
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
-  transition: filter .5s ease, letter-spacing .4s ease, transform .9s ease;
+  -webkit-text-stroke: .6px rgba(0,0,0,.08);
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity .9s ease-out, transform .9s ease-out, letter-spacing .4s ease;
 }
-
-/* Подчеркивающая линия */
+#news h2#blogTitle.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 #news h2#blogTitle::after {
   content: "";
   position: absolute;
@@ -3656,33 +3416,534 @@ select[data-enhance-select] {
   width: 0%;
   background: linear-gradient(90deg,
     rgba(255,255,255,0) 0%,
-    var(--mint, #27c5a5) 15%,
-    var(--mint, #27c5a5) 85%,
+    var(--mint,#27c5a5) 15%,
+    var(--mint,#27c5a5) 85%,
     rgba(255,255,255,0) 100%);
   border-radius: 999px;
   box-shadow: 0 0 8px rgba(39,197,165,0.6);
-  transition: width 1.2s cubic-bezier(.25, .8, .25, 1),
-              box-shadow .8s ease;
+  transition: width 1.2s cubic-bezier(.25,.8,.25,1), box-shadow .8s ease;
 }
-
-/* Когда появляется */
 #news h2#blogTitle.is-visible::after {
   width: 100%;
   box-shadow: 0 0 14px rgba(39,197,165,0.8), 0 0 20px rgba(255,255,255,0.25);
 }
-
-/* При наведении */
 #news h2#blogTitle:hover {
   letter-spacing: 1.3px;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.45));
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.45));
 }
 
-/* Плавное появление текста */
-#news h2#blogTitle {
+/* === Кнопка «Alle Artikel ansehen» === */
+#news .news-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .75rem 1.25rem;
+  border-radius: 9999px;
+  background: var(--mint);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 6px 20px rgba(39,197,165,.35);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+#news .news-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(39,197,165,.45);
+  filter: saturate(1.08) brightness(1.03);
+}
+
+/* NEWS title: subtle glow on appear + gentle breathing */
+@keyframes newsGlowIn {
+  0%   { filter: drop-shadow(0 0 0 rgba(39,197,165,0)); text-shadow: none; }
+  60%  { filter: drop-shadow(0 0 16px rgba(39,197,165,.55)); }
+  100% { filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); }
+}
+
+@keyframes newsBreath {
+  0%,100% { text-shadow: 0 0 0 rgba(39,197,165,0.0); }
+  50%     { text-shadow: 0 0 10px rgba(39,197,165,0.25); }
+}
+
+
+/* уважение к системной настройке — без анимаций */
+@media (prefers-reduced-motion: reduce) {
+  #news h2#blogTitle.is-visible { animation: none; }
+}
+
+/* Ховер для нижней кнопки в NEWS */
+#news .mt-8 a{
+  transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+  box-shadow: 0 8px 22px rgba(39,197,165,.25);
+}
+#news .mt-8 a:hover{
+  transform: translateY(-2px);
+  opacity: 1 !important;
+  box-shadow: 0 14px 36px rgba(39,197,165,.38);
+}
+
+
+
+
+
+
+
+
+/* ===== Waves: layering + size + spacing ===== */
+.section { position: relative; }
+
+/* сама волна всегда поверх фона, но под контентом */
+.wave{
+  position: absolute;
+  left: 0; right: 0;
+  height: 48px;        /* единая высота волны */
+  line-height: 0;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;          /* волна ниже контента */
+}
+.wave svg{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* привязки */
+.wave-top{ top: -1px; }
+.wave-bottom{ bottom: -1px; }
+
+/* чтобы контент гарантированно был выше волны */
+.section > .wave ~ *{
+  position: relative;
+  z-index: 2;
+}
+
+/* если где-то у секции стояло overflow:hidden — снимаем,
+   иначе параллакс-волна может обрезаться */
+.section,
+.section-wave { overflow: visible; }
+
+/* Чуть сдвинем внутренние отступы, если контент прилип к волне */
+.section .max-w-7xl,
+.section .max-w-6xl,
+.section .angebote-wrap{
+  /* на всякий случай минимальный «буфер» сверху/снизу */
+  scroll-margin-top: 72px;
+}
+
+/* Параллакс для волн (мягко и безопасно) */
+.wave[data-parallax]{
+  transform: translateY(var(--wy, 0px));
+  will-change: transform;
+}
+
+/* если пользователь просит меньше анимаций — отключаем */
+@media (prefers-reduced-motion: reduce){
+  .wave[data-parallax]{ transform: none !important; }
+}
+
+
+
+
+
+/* =========================
+   SECTION  h2.TITLES — стабильный центр + underline
+========================= */
+
+section h2.fx-title{
+  position: relative;
+  display: block;              /* чтобы центрировать через margin */
+  width: max-content;          /* ширина = по тексту, не по контейнеру */
+  margin: 0 auto 1.6rem;       /* центрирование независимо от родителя */
+  text-align: center;          /* на случай переноса строк */
+  font-weight: 800;
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  text-transform: uppercase;
+  letter-spacing: .8px;
+  line-height: 1.1;
+
+  /* градиент текста */
+  background: linear-gradient(90deg,
+    var(--mint, #27c5a5) 0%,
+    #dbe7dd 45%,
+    #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
+
+  /* анимация появления по Y — только по вертикали */
   opacity: 0;
   transform: translateY(25px);
+  transition: opacity .9s ease-out, transform .9s ease-out, letter-spacing .4s ease;
 }
-#news h2#blogTitle.is-visible {
+
+/* Подчёркивание — идёт ровно под текстом */
+section h2.fx-title::after{
+  content:"";
+  position:absolute;
+  left:0;                      /* теперь можно без 50% */
+  bottom:-10px;
+  height:3px;
+  width:0%;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0) 0%,
+    var(--mint, #27c5a5) 15%,
+    var(--mint, #27c5a5) 85%,
+    rgba(255,255,255,0) 100%);
+  border-radius:999px;
+  box-shadow:0 0 8px rgba(39,197,165,.6);
+  transition: width 1.2s cubic-bezier(.25,.8,.25,1), box-shadow .8s ease;
+}
+
+/* Когда заголовок вошёл в вьюпорт */
+section h2.fx-title.is-visible{
+  opacity:1;
+  transform: translateY(0);
+}
+section h2.fx-title.is-visible::after{
+  width:100%;
+  box-shadow:0 0 14px rgba(39,197,165,.8), 0 0 20px rgba(255,255,255,.25);
+}
+
+/* Hover-эффект (по желанию) */
+section h2.fx-title:hover{
+  letter-spacing:1.3px;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,.45));
+}
+
+/* уважение к системной настройке — без анимаций */
+@media (prefers-reduced-motion: reduce) {
+  section h2.fx-title.is-visible { animation: none; }
+}
+
+/* ===== Karriere: карточки вакансий ===== */
+.jobs-grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 768px){
+  .jobs-grid{ grid-template-columns: repeat(3,1fr); }
+}
+
+.job-card{
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.job-card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 18px 50px rgba(0,0,0,.14);
+}
+
+/* Фото сверху с лёгкими скруглениями внутри */
+.job-media{
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+.job-media img{
+  width:100%; height:100%;
+  object-fit: cover;
+  display:block;
+  transform: scale(1.01);
+  transition: transform .6s ease;
+}
+.job-card:hover .job-media img{ transform: scale(1.06); }
+
+/* Текст */
+.job-body{
+  padding: 18px 20px 0;
+  text-align: center;
+}
+.job-body h3{
+  font-weight: 800;
+  font-size: clamp(1.15rem, 1.2vw, 1.35rem);
+  color: var(--calm, #26352C);
+  margin: 6px 0 8px;
+}
+.job-body p{
+  color: #64748b; /* slate-500 примерно */
+  line-height: 1.55;
+  font-size: 0.975rem;
+}
+
+/* Низ карточки с кнопкой */
+.job-cta{
+  padding: 16px 20px 22px;
+  display:flex; justify-content:center;
+}
+.job-btn{
+  border-radius: 999px;
+  padding: 10px 18px;
+}
+
+/* Ховер как у остальных кнопок */
+.job-btn:hover{
+  opacity: .95;
+  transform: translateY(-1px);
+}
+
+/* Тёмная тема
+@media (prefers-color-scheme: dark){
+  .job-card{ background:#0f172a; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+  .job-body p{ color:#cbd5e1; }
+}
+*/
+
+/* Karriere: reveal-on-scroll */
+#karriere .job-card{
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity .8s ease-out,
+    transform .8s ease-out;
+  transition-delay: var(--reveal-delay, 0s); /* для каскада */
+  will-change: opacity, transform;
+}
+#karriere .job-card.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* уважение системной настройке «меньше анимаций» */
+@media (prefers-reduced-motion: reduce){
+  #karriere .job-card{ transition: none; transform: none; opacity: 1; }
+}
+
+/* === Karriere Hover Effect === */
+
+#karriere .job-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+  transition: transform .35s ease, box-shadow .35s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#karriere .job-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+}
+
+/* картинка */
+#karriere .job-media img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+#karriere .job-card:hover .job-media img {
+  transform: scale(1.05);
+}
+
+/* текстовая часть */
+#karriere .job-body {
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  flex: 1;
+}
+#karriere .job-body h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--calm, #26352C);
+  margin-bottom: .5rem;
+}
+#karriere .job-body p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* кнопка */
+#karriere .job-cta {
+  padding: 1rem 1.5rem 1.5rem;
+  text-align: center;
+}
+#karriere .job-btn {
+  background: var(--mint, #27c5a5);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: .65rem 1.6rem;
+  transition: transform .25s ease, box-shadow .25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+}
+#karriere .job-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(39,197,165,0.4);
+}
+
+/* === Karriere Hover — Premium Version (как в NEWS) === */
+
+/* Градиент при наведении */
+#karriere .job-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+#karriere .job-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.65) 0%,
+    rgba(0,0,0,.35) 45%,
+    rgba(0,0,0,0) 100%
+  );
+  opacity: 0;
+  transition: opacity .5s ease;
+  z-index: 1;
+}
+#karriere .job-card:hover::after {
+  opacity: 1;
+}
+
+/* Изображение */
+#karriere .job-media {
+  position: relative;
+  z-index: 0;
+}
+#karriere .job-media img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+#karriere .job-card:hover .job-media img {
+  transform: scale(1.06);
+}
+
+/* Текст поверх тени */
+#karriere .job-body {
+  position: relative;
+  z-index: 2;
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+}
+#karriere .job-body h3 {
+  color: var(--calm, #26352C);
+  font-weight: 800;
+  font-size: 1.25rem;
+  margin-bottom: .4rem;
+  transition: color .3s ease;
+}
+#karriere .job-body p {
+  color: #555;
+  line-height: 1.5;
+  transition: color .3s ease;
+}
+#karriere .job-card:hover .job-body h3,
+#karriere .job-card:hover .job-body p {
+  color: #fff;
+}
+
+/* Кнопка с лёгким "свечением" */
+#karriere .job-cta {
+  position: relative;
+  z-index: 3;
+  padding: 1rem 1.5rem 1.5rem;
+  text-align: center;
+}
+#karriere .job-btn {
+  background: var(--mint, #27c5a5);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: .65rem 1.6rem;
+  transition: transform .25s ease, box-shadow .25s ease, background .3s ease;
+}
+#karriere .job-card:hover .job-btn {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(39,197,165,0.5);
+  background: color-mix(in oklab, var(--mint) 90%, white 10%);
+}
+
+/* Тень и подъём самой карточки */
+#karriere .job-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+/* === Karriere: каскадное появление карточек === */
+#karriere .job-card{
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s ease-out, transform .7s ease-out;
+  will-change: opacity, transform;
+}
+
+/* когда попала в зону видимости */
+#karriere .job-card.is-visible{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* лёгкая каскадная задержка */
+#karriere .job-card:nth-child(1){ transition-delay: .05s; }
+#karriere .job-card:nth-child(2){ transition-delay: .15s; }
+#karriere .job-card:nth-child(3){ transition-delay: .25s; }
+
+/* уважение prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce){
+  #karriere .job-card{
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* === Karriere: общая кнопка "Alle Stellen ansehen" === */
+.btn-career-all {
+  background: var(--mint, #27c5a5);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.85rem 1.9rem;
+  border-radius: 999px;
+  line-height: 1;
+  box-shadow: 0 6px 18px rgba(39,197,165,0.35);
+  transition: all 0.35s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* hover — как на остальных кнопках */
+.btn-career-all:hover {
+  background: linear-gradient(90deg,
+    color-mix(in oklab, var(--mint) 95%, white 5%) 0%,
+    color-mix(in oklab, var(--mint) 80%, white 20%) 100%);
+  box-shadow: 0 10px 30px rgba(39,197,165,0.55);
+  transform: translateY(-3px);
+}
+
+/* SVG иконка */
+.btn-career-all svg {
+  transition: transform .35s ease;
+}
+.btn-career-all:hover svg {
+  transform: translateX(5px);
+}
+
+/* Появление (fade-in, если используется общая система) */
+.btn-career-all {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s ease-out, transform .8s ease-out;
+}
+.btn-career-all.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -3690,34 +3951,144 @@ select[data-enhance-select] {
 
 
 
-
-/* Волны — позиционирование (без влияния на layout) */
-.section { position: relative; overflow: hidden; }
-
-.wave {
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 120px;            /* высота SVG-волны */
-  pointer-events: none;
-  z-index: 0;               /* под контентом */
-}
-.wave svg {
-  display: block;
-  width: 100%;
-  height: 100%;
+/* === Универсальное плавное появление секций === */
+.fade-in {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+  will-change: opacity, transform;
 }
 
-/* верхняя волна “пристыкована” к верху секции */
-.wave-top { top: 0; transform: translateY(-100%); }
-/* нижняя волна к низу секции */
-.wave-bottom { bottom: 0; transform: translateY(100%); }
+/* Когда элемент попадает в зону видимости */
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-/* чтобы контент всегда был над волнами */
-.section > .relative,
-.section > .container,
-.section > .max-w-6xl,
-.section > .max-w-7xl {
-  position: relative;
-  z-index: 1;
+/* Каскад для вложенных элементов (если нужно) */
+.fade-in > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.fade-in.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Мягкая последовательность */
+.fade-in.is-visible > *:nth-child(1){ transition-delay: .1s; }
+.fade-in.is-visible > *:nth-child(2){ transition-delay: .2s; }
+.fade-in.is-visible > *:nth-child(3){ transition-delay: .3s; }
+.fade-in.is-visible > *:nth-child(4){ transition-delay: .4s; }
+
+/* Без анимации при prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .fade-in, .fade-in > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* === FAQ ============================================= */
+
+
+.faq-item{ padding:0; overflow:hidden; }
+.faq-q{
+  list-style:none; cursor:pointer;
+  display:flex; align-items:center; gap:.6rem;
+  padding:1rem 1.1rem 1rem 1rem; font-weight:600;
+}
+.faq-ico{ width:1.2rem; text-align:center; opacity:.9; }
+.faq-a{ padding:0 1rem 1rem 2.2rem; color:var(--text-muted, #64748b); }
+
+/* caret + hover */
+.faq-q::after{ content:"▾"; margin-left:auto; opacity:.7; transition:transform .25s ease, opacity .25s ease; }
+details[open] .faq-q::after{ transform:rotate(-180deg); opacity:1; }
+.faq-item:hover .faq-q{ background:rgba(0,0,0,.03); }
+
+/* smooth open */
+details.faq-item > .faq-a{ animation:faq-open .28s ease; }
+@keyframes faq-open{ from{opacity:0; transform:translateY(-4px);} to{opacity:1; transform:none;} }
+
+/* search states */
+.faq-item.is-hidden{ display:none !important; }
+#faqCounter{ min-height:1.25rem; } /* место для счётчика/сообщений */
+mark.faq-hit{ background: color-mix(in oklab, var(--mint) 25%, #fff); padding:.05em .2em; border-radius:.25rem; }
+
+/* плавная автопрокрутка учитывая липкую шапку */
+:root{ --sticky-offset: 88px; }
+.scroll-pad{ scroll-margin-top: var(--sticky-offset); }
+
+/* подсветка совпадений */
+mark.faq-hit {
+  padding: 0 .15em;
+  border-radius: .2em;
+  background: color-mix(in oklab, var(--mint) 25%, #fff);
+}
+
+/* чтобы прокрутка не прятала заголовок под шапкой */
+#faq details { scroll-margin-top: 84px; }
+
+/* состояние "ничего не найдено" */
+#faqEmpty.hidden { display: none; }
+
+
+.faq-ico svg {
+  stroke: #8B9478; /* основной фирменный цвет */
+  transition: filter .3s ease, transform .2s ease, stroke .3s ease;
+}
+.faq-item:hover .faq-ico svg {
+  stroke: #4B5338; /* акцент при наведении */
+  filter: drop-shadow(0 0 5px rgba(139,148,120,.5));
+  transform: scale(1.05);
+}
+
+/* ===== Kontakt & Anfahrt — polish ===== */
+#kontakt h2 { color: var(--calm, #2B2D26); }
+
+/* полупрозрачная «панель» под текст, чтобы всегда была контрастность */
+#kontakt .kontakt-panel {
+  background: color-mix(in oklab, #ffffff 92%, var(--beige,#F3EBDD));
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 18px;
+  padding: clamp(18px, 2.5vw, 26px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* читаемые цвета текста */
+#kontakt address,
+#kontakt .kontakt-panel .text,
+#kontakt .kontakt-panel p,
+#kontakt .kontakt-panel div{
+  color: var(--calm, #2B2D26);
+}
+
+/* чипы-кнопки: белый фон + чёткая рамка для контраста */
+#kontakt .chip{
+  background: #fff;
+  border: 1px solid var(--early, #e5e7eb);
+}
+#kontakt .chip:hover{
+  background: color-mix(in oklab, var(--mint) 10%, #fff);
+}
+
+/* карта — аккуратная карточка */
+#kontakt .map-card{
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--line, #e5e7eb), 0 12px 28px rgba(0,0,0,.08);
+}
+
+/* тёмная тема — слегка усилим «панель» */
+@media (prefers-color-scheme: dark){
+  #kontakt .kontakt-panel{
+    background: color-mix(in oklab, #0f172a 40%, transparent);
+    border-color: color-mix(in oklab, #fff 8%, transparent);
+  }
+  #kontakt .chip{ background: #0b1320; border-color: #1f2937; }
 }

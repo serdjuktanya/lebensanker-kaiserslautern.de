@@ -14,7 +14,8 @@
 
     <meta name="msapplication-TileColor" content="#F4EFE2" />
     <meta name="theme-color" content="#8C9478" />
-    <meta name="color-scheme" content="light dark" />
+    <!--<meta name="color-scheme" content="light dark" /> -->
+    <meta name="color-scheme" content="light" />
 
     <!-- SEO -->
     <title>
@@ -22,8 +23,7 @@
     </title>
     <meta
       name="description"
-      content="Pflegedienst in Kaiserslautern: Ambulanter Pflegedienst, Tagespflege und ambulante psychiatrische Pflege. Ruhig, verlässlich, nah. Jetzt Beratung vereinbaren."
-    />
+      content="Pflegedienst in Kaiserslautern: Ambulanter Pflegedienst, Tagespflege und ambulante psychiatrische Pflege. Ruhig, verlässlich, nah. Jetzt Beratung vereinbaren." />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -31,8 +31,7 @@
     <meta property="og:title" content="Lebensanker Pflegedienst in Kaiserslautern" />
     <meta
       property="og:description"
-      content="Ambulanter Pflegedienst, Tagespflege und ambulante psychiatrische Pflege. Ruhig, verlässlich, nah."
-    />
+      content="Ambulanter Pflegedienst, Tagespflege und ambulante psychiatrische Pflege. Ruhig, verlässlich, nah." />
     <meta property="og:url" content="https://lebensanker-kaiserslautern.de/" />
     <meta property="og:image" content="./img/og-cover.jpg" />
     <meta property="og:image:width" content="1200" />
@@ -43,8 +42,7 @@
     <meta name="twitter:title" content="Lebensanker Pflegedienst in Kaiserslautern" />
     <meta
       name="twitter:description"
-      content="Ambulanter Pflegedienst, Tagespflege und ambulante psychiatrische Pflege."
-    />
+      content="Ambulanter Pflegedienst, Tagespflege und ambulante psychiatrische Pflege." />
     <meta name="twitter:image" content="./img/og-cover.jpg" />
 
     <!-- Preload hero image -->
@@ -53,922 +51,1359 @@
       as="image"
       href="./img/pflegedienst-1.jpg"
       imagesrcset="./img/pflegedienst-1.jpg 1920w"
-      imagesizes="100vw"
-    />
+      imagesizes="100vw" />
 
     <!-- Fonts & Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Tailwind & Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"
-      defer
-    ></script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js" defer></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- Custom styles -->
     <link rel="stylesheet" href="./styles.css" />
   </head>
 
-<body>
-  <!-- Header -->
-  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#26352C]/90 dark:bg-[#1b2a22]/90" role="banner">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-         <!--<svg width="36" height="36" viewBox="0 0 24 24" class="text-[var(--mint)] logo-pulse" aria-hidden="true"><path fill="currentColor" d="M12 22s-7.5-4.35-10-8.86C-0.7 7.9 3.08 3 7.9 5.06C9.3 5.7 10.7 7.06 12 8.7c1.3-1.64 2.7-3 4.1-3.64C20.92 3 24.7 7.9 22 13.14C19.5 17.65 12 22 12 22Z"/></svg>-->
-         <!-- ЛОГО в шапке -->
+  <body>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 border-b border-white/10 bg-[#26352C]/90 dark:bg-[#1b2a22]/90" role="banner">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         <div class="flex items-center gap-3">
-        <img src="./img/LEBENSANKER-14.png" class="logo-light w-[42px] h-[42px] object-contain logo-pulse" alt="Lebensanker Logo" />
-        <!--<img src="./img/LEBENSANKER-05.png" class="logo-dark w-[42px] h-[42px] object-contain logo-pulse" alt="Lebensanker Logo Dark" />-->
-        <span class="font-semibold text-white tracking-wide">Lebensanker Pflegestützpunkt</span>
+          <div class="flex items-center gap-3">
+            <img
+              src="./img/LEBENSANKER-14.png"
+              class="logo-light w-[42px] h-[42px] object-contain logo-pulse"
+              alt="Lebensanker Logo" />
+            <span class="font-semibold text-white tracking-wide">Lebensanker </span>
+          </div>
         </div>
-      </div>
 
-      <nav class="hidden md:flex items-center gap-5 lg:gap-6 text-sm text-white" aria-label="Hauptmenü">
-        <a href="#about" class="nav-link hover:text-[var(--mint)]">Über uns</a>
+        <nav class="hidden md:flex items-center gap-5 lg:gap-6 text-sm text-white" aria-label="Hauptmenü">
+          <a href="#about" class="nav-link hover:text-[var(--mint)]">Über uns</a>
 
+          <div class="relative nav-group">
+            <button
+              id="navAngeboteBtn"
+              class="inline-flex items-center gap-1 hover:text-[var(--mint)]"
+              aria-haspopup="true"
+              aria-expanded="false"
+              type="button">
+              Angebote
+              <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M7 10l5 5 5-5z" />
+              </svg>
+            </button>
+            <ul
+              class="nav-dropdown rounded-xl shadow bg-white dark:bg-slate-800 border border-black/5 absolute left-0 w-64 p-2">
+              <li>
+                <a class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]" href="#angebot-pflege">
+                  Ambulanter Pflegedienst
+                </a>
+              </li>
+              <li>
+                <a class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]" href="#tagespflege">
+                  Tagespflege
+                </a>
+              </li>
+              <li>
+                <a class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]" href="#angebot-psy">
+                  Ambulante psychiatrische Pflege
+                </a>
+              </li>
+              <li>
+                <a class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]" href="#beratung">
+                  Allgemeine Beratung
+                </a>
+              </li>
+            </ul>
+          </div>
 
+          <a href="#team" class="nav-link hover:text-[var(--mint)]">Team</a>
+          <a href="#news" class="nav-link hover:text-[var(--mint)]">News</a>
+          <a href="#karriere" class="nav-link hover:text-[var(--mint)]">Karriere</a>
+          <a href="#kontakt" class="nav-link hover:text-[var(--mint)]">Kontakt</a>
+        </nav>
 
-
-        <!-- ВАЖНО: без класса group -->
-        <div class="relative nav-group">
-          <button id="navAngeboteBtn" class="inline-flex items-center gap-1 hover:text-[var(--mint)]"
-                  aria-haspopup="true" aria-expanded="false" type="button">
-            Angebote
-            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 10l5 5 5-5z"/></svg>
+        <div class="flex items-center gap-2">
+          <a href="#kontakt" class="btn hidden md:inline-flex">Jetzt Beratung</a>
+          <button
+            id="burger"
+            class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl border border-black/10"
+            aria-label="Menü öffnen"
+            title="Menü">
+            <svg width="22" height="22" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />
+            </svg>
           </button>
-          <ul class="nav-dropdown rounded-xl shadow bg-white dark:bg-slate-800 border border-black/5 absolute left-0 w-64 p-2">
-            <li><a class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]" href="#angebot-pflege">Ambulanter Pflegedienst</a></li>
-            <li><a class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]" href="#tagespflege">Tagespflege</a></li>
-            <li><a class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]" href="#angebot-psy">Ambulante psychiatrische Pflege</a></li>
-            <li><a class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]" href="#beratung">Allgemeine Beratung</a></li>
-          </ul>
         </div>
-
-        <a href="#team" class="nav-link hover:text-[var(--mint)]">Team</a>
-        <a href="#news" class="nav-link hover:text-[var(--mint)]">News</a>
-        <a href="#karriere" class="nav-link hover:text-[var(--mint)]">Karriere</a>
-        <a href="#kontakt" class="nav-link hover:text-[var(--mint)]">Kontakt</a>
-      </nav>
-
-      <div class="flex items-center gap-2">
-        <a href="#kontakt" class="btn hidden md:inline-flex">Jetzt Beratung</a>
-        <button id="burger" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl border border-black/10" aria-label="Menü öffnen" title="Menü">
-          <svg width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
-        </button>
       </div>
-    </div>
-  </header>
-
-  <!-- Drawer (mobile) -->
-  <div id="backdrop" class="backdrop z-40 md:hidden" aria-hidden="true"></div>
-  <div id="drawer" class="offcanvas fixed top-0 right-0 h-full w-[80vw] max-w-[420px] z-50 bg-[var(--beige)] dark:bg-slate-900 shadow-xl border-l border-black/5 pt-6 px-5 pb-5 md:hidden" role="dialog" aria-modal="true" aria-label="Mobiles Menü">
-    <div class="flex items-center justify-between mb-4">
-      <span class="text-sm font-medium text-slate-500">Navigation</span>
-      <button id="drawerClose" class="w-9 h-9 grid place-items-center rounded-lg border border-white/20 text-white hover:bg-white/10 transition" aria-label="Menü schließen">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.3 5.71L12 12.01l-6.3-6.3L4.29 7.12l6.3 6.3l-6.3 6.3l1.41 1.41l6.3-6.3l6.3 6.3l1.41-1.41l-6.3-6.3l6.3-6.3z"/>
-  </svg>
-</button>
-    </div>
-    <nav class="flex flex-col items-center gap-4 text-base" aria-label="Mobiles Hauptmenü">
-      <a href="#about" class="chip w-full max-w-[260px] justify-center text-center">Über uns</a>
-      <details class="card w-full max-w-[260px]">
-        <summary class="font-medium cursor-pointer text-center">Angebote</summary>
-        <div class="mt-3 flex flex-col gap-3">
-          <a class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition" href="#angebot-pflege">Ambulanter Pflegedienst</a>
-          <a class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition" href="#tagespflege">Tagespflege</a>
-          <a class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition" href="#angebot-psy">Ambulante psychiatrische Pflege</a>
-          <a class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition" href="#beratung">Allgemeine Beratung</a>
-        </div>
-      </details>
-      <a href="#team" class="chip w-full max-w-[260px] justify-center text-center">Team</a>
-      <a href="#news" class="chip w-full max-w-[260px] justify-center text-center">News</a>
-      <a href="#karriere" class="chip w-full max-w-[260px] justify-center text-center">Karriere</a>
-      <a href="#kontakt" class="chip w-full max-w-[260px] justify-center text-center">Kontakt</a>
-    </nav>
-    <div class="border-t border-[var(--line)] mt-6 pt-6 w-full flex justify-center">
-      <a href="#kontakt" class="btn w-full max-w-[260px] justify-center">Jetzt Beratung</a>
-    </div>
-  </div>
-
-
-<!-- Hero Section -->
-
-
-<section class="hero section" aria-labelledby="heroTitle">
-  <div class="hero__inner fade-in">
-    <div class="hero__content">
-      <h1 id="heroTitle">… mit Herz an Ihrer Seite</h1>
-
-      <ul class="hero__features">
-        <li><i class="fa-solid fa-heart"></i> Flexibel und individuell</li>
-        <li><i class="fa-solid fa-heart"></i> Langjährige Erfahrung</li>
-        <li><i class="fa-solid fa-heart"></i> Familiärer Pflegedienst</li>
-      </ul>
-
-      <div class="hero__buttons">
-        <a href="#kontakt" class="btn">Beratung vereinbaren</a>
-        <a href="#angebote" class="btn-secondary">Unsere Angebote</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="wave wave-bottom" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" fill="currentColor">
-      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"/>
-    </svg>
-  </div>
-</section>
-
-
-  <!-- Über uns -->
-
-  <section id="about" class="section relative" aria-labelledby="aboutTitle">
-    <div class="absolute -top-10 left-0 w-full overflow-hidden leading-none rotate-180" aria-hidden="true">
-      <svg class="relative block w-full h-10 text-[var(--beige)]" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 120" fill="currentColor"><path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path></svg>
-    </div>
-    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h2 id="aboutTitle" class="text-3xl font-bold mb-6">Über uns</h2>
-        <p class="text-lg text-slate-600 dark:text-slate-300 mb-4">Wir von Lebensanker sind mehr als nur ein Pflegedienst – wir sind ein Zuhause für Menschen, die Ruhe, Fürsorge und Gemeinschaft suchen.</p>
-        <p class="text-lg text-slate-600 dark:text-slate-300 mb-6">Pflegebedürftige Menschen brauchen liebevolle und fürsorgliche Betreuung. Doch für Angehörige ist es oft schwierig, diese Herausforderung allein zu bewältigen.
-            Der Pflegedienst Lebensanker unterstützt Sie bei dieser Aufgabe und begleitet Sie im Pflegealltag – auch rund um die Uhr.
-            Kontaktieren Sie uns, wenn Sie Unterstützung bei der Pflege Ihrer Angehörigen benötigen! </p>
-        <blockquote class="bg-[var(--mint-50)] dark:bg-slate-800 rounded-2xl p-6 italic text-xl text-[var(--mint)] shadow mb-6 text-center">„Pflege ist nicht nur Betreuung, sondern auch Herz.“</blockquote>
-        <address class="not-italic text-slate-500 dark:text-slate-400">Raiffeisenstraße 6, 67555 Kaiserslautern</address>
-      </div>
-
-
-      <!--<div class="relative">
-        <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
-          <img src="https://placehold.co/800x600" alt="Foto: Gemeinschaft im Lebensanker" class="w-full h-full object-cover" />
-        </div>
-      </div>-->
-
-<!-- Параллакс-карточка, как на creati.studio -->
-<div class="relative">
-  <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg tilt-wrap js-tilt-on-scroll" data-tilt="10" data-scale="1.045">
-    <img src="./img/alte-frau-und-hilfe-gehen-treppe-hoch-draussen.jpg"
-         alt="Foto: Gemeinschaft im Lebensanker"
-         class="w-full h-full object-cover tilt-media" />
-  </div>
-</div>
-    <!-- (опционально) вместо img можно видео:
-    <video class="parallax-media" autoplay muted loop playsinline>
-      <source src="./video/your-video.mp4" type="video/mp4">
-    </video>
-    -->
-
-
-    </div>
-    <div class="absolute -bottom-10 left-0 w-full overflow-hidden leading-none" aria-hidden="true">
-      <svg class="relative block w-full h-10 text-[var(--body)]" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1440 120" fill="currentColor"><path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path></svg>
-    </div>
-  </section>
-
-  <!-- Übergang / Trennwelle zwischen Über uns und Angebote -->
-
-<section class="section-wave relative" aria-hidden="true">
-  <div class="wave wave-bottom pointer-events-none">
-    <svg xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 1440 120"
-         preserveAspectRatio="none"
-         class="text-white"
-         fill="currentColor">
-      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"/>
-    </svg>
-  </div>
-</section>
-
-  <!-- Angebote -->
-
-
-  <section id="angebote"
-         class="section relative"
-         aria-labelledby="angeboteTitle"
-         style="background:color-mix(in oklab, var(--beige) 45%, transparent);">
-
-  <!-- верхняя разделительная волна -->
-  <div class="wave wave-top" aria-hidden="true">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"
-       preserveAspectRatio="none" class="text-[var(--body)]" fill="currentColor">
-    <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
-  </svg>
-</div>
-
-
-  <div class="angebote-wrap">
-    <h2 id="angeboteTitle" class="text-3xl font-bold text-center mb-2">Unsere Angebote</h2>
-    <p class="text-center text-slate-500 mb-6">Ambulante Pflege · Tagespflege · Psychiatrische Pflege · Beratung</p>
-
-    <div class="angebote-grid">
-      <!-- Карточка 1 -->
-      <article class="angebot-card card">
-        <div class="angebot-content">
-          <div class="angebot-icon">
-            <svg width="28" height="28" aria-hidden="true"><use href="#i-ambulant"/></svg>
-          </div>
-          <h3 class="font-semibold">Ambulanter Pflegedienst</h3>
-          <p class="text-slate-600">Zuverlässige Hilfe zu Hause – Grund- &amp; Behandlungspflege, Medikamentengabe, Wundversorgung.</p>
-        </div>
-        <div class="angebot-cta">
-          <a href="#kontakt" class="btn-secondary">Beratung</a>
-        </div>
-      </article>
-
-      <!-- Карточка 2 -->
-      <article class="angebot-card card">
-        <div class="angebot-content">
-          <div class="angebot-icon">
-            <svg width="28" height="28" aria-hidden="true"><use href="#i-tagespflege"/></svg>
-          </div>
-          <h3 class="font-semibold">Tagespflege</h3>
-          <p class="text-slate-600">Strukturierte Tagesbetreuung mit Aktivierung, Gemeinschaft und Entlastung für Angehörige.</p>
-        </div>
-        <div class="angebot-cta">
-          <a href="#kontakt" class="btn">Platz anfragen</a>
-        </div>
-      </article>
-
-      <!-- Карточка 3 -->
-      <article class="angebot-card card">
-        <div class="angebot-content">
-          <div class="angebot-icon">
-            <svg width="28" height="28" aria-hidden="true"><use href="#i-psy"/></svg>
-          </div>
-          <h3 class="font-semibold">Ambulante psychiatrische Pflege</h3>
-          <p class="text-slate-600">Fachpflegerische Unterstützung zu Hause bei psychischen Erkrankungen – stabilisierend & alltagsnah.</p>
-        </div>
-        <div class="angebot-cta">
-          <a href="#kontakt" class="btn-secondary">Beratung</a>
-        </div>
-      </article>
-
-      <!-- Карточка 4 -->
-      <article class="angebot-card card">
-        <div class="angebot-content">
-          <div class="angebot-icon">
-            <svg width="28" height="28" aria-hidden="true"><use href="#i-beratung"/></svg>
-          </div>
-          <h3 class="font-semibold">Pflege- &amp; Angehörigenberatung</h3>
-          <p class="text-slate-600">Transparente Beratung zu Ansprüchen, Pflegegraden und Entlastungsleistungen – für Angehörige.</p>
-        </div>
-        <div class="angebot-cta">
-          <a href="#kontakt" class="btn">Termin vereinbaren</a>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-
-  <!-- Unser Team Section -->
-<section id="team" class="section relative py-16 md:py-20 bg-[color-mix(in_oklab,var(--beige)_30%,transparent)]" aria-labelledby="teamTitle">
-
-  <!-- Верхняя белая волна -->
-  <div class="wave wave-top" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" class="text-white" fill="currentColor">
-      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
-    </svg>
-  </div>
-
-  <div class="max-w-7xl mx-auto px-4">
-    <header class="text-center mb-10 fade-in">
-      <h2 id="teamTitle" class="text-4xl font-bold text-[var(--calm)] tracking-tight">Unser Team</h2>
-      <p class="text-slate-600 dark:text-slate-300 mt-3 text-lg">
-        Pflege, Pädagogik &amp; Therapie – gemeinsam für Sie da.
-      </p>
     </header>
 
-    <!-- Карусель -->
-    <div class="relative select-none" role="region" aria-roledescription="carousel" aria-label="Unser Team">
-      <!-- Viewport -->
-      <div id="teamViewport" class="overflow-hidden rounded-3xl shadow-inner" aria-live="polite">
-        <ul id="teamTrack"
-            class="flex gap-7 will-change-transform"
-            style="transform: translateX(0); transition: transform .6s cubic-bezier(.22,.61,.36,1);">
+    <!-- Drawer (mobile) -->
+    <div id="backdrop" class="backdrop z-40 md:hidden" aria-hidden="true"></div>
+    <div
+      id="drawer"
+      class="offcanvas fixed top-0 right-0 h-full w-[80vw] max-w-[420px] z-50 bg-[var(--beige)] dark:bg-slate-900 shadow-xl border-l border-black/5 pt-6 px-5 pb-5 md:hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mobiles Menü">
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-sm font-medium text-slate-500">Navigation</span>
+        <button
+          id="drawerClose"
+          class="w-9 h-9 grid place-items-center rounded-lg border border-white/20 text-white hover:bg-white/10 transition"
+          aria-label="Menü schließen">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M18.3 5.71L12 12.01l-6.3-6.3L4.29 7.12l6.3 6.3l-6.3 6.3l1.41 1.41l6.3-6.3l6.3 6.3l1.41-1.41l-6.3-6.3l6.3-6.3z" />
+          </svg>
+        </button>
+      </div>
+      <nav class="flex flex-col items-center gap-4 text-base" aria-label="Mobiles Hauptmenü">
+        <a href="#about" class="chip w-full max-w-[260px] justify-center text-center">Über uns</a>
+        <details class="card w-full max-w-[260px]">
+          <summary class="font-medium cursor-pointer text-center">Angebote</summary>
+          <div class="mt-3 flex flex-col gap-3">
+            <a
+              class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
+              href="#angebot-pflege">
+              Ambulanter Pflegedienst
+            </a>
+            <a
+              class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
+              href="#tagespflege">
+              Tagespflege
+            </a>
+            <a
+              class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
+              href="#angebot-psy">
+              Ambulante psychiatrische Pflege
+            </a>
+            <a
+              class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
+              href="#beratung">
+              Allgemeine Beratung
+            </a>
+          </div>
+        </details>
+        <a href="#team" class="chip w-full max-w-[260px] justify-center text-center">Team</a>
+        <a href="#news" class="chip w-full max-w-[260px] justify-center text-center">News</a>
+        <a href="#karriere" class="chip w-full max-w-[260px] justify-center text-center">Karriere</a>
+        <a href="#kontakt" class="chip w-full max-w-[260px] justify-center text-center">Kontakt</a>
+      </nav>
+      <div class="border-t border-[var(--line)] mt-6 pt-6 w-full flex justify-center">
+        <a href="#kontakt" class="btn w-full max-w-[260px] justify-center">Jetzt Beratung</a>
+      </div>
+    </div>
 
-          <!-- 1 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="0">
-            <figure class="team-card">
-              <img src="./img/team-1.jpg" alt="Kristina K., Pflegeleiterin" class="team-photo w-full h-[320px] object-cover">
-              <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
-                <strong class="block text-base">Kristina K.</strong>
-                <span class="text-white/85 text-sm">Pflegeleiterin</span>
+    <!-- Hero Section -->
+    <section class="hero section" aria-labelledby="heroTitle">
+      <div class="hero__inner fade-in">
+        <div class="hero__content">
+          <h1 id="heroTitle">… mit Herz an Ihrer Seite</h1>
+
+          <ul class="hero__features">
+            <li>
+              <i class="fa-solid fa-heart"></i>
+              Flexibel und individuell
+            </li>
+            <li>
+              <i class="fa-solid fa-heart"></i>
+              Langjährige Erfahrung
+            </li>
+            <li>
+              <i class="fa-solid fa-heart"></i>
+              Familiärer Pflegedienst
+            </li>
+          </ul>
+
+          <div class="hero__buttons">
+            <a href="#kontakt" class="btn">Beratung vereinbaren</a>
+            <a href="#angebote" class="btn-secondary">Unsere Angebote</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="wave wave-bottom" aria-hidden="true">
+        <svg
+          data-parallax
+          data-speed="-0.25"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- Über uns -->
+    <section id="about" class="section relative" aria-labelledby="aboutTitle">
+      <div class="absolute -top-10 left-0 w-full overflow-hidden leading-none rotate-180" aria-hidden="true">
+        <svg
+          data-parallax
+          data-speed="0.25"
+          class="relative block w-full h-10 text-[var(--beige)]"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          viewBox="0 0 1440 120"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
+        </svg>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 id="aboutTitle" class="text-3xl font-bold mb-6">Über uns</h2>
+          <p class="text-lg text-slate-600 dark:text-slate-300 mb-4">
+            Wir von Lebensanker sind mehr als nur ein Pflegedienst – wir sind ein Zuhause für Menschen, die Ruhe,
+            Fürsorge und Gemeinschaft suchen.
+          </p>
+          <p class="text-lg text-slate-600 dark:text-slate-300 mb-6">
+            Pflegebedürftige Menschen brauchen liebevolle und fürsorgliche Betreuung. Doch für Angehörige ist es oft
+            schwierig, diese Herausforderung allein zu bewältigen. Der Pflegedienst Lebensanker unterstützt Sie bei
+            dieser Aufgabe und begleitet Sie im Pflegealltag – auch rund um die Uhr. Kontaktieren Sie uns, wenn Sie
+            Unterstützung bei der Pflege Ihrer Angehörigen benötigen!
+          </p>
+          <blockquote
+            class="bg-[var(--mint-50)] dark:bg-slate-800 rounded-2xl p-6 italic text-xl text-[var(--mint)] shadow mb-6 text-center">
+            „Pflege ist nicht nur Betreuung, sondern auch Herz.“
+          </blockquote>
+          <address class="not-italic text-slate-500 dark:text-slate-400">
+            Raiffeisenstraße 6, 67555 Kaiserslautern
+          </address>
+        </div>
+
+        <div class="relative">
+          <div
+            class="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg tilt-wrap js-tilt-on-scroll"
+            data-tilt="10"
+            data-scale="1.045">
+            <img
+              src="./img/alte-frau-und-hilfe-gehen-treppe-hoch-draussen.jpg"
+              alt="Foto: Gemeinschaft im Lebensanker"
+              class="w-full h-full object-cover tilt-media" />
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute -bottom-10 left-0 w-full overflow-hidden leading-none" aria-hidden="true">
+        <svg
+          data-parallax
+          data-speed="-0.22"
+          class="relative block w-full h-10 text-[var(--body)]"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          viewBox="0 0 1440 120"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Übergang / Trennwelle zwischen Über uns und Angebote -->
+    <section class="section-wave relative" aria-hidden="true">
+      <div class="wave wave-bottom pointer-events-none">
+        <svg
+          data-parallax
+          data-speed="-0.18"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          class="text-white"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- Angebote -->
+    <section
+      id="angebote"
+      class="section fade-in relative"
+      aria-labelledby="angeboteTitle"
+      style="background: color-mix(in oklab, var(--beige) 45%, transparent)">
+      <div class="wave wave-top" aria-hidden="true">
+        <svg
+          data-parallax
+          data-speed="0.28"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          class="text-[var(--body)]"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
+        </svg>
+      </div>
+
+      <div class="angebote-wrap">
+        <h2 id="angeboteTitle" class="text-3xl font-bold text-center mb-2">Unsere Angebote</h2>
+        <p class="text-center text-slate-500 mb-6">Ambulante Pflege · Tagespflege · Psychiatrische Pflege · Beratung</p>
+
+        <div class="angebote-grid">
+          <article class="angebot-card card" id="angebot-pflege">
+            <div class="angebot-content">
+              <div class="angebot-icon">
+                <svg width="28" height="28" aria-hidden="true"><use href="#i-ambulant" /></svg>
+              </div>
+              <h3 class="font-semibold">Ambulanter Pflegedienst</h3>
+              <p class="text-slate-600">
+                Zuverlässige Hilfe zu Hause – Grund- &amp; Behandlungspflege, Medikamentengabe, Wundversorgung.
+              </p>
+            </div>
+            <div class="angebot-cta"><a href="#kontakt" class="btn-secondary">Beratung</a></div>
+          </article>
+
+          <article class="angebot-card card" id="tagespflege">
+            <div class="angebot-content">
+              <div class="angebot-icon">
+                <svg width="28" height="28" aria-hidden="true"><use href="#i-tagespflege" /></svg>
+              </div>
+              <h3 class="font-semibold">Tagespflege</h3>
+              <p class="text-slate-600">
+                Strukturierte Tagesbetreuung mit Aktivierung, Gemeinschaft und Entlastung für Angehörige.
+              </p>
+            </div>
+            <div class="angebot-cta"><a href="#kontakt" class="btn">Platz anfragen</a></div>
+          </article>
+
+          <!-- <article class="angebot-card card" id="angebot-psy">
+            <div class="angebot-content">
+              <div class="angebot-icon">
+                <svg width="28" height="28" aria-hidden="true"><use href="#i-psy" /></svg>
+              </div>
+              <h3 class="font-semibold">Ambulante psychiatrische Pflege</h3>
+              <p class="text-slate-600">
+                Fachpflegerische Unterstützung zu Hause bei psychischen Erkrankungen – stabilisierend & alltagsnah.
+              </p>
+            </div>
+            <div class="angebot-cta"><a href="#kontakt" class="btn-secondary">Beratung</a></div>
+          </article>-->
+
+          <article class="angebot-card card" id="beratung">
+            <div class="angebot-content">
+              <div class="angebot-icon">
+                <svg width="28" height="28" aria-hidden="true"><use href="#i-beratung" /></svg>
+              </div>
+              <h3 class="font-semibold">Pflege- &amp; Angehörigenberatung</h3>
+              <p class="text-slate-600">
+                Transparente Beratung zu Ansprüchen, Pflegegraden und Entlastungsleistungen – für Angehörige.
+              </p>
+            </div>
+            <div class="angebot-cta"><a href="#kontakt" class="btn">Termin vereinbaren</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Unser Team Section -->
+    <section
+      id="team"
+      class="section relative py-16 md:py-20 bg-[color-mix(in_oklab,var(--beige)_30%,transparent)]"
+      aria-labelledby="teamTitle">
+      <div class="wave wave-top" aria-hidden="true">
+        <svg
+          data-parallax
+          data-speed="0.22"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          class="text-white"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
+        </svg>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4">
+        <header class="text-center mb-10 fade-in">
+          <h2 id="teamTitle" class="text-4xl font-bold text-[var(--calm)] tracking-tight">Unser Team</h2>
+          <p class="text-slate-600 dark:text-slate-300 mt-3 text-lg">
+            Pflege, Pädagogik &amp; Therapie – gemeinsam für Sie da.
+          </p>
+        </header>
+
+        <div class="relative select-none" role="region" aria-roledescription="carousel" aria-label="Unser Team">
+          <div id="teamViewport" class="overflow-hidden rounded-3xl shadow-inner" aria-live="polite">
+            <ul
+              id="teamTrack"
+              class="flex gap-7 will-change-transform"
+              style="transform: translateX(0); transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1)">
+              <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="0">
+                <figure class="team-card">
+                  <img
+                    src="./img/team-1.jpg"
+                    alt="Kristina K., Pflegeleiterin"
+                    class="team-photo w-full h-[320px] object-cover" />
+                  <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
+                    <strong class="block text-base">Kristina K.</strong>
+                    <span class="text-white/85 text-sm">Pflegeleiterin</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="1">
+                <figure class="team-card">
+                  <img
+                    src="./img/team-2.jpg"
+                    alt="Jonas R., Gesundheits- und Krankenpfleger"
+                    class="team-photo w-full h-[320px] object-cover" />
+                  <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
+                    <strong class="block text-base">Jonas R.</strong>
+                    <span class="text-white/85 text-sm">Gesundheits- und Krankenpfleger</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="2">
+                <figure class="team-card">
+                  <img
+                    src="./img/team-3.jpg"
+                    alt="Leyla K., APP – Ambulante psychiatrische Pflege"
+                    class="team-photo w-full h-[320px] object-cover" />
+                  <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
+                    <strong class="block text-base">Leyla K.</strong>
+                    <span class="text-white/85 text-sm">APP – Ambulante psychiatrische Pflege</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="3">
+                <figure class="team-card">
+                  <img
+                    src="./img/team-4.jpg"
+                    alt="Sofia P., Tagespflege & Aktivierung"
+                    class="team-photo w-full h-[320px] object-cover" />
+                  <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
+                    <strong class="block text-base">Sofia P.</strong>
+                    <span class="text-white/85 text-sm">Tagespflege &amp; Aktivierung</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="4">
+                <figure class="team-card">
+                  <img
+                    src="./img/team-5.jpg"
+                    alt="Max T., Pflegehelfer"
+                    class="team-photo w-full h-[320px] object-cover" />
+                  <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
+                    <strong class="block text-base">Max T.</strong>
+                    <span class="text-white/85 text-sm">Pflegehelfer</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="5">
+                <figure class="team-card">
+                  <img
+                    src="./img/team-6.jpg"
+                    alt="Elena W., Beratung & Koordination"
+                    class="team-photo w-full h-[320px] object-cover" />
+                  <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
+                    <strong class="block text-base">Elena W.</strong>
+                    <span class="text-white/85 text-sm">Beratung &amp; Koordination</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="6">
+                <figure class="team-card">
+                  <img
+                    src="./img/team-7.jpg"
+                    alt="Daniela S., Pflegeassistenz"
+                    class="team-photo w-full h-[320px] object-cover" />
+                  <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
+                    <strong class="block text-base">Daniela S.</strong>
+                    <span class="text-white/85 text-sm">Pflegeassistenz</span>
+                  </figcaption>
+                </figure>
+              </li>
+              <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="7">
+                <figure class="team-card">
+                  <img
+                    src="./img/team-8.jpg"
+                    alt="Tobias H., Verwaltung & Organisation"
+                    class="team-photo w-full h-[320px] object-cover" />
+                  <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
+                    <strong class="block text-base">Tobias H.</strong>
+                    <span class="text-white/85 text-sm">Verwaltung &amp; Organisation</span>
+                  </figcaption>
+                </figure>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pointer-events-none absolute inset-0 flex items-center justify-between">
+            <button
+              id="teamPrev"
+              class="pointer-events-auto ml-[-8px] md:ml-4 grid place-items-center w-10 h-10 rounded-full bg-white/90 dark:bg-slate-800/90 shadow hover:scale-110 transition border border-black/10"
+              aria-label="Vorheriges Bild">
+              <svg width="20" height="20" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M15.41 7.41L14 6l-6 6l6 6l1.41-1.41L10.83 12z" />
+              </svg>
+            </button>
+            <button
+              id="teamNext"
+              class="pointer-events-auto mr-[-8px] md:mr-4 grid place-items-center w-10 h-10 rounded-full bg-white/90 dark:bg-slate-800/90 shadow hover:scale-110 transition border border-black/10"
+              aria-label="Nächstes Bild">
+              <svg width="20" height="20" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M8.59 16.59L10 18l6-6l-6-6l-1.41 1.41L13.17 12z" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="mt-6 flex items-center justify-center gap-2" role="tablist" aria-label="Slides">
+            <div id="teamDots" class="flex gap-2"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <a href="team.html" class="btn-secondary inline-flex items-center gap-2">
+          Mehr über unser Team
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M8.59 16.59L10 18l6-6l-6-6l-1.41 1.41L13.17 12z" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="wave wave-bottom rotate-180 mt-10" aria-hidden="true">
+        <svg
+          data-parallax
+          data-speed="-0.2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          class="text-white"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Kooperationspartner -->
+    <section id="partner" class="section relative py-16 md:py-20 overflow-hidden" aria-labelledby="partnerTitle">
+      <div class="wave wave-top" aria-hidden="true">
+        <svg
+          data-parallax
+          data-speed="0.25"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          class="text-[var(--body)]"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
+        </svg>
+      </div>
+
+      <div class="mx-auto text-center relative z-[1] w-full max-w-none px-3 md:max-w-7xl md:px-4">
+        <header class="mb-10">
+          <h2 id="partnerTitle" class="text-4xl font-bold text-[var(--calm)] tracking-tight mb-3">
+            Kooperationspartner
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto text-lg">
+            Gemeinsam stark – mit unseren regionalen und überregionalen Partnern für eine verlässliche Versorgung.
+          </p>
+        </header>
+        <hr class="max-w-6xl mx-auto my-10 border-0 h-[1px] bg-black/5 rounded" />
+
+        <div
+          class="partner-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 lg:gap-10 justify-items-center items-center mx-auto max-w-6xl"
+          data-partner-grid>
+          <div class="partner-card">
+            <img
+              src="./img/internationale-hauptbahnhof-apotheke-logo.png"
+              alt="Internationale Hauptbahnhof Apotheke"
+              class="partner-logo" />
+          </div>
+          <div class="partner-card">
+            <img src="./img/Profi Gesundheits-Service-logo.png" alt="Profi Gesundheits-Service" class="partner-logo" />
+          </div>
+          <div class="partner-card">
+            <img src="./img/kochwerk.png" alt="Kochwerk Kaiserslautern" class="partner-logo" />
+          </div>
+          <div class="partner-card">
+            <img src="./img/bienen-apotheke-logo-1.png" alt="Bienen Apotheke Kaiserslautern" class="partner-logo" />
+          </div>
+          <div class="partner-card">
+            <img src="./img/radio-nrj-logo.png" alt="NRJ Radio Kaiserslautern" class="partner-logo" />
+          </div>
+          <div class="partner-card">
+            <img src="./img/bpa-logo-1.png" alt="BPA Bundesverband Pflege" class="partner-logo" />
+          </div>
+        </div>
+      </div>
+
+      <div class="wave wave-bottom rotate-180 mt-10" aria-hidden="true">
+        <svg
+          data-parallax
+          data-speed="-0.2"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          class="text-white"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- NEWS Section -->
+    <section
+      id="news"
+      class="section relative"
+      aria-labelledby="blogTitle"
+      style="background: color-mix(in oklab, var(--beige) 45%, transparent)">
+      <div class="wave wave-top" aria-hidden="true">
+        <svg
+          data-parallax
+          data-speed="0.28"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          class="text-[var(--body)]"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
+        </svg>
+      </div>
+
+      <div class="max-w-6xl xl:max-w-7xl mx-auto px-4 relative z-[1]">
+        <header class="mb-8 text-center">
+          <h2 id="blogTitle" class="text-3xl xl:text-4xl font-bold text-[var(--calm)] tracking-tight mb-2">News</h2>
+          <p class="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">Aktuelles, Hinweise & Tipps.</p>
+        </header>
+
+        <div class="news-grid">
+          <!-- Featured -->
+          <article class="news-feature card">
+            <a href="#" class="stretched"></a>
+            <div class="news-thumb">
+              <img src="img/news-feature1.jpeg" alt="" />
+              <div class="thumb-grad"></div>
+            </div>
+            <div class="p-5 sm:p-6">
+              <span class="chip">Leitfaden</span>
+              <h3 class="news-title">Pflegegrad beantragen – kompakter Leitfaden</h3>
+              <p class="news-teaser">Voraussetzungen, Unterlagen, MD-Termin, Widerspruch und Checkliste.</p>
+              <div class="news-meta">
+                <span>⏱️ 6–8 Min</span>
+                <time datetime="2025-10-25">25.10.2025</time>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="news-card card">
+            <a href="#" class="stretched"></a>
+            <div class="news-thumb sm:aspect-[16/10]">
+              <img src="img/news-feature.jpg" alt="" />
+              <span class="chip chip--small">Alltag</span>
+              <div class="thumb-grad"></div>
+            </div>
+            <div class="p-4 sm:p-5">
+              <h3 class="small-title">Entlastung im Alltag</h3>
+              <p class="small-teaser">Ambulante Pflege in planbaren Schritten.</p>
+              <div class="news-meta">
+                <span>⏱️ 4 Min</span>
+                <time datetime="2025-10-18">18.10.2025</time>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="news-card card">
+            <a href="#" class="stretched"></a>
+            <div class="news-thumb sm:aspect-[16/10]">
+              <img src="img/news-feature2.jpeg" alt="" />
+              <span class="chip chip--small">Konzept</span>
+              <div class="thumb-grad"></div>
+            </div>
+            <div class="p-4 sm:p-5">
+              <h3 class="small-title">Sanfte Integration</h3>
+              <p class="small-teaser">Mehrgenerationen: Wärme, Struktur, Sicherheit.</p>
+              <div class="news-meta">
+                <span>⏱️ 3 Min</span>
+                <time datetime="2025-10-10">10.10.2025</time>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="mt-8 text-center">
+          <a
+            href="#"
+            class="inline-flex btn items-center gap-2 px-5 py-3 rounded-full bg-[var(--mint)] text-white font-semibold shadow hover:opacity-95 transition">
+            Alle Artikel ansehen
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M13 5l7 7-7 7v-4H4v-6h9z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback -->
+    <section id="reviews" class="section relative overflow-hidden" aria-labelledby="reviewsTitle">
+      <div class="wave wave-top" aria-hidden="true">
+        <svg
+          data-parallax
+          data-speed="0.22"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          class="text-[var(--body)]"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
+        </svg>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 relative z-[1]">
+        <header class="mb-10 text-center">
+          <h2 id="reviewsTitle" class="fx-title text-4xl font-bold text-[var(--calm)] tracking-tight mb-3">Feedback</h2>
+          <p class="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto text-lg">
+            Was Familien über unsere Arbeit sagen.
+          </p>
+        </header>
+
+        <!-- Badges -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 max-w-5xl mx-auto mb-12"
+          data-reviews-badges>
+          <article class="review-badge relative overflow-hidden rounded-2xl p-6">
+            <span class="review-badge__pin" aria-hidden="true">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Google">
+                <path
+                  fill="#FFC107"
+                  d="M43.611,20.083H42V20H24v8h11.303C33.722,31.657,29.223,35,24,35c-7.18,0-13-5.82-13-13
+              s5.82-13,13-13c3.14,0,6.022,1.115,8.269,2.951l5.657-5.657C34.676,3.053,29.645,1,24,1C11.85,1,2,10.85,2,23s9.85,22,22,22
+              c12.15,0,22-9.85,22-22C46,22.659,44.96,21.164,43.611,20.083z" />
+                <path
+                  fill="#FF3D00"
+                  d="M6.306,14.691l6.571,4.819C14.283,16.381,18.855,13,24,13c3.14,0,6.022,1.115,8.269,2.951l5.657-5.657
+              C34.676,7.053,29.645,5,24,5C16.318,5,9.689,9.337,6.306,14.691z" />
+                <path
+                  fill="#4CAF50"
+                  d="M24,41c5.152,0,9.799-1.977,13.274-5.184l-6.122-4.999C29.005,32.941,26.63,34,24,34
+              c-5.201,0-9.688-3.317-11.292-7.946l-6.54,5.036C9.548,36.787,16.198,41,24,41z" />
+                <path
+                  fill="#1976D2"
+                  d="M43.611,20.083H42V20H24v8h11.303c-1.218,3.48-4.281,6.142-8.129,6.817l6.122,4.999
+              C36.131,37.104,42,31.5,42,23C42,22.003,41.903,21.024,43.611,20.083z" />
+              </svg>
+            </span>
+            <div class="review-badge__head mt-2">
+              <strong class="block text-lg">Google-Rezensionen</strong>
+              <span class="text-slate-500 text-sm">Ø 4,9 / 5</span>
+            </div>
+            <p class="review-badge__text mt-3">
+              „Die beste Entscheidung für unsere Mutter. Regelmäßige Berichte, deutlich bessere Lebensqualität.“
+            </p>
+            <div class="review-badge__stars mt-2" aria-label="5 Sterne">★★★★★</div>
+          </article>
+
+          <article class="review-badge relative overflow-hidden rounded-2xl p-6">
+            <span class="review-badge__pin" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="ProvenExpert">
+                <circle class="pe-core" cx="24" cy="24" r="16.5" />
+                <path
+                  class="pe-ring-black"
+                  d="M24,6 a18,18 0 0 1 0,36"
+                  fill="none"
+                  stroke-width="4"
+                  stroke-linecap="round" />
+                <path
+                  class="pe-ring-teal"
+                  d="M24,42 a18,18 0 0 1 0,-36"
+                  fill="none"
+                  stroke-width="4"
+                  stroke-linecap="round" />
+                <path class="pe-star" d="M24 14.5l3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3 1.2-6.9-5-4.9 6.9-1z" />
+              </svg>
+            </span>
+            <div class="review-badge__head mt-2">
+              <strong class="block text-lg">ProvenExpert</strong>
+              <span class="text-slate-500 text-sm">100% Empfehlungen</span>
+            </div>
+            <p class="review-badge__text mt-3">
+              „Kompetent, herzlich und zuverlässig. Wir fühlen uns in jeder Situation gut begleitet.“
+            </p>
+            <div class="review-badge__stars mt-2" aria-label="5 Sterne">★★★★★</div>
+          </article>
+        </div>
+
+        <!-- Slider -->
+        <div id="feedbackViewport" class="feedback-viewport">
+          <div id="feedbackTrack" class="feedback-track">
+            <figure class="feedback-card">
+              <img src="./img/rev-1.jpg" alt="Familienfoto" class="feedback-img" />
+              <figcaption class="feedback-cap">
+                <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
+                  <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z" />
+                </svg>
+                <blockquote>
+                  Das ist Ihr Verdienst! Meine Mutter schreibt selten Bewertungen, aber über Ihre Hilfe – nur warme
+                  Worte. Herzlichen Dank für Ihre Fürsorge und Ihren Respekt.
+                </blockquote>
+                <div class="feedback-who">— Margo S.</div>
               </figcaption>
             </figure>
-          </li>
+
+            <figure class="feedback-card">
+              <img src="./img/rev-2.jpg" alt="Zufriedene Familie" class="feedback-img" />
+              <figcaption class="feedback-cap">
+                <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
+                  <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z" />
+                </svg>
+                <blockquote>
+                  Wir sind sehr zufrieden: klare Kommunikation, verlässlich und herzlich. Absolute Empfehlung!
+                </blockquote>
+                <div class="feedback-who">— Familie K.</div>
+              </figcaption>
+            </figure>
+
+            <figure class="feedback-card">
+              <img src="./img/rev-3.jpg" alt="Betreuung zu Hause" class="feedback-img" />
+              <figcaption class="feedback-cap">
+                <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
+                  <path fill="currentColor" d="M7 17h3l2-6VV7H6v4h3zM14 17h3l2-6V7H-6v4h3z" />
+                </svg>
+                <blockquote>
+                  Durch die regelmäßigen Besuche ist unsere Mutter viel ruhiger. Wir vertrauen Ihnen zu 100 %.
+                </blockquote>
+                <div class="feedback-who">— Anna &amp; Michael</div>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div id="feedbackDots" class="feedback-dots" aria-label="Slides der Bewertungen"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section" aria-labelledby="faqTitle">
+      <!-- Верхняя волна -->
+      <div class="wave wave-top" aria-hidden="true">
+        <svg
+          data-parallax
+          data-speed="0.22"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          class="text-[var(--body)]"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
+        </svg>
+      </div>
+
+      <div class="fade-in max-w-5xl mx-auto px-4">
+        <!-- Заголовок -->
+        <header class="mb-8 text-center">
+          <h2 id="faqTitle" class="fx-title">FAQ</h2>
+          <p class="text-slate-600 max-w-2xl mx-auto">Schnelle Antworten auf die häufigsten Fragen.</p>
+
+          <!-- Мини-поиск -->
+          <div class="mt-4 flex justify-center">
+            <label class="relative w-full max-w-xl" aria-label="FAQ durchsuchen">
+              <input
+                id="faqSearch"
+                type="search"
+                placeholder="Frage eingeben …"
+                class="w-full rounded-2xl border border-[var(--early)] bg-white/80 px-4 py-3 pr-10 outline-none focus:ring-2 focus:ring-[var(--mint)]" />
+              <button
+                id="faqClear"
+                type="button"
+                class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-lg hover:bg-black/5"
+                aria-label="Suche löschen"
+                hidden>
+                ✕
+              </button>
+            </label>
+          </div>
+          <div id="faqEmpty" class="hidden text-slate-500 mt-3">
+            Keine Treffer. Versuchen Sie einen anderen Suchbegriff.
+          </div>
+        </header>
+
+        <!-- Список -->
+
+        <div id="faqList" class="space-y-3">
+          <details id="faq-region" class="faq-item card">
+            <summary class="faq-q">
+              <span class="faq-ico" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="10" r="3" />
+                  <path d="M12 2c3.5 0 6 2.5 6 6 0 5-6 12-6 12S6 13 6 8c0-3.5 2.5-6 6-6z" />
+                </svg>
+              </span>
+              Welche Regionen deckt ihr ab?
+            </summary>
+            <div class="faq-a">
+              Kaiserslautern & Umgebung (Einsiedlerhof, Hohenecken, Morlautern, Dansenberg, Otterbach, Otterberg).
+              Weitere Orte auf Anfrage.
+            </div>
+          </details>
+
+          <details id="faq-ambulant-leist" class="faq-item card">
+            <summary class="faq-q">
+              <span class="faq-ico" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M3 11l9-7 9 7" />
+                  <path d="M5 10v10h14V10" />
+                  <path d="M9 21V14h6v7" />
+                </svg>
+              </span>
+              Welche Leistungen sind in der ambulanten Pflege möglich?
+            </summary>
+            <div class="faq-a">
+              Grund- & Behandlungspflege, Medikamentengabe, Wundversorgung, Kompression, Hauswirtschaft, Begleitung –
+              planbar nach Bedarf.
+            </div>
+          </details>
+
+          <details id="faq-start" class="faq-item card">
+            <summary class="faq-q">
+              <span class="faq-ico" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 7v6l4 2" />
+                </svg>
+              </span>
+              Wie schnell kann die Versorgung starten?
+            </summary>
+            <div class="faq-a">
+              Nach Erstberatung meist in wenigen Tagen; in dringenden Fällen prüfen wir kurzfristige Lösungen.
+            </div>
+          </details>
+
+          <details id="faq-tagespflege-probe" class="faq-item card">
+            <summary class="faq-q">
+              <span class="faq-ico" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="4" />
+                  <path
+                    d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" />
+                </svg>
+              </span>
+              Gibt es einen Probetag in der Tagespflege?
+            </summary>
+            <div class="faq-a">Ja – nach Absprache und Kapazität. Fahrdienst/Verpflegung möglich.</div>
+          </details>
+
+          <details id="faq-app" class="faq-item card">
+            <summary class="faq-q">
+              <span class="faq-ico" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M12 21s-6-4.35-6-9a6 6 0 0 1 12 0c0 4.65-6 9-6 9z" />
+                  <path d="M9.5 11.5c.5-1.5 2.5-1.5 3 0M11 14h2" />
+                </svg>
+              </span>
+              Für wen ist die ambulante psychiatrische Pflege (APP) geeignet?
+            </summary>
+            <div class="faq-a">
+              Für Menschen mit psychischen Erkrankungen: Stabilisierung, Struktur, Krisenplan, Unterstützung bei
+              Medikation und Alltag.
+            </div>
+          </details>
+
+          <details id="faq-kosten" class="faq-item card">
+            <summary class="faq-q">
+              <span class="faq-ico" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M18 7a6 6 0 1 0 0 10" />
+                  <path d="M5 10h8M5 14h7" />
+                </svg>
+              </span>
+              Wie werden Leistungen finanziert und abgerechnet?
+            </summary>
+            <div class="faq-a">
+              Pflegekasse (Pflegegrad), Entlastungsbetrag §45b, Krankenkasse (VO), ggf. Eigenanteil. Direkte Abrechnung
+              + Hilfe bei Anträgen/Widerspruch.
+            </div>
+          </details>
+        </div>
+
+        <!-- Кнопка -->
+        <div class="mt-6 text-center">
+          <a href="#kontakt" class="btn inline-flex items-center gap-2">
+            Weitere Fragen? Kontakt aufnehmen
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <!-- JSON-LD для поисковиков -->
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Welche Regionen deckt ihr ab?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Kaiserslautern & Umgebung (u. a. Einsiedlerhof, Hohenecken, Morlautern, Dansenberg, Otterbach, Otterberg). Fragen Sie gern nach weiteren Orten."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Welche Leistungen sind in der ambulanten Pflege möglich?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Grund- & Behandlungspflege, Medikamentengabe, Wundversorgung, Kompressionsversorgung, Hauswirtschaft, Begleitung – nach Bedarf planbar."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Gibt es einen Probetag in der Tagespflege?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ja – nach Absprache und Kapazität. Fahrdienst und Verpflegung sind möglich."
+              }
+            }
+          ]
+        }
+      </script>
+    </section>
+
+    <!-- Karriere -->
+    <section id="karriere" class="section" aria-labelledby="karriereTitle">
+      <div class="wave wave-top" aria-hidden="true">
+        <svg
+          data-parallax
+          data-speed="0.28"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          class="text-white"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
+        </svg>
+      </div>
+      <div class="fade-in max-w-6xl mx-auto px-4">
+        <h2 id="karriereTitle" class="fx-title">Karriere</h2>
+        <p class="text-center max-w-3xl mx-auto text-slate-600 dark:text-slate-300 mb-8">
+          Wertschätzendes Umfeld, ruhige Abläufe, Team auf Augenhöhe. Teil- und Vollzeit möglich.
+        </p>
+
+        <div class="jobs-grid">
+          <!-- 1 -->
+          <article class="job-card">
+            <div class="job-media">
+              <img src="./img/Pflegefachkraft.webp" alt="Pflegefachkraft – ambulant & Tagespflege" />
+            </div>
+            <div class="job-body">
+              <h3>Pflegefachkraft</h3>
+              <p>
+                Bringe Deine Fachkompetenz und Dein Einfühlungsvermögen täglich ein – im wertschätzenden Team mit festen
+                Touren und planbaren Zeiten.
+              </p>
+            </div>
+            <div class="job-cta">
+              <a href="#kontakt" class="btn job-btn">Jetzt bewerben</a>
+            </div>
+          </article>
 
           <!-- 2 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="1">
-            <figure class="team-card">
-              <img src="./img/team-2.jpg" alt="Jonas R., Gesundheits- und Krankenpfleger" class="team-photo w-full h-[320px] object-cover">
-              <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
-                <strong class="block text-base">Jonas R.</strong>
-                <span class="text-white/85 text-sm">Gesundheits- und Krankenpfleger</span>
-              </figcaption>
-            </figure>
-          </li>
+          <article class="job-card">
+            <div class="job-media">
+              <img src="./img/Pflegehilfskraft1.webp" alt="Pflegehilfskraft – Unterstützung im Alltag" />
+            </div>
+            <div class="job-body">
+              <h3>Pflegehilfskraft</h3>
+              <p>
+                Mit oder ohne Erfahrung – wir unterstützen Dich dabei, Deine Aufgaben mit Herz und Verantwortung zu
+                erfüllen und Dich weiterzuentwickeln.
+              </p>
+            </div>
+            <div class="job-cta">
+              <a href="#kontakt" class="btn job-btn">Jetzt bewerben</a>
+            </div>
+          </article>
 
           <!-- 3 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="2">
-            <figure class="team-card">
-              <img src="./img/team-3.jpg" alt="Leyla K., APP – Ambulante psychiatrische Pflege" class="team-photo w-full h-[320px] object-cover">
-              <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
-                <strong class="block text-base">Leyla K.</strong>
-                <span class="text-white/85 text-sm">APP – Ambulante psychiatrische Pflege</span>
-              </figcaption>
-            </figure>
-          </li>
-
-          <!-- 4 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="3">
-            <figure class="team-card">
-              <img src="./img/team-4.jpg" alt="Sofia P., Tagespflege & Aktivierung" class="team-photo w-full h-[320px] object-cover">
-              <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
-                <strong class="block text-base">Sofia P.</strong>
-                <span class="text-white/85 text-sm">Tagespflege &amp; Aktivierung</span>
-              </figcaption>
-            </figure>
-          </li>
-
-          <!-- 5 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="4">
-            <figure class="team-card">
-              <img src="./img/team-5.jpg" alt="Max T., Pflegehelfer" class="team-photo w-full h-[320px] object-cover">
-              <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
-                <strong class="block text-base">Max T.</strong>
-                <span class="text-white/85 text-sm">Pflegehelfer</span>
-              </figcaption>
-            </figure>
-          </li>
-
-          <!-- 6 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="5">
-            <figure class="team-card">
-              <img src="./img/team-6.jpg" alt="Elena W., Beratung & Koordination" class="team-photo w-full h-[320px] object-cover">
-              <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
-                <strong class="block text-base">Elena W.</strong>
-                <span class="text-white/85 text-sm">Beratung &amp; Koordination</span>
-              </figcaption>
-            </figure>
-          </li>
-
-          <!-- 7 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="6">
-            <figure class="team-card">
-              <img src="./img/team-7.jpg" alt="Daniela S., Pflegeassistenz" class="team-photo w-full h-[320px] object-cover">
-              <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
-                <strong class="block text-base">Daniela S.</strong>
-                <span class="text-white/85 text-sm">Pflegeassistenz</span>
-              </figcaption>
-            </figure>
-          </li>
-
-          <!-- 8 -->
-          <li class="shrink-0 basis-[82%] sm:basis-[48%] md:basis-[31.5%] lg:basis-[23.8%]" data-index="7">
-            <figure class="team-card">
-              <img src="./img/team-8.jpg" alt="Tobias H., Verwaltung & Organisation" class="team-photo w-full h-[320px] object-cover">
-              <figcaption class="team-caption absolute inset-x-0 bottom-0 p-4 text-white">
-                <strong class="block text-base">Tobias H.</strong>
-                <span class="text-white/85 text-sm">Verwaltung &amp; Organisation</span>
-              </figcaption>
-            </figure>
-          </li>
-
-        </ul>
-      </div>
-
-      <!-- Стрелки -->
-      <div class="pointer-events-none absolute inset-0 flex items-center justify-between">
-        <button id="teamPrev" class="pointer-events-auto ml-[-8px] md:ml-4 grid place-items-center w-10 h-10 rounded-full bg-white/90 dark:bg-slate-800/90 shadow hover:scale-110 transition border border-black/10" aria-label="Vorheriges Bild">
-          <svg width="20" height="20" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M15.41 7.41L14 6l-6 6l6 6l1.41-1.41L10.83 12z"/>
-          </svg>
-        </button>
-        <button id="teamNext" class="pointer-events-auto mr-[-8px] md:mr-4 grid place-items-center w-10 h-10 rounded-full bg-white/90 dark:bg-slate-800/90 shadow hover:scale-110 transition border border-black/10" aria-label="Nächstes Bild">
-          <svg width="20" height="20" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M8.59 16.59L10 18l6-6l-6-6l-1.41 1.41L13.17 12z"/>
-          </svg>
-        </button>
-      </div>
-
-                                  <!-- Точки -->
-      <div class="mt-6 flex items-center justify-center gap-2" role="tablist" aria-label="Slides">
-        <div id="teamDots" class="flex gap-2"></div>
-      </div>
-    </div>
-  </div>
-                                <!-- Кнопка  -->
-    <div class="mt-8 text-center">
-    <a href="team.html" class="btn-secondary inline-flex items-center gap-2">
-      Mehr über unser Team
-      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M8.59 16.59L10 18l6-6l-6-6l-1.41 1.41L13.17 12z"/>
-      </svg>
-    </a>
-  </div>
-
-  <!-- Нижняя волна -->
-  <div class="wave wave-bottom rotate-180 mt-10" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" class="text-white" fill="currentColor">
-      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
-    </svg>
-  </div>
-</section>
-
-
- <!-- Kooperationspartner -->
-<section
-  id="partner"
-  class="section relative py-16 md:py-20 overflow-hidden"
-  aria-labelledby="partnerTitle"
->
-  <!-- Верхняя волна -->
-  <div class="wave wave-top" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none"
-         class="text-[var(--body)]" fill="currentColor">
-      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
-    </svg>
-  </div>
-
-  <div class="max-w-7xl mx-auto px-4 text-center relative z-[1]">
-    <header class="mb-10">
-      <h2 id="partnerTitle" class="text-4xl font-bold text-[var(--calm)] tracking-tight mb-3">
-        Kooperationspartner
-      </h2>
-      <p class="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto text-lg">
-        Gemeinsam stark – mit unseren regionalen und überregionalen Partnern für eine verlässliche Versorgung.
-      </p>
-    </header>
-    <hr class="max-w-6xl mx-auto my-10 border-0 h-[1px] bg-black/5 rounded">
-
-    <!-- Логотипы -->
-    <div
-      class="partner-grid grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3
-             gap-6 md:gap-8 lg:gap-10 justify-items-center items-center mx-auto max-w-6xl"
-      data-partner-grid
-    >
-      <div class="partner-card">
-        <img src="./img/internationale-hauptbahnhof-apotheke-logo.png"
-             alt="Internationale Hauptbahnhof Apotheke" class="partner-logo">
-      </div>
-      <div class="partner-card">
-        <img src="./img/Profi Gesundheits-Service-logo.png"
-             alt="Profi Gesundheits-Service" class="partner-logo">
-      </div>
-      <div class="partner-card">
-        <img src="./img/kochwerk.png"
-             alt="Kochwerk Kaiserslautern" class="partner-logo">
-      </div>
-      <div class="partner-card">
-        <img src="./img/bienen-apotheke-logo-1.png"
-             alt="Bienen Apotheke Kaiserslautern" class="partner-logo">
-      </div>
-      <div class="partner-card">
-        <img src="./img/radio-nrj-logo.png"
-             alt="NRJ Radio Kaiserslautern" class="partner-logo">
-      </div>
-      <div class="partner-card">
-        <img src="./img/bpa-logo-1.png"
-             alt="BPA Bundesverband Pflege" class="partner-logo">
-      </div>
-    </div>
-  </div>
-
-  <!-- Нижняя волна -->
-  <div class="wave wave-bottom rotate-180 mt-10" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"
-         preserveAspectRatio="none" class="text-white" fill="currentColor">
-      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
-    </svg>
-  </div>
-</section>
-
-
-  <!-- =========================
-     NEWS Section
-========================= -->
-<section id="news" class="section relative" aria-labelledby="blogTitle"
-  style="background:color-mix(in oklab, var(--beige) 45%, transparent);">
-
-  <!-- wave -->
-  <div class="wave wave-top" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none"
-         class="text-[var(--body)]" fill="currentColor"><path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"/></svg>
-  </div>
-
-  <div class="max-w-6xl xl:max-w-7xl mx-auto px-4 relative z-[1]">
-    <header class="mb-8 text-center">
-      <h2 id="blogTitle" class="text-3xl xl:text-4xl font-bold text-[var(--calm)] tracking-tight mb-2">News</h2>
-      <p class="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">Aktuelles, Hinweise & Tipps.</p>
-    </header>
-
-    <div class="news-grid">
-      <!-- Featured -->
-      <article class="news-feature card">
-        <a href="#" class="stretched"></a>
-        <div class="news-thumb">
-          <img src="img/news-feature1.jpeg"" alt="">
-          <div class="thumb-grad"></div>
-        </div>
-        <div class="p-5 sm:p-6">
-          <span class="chip">Leitfaden</span>
-          <h3 class="news-title">Pflegegrad beantragen – kompakter Leitfaden</h3>
-          <p class="news-teaser">Voraussetzungen, Unterlagen, MD-Termin, Widerspruch und Checkliste.</p>
-          <div class="news-meta"><span>⏱️ 6–8 Min</span><time datetime="2025-10-25">25.10.2025</time></div>
-        </div>
-      </article>
-
-      <!-- Card 2 -->
-      <article class="news-card card">
-        <a href="#" class="stretched"></a>
-        <div class="news-thumb sm:aspect-[16/10]">
-          <img src="img/news-feature.jpg"" alt="">
-          <span class="chip chip--small">Alltag</span>
-          <div class="thumb-grad"></div>
-        </div>
-        <div class="p-4 sm:p-5">
-          <h3 class="small-title">Entlastung im Alltag</h3>
-          <p class="small-teaser">Ambulante Pflege in planbaren Schritten.</p>
-          <div class="news-meta"><span>⏱️ 4 Min</span><time datetime="2025-10-18">18.10.2025</time></div>
-        </div>
-      </article>
-
-      <!-- Card 3 -->
-      <article class="news-card card">
-        <a href="#" class="stretched"></a>
-        <div class="news-thumb sm:aspect-[16/10]">
-          <img src="img/news-feature2.jpeg" alt="">
-          <span class="chip chip--small">Konzept</span>
-          <div class="thumb-grad"></div>
-        </div>
-        <div class="p-4 sm:p-5">
-          <h3 class="small-title">Sanfte Integration</h3>
-          <p class="small-teaser">Mehrgenerationen: Wärme, Struktur, Sicherheit.</p>
-          <div class="news-meta"><span>⏱️ 3 Min</span><time datetime="2025-10-10">10.10.2025</time></div>
-        </div>
-      </article>
-    </div>
-
-    <div class="mt-8 text-center">
-      <a href="#" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[var(--mint)] text-white font-semibold shadow hover:opacity-95 transition">
-        Alle Artikel ansehen
-        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 5l7 7-7 7v-4H4v-6h9z"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-
- <!-- Feedback -->
-
-
-<section id="reviews" class="section relative overflow-hidden" aria-labelledby="reviewsTitle">
-
-  <!-- Top decorative wave -->
-  <div class="wave wave-top" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none"
-         class="text-[var(--body)]" fill="currentColor">
-      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"/>
-    </svg>
-  </div>
-
-  <div class="max-w-7xl mx-auto px-4 relative z-[1]">
-    <!-- Heading -->
-    <header class="mb-10 text-center">
-      <h2 id="reviewsTitle" class="text-4xl font-bold text-[var(--calm)] tracking-tight mb-3">Feedback</h2>
-      <p class="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto text-lg">
-        Was Familien über unsere Arbeit sagen.
-      </p>
-    </header>
-
-    <!-- Row 1: Official badges -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 max-w-5xl mx-auto mb-12" data-reviews-badges>
-
-      <!-- Google Review badge -->
-      <article class="review-badge relative overflow-hidden rounded-2xl p-6">
-        <!-- round Google pin -->
-        <span class="review-badge__pin" aria-hidden="true">
-          <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Google">
-            <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303C33.722,31.657,29.223,35,24,35c-7.18,0-13-5.82-13-13
-            s5.82-13,13-13c3.14,0,6.022,1.115,8.269,2.951l5.657-5.657C34.676,3.053,29.645,1,24,1C11.85,1,2,10.85,2,23s9.85,22,22,22
-            c12.15,0,22-9.85,22-22C46,22.659,44.96,21.164,43.611,20.083z"/>
-            <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.283,16.381,18.855,13,24,13c3.14,0,6.022,1.115,8.269,2.951l5.657-5.657
-            C34.676,7.053,29.645,5,24,5C16.318,5,9.689,9.337,6.306,14.691z"/>
-            <path fill="#4CAF50" d="M24,41c5.152,0,9.799-1.977,13.274-5.184l-6.122-4.999C29.005,32.941,26.63,34,24,34
-            c-5.201,0-9.688-3.317-11.292-7.946l-6.54,5.036C9.548,36.787,16.198,41,24,41z"/>
-            <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-1.218,3.48-4.281,6.142-8.129,6.817l6.122,4.999
-            C36.131,37.104,42,31.5,42,23C42,22.003,41.903,21.024,43.611,20.083z"/>
-          </svg>
-        </span>
-
-        <div class="review-badge__head mt-2">
-          <strong class="block text-lg">Google-Rezensionen</strong>
-          <span class="text-slate-500 text-sm">Ø 4,9 / 5</span>
-        </div>
-        <p class="review-badge__text mt-3">
-          „Die beste Entscheidung für unsere Mutter. Regelmäßige Berichte, deutlich bessere Lebensqualität.“
-        </p>
-        <div class="review-badge__stars mt-2" aria-label="5 Sterne">★★★★★</div>
-      </article>
-
-      <!-- ProvenExpert badge -->
-      <article class="review-badge relative overflow-hidden rounded-2xl p-6">
-        <!-- round Google pin  -->
-        <span class="review-badge__pin" aria-hidden="true">
-          <!-- ./img/provenexpert.svg -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="ProvenExpert">
-  <circle class="pe-core" cx="24" cy="24" r="16.5"/>
-  <path class="pe-ring-black" d="M24,6 a18,18 0 0 1 0,36" fill="none" stroke-width="4" stroke-linecap="round"/>
-  <path class="pe-ring-teal"  d="M24,42 a18,18 0 0 1 0,-36" fill="none" stroke-width="4" stroke-linecap="round"/>
-  <path class="pe-star" d="M24 14.5l3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3 1.2-6.9-5-4.9 6.9-1z"/>
-</svg>
-        </span>
-
-        <div class="review-badge__head mt-2">
-          <strong class="block text-lg">ProvenExpert</strong>
-          <span class="text-slate-500 text-sm">100% Empfehlungen</span>
-        </div>
-        <p class="review-badge__text mt-3">
-          „Kompetent, herzlich und zuverlässig. Wir fühlen uns in jeder Situation gut begleitet.“
-        </p>
-        <div class="review-badge__stars mt-2" aria-label="5 Sterne">★★★★★</div>
-      </article>
-    </div>
-
-    <!-- Row 2: warm photo slider -->
-<div id="feedbackViewport" class="feedback-viewport">
-  <div id="feedbackTrack" class="feedback-track">
-
-    <!-- Slide 1 -->
-    <figure class="feedback-card">
-      <img src="./img/rev-1.jpg" alt="Familienfoto" class="feedback-img" />
-      <figcaption class="feedback-cap">
-        <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
-          <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z"/>
-        </svg>
-        <blockquote>
-          Das ist Ihr Verdienst! Meine Mutter schreibt selten Bewertungen, aber über Ihre Hilfe – nur warme Worte.
-          Herzlichen Dank für Ihre Fürsorge und Ihren Respekt.
-        </blockquote>
-        <div class="feedback-who">— Margo S.</div>
-      </figcaption>
-    </figure>
-
-    <!-- Slide 2 -->
-    <figure class="feedback-card">
-      <img src="./img/rev-2.jpg" alt="Zufriedene Familie" class="feedback-img" />
-      <figcaption class="feedback-cap">
-        <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
-          <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z"/>
-        </svg>
-        <blockquote>
-          Wir sind sehr zufrieden: klare Kommunikation, verlässlich und herzlich. Absolute Empfehlung!
-        </blockquote>
-        <div class="feedback-who">— Familie K.</div>
-      </figcaption>
-    </figure>
-
-    <!-- Slide 3 -->
-    <figure class="feedback-card">
-      <img src="./img/rev-3.jpg" alt="Betreuung zu Hause" class="feedback-img" />
-      <figcaption class="feedback-cap">
-        <svg viewBox="0 0 24 24" class="w-6 h-6 opacity-80" aria-hidden="true">
-          <path fill="currentColor" d="M7 17h3l2-6V7H6v4h3zM14 17h3l2-6V7h-6v4h3z"/>
-        </svg>
-        <blockquote>
-          Durch die regelmäßigen Besuche ist unsere Mutter viel ruhiger. Wir vertrauen Ihnen zu 100 %.
-        </blockquote>
-        <div class="feedback-who">— Anna &amp; Michael</div>
-      </figcaption>
-    </figure>
-  </div>
-
-  <!-- Dots -->
-  <div id="feedbackDots" class="feedback-dots" aria-label="Slides der Bewertungen"></div>
-</div>
-
-  <!-- Bottom decorative wave -->
-  <!--<button class="feedback-arrow feedback-arrow--prev" aria-label="Zurück">
-  <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-</button>
-<button class="feedback-arrow feedback-arrow--next" aria-label="Weiter">
-  <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-</button>-->
-</section>
-
-
-
-                                               <!-- FAQ -->
-  <section id="faq" class="section" aria-labelledby="faqTitle">
-    <div class="wave wave-top" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" class="text-[var(--body)]" fill="currentColor"><path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"/></svg>
-    </div>
-    <div class="fade-in max-w-5xl mx-auto px-4">
-      <h2 id="faqTitle" class="text-3xl font-bold text-center mb-8">FAQ</h2>
-      <div class="space-y-4">
-        <details class="card"><summary class="font-medium cursor-pointer">Gibt es einen Probetag in der Tagespflege?</summary><div class="mt-3 text-slate-600 dark:text-slate-300">Ja, nach Absprache und Kapazität.</div></details>
-        <details class="card"><summary class="font-medium cursor-pointer">Welche Leistungen sind in der ambulanten Pflege möglich?</summary><div class="mt-3 text-slate-600 dark:text-slate-300">Grund- und Behandlungspflege, Hauswirtschaft, Begleitung.</div></details>
-        <details class="card"><summary class="font-medium cursor-pointer">Wie läuft die psychiatrische Pflege ab?</summary><div class="mt-3 text-slate-600 dark:text-slate-300">Individuell abgestimmt: Stabilisierung, Medikation, Krisenplan.</div></details>
-      </div>
-    </div>
-  </section>
-
-  <!-- Karriere -->
-  <section id="karriere" class="section" aria-labelledby="karriereTitle" style="background:color-mix(in oklab, var(--beige) 40%, transparent);">
-    <div class="wave wave-top" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" class="text-[var(--body)]" fill="currentColor"><path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"/></svg>
-    </div>
-    <div class="fade-in max-w-6xl mx-auto px-4">
-      <h2 id="karriereTitle" class="text-3xl font-bold text-center mb-6">Karriere</h2>
-      <p class="text-center max-w-3xl mx-auto text-slate-600 dark:text-slate-300 mb-8">Wertschätzendes Umfeld, ruhige Abläufe, Team auf Augenhöhe. Teil- und Vollzeit möglich.</p>
-      <div class="grid md:grid-cols-3 gap-6">
-        <article class="card"><strong>Pflegefachkraft (m/w/d)</strong><p class="mt-2 text-slate-600 dark:text-slate-300">Ambulant / Tagespflege</p><div class="mt-3 flex justify-center"><a href="#kontakt" class="btn-secondary inline-flex">Mehr erfahren</a></div></article>
-        <article class="card"><strong>APr / APP (m/w/d)</strong><p class="mt-2 text-slate-600 dark:text-slate-300">Ambulante psychiatrische Pflege</p><div class="mt-3 flex justify-center"><a href="#kontakt" class="btn-secondary inline-flex">Mehr erfahren</a></div></article>
-        <article class="card"><strong>Beratung & Koordination</strong><p class="mt-2 text-slate-600 dark:text-slate-300">Allgemeine Beratung / Pflegestützpunkt</p><div class="mt-3 flex justify-center"><a href="#kontakt" class="btn-secondary inline-flex">Mehr erfahren</a></div></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Kontakt -->
-  <section id="kontakt" class="section" aria-labelledby="kontaktTitle" style="background:color-mix(in oklab, var(--pistage) 35%, transparent);">
-    <div class="wave wave-top" aria-hidden="true">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none" class="text-[var(--body)]" fill="currentColor"><path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"/></svg>
-    </div>
-    <div class="fade-in max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10">
-      <div>
-        <h2 id="kontaktTitle" class="text-3xl font-bold mb-4">Kontakt & Anfahrt</h2>
-        <address class="not-italic mb-6 text-slate-600 dark:text-slate-300">
-          Lebensanker Pflegestützpunkt GmbH<br>
-          Raiffeisenstraße 6, 67555 Kaiserslautern<br>
-          Mo–Fr 08:00–17:00
-        </address>
-        <div class="space-y-2">
-          <a class="chip" href="tel:+4963131179499" aria-label="Telefonnummer anrufen">📞 +49 631 31 17 94 99</a>
-          <a class="chip" href="mailto:mail@lebensanker-kaiserslautern.de" aria-label="E-Mail schreiben">✉️ mail@lebensanker-kaiserslautern.de</a>
-          <div class="mt-4 rounded-xl overflow-hidden" style="box-shadow:0 0 0 1px var(--line)">
-            <iframe title="Standortkarte Lebensanker Kaiserslautern" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2646.295586403689!2d7.7700!3d49.4400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47961cf09c9a4e1b%3A0x0000000000000000!2sRaiffeisenstra%C3%9Fe%206%2C%2067555%20Kaiserslautern%2C%20Deutschland!5e0!3m2!1sde!2sde!4v1690000000000!5m2!1sde!2sde" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-          <div class="mt-3 flex flex-col md:flex-row md:flex-wrap gap-2">
-            <a href="https://www.google.com/maps/dir/?api=1&destination=Raiffeisenstra%C3%9Fe+6+67555+Kaiserslautern"
-   target="_blank"
-   rel="noopener noreferrer"
-   class="chip inline-flex items-center gap-2 w-full md:w-auto justify-center"
-   aria-label="Route in Google Maps planen">
-  <span>📍 Route planen</span>
-</a>
-
-<a href="https://maps.apple.com/?address=Raiffeisenstra%C3%9Fe%206,%2067555%20Kaiserslautern,%20Deutschland&daddr=Raiffeisenstra%C3%9Fe%206,%2067555%20Kaiserslautern"
-   target="_blank"
-   rel="noopener noreferrer"
-   class="chip inline-flex items-center gap-2 w-full md:w-auto justify-center"
-   aria-label="In Apple Karten öffnen">
-  <span> In Apple Karten öffnen</span>
-</a>
-          </div>
-          <div class="mt-6 text-sm text-slate-600 dark:text-slate-300">
-            <strong>Einsatzgebiet:</strong> Kaiserslautern, Einsiedlerhof, Hohenecken, Morlautern, Dansenberg, Otterbach, Otterberg.
-          </div>
-        </div>
-      </div>
-
-      <form id="contactForm" class="card" aria-labelledby="formTitle">
-        <h3 id="formTitle" class="font-semibold text-lg mb-4 text-center">Kurzanfrage</h3>
-        <div class="grid md:grid-cols-2 gap-4">
-          <label class="block" for="fName"><span class="text-sm text-slate-600 dark:text-slate-300">Ihr Name</span>
-            <input id="fName" name="name" required aria-required="true" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3" placeholder="Vor- und Nachname" />
-          </label>
-          <label class="block" for="fContact"><span class="text-sm text-slate-600 dark:text-slate-300">Telefon oder E-Mail</span>
-            <input id="fContact" name="contact" required aria-required="true" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3" placeholder="z. B. +49… oder name@example.de" />
-          </label>
-          <label class="block md:col-span-2" for="fTopic">
-            <span class="text-sm text-slate-600 dark:text-slate-300">Beratung</span>
-            <div class="relative mt-1">
-              <select id="fTopic" name="topic" required aria-required="true" data-enhance-select
-                class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3">
-                <option value="" selected disabled>Wählen…</option>
-                <option>Ambulanter Pflegedienst</option>
-                <option>Tagespflege</option>
-                <option>Ambulante psychiatrische Pflege</option>
-                <option>Allgemeine Beratung</option>
-              </select>
+          <article class="job-card">
+            <div class="job-media">
+              <img src="./img/Haushaltshelferin.webp" alt="Haushaltshelferin – Unterstützung im Team" />
             </div>
-          </label>
-          <label class="block md:col-span-2" for="fMsg"><span class="text-sm text-slate-600 dark:text-slate-300">Ihre Fragen</span>
-            <textarea id="fMsg" name="message" rows="3" class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3" placeholder="Kurz Ihr Anliegen…"></textarea>
-          </label>
+            <div class="job-body">
+              <h3>Haushaltshelferin</h3>
+              <p>
+                Du hilfst gerne im Alltag und möchtest Menschen unterstützen? Dann bist Du bei uns genau richtig – wir
+                freuen uns auf Deine Unterstützung!
+              </p>
+            </div>
+            <div class="job-cta">
+              <a href="#kontakt" class="btn job-btn">Jetzt bewerben</a>
+            </div>
+          </article>
         </div>
-        <div class="mt-4 flex justify-center"><button class="btn" type="submit" aria-label="Anfrage absenden">Absenden</button></div>
-      </form>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-[#26352C] text-white py-12" role="contentinfo">
-    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8 text-sm">
-      <div>
-        <h4 class="font-semibold mb-3">Lebensanker</h4>
-        <p>Pflegestützpunkt & Mehrgenerationenhaus</p>
       </div>
-      <div>
-        <h4 class="font-semibold mb-3">Seiten</h4>
-        <ul class="space-y-2 opacity-90">
-          <li><a href="#angebote" class="hover:underline">Angebote</a></li>
-          <li><a href="#team" class="hover:underline">Team</a></li>
-          <li><a href="#partner" class="hover:underline">Kooperationspartner</a></li>
-          <li><a href="#news" class="hover:underline">News</a></li>
-          <li><a href="#feedback" class="hover:underline">Feedback</a></li>
-          <li><a href="#karriere" class="hover:underline">Karriere</a></li>
-          <li><a href="#kontakt" class="hover:underline">Kontakt</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-3">Rechtliches</h4>
-        <ul class="space-y-2 opacity-90">
-          <li><a href="#" class="hover:underline">Impressum</a></li>
-          <li><a href="#" class="hover:underline">Datenschutz</a></li>
-          <li><a href="#" class="hover:underline">Cookie-Hinweis</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold mb-3">Sprachen</h4>
-        <p>DEU · RUS · ENG </p>
-      </div>
-    </div>
-    <p class="text-center mt-8 text-white/70">© 2025 Lebensanker Pflegestützpunkt GmbH</p>
-  </footer>
-<!-- SVG SPRITE (вставить ОДИН раз на странице) -->
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-  <!-- AMBULANTE PFLEGE — дом + медицинский крест -->
-  <symbol id="i-ambulant" viewBox="0 0 64 64" fill="none">
-    <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M10 30L32 14l22 16" />
-      <path d="M16 28v20a4 4 0 0 0 4 4h24a4 4 0 0 0 4-4V28" />
-      <rect x="24" y="34" width="16" height="12" rx="2" />
-      <path d="M32 30v4m-4 0h8" />
-    </g>
-  </symbol>
 
-  <!-- TAGESPFLEGE — солнце над карточкой-днём -->
-  <symbol id="i-tagespflege" viewBox="0 0 64 64" fill="none">
-    <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="10" y="28" width="44" height="22" rx="4" />
-      <path d="M18 36h12m-12 6h20" />
-      <!-- солнце -->
-      <circle cx="40" cy="18" r="6" fill="#B9926A" opacity=".25"/>
-      <path d="M40 8v3M40 25v3M31 18h3M46 18h3M33 11l2 2M45 25l2 2M33 25l2-2M45 13l2-2"/>
-    </g>
-  </symbol>
+      <div class="mt-8 text-center">
+        <a href="#kontakt" class="btn inline-flex items-center gap-2">
+          Alle Stellen ansehen
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
+          </svg>
+        </a>
+      </div>
+    </section>
 
-  <!-- PSYCHIATRISCHE PFLEGE — мозг на поддерживающей ладони -->
-  <symbol id="i-psy" viewBox="0 0 64 64" fill="none">
-    <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <!-- ладонь -->
-      <path d="M12 40c4 0 8 .6 11.5 2 4 1.6 7.5 2.4 11 .6 2.6-1.3 5.1-1.8 7.5-.8a7 7 0 0 1 4 4.4c.5 1.8-.7 3.8-2.6 4.2-7.7 1.6-21.1 4.4-30.4-3.1" />
-      <!-- мозг -->
-      <path d="M26 20a5 5 0 0 1 6-4 6 6 0 0 1 10 4 5 5 0 0 1-2 9h-1" />
-      <path d="M26 20a5 5 0 0 0-3 9h2" />
-      <circle cx="45" cy="35" r="2.2" fill="#B9926A"/>
-    </g>
-  </symbol>
+    <!-- Kontakt -->
+    <section
+      id="kontakt"
+      class="section"
+      aria-labelledby="kontaktTitle"
+      style="background: color-mix(in oklab, var(--pistage) 35%, transparent)">
+      <div class="wave wave-top" aria-hidden="true">
+        <svg
+          data-parallax
+          data-speed="0.18"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 120"
+          preserveAspectRatio="none"
+          class="text-[var(--body)]"
+          fill="currentColor">
+          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
+        </svg>
+      </div>
+      <div class="fade-in max-w-7xl mx-auto px-4 grid md:grid-cols-2 items-start gap-8 lg:gap-12">
+        <div class="kontakt-panel">
+          <h2 id="kontaktTitle" class="text-3xl font-bold mb-4">Kontakt & Anfahrt</h2>
+          <address class="not-italic mb-6 text-[var(--calm,#2B2D26)] dark:text-[var(--beige,#EDE9E0)] leading-relaxed">
+            Lebensanker Pflegestützpunkt GmbH
+            <br />
+            Raiffeisenstraße 6, 67655 Kaiserslautern
+            <br />
+            Mo–Fr 08:00–17:00
+          </address>
+          <div class="space-y-2">
+            <a class="chip" href="tel:+4963131179499" aria-label="Telefonnummer anrufen">📞 +49 631 31 17 94 99</a>
+            <a class="chip" href="mailto:mail@lebensanker-kaiserslautern.de" aria-label="E-Mail schreiben">
+              ✉️ mail@lebensanker-kaiserslautern.de
+            </a>
+            <div class="map-card mt-4">
+              <iframe
+                title="Standortkarte Lebensanker Kaiserslautern"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2646.295586403689!2d7.7700!3d49.4400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47961cf09c9a4e1b%3A0x0000000000000000!2sRaiffeisenstra%C3%9Fe%206%2C%2067555%20Kaiserslautern%2C%20Deutschland!5e0!3m2!1sde!2sde!4v1690000000000!5m2!1sde!2sde"
+                width="100%"
+                height="250"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="mt-3 flex flex-col md:flex-row md:flex-wrap gap-2">
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=Raiffeisenstra%C3%9Fe+6+67555+Kaiserslautern"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="chip inline-flex items-center gap-2 w-full md:w-auto justify-center"
+                aria-label="Route in Google Maps planen">
+                <span>📍 Route planen</span>
+              </a>
+              <a
+                href="https://maps.apple.com/?address=Raiffeisenstra%C3%9Fe%206,%2067555%20Kaiserslautern,%20Deutschland&daddr=Raiffeisenstra%C3%9Fe%206,%2067555%20Kaiserslautern"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="chip inline-flex items-center gap-2 w-full md:w-auto justify-center"
+                aria-label="In Apple Karten öffnen">
+                <span> In Apple Karten öffnen</span>
+              </a>
+            </div>
+            <div class="mt-6 text-sm text-[var(--calm,#2B2D26)] dark:text-[var(--beige,#EDE9E0)] leading-relaxed">
+              <strong class="font-semibold text-[var(--mint,#4B5338)] dark:text-[var(--beige,#EDE9E0)]">
+                Einsatzgebiet:
+              </strong>
+              Kaiserslautern, Einsiedlerhof, Hohenecken, Morlautern, Dansenberg, Otterbach, Otterberg.
+            </div>
+          </div>
+        </div>
 
-  <!-- BERATUNG — чат-бабл + точки -->
-  <symbol id="i-beratung" viewBox="0 0 64 64" fill="none">
-    <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M10 18h32a10 10 0 0 1 10 10v6a10 10 0 0 1-10 10H26l-10 8v-8h-6a10 10 0 0 1-10-10v-6a10 10 0 0 1 10-10Z" />
-      <circle cx="24" cy="31" r="2.4" fill="#B9926A"/>
-      <circle cx="34" cy="31" r="2.4" fill="#B9926A"/>
-      <circle cx="44" cy="31" r="2.4" fill="#B9926A"/>
-    </g>
-  </symbol>
-</svg>
-    <!-- Скрипты проекта -->
-      <script>
+        <form id="contactForm" class="card" aria-labelledby="formTitle">
+          <h3 id="formTitle" class="font-semibold text-lg mb-4 text-center">Kurzanfrage</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <label class="block" for="fName">
+              <span class="text-sm text-slate-600 dark:text-slate-300">Ihr Name</span>
+              <input
+                id="fName"
+                name="name"
+                required
+                aria-required="true"
+                class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3"
+                placeholder="Vor- und Nachname" />
+            </label>
+            <label class="block" for="fContact">
+              <span class="text-sm text-slate-600 dark:text-slate-300">Telefon oder E-Mail</span>
+              <input
+                id="fContact"
+                name="contact"
+                required
+                aria-required="true"
+                class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3"
+                placeholder="z. B. +49… oder name@example.de" />
+            </label>
+            <label class="block md:col-span-2" for="fTopic">
+              <span class="text-sm text-slate-600 dark:text-slate-300">Beratung</span>
+              <div class="relative mt-1">
+                <select
+                  id="fTopic"
+                  name="topic"
+                  required
+                  aria-required="true"
+                  data-enhance-select
+                  class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3">
+                  <option value="" selected disabled>Wählen…</option>
+                  <option>Ambulanter Pflegedienst</option>
+                  <option>Tagespflege</option>
+                  <option>Ambulante psychiatrische Pflege</option>
+                  <option>Allgemeine Beratung</option>
+                </select>
+              </div>
+            </label>
+            <label class="block md:col-span-2" for="fMsg">
+              <span class="text-sm text-slate-600 dark:text-slate-300">Ihre Fragen</span>
+              <textarea
+                id="fMsg"
+                name="message"
+                rows="3"
+                class="w-full rounded-xl border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 px-4 py-3"
+                placeholder="Kurz Ihr Anliegen…"></textarea>
+            </label>
+          </div>
+          <div class="mt-4 flex justify-center">
+            <button class="btn" type="submit" aria-label="Anfrage absenden">Absenden</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#26352C] text-white py-12" role="contentinfo">
+      <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8 text-sm">
+        <div>
+          <h4 class="font-semibold mb-3">Lebensanker</h4>
+          <p>Pflegestützpunkt & Mehrgenerationenhaus</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">Seiten</h4>
+          <ul class="space-y-2 opacity-90">
+            <li><a href="#angebote" class="hover:underline">Angebote</a></li>
+            <li><a href="#team" class="hover:underline">Team</a></li>
+            <li><a href="#partner" class="hover:underline">Kooperationspartner</a></li>
+            <li><a href="#news" class="hover:underline">News</a></li>
+            <li><a href="#feedback" class="hover:underline">Feedback</a></li>
+            <li><a href="#karriere" class="hover:underline">Karriere</a></li>
+            <li><a href="#kontakt" class="hover:underline">Kontakt</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">Rechtliches</h4>
+          <ul class="space-y-2 opacity-90">
+            <li><a href="#" class="hover:underline">Impressum</a></li>
+            <li><a href="#" class="hover:underline">Datenschutz</a></li>
+            <li><a href="#" class="hover:underline">Cookie-Hinweis</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-3">Sprachen</h4>
+          <p>DEU · RUS · ENG</p>
+        </div>
+      </div>
+      <p class="text-center mt-8 text-white/70">© 2025 Lebensanker Pflegestützpunkt GmbH</p>
+    </footer>
+
+    <!-- SVG SPRITE -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+      <symbol id="i-ambulant" viewBox="0 0 64 64" fill="none">
+        <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 30L32 14l22 16" />
+          <path d="M16 28v20a4 4 0 0 0 4 4h24a4 4 0 0 0 4-4V28" />
+          <rect x="24" y="34" width="16" height="12" rx="2" />
+          <path d="M32 30v4m-4 0h8" />
+        </g>
+      </symbol>
+      <symbol id="i-tagespflege" viewBox="0 0 64 64" fill="none">
+        <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="10" y="28" width="44" height="22" rx="4" />
+          <path d="M18 36h12m-12 6h20" />
+          <circle cx="40" cy="18" r="6" fill="#B9926A" opacity=".25" />
+          <path d="M40 8v3M40 25v3M31 18h3M46 18h3M33 11l2 2M45 25l2 2M33 25l2-2M45 13l2-2" />
+        </g>
+      </symbol>
+      <symbol id="i-psy" viewBox="0 0 64 64" fill="none">
+        <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M12 40c4 0 8 .6 11.5 2 4 1.6 7.5 2.4 11 .6 2.6-1.3 5.1-1.8 7.5-.8a7 7 0 0 1 4 4.4c.5 1.8-.7 3.8-2.6 4.2-7.7 1.6-21.1 4.4-30.4-3.1" />
+          <path d="M26 20a5 5 0 0 1 6-4 6 6 0 0 1 10 4 5 5 0 0 1-2 9h-1" />
+          <path d="M26 20a5 5 0 0 0-3 9h2" />
+          <circle cx="45" cy="35" r="2.2" fill="#B9926A" />
+        </g>
+      </symbol>
+      <symbol id="i-beratung" viewBox="0 0 64 64" fill="none">
+        <g stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M10 18h32a10 10 0 0 1 10 10v6a10 10 0 0 1-10 10H26l-10 8v-8h-6a10 10 0 0 1-10-10v-6a10 10 0 0 1 10-10Z" />
+          <circle cx="24" cy="31" r="2.4" fill="#B9926A" />
+          <circle cx="34" cy="31" r="2.4" fill="#B9926A" />
+          <circle cx="44" cy="31" r="2.4" fill="#B9926A" />
+        </g>
+      </symbol>
+    </svg>
+
+    <!-- Scripts -->
+    <script>
       /*if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("./service-worker.js");
-        });
-      }*/
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js");
+      });
+    }*/
     </script>
     <script src="./app.js" defer></script>
-
- <script src="./js/video-embed.js"></script>
-<script src="./js/reveal.js"></script>
-
+    <script src="./js/video-embed.js"></script>
+    <script src="./js/reveal.js"></script>
   </body>
 </html>
