@@ -1287,3 +1287,32 @@ document.addEventListener("DOMContentLoaded", () => {
   titles.forEach(t => obs.observe(t));
 });
 
+/* ===============================
+   отправка формы: автоустановка e-mail получателя в зависимости от темы
+=============================== */
+  document.addEventListener('DOMContentLoaded', function () {
+    const topicSelect = document.getElementById('fTopic');
+    const recipientField = document.getElementById('recipientField');
+
+    if (!topicSelect || !recipientField) return;
+
+    // соответствие "значение option" → "e-mail"
+    const RECIPIENT_MAP = {
+      ambulant:   'ambulant@lebensanker-kaiserslautern.de',
+      tagespflege:'tagespflege@lebensanker-kaiserslautern.de',
+      // psychiatrisch: 'ambulant@lebensanker-kaiserslautern.de', // на будущее
+      beratung:   'info@lebensanker-kaiserslautern.de'
+    };
+
+    const DEFAULT_MAIL = 'mail@lebensanker-kaiserslautern.de';
+
+    function updateRecipient() {
+      const key = topicSelect.value;
+      recipientField.value = RECIPIENT_MAP[key] || DEFAULT_MAIL;
+    }
+
+    // при загрузке страницы и при изменении выбора
+    updateRecipient();
+    topicSelect.addEventListener('change', updateRecipient);
+  });
+
