@@ -297,38 +297,6 @@ on(window, "keydown", (e) => {
   $$(".nav-dropdown a", navGroup).forEach((a) => on(a, "click", close));
 })();
 
-/* ===============================
-   Header smooth shrink (anti-jitter)
-=============================== */
-(() => {
-  const header = $('header[role="banner"]');
-  if (!header) return;
-  const SHOW_AT = 40,
-    HYST = 12;
-  let ticking = false;
-
-  function onScroll() {
-    const y = window.pageYOffset || 0;
-    if (!header.classList.contains("is-compact") && y > SHOW_AT) {
-      header.classList.add("is-compact");
-    } else if (header.classList.contains("is-compact") && y < SHOW_AT - HYST) {
-      header.classList.remove("is-compact");
-    }
-    ticking = false;
-  }
-
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(onScroll);
-      }
-    },
-    { passive: true }
-  );
-  onScroll();
-})();
 
 /* ===============================
    Parallax for .parallax-card
@@ -1311,6 +1279,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   elements.forEach(el => io.observe(el));
 })();
+
+// Karriere – запуск анимации линии под заголовком
+(function () {
+  const title = document.querySelector('#karriere .fx-title.fx-title--classic');
+  if (!title || !('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          title.classList.add('is-visible'); // включает анимацию линии
+          observer.unobserve(title);         // анимируем только один раз
+        }
+      });
+    },
+    { threshold: 0.4 } // ~40% заголовка видно — запускаем
+  );
+
+  observer.observe(title);
+})();
+
 
 
 // ===== FAQ unified: search + highlight + deep-link + sticky-safe scroll =====
