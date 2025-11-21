@@ -1,9 +1,47 @@
 /* ===============================
-   Helpers
+   Helpers (Унифицированные вспомогательные функции)
 =============================== */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const on = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts);
+
+const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+const debounce = (fn, ms = 140) => {
+  let t;
+  return (...a) => {
+    clearTimeout(t);
+    t = setTimeout(() => fn(...a), ms);
+  };
+};
+
+/**
+ * Унифицированный Intersection Observer для добавления класса и отсоединения.
+ * @param {string} selector Селектор CSS для элементов.
+ * @param {string} className Класс, который нужно добавить при пересечении.
+ * @param {number} threshold Порог IntersectionObserver.
+ * @param {string} rootMargin Отступ IntersectionObserver.
+ */
+function observeElements(selector, className, threshold = 0.2, rootMargin = '0px') {
+  const els = $$(selector);
+  if (!els.length || !("IntersectionObserver" in window) || prefersReduced) {
+    // Если reduced motion, просто добавляем класс видимости
+    els.forEach((el) => el.classList.add(className));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add(className);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold, rootMargin });
+
+  els.forEach((el) => io.observe(el));
+}
+
 
 /* ===============================
    Drawer (mobile)
@@ -15,9 +53,11 @@ const backdrop = $("#backdrop");
 
 function toggleDrawer(open) {
   if (!drawer) return;
-  drawer.classList[open ? "add" : "remove"]("open");
-  backdrop?.classList[open ? "add" : "remove"]("show");
-  document.body.classList.toggle("overflow-hidden", open);
+  const shouldOpen = open === undefined ? !drawer.classList.contains("open") : open;
+
+  drawer.classList.toggle("open", shouldOpen);
+  backdrop?.classList.toggle("show", shouldOpen);
+  document.body.classList.toggle("overflow-hidden", shouldOpen);
 }
 on(burger, "click", () => toggleDrawer(true));
 on(drawerClose, "click", () => toggleDrawer(false));
@@ -26,34 +66,46 @@ on(window, "keydown", (e) => {
   if (e.key === "Escape") toggleDrawer(false);
 });
 
+
 /* ===============================
-   Fade-in on view (.fade-in → .is-visible)
+   Fade-in on view + заголовки секций
 =============================== */
 (() => {
-  const els = $$(".fade-in");
-  if (!els.length) return;
+  // Общее плавное появление блоков с .fade-in
+  observeElements(".fade-in", "is-visible", 0.15, "0px 0px -10% 0px");
 
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduced) {
-    els.forEach((el) => el.classList.add("is-visible"));
-    return;
-  }
+  // Заголовки секций h2.fx-title — добавляем .is-visible,
+  // чтобы по CSS поехала линия ::after и сам заголовок «выплыл»
+  observeElements("section h2.fx-title", "is-visible", 0.3, "0px 0px -10% 0px");
 
-  const io = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("is-visible");
-          obs.unobserve(e.target);
-        }
-      });
-    },
-    { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
-  );
+  // Карточки партнёров
+  observeElements("#partner .partner-card", "visible", 0.2, "0px 0px -10% 0px");
 
-  els.forEach((el) => io.observe(el));
+  // Карточки новостей (News)
+  observeElements("#news article", "is-visible", 0.2);
+
+  // Карточки команды (Unser Team)
+  const teamCards = $$("[data-team-grid] article");
+  teamCards.forEach((card, i) => {
+    // необязательная задержка для ступенчатого появления
+    card.style.setProperty("--reveal-delay", `${(i % 4) * 80}ms`);
+    card.classList.add("reveal");
+  });
+  observeElements("[data-team-grid] article", "in", 0.14, "0px 0px -10% 0px");
+
+  // Карточки карьеры (Karriere)
+  const karCards = $$("#karriere .job-card");
+  karCards.forEach((el, i) => {
+    el.style.setProperty("--reveal-delay", `${100 + i * 120}ms`);
+  });
+  observeElements("#karriere .job-card", "is-visible", 0.2, "0px 0px -10% 0px");
+
+  // Заголовок Karriere с модификатором classic (если ты его используешь)
+  observeElements("#karriere .fx-title.fx-title--classic", "is-visible", 0.4);
+
+  // Секция отзывов (Reviews) — чтобы добавить класс .reviews-in
+  observeElements("#reviews", "reviews-in", 0.25);
 })();
-
 /* ===============================
    Smart header shrink
 =============================== */
@@ -74,76 +126,102 @@ on(window, "keydown", (e) => {
   }
 
   apply();
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (!ticking) {
-        requestAnimationFrame(apply);
-        ticking = true;
-      }
-    },
-    { passive: true }
-  );
-  window.addEventListener("resize", apply, { passive: true });
+  on(window, "scroll", () => {
+    if (!ticking) {
+      requestAnimationFrame(apply);
+      ticking = true;
+    }
+  }, { passive: true });
+  on(window, "resize", apply, { passive: true });
 })();
+
 
 /* ===============================
    Scroll-spy
 =============================== */
 (() => {
-  const sectionsMain = ["about", "team", "news", "karriere", "kontakt"];
-  const sectionsAngebote = ["angebote", "angebot-pflege", "tagespflege", "angebot-psy", "beratung"];
+  const sectionsMain = ["about", "angebote", "team", "news", "karriere", "kontakt"];
+  const sectionsAngebote = ["angebot-pflege", "tagespflege", "beratung"];
   const allSections = [...sectionsMain, ...sectionsAngebote];
-
   const allLinks = $$('a[href^="#"]');
   const navBtnAngebote = $("#navAngeboteBtn");
 
+  const sectionEls = allSections
+    .map((id) => ({ id, el: document.getElementById(id) }))
+    .filter((s) => s.el);
+
+  if (!sectionEls.length) return;
+
   function clearActive() {
-    $$(".nav-link.active, .sub-link.active, #navAngeboteBtn.active, #drawer a.chip.active").forEach((el) =>
-      el.classList.remove("active")
-    );
+    $$(".nav-link.active, .sub-link.active, #navAngeboteBtn.active, #drawer a.chip.active")
+      .forEach((el) => el.classList.remove("active"));
   }
 
   function setActiveFor(id) {
     clearActive();
 
-    if (sectionsAngebote.includes(id)) {
+    if (sectionsAngebote.includes(id) || id === "angebote") {
       navBtnAngebote?.classList.add("active");
+
       allLinks
-        .filter((a) => a.getAttribute("href") === `#${id}` && a.classList.contains("sub-link"))
+        .filter(
+          (a) =>
+            a.classList.contains("sub-link") &&
+            a.getAttribute("href") === `#${id}`
+        )
         .forEach((a) => a.classList.add("active"));
-      return;
+    } else {
+      allLinks
+        .filter(
+          (a) =>
+            a.classList.contains("nav-link") &&
+            a.getAttribute("href") === `#${id}`
+        )
+        .forEach((a) => a.classList.add("active"));
     }
 
-    allLinks
-      .filter((a) => a.classList.contains("nav-link") && a.getAttribute("href") === `#${id}`)
-      .forEach((a) => a.classList.add("active"));
+    $(`#drawer a.chip[href="#${id}"]`)?.classList.add("active");
   }
 
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) setActiveFor(entry.target.id);
-      });
-    },
-    { threshold: 0.35, rootMargin: "-10% 0px -50% 0px" }
-  );
+  function updateOnScroll() {
+    const viewportCenter = window.innerHeight / 2;
+    let best = null;
 
-  allSections.forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) io.observe(el);
+    sectionEls.forEach(({ id, el }) => {
+      const rect = el.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+
+      const center = rect.top + rect.height / 2;
+      const diff = Math.abs(center - viewportCenter);
+
+      if (!best || diff < best.diff) {
+        best = { id, diff };
+      }
+    });
+
+    if (best) setActiveFor(best.id);
+  }
+
+  let scrollTimeout = null;
+  on(window, "scroll", () => {
+    if (scrollTimeout) clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(updateOnScroll, 80);
   });
+  on(window, "resize", updateOnScroll);
 
   allLinks.forEach((a) => {
-    a.addEventListener("click", () => {
+    on(a, "click", () => {
       const href = a.getAttribute("href") || "";
       if (href.startsWith("#")) {
         setActiveFor(href.slice(1));
-        toggleDrawer(false);
+        if (typeof toggleDrawer === "function") toggleDrawer(false);
       }
     });
   });
+
+  updateOnScroll();
 })();
+
 
 /* ===============================
    Enhanced <select data-enhance-select>
@@ -161,12 +239,8 @@ on(window, "keydown", (e) => {
     wrap.appendChild(native);
 
     Object.assign(native.style, {
-      position: "absolute",
-      inset: "0",
-      width: "100%",
-      height: "100%",
-      opacity: "0",
-      pointerEvents: "none",
+      position: "absolute", inset: "0", width: "100%", height: "100%",
+      opacity: "0", pointerEvents: "none",
     });
 
     const btn = document.createElement("button");
@@ -177,8 +251,7 @@ on(window, "keydown", (e) => {
 
     const labelSpan = document.createElement("span");
     const caret = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    caret.setAttribute("width", "16");
-    caret.setAttribute("height", "16");
+    caret.setAttribute("width", "16"); caret.setAttribute("height", "16");
     caret.setAttribute("viewBox", "0 0 24 24");
     caret.classList.add("enhanced-select__chevron");
     caret.innerHTML = `<path fill="currentColor" d="M7 10l5 5 5-5z"/>`;
@@ -226,19 +299,16 @@ on(window, "keydown", (e) => {
       const selBtn = list.querySelector(`[data-index="${native.selectedIndex}"]`);
       if (selBtn) selBtn.setAttribute("aria-selected", "true");
 
-      const hasValue =
-        native.selectedIndex > -1 && native.options[native.selectedIndex].value !== "";
+      const hasValue = native.selectedIndex > -1 && native.options[native.selectedIndex].value !== "";
       wrap.classList.toggle("has-value", hasValue);
     }
 
     function open() {
       list.hidden = false;
       btn.setAttribute("aria-expanded", "true");
-      list
-        .querySelector(`[data-index="${native.selectedIndex}"]`)
-        ?.scrollIntoView({ block: "nearest" });
-      document.addEventListener("click", onDoc, { capture: true });
-      document.addEventListener("keydown", onKey);
+      list.querySelector(`[data-index="${native.selectedIndex}"]`)?.scrollIntoView({ block: "nearest" });
+      on(document, "click", onDoc, { capture: true });
+      on(document, "keydown", onKey);
     }
 
     function close() {
@@ -331,8 +401,6 @@ on(window, "keydown", (e) => {
 (() => {
   const cards = $$(".parallax-card");
   if (!cards.length) return;
-
-  const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
   let ticking = false;
 
   function update() {
@@ -359,8 +427,8 @@ on(window, "keydown", (e) => {
   }
 
   update();
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
+  on(window, "scroll", onScroll, { passive: true });
+  on(window, "resize", onScroll);
 })();
 
 /* ===============================
@@ -369,9 +437,6 @@ on(window, "keydown", (e) => {
 (() => {
   const items = $$(".js-tilt-on-scroll");
   if (!items.length) return;
-
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
   let ticking = false;
 
   function calcRotate(el) {
@@ -420,12 +485,12 @@ on(window, "keydown", (e) => {
   }
 
   update();
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
+  on(window, "scroll", onScroll, { passive: true });
+  on(window, "resize", onScroll);
 })();
 
 /* ===============================
-   TEAM CAROUSEL – premium (simplified)
+   TEAM CAROUSEL
 =============================== */
 (() => {
   const viewport = document.getElementById("teamViewport");
@@ -436,16 +501,11 @@ on(window, "keydown", (e) => {
   if (!viewport || !track) return;
 
   const slides = Array.from(track.children);
-
   const AUTOPLAY = true;
   const INTERVAL = 4200;
   const FADE_OUT_MS = 160;
 
-  const getGap = () => {
-    const g = getComputedStyle(track).gap || "0";
-    return parseFloat(g) || 0;
-  };
-
+  const getGap = () => parseFloat(getComputedStyle(track).gap || "0") || 0;
   const perView = () => {
     const w = viewport.clientWidth;
     if (w >= 1024) return 4;
@@ -453,23 +513,17 @@ on(window, "keydown", (e) => {
     if (w >= 640) return 2;
     return 1;
   };
-
   const stepWidth = () => {
     const first = slides[0];
-    if (!first) return 0;
-    return first.getBoundingClientRect().width + getGap();
+    return first ? first.getBoundingClientRect().width + getGap() : 0;
   };
-
   const pageCount = () => Math.max(1, slides.length - perView() + 1);
 
   let index = 0;
   let timer = null;
   let isHover = false;
 
-  const clampIndex = (i) => {
-    const max = pageCount() - 1;
-    return Math.min(Math.max(0, i), max);
-  };
+  const clampIndex = (i) => clamp(i, 0, pageCount() - 1);
 
   function buildDots() {
     dotsWrap.innerHTML = "";
@@ -481,14 +535,13 @@ on(window, "keydown", (e) => {
       b.className =
         "w-2.5 h-2.5 rounded-full border border-[var(--early)]/30 aria-[current=true]:w-6 aria-[current=true]:bg-[var(--mint)] aria-[current=true]:border-[var(--mint)] transition-[width,background]";
       b.setAttribute("aria-label", `Slide ${i + 1}`);
-      b.addEventListener("click", () => go(i, true));
+      on(b, "click", () => go(i, true));
       dotsWrap.appendChild(b);
     }
   }
 
   function updateDots() {
-    const dots = Array.from(dotsWrap.children);
-    dots.forEach((d, di) => d.setAttribute("aria-current", di === index ? "true" : "false"));
+    Array.from(dotsWrap.children).forEach((d, di) => d.setAttribute("aria-current", di === index ? "true" : "false"));
   }
 
   function updateButtons() {
@@ -555,13 +608,6 @@ on(window, "keydown", (e) => {
     render(true);
   }
 
-  function prevPage() {
-    if (index > 0) {
-      index -= 1;
-      render(true);
-    }
-  }
-
   function start() {
     if (!AUTOPLAY) return;
     stop();
@@ -584,41 +630,28 @@ on(window, "keydown", (e) => {
     start();
   }
 
-  prevBtn?.addEventListener("click", () => go(index - 1, true));
-  nextBtn?.addEventListener("click", () => go(index + 1, true));
+  on(prevBtn, "click", () => go(index - 1, true));
+  on(nextBtn, "click", () => go(index + 1, true));
 
-  viewport.addEventListener("mouseenter", () => {
-    isHover = true;
-  });
+  on(viewport, "mouseenter", () => isHover = true);
+  on(viewport, "mouseleave", () => isHover = false);
+  on(viewport, "focusin", stop);
+  on(viewport, "focusout", start);
 
-  viewport.addEventListener("mouseleave", () => {
-    isHover = false;
-  });
+  on(window, "resize", () => {
+    const oldPages = dotsWrap.children.length;
+    const newPages = pageCount();
 
-  viewport.addEventListener("focusin", stop);
-  viewport.addEventListener("focusout", start);
+    if (oldPages !== newPages) {
+      const currentStartItem = index;
+      buildDots();
+      index = clampIndex(currentStartItem);
+    }
 
-  window.addEventListener(
-    "resize",
-    () => {
-      const oldPages = dotsWrap.children.length;
-      const newPages = pageCount();
+    render(false);
+  }, { passive: true });
 
-      if (oldPages !== newPages) {
-        const currentStartItem = index;
-        buildDots();
-        index = clampIndex(currentStartItem);
-      }
-
-      render(false);
-    },
-    { passive: true }
-  );
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden") stop();
-    else start();
-  });
+  on(document, "visibilitychange", () => document.visibilityState === "hidden" ? stop() : start());
 
   buildDots();
   render(false);
@@ -629,8 +662,7 @@ on(window, "keydown", (e) => {
 (() => {
   const section = document.getElementById("team");
   if (!section) return;
-
-  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  let ticking = false;
 
   function update() {
     const r = section.getBoundingClientRect();
@@ -644,11 +676,19 @@ on(window, "keydown", (e) => {
 
     section.style.setProperty("--team-zoom", zoom.toFixed(3));
     section.style.setProperty("--team-glow", glow.toFixed(3));
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
   }
 
   update();
-  window.addEventListener("scroll", update, { passive: true });
-  window.addEventListener("resize", update, { passive: true });
+  on(window, "scroll", onScroll, { passive: true });
+  on(window, "resize", onScroll, { passive: true });
 })();
 
 /* ===============================
@@ -701,10 +741,9 @@ on(window, "keydown", (e) => {
   }
 
   chips.forEach((chip) => {
-    chip.addEventListener("click", (e) => {
+    on(chip, "click", (e) => {
       e.preventDefault();
-      const key = chip.dataset.filter || "all";
-      apply(key);
+      apply(chip.dataset.filter || "all");
     });
   });
 
@@ -732,7 +771,7 @@ on(window, "keydown", (e) => {
     const btn = card.querySelector("[data-team-open]");
     if (!btn) return;
 
-    btn.addEventListener("click", () => {
+    on(btn, "click", () => {
       const img = card.querySelector("img");
       const title = card.querySelector("[data-name]")?.textContent?.trim() || "";
       const role = card.querySelector("[data-role]")?.textContent?.trim() || "";
@@ -740,92 +779,22 @@ on(window, "keydown", (e) => {
     });
   });
 
-  modalClose?.addEventListener("click", closeModal);
-  modalBg?.addEventListener("click", closeModal);
-  document.addEventListener("keydown", (e) => {
+  on(modalClose, "click", closeModal);
+  on(modalBg, "click", closeModal);
+  on(document, "keydown", (e) => {
     if (e.key === "Escape") closeModal();
   });
 
-  window.addEventListener("DOMContentLoaded", () => {
+  on(window, "DOMContentLoaded", () => {
     apply("all");
     chips.find((c) => c.dataset.filter?.toLowerCase() === "all")?.classList.add("is-active");
   });
 })();
 
 /* ===============================
-   Team grid: reveal on scroll
+   Feedback/Reviews slider
 =============================== */
 (() => {
-  const cards = Array.from(document.querySelectorAll("[data-team-grid] article"));
-  if (!cards.length) return;
-
-  cards.forEach((card, i) => {
-    card.style.setProperty("--reveal-delay", `${(i % 4) * 80}ms`);
-    card.classList.add("reveal");
-  });
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("in");
-          io.unobserve(e.target);
-        }
-      });
-    },
-    {
-      threshold: 0.14,
-      rootMargin: "0px 0px -10% 0px",
-    }
-  );
-
-  cards.forEach((c) => io.observe(c));
-})();
-
-/* ===============================
-   Partner logos reveal on scroll
-=============================== */
-(() => {
-  const partnerCards = document.querySelectorAll("#partner .partner-card");
-  if (!partnerCards.length) return;
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          io.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
-  );
-
-  partnerCards.forEach((card) => io.observe(card));
-})();
-
-/* ===============================
-   Feedback/Reviews section (badges + FEEDBACK slider)
-=============================== */
-(() => {
-  const host = document.querySelector("#reviews");
-  const badges = document.querySelectorAll("[data-reviews-badges] .review-badge");
-
-  if (host && badges.length) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            host.classList.add("reviews-in");
-            io.disconnect();
-          }
-        });
-      },
-      { threshold: 0.25 }
-    );
-    io.observe(host);
-  }
-
   const viewport = document.getElementById("feedbackViewport");
   const track = document.getElementById("feedbackTrack");
   const dotsWrap = document.getElementById("feedbackDots");
@@ -845,7 +814,7 @@ on(window, "keydown", (e) => {
       const b = document.createElement("button");
       b.type = "button";
       b.setAttribute("aria-label", `Slide ${i + 1}`);
-      b.addEventListener("click", () => {
+      on(b, "click", () => {
         index = i;
         render(true);
         restart();
@@ -886,20 +855,10 @@ on(window, "keydown", (e) => {
     start();
   }
 
-  viewport.addEventListener("mouseenter", () => {
-    isHover = true;
-  });
-
-  viewport.addEventListener("mouseleave", () => {
-    isHover = false;
-  });
-
-  window.addEventListener("resize", () => render(false), { passive: true });
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden") stop();
-    else start();
-  });
+  on(viewport, "mouseenter", () => isHover = true);
+  on(viewport, "mouseleave", () => isHover = false);
+  on(window, "resize", () => render(false), { passive: true });
+  on(document, "visibilitychange", () => document.visibilityState === "hidden" ? stop() : start());
 
   buildDots();
   render(false);
@@ -907,28 +866,12 @@ on(window, "keydown", (e) => {
 })();
 
 /* ===============================
-   News cards: reveal + parallax hover
+   News cards: parallax hover
 =============================== */
 document.addEventListener("DOMContentLoaded", () => {
   const cards = document.querySelectorAll("#news article");
-  if (!cards.length) return;
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("is-visible");
-          io.unobserve(e.target);
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-
-  cards.forEach((c) => io.observe(c));
-
   const canHover = window.matchMedia("(hover:hover)").matches;
-  if (!canHover) return;
+  if (!cards.length || !canHover) return;
 
   cards.forEach((card) => {
     const img = card.querySelector(".news-thumb img");
@@ -958,8 +901,8 @@ document.addEventListener("DOMContentLoaded", () => {
       img.style.setProperty("--ty", "0px");
     }
 
-    card.addEventListener("mousemove", onMove);
-    card.addEventListener("mouseleave", onLeave);
+    on(card, "mousemove", onMove);
+    on(card, "mouseleave", onLeave);
   });
 });
 
@@ -971,7 +914,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!waves.length) return;
 
   const state = new Set();
-
   const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((e) => {
@@ -1003,96 +945,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
   onScroll();
+  on(window, "scroll", onScroll, { passive: true });
+  on(window, "resize", onScroll);
 })();
 
-/* ===============================
-   Section titles (.fx-title) & Karriere cards
-=============================== */
-document.addEventListener("DOMContentLoaded", () => {
-  // Все заголовки секций с эффектом
-  const titles = document.querySelectorAll("section h2.fx-title");
-
-  const supportsIO = "IntersectionObserver" in window;
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  // Если нет IntersectionObserver или включено "reduce motion" –
-  // просто показываем все заголовки сразу, без анимации
-  if (!supportsIO || prefersReduced) {
-    titles.forEach((t) => t.classList.add("is-visible"));
-  } else if (titles.length) {
-    const io = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-    titles.forEach((t) => io.observe(t));
-  }
-
-  // ===== Karriere cards =====
-  const karCards = document.querySelectorAll("#karriere .job-card");
-  if (!karCards.length) return;
-
-  if (prefersReduced) {
-    karCards.forEach((c) => c.classList.add("is-visible"));
-    return;
-  }
-
-  karCards.forEach((el, i) => {
-    el.style.setProperty("--reveal-delay", `${100 + i * 120}ms`);
-  });
-
-  if (supportsIO) {
-    const io2 = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "0px 0px -10% 0px",
-        threshold: 0.2,
-      }
-    );
-    karCards.forEach((el) => io2.observe(el));
-  } else {
-    karCards.forEach((c) => c.classList.add("is-visible"));
-  }
-});
-
-/* ===============================
-   Karriere title underline
-=============================== */
-(() => {
-  const title = document.querySelector("#karriere .fx-title.fx-title--classic");
-  if (!title || !("IntersectionObserver" in window)) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          title.classList.add("is-visible");
-          observer.unobserve(title);
-        }
-      });
-    },
-    { threshold: 0.4 }
-  );
-
-  observer.observe(title);
-})();
 
 /* ===============================
    FAQ unified: search + highlight + deep-link
@@ -1101,7 +958,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const scope = document.querySelector("#faq");
   if (!scope) return;
 
-  const list = scope.querySelector("#faqList");
   const search = scope.querySelector("#faqSearch");
   const clear = scope.querySelector("#faqClear");
   const emptyUI = scope.querySelector("#faqEmpty");
@@ -1110,9 +966,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const items = Array.from(scope.querySelectorAll("details.faq-item, #faqList details"));
   const summaries = items.map((d) => d.querySelector("summary.faq-q"));
 
+  // Подготовка меток (lbl) для поиска и подсветки
   summaries.forEach((sum) => {
     if (!sum) return;
 
+    // Если faq-label уже есть, убеждаемся, что dataset.label заполнен
     if (sum.querySelector(".faq-label")) {
       const lblExisting = sum.querySelector(".faq-label");
       if (lblExisting && !lblExisting.dataset.label) {
@@ -1121,21 +979,16 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // Восстановление оригинальной структуры (создание faq-label)
     const ico = sum.querySelector(".faq-ico");
     const lbl = document.createElement("span");
     lbl.className = "faq-label";
-
     const nodes = Array.from(sum.childNodes);
     let take = !ico;
-
     nodes.forEach((n) => {
-      if (n === ico) {
-        take = true;
-        return;
-      }
+      if (n === ico) { take = true; return; }
       if (take) lbl.appendChild(n);
     });
-
     lbl.dataset.label = (lbl.textContent || "").trim();
     sum.appendChild(lbl);
   });
@@ -1148,14 +1001,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .normalize("NFD")
       .replace(/\p{Diacritic}/gu, "");
 
-  const debounce = (fn, ms = 140) => {
-    let t;
-    return (...a) => {
-      clearTimeout(t);
-      t = setTimeout(() => fn(...a), ms);
-    };
-  };
-
   function unmark(labelEl) {
     if (!labelEl) return;
     labelEl.querySelectorAll("mark.faq-hit").forEach((m) => {
@@ -1165,7 +1010,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function highlight(labelEl, qRaw) {
     unmark(labelEl);
-    if (!qRaw) return;
+    if (!qRaw || !labelEl) return;
 
     const raw = labelEl.dataset.label || labelEl.textContent || "";
     const rawLower = raw.toLowerCase();
@@ -1227,23 +1072,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  search?.addEventListener("input", debounce(applyFilter, 120));
+  on(search, "input", debounce(applyFilter, 120));
 
-  search?.addEventListener("keydown", (e) => {
+  on(search, "keydown", (e) => {
     if (e.key === "Escape") {
       search.value = "";
       applyFilter();
     }
   });
 
-  clear?.addEventListener("click", () => {
+  on(clear, "click", () => {
     if (!search) return;
     search.value = "";
     applyFilter();
     search.focus();
   });
 
-  scope.addEventListener("toggle", (e) => {
+  on(scope, "toggle", (e) => {
     const d = e.target;
     if (d.tagName !== "DETAILS" || !d.open) return;
 
@@ -1266,16 +1111,48 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  window.addEventListener("hashchange", openFromHash);
+  on(window, "hashchange", openFromHash);
 
   applyFilter();
   openFromHash();
 })();
 
 
+/* ===============================
+   отправка формы: автоустановка e-mail получателя в зависимости от темы
+=============================== */
+document.addEventListener('DOMContentLoaded', function () {
+  const topicSelect = document.getElementById('fTopic');
+  const recipientField = document.getElementById('recipientField');
+
+  if (!topicSelect || !recipientField) return;
+
+  // соответствие "значение option" → "e-mail"
+  const RECIPIENT_MAP = {
+    ambulant:   'ambulant@lebensanker-kaiserslautern.de',
+    tagespflege:'tagespflege@lebensanker-kaiserslautern.de',
+    // psychiatrisch: 'ambulant@lebensanker-kaiserslautern.de', // на будущее
+    beratung:   'info@lebensanker-kaiserslautern.de'
+  };
+
+  const DEFAULT_MAIL = 'mail@lebensanker-kaiserslautern.de';
+
+  function updateRecipient() {
+    const key = topicSelect.value;
+    recipientField.value = RECIPIENT_MAP[key] || DEFAULT_MAIL;
+  }
+
+  // при загрузке страницы и при изменении выбора
+  updateRecipient();
+  on(topicSelect, 'change', updateRecipient);
+});
+
+// Добавление класса 'appear' для заголовков.
+// Это было в оригинальном коде, но частично дублировало логику выше.
+// В унифицированной версии это учтено в observeElements.
+/*
 document.addEventListener("DOMContentLoaded", () => {
   const titles = document.querySelectorAll(".fx-title");
-
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1283,36 +1160,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }, { threshold: 0.4 });
-
   titles.forEach(t => obs.observe(t));
 });
+*/
 
-/* ===============================
-   отправка формы: автоустановка e-mail получателя в зависимости от темы
-=============================== */
-  document.addEventListener('DOMContentLoaded', function () {
-    const topicSelect = document.getElementById('fTopic');
-    const recipientField = document.getElementById('recipientField');
+(() => {
+  // ...
+  observeElements(".fade-in", "is-visible", 0.15, "0px 0px -10% 0px");
+  observeElements("section h2.fx-title", "is-visible", 0.3, "0px 0px -10% 0px");
+  observeElements("#partner .partner-card", "visible", 0.2, "0px 0px -10% 0px");
+  observeElements("#news article", "is-visible", 0.2);
 
-    if (!topicSelect || !recipientField) return;
+  // 👉 ДОБАВЬ ЭТО:
+  observeElements(".btn-career-all", "is-visible", 0.25, "0px 0px -10% 0px");
 
-    // соответствие "значение option" → "e-mail"
-    const RECIPIENT_MAP = {
-      ambulant:   'ambulant@lebensanker-kaiserslautern.de',
-      tagespflege:'tagespflege@lebensanker-kaiserslautern.de',
-      // psychiatrisch: 'ambulant@lebensanker-kaiserslautern.de', // на будущее
-      beratung:   'info@lebensanker-kaiserslautern.de'
-    };
-
-    const DEFAULT_MAIL = 'mail@lebensanker-kaiserslautern.de';
-
-    function updateRecipient() {
-      const key = topicSelect.value;
-      recipientField.value = RECIPIENT_MAP[key] || DEFAULT_MAIL;
-    }
-
-    // при загрузке страницы и при изменении выбора
-    updateRecipient();
-    topicSelect.addEventListener('change', updateRecipient);
-  });
-
+  // дальше — как у тебя
+})();

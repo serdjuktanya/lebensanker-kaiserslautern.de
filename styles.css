@@ -30,7 +30,13 @@
   --beige: var(--cream);
 
   --sticky-offset: 88px;
+  --fx-title-size-lg: clamp(2.1rem, 3vw, 2.7rem);
+  --fx-title-size-sm: clamp(1.6rem, 2.4vw, 2rem);
+  --fx-title-line-thick: 2px;
+  --fx-title-line-max: 320px;
+  --fx-title-letter-spacing: 0.04em;
 }
+
 
 .dark {
   --body: #141813;
@@ -113,6 +119,44 @@ header[role="banner"].is-compact .logo-pulse {
 }
 .card:hover .icon-pop {
   transform: scale(1.08) translateY(-2px);
+}
+
+.card-ui {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card-ui:hover {
+  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.12);
+  transform: translateY(-1px);
+}
+
+.job-card {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.review-badge {
+  position: relative;
+  background: white;
+  border-radius: 1.2rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+}
+
+.review-badge__pin {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
 }
 
 h1,
@@ -595,7 +639,7 @@ select[data-enhance-select] {
     opacity: 0.9;
   }
   50% {
-    transform: scale(1.08);
+    transform: scale(1.18);
     opacity: 1;
   }
 }
@@ -606,7 +650,7 @@ select[data-enhance-select] {
     opacity: 0.9;
   }
   50% {
-    transform: scale(1.08);
+    transform: scale(1.18);
     opacity: 1;
   }
 }
@@ -1753,66 +1797,6 @@ select[data-enhance-select] {
   filter: saturate(1.08) brightness(1.03);
 }
 
-/* =========================
-   Section titles – единый классический стиль
-   ========================= */
-section h2.fx-title {
-  position: relative;
-  display: block;
-  width: max-content;
-  margin: 0 auto 1.75rem;
-  text-align: center;
-
-  font-weight: 700;
-  font-size: clamp(2.1rem, 3vw, 2.7rem);
-  letter-spacing: 0.06em;
-  text-transform: none;
-
-  color: var(--calm, #2b2d26);
-  text-shadow: none;
-  background: none;
-  -webkit-text-fill-color: currentColor;
-  -webkit-background-clip: initial;
-  filter: none;
-
-  opacity: 0;
-  transform: translateY(25px);
-  transition: opacity 0.9s ease-out, transform 0.9s ease-out, letter-spacing 0.4s ease;
-}
-section h2.fx-title::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -8px;
-  height: 3px;
-  width: 70%;
-  border-radius: 999px;
-  background: color-mix(in oklab, var(--mint, #8b9478) 70%, #ffffff 20%);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-  transform: translateX(-50%) scaleX(0);
-  transform-origin: center center;
-  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-section h2.fx-title.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-section h2.fx-title.is-visible::after {
-  transform: translateX(-50%) scaleX(1);
-}
-section h2.fx-title:hover {
-  letter-spacing: 1.3px;
-}
-@media (prefers-reduced-motion: reduce) {
-  section h2.fx-title {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Для совместимости: модификатор classic */
-.fx-title.fx-title--classic {
-}
 
 /* =========================
    Karriere (jobs)
@@ -2638,56 +2622,6 @@ mark.faq-hit {
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.55);
 }
 
-/* ============================
-   Универсальный премиальный заголовок
-   Для всех секций, где есть <h2 class="fx-title">
-============================ */
-
-.fx-title {
-  position: relative;
-  display: inline-block;
-  font-size: clamp(2.1rem, 3vw, 2.6rem);
-  font-weight: 700;
-  letter-spacing: .04em;
-  color: var(--calm, #2B2D26);
-  text-transform: none;
-  text-align: center;
-  padding-bottom: 0.4rem;
-}
-
-/* Декоративная линия ПО УМОЛЧАНИЮ */
-.fx-title::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 140px;
-  height: 3px;
-
-  background: color-mix(in oklab, var(--mint, #8B9478) 70%, #ffffff 30%);
-  border-radius: 999px;
-
-  opacity: 0.85;
-  transform: scaleX(0.2);
-  transform-origin: left;
-  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
-              opacity 0.3s ease;
-}
-
-/* Анимация появления при скролле */
-.fx-title.appear::after {
-  transform: scaleX(1);
-  opacity: 1;
-}
-
-/* DARK MODE */
-.dark .fx-title {
-  color: var(--beige, #EDE9E0);
-}
-
-.dark .fx-title::after {
-  background: color-mix(in oklab, var(--beige) 80%, var(--mint) 20%);
-}
 
 /* =========================
    Kontakt & Anfahrt – Premium (финальная версия)
@@ -2865,4 +2799,612 @@ mark.faq-hit {
 .dark #kontakt select option {
   background: #2a2b27;
   color: #f4f4f4;
+}
+
+.review-badge {
+  position: relative;
+  overflow: visible !important;         /* как мы и делали в варианте A */
+}
+
+.review-badge__pin {
+  position: absolute;
+  top: -18px;                /* было -12, можно чуть сильнее вынести */
+  left: 50%;
+  transform: translateX(-50%);
+  /* на всякий случай фиксированный размер */
+  width: 40px;
+  height: 40px;
+}
+
+/* =====================================================
+   PREMIUM CARD (заміна для .card)
+   ===================================================== */
+.la-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.02),
+    0 12px 28px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+/* Hover (не агрессивный, нежный) */
+.la-card:hover {
+  border-color: color-mix(in oklab, var(--mint) 25%, transparent);
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.03),
+    0 14px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* Темная тема */
+.dark .la-card {
+  background: #1b1c1a;
+  border-color: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.55);
+}
+
+.dark .la-card:hover {
+  border-color: color-mix(in oklab, #ffffff 25%, transparent);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* Детали внутри FAQ */
+.la-card .faq-q {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.4rem 0;
+}
+
+.la-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.la-card .faq-a {
+  margin-top: 0.6rem;
+  line-height: 1.55;
+  color: var(--slate-600, #4b4b4b);
+}
+
+/* Иконка */
+.la-card .faq-ico {
+  flex-shrink: 0;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+}
+
+/* ------------------------------------------------------
+   FX BASE — базовые параметры анимаций
+------------------------------------------------------ */
+.fx-fade,
+.fx-rise,
+.fx-stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(.21,.78,.34,.99);
+  will-change: opacity, transform;
+}
+
+/* Когда элемент появляется (добавляется класс is-visible JS-скриптом) */
+.fx-fade.is-visible,
+.fx-rise.is-visible,
+.fx-stagger-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ------------------------------------------------------
+   FX RISE — более утончённое движение наверх
+------------------------------------------------------ */
+.fx-rise {
+  transform: translateY(32px);
+  transition-duration: 0.85s;
+  transition-timing-function: cubic-bezier(.22,1,.36,1);
+}
+
+/* ------------------------------------------------------
+   FX STAGGER — контейнер для ступенчатых анимаций
+------------------------------------------------------ */
+.fx-stagger {
+  --fx-stagger-delay: 120ms; /* шаг задержки */
+  display: contents; /* НЕ ломает сетку */
+}
+
+/* Каждый item получает задержку */
+.fx-stagger-item {
+  transition-delay: calc(var(--fx-stagger-delay) * var(--fx-order, 1));
+}
+
+/* ------------------------------------------------------
+   FX DELAYS — вручную задаваемые задержки
+------------------------------------------------------ */
+.fx-delay-1 { transition-delay: 0.12s !important; }
+.fx-delay-2 { transition-delay: 0.24s !important; }
+.fx-delay-3 { transition-delay: 0.36s !important; }
+.fx-delay-4 { transition-delay: 0.48s !important; }
+
+/* ------------------------------------------------------
+   Оптимизация: если у пользователя reduced-motion = on
+------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .fx-fade,
+  .fx-rise,
+  .fx-stagger-item {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* =========================
+   Section titles – Brand system
+   ========================= */
+
+/* Сам заголовок (базовый вариант) */
+section h2.fx-title {
+  position: relative;
+  display: block;
+  width: max-content;             /* ширина по тексту */
+  margin: 0 auto 1.75rem;         /* центрирование */
+  text-align: center;
+
+  font-weight: 700;
+  font-size: var(--fx-title-size-lg, clamp(2.1rem, 3vw, 2.7rem));
+  letter-spacing: var(--fx-title-letter-spacing, 0.04em);
+  text-transform: none;
+
+  color: var(--calm, #2b2d26);
+  padding-bottom: 0.45rem;
+}
+
+/* Декоративная линия под заголовком */
+section h2.fx-title::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  /* линия по ширине заголовка, но не больше заданного лимита */
+  width: 100%;
+  max-width: var(--fx-title-line-max, 320px);
+  height: var(--fx-title-line-thick, 2px);
+
+  background: color-mix(in oklab, var(--mint, #8B9478) 70%, #ffffff 30%);
+  border-radius: 999px;
+
+  opacity: 0;
+  transform: translateX(-50%) scaleX(0);   /* спрятана */
+  transform-origin: center;
+  transition:
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity   0.4s ease;
+}
+
+/* Когда JS добавляет .is-visible — линия «выезжает» */
+section h2.fx-title.is-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Лёгкий hover, чтобы буквы чуть «дышали» */
+section h2.fx-title:hover {
+  letter-spacing: calc(var(--fx-title-letter-spacing, 0.04em) + 0.02em);
+}
+
+/* Тёмная тема */
+.dark section h2.fx-title {
+  color: var(--beige, #EDE9E0);
+}
+.dark section h2.fx-title::after {
+  background: color-mix(in oklab, var(--beige) 80%, var(--mint) 20%);
+}
+
+/* Если включено reduced motion — сразу показать линию */
+@media (prefers-reduced-motion: reduce) {
+  section h2.fx-title::after {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+/* Модификатор: более компактный заголовок для второстепенных секций */
+section h2.fx-title.fx-title--sm {
+  font-size: var(--fx-title-size-sm, clamp(1.6rem, 2.4vw, 2rem));
+  letter-spacing: 0.03em;
+}
+section h2.fx-title.fx-title--sm::after {
+  max-width: 220px;
+}
+
+/* Модификатор на будущее */
+.fx-title.fx-title--classic {}
+
+
+/* MINI-стиль ТОЛЬКО для FAQ
+#faq h2.fx-title {
+  font-size: clamp(1.4rem, 2.1vw, 1.7rem);
+  letter-spacing: 0.03em;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.35rem;
+}
+
+#faq h2.fx-title::after {
+  max-width: 160px;
+  height: 1.5px;
+}
+
+/* MINI-стиль ТОЛЬКО для FAQ
+#faq h2.fx-title {
+  font-size: clamp(1.4rem, 2.1vw, 1.7rem);
+  letter-spacing: 0.03em;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.35rem;
+}
+
+#faq h2.fx-title::after {
+  max-width: 160px;
+  height: 1.5px;
+}
+
+/* MINI-стиль ТОЛЬКО для Kontakt
+#kontakt h2.fx-title {
+  font-size: clamp(1.4rem, 2.1vw, 1.7rem);
+  letter-spacing: 0.03em;
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.35rem;
+}
+
+#kontakt h2.fx-title::after {
+  max-width: 160px;
+  height: 1.5px;
+}*/
+
+/* Dropdown – фирменный стиль */
+.nav-dropdown {
+  background: color-mix(in oklab, #ffffff 90%, var(--beige) 10%);
+  border-radius: 16px;
+  padding: 0.55rem 0.5rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+}
+
+/* Цвет ссылок внутри дропдауна – не белый, а фирменный */
+header .nav-dropdown a,
+header .nav-dropdown .sub-link {
+  color: var(--calm);
+  display: block;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* hover по пунктам */
+header .nav-dropdown a:hover,
+header .nav-dropdown .sub-link:hover {
+  background: color-mix(in oklab, var(--mint-50) 70%, #ffffff 30%);
+  color: var(--ever);
+}
+
+/* Тёмный градиент поверх карточки */
+#angebote .angebot-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  /* было: чёрно-серый градиент */
+  background: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--forest) 80%, transparent) 0%,
+    color-mix(in oklab, var(--ever)   55%, transparent) 40%,
+    color-mix(in oklab, var(--mint)   18%, transparent) 75%,
+    transparent 100%
+  );
+
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+#karriere .job-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  /* было: сплошной чёрный градиент */
+  background: linear-gradient(
+    to top,
+    color-mix(in oklab, var(--forest) 85%, transparent) 0%,
+    color-mix(in oklab, var(--ever)   60%, transparent) 40%,
+    color-mix(in oklab, var(--mint)   22%, transparent) 75%,
+    transparent 100%
+  );
+
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+
+/* === ProvenExpert badge – фирменные цвета === */
+.review-badge__pin svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+/* Внутренний круг */
+.review-badge__pin .pe-core {
+  fill: #ffffff; /* белый центр */
+}
+
+/* Верхняя (тёмная) дуга */
+.review-badge__pin .pe-ring-black {
+  stroke: #2b2d26; /* наш forest/ink */
+}
+
+/* Нижняя бирюзово-мятная дуга */
+.review-badge__pin .pe-ring-teal {
+  stroke: var(--mint); /* фирменная мята */
+}
+
+/* Звезда */
+.review-badge__pin .pe-star {
+  fill: var(--camel); /* тёплый camel */
+}
+
+ /* =========================
+   Footer – ссылки
+   ========================= */
+.footer-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.9;
+  padding-bottom: 0.05rem;
+  transition:
+    opacity 0.2s ease,
+    color 0.2s ease;
+}
+
+.footer-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.14rem;
+  width: 0;
+  height: 1.5px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--mint, #8B9478) 70%, #ffffff 30%);
+  opacity: 0;
+  transform-origin: left;
+  transition:
+    width 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.footer-link:hover {
+  opacity: 1;
+  color: #ffffff;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+  opacity: 1;
+}
+
+
+/* =========================
+   Footer – mobile layout
+   (до 639px)
+   ========================= */
+@media (max-width: 639px) {
+  /* общий блок после линии */
+  footer .footer-bottom {
+    align-items: center;
+    text-align: center;
+    gap: 0.9rem;
+  }
+
+  /* копирайт + ProvenExpert в колонку по центру */
+  footer .footer-bottom__primary {
+    align-items: center;
+    text-align: center;
+  }
+
+  /* блок соцсетей + "Nach oben" тоже по центру и на всю ширину */
+  footer .footer-bottom__secondary {
+    width: 100%;
+    align-items: center;
+  }
+
+  /* "Folgen Sie uns" + иконки – центрируем */
+  footer .footer-bottom__social {
+    justify-content: center;
+  }
+
+  /* "Nach oben" – отдельная строка, без линии слева */
+  footer .footer-bottom__top {
+    border-left: none;
+    padding-left: 0;
+    margin-top: 0.35rem; /* чуть ниже, чем соцсети */
+    justify-content: center;
+  }
+}
+
+
+/* =============================
+   FOOTER – TABLET LAYOUT
+   iPad mini / Air (768–1023px)
+   ============================= */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  /* верх футера: бренд + 3 колонки — как на десктопе, но с чуть меньшим зазором */
+  footer[role="contentinfo"] .max-w-7xl > .flex {
+    gap: 2.25rem;
+  }
+
+  /* нижняя полоска – ставим блоки в колонку, а внутри уже раскладываем */
+  footer[role="contentinfo"] .footer-bottom {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  /* копирайт + ProvenExpert – в один ряд слева */
+  footer[role="contentinfo"] .footer-bottom__primary {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  /* вторая строка: соцсети + Nach oben */
+  footer[role="contentinfo"] .footer-bottom__secondary {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  /* «Folgen Sie uns» + иконки — выравниваем влево, не к центру */
+  footer[role="contentinfo"] .footer-bottom__social {
+    justify-content: flex-start;
+  }
+
+  /* блок Nach oben — отделён линией и прижат к правому краю */
+  footer[role="contentinfo"] .footer-bottom__top {
+    margin-top: 0;
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    padding-left: 1.25rem;
+    justify-content: flex-end;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  footer[role="contentinfo"] .footer-bottom {
+    gap: 1.25rem;              /* расстояние между левым и правым блоком */
+  }
+
+  footer[role="contentinfo"] .footer-bottom__primary {
+    gap: 0.75rem;              /* копирайт + ProvenExpert */
+  }
+
+  footer[role="contentinfo"] .footer-bottom__secondary {
+    gap: 0.75rem;              /* соцсети + Nach oben */
+  }
+}
+
+/* =========================
+   Базовый layout для юр. страниц
+   ========================= */
+
+.legal-page {
+  /* фон, текст, отступ сверху под шапку */
+  min-height: 100vh;
+  padding-top: 6rem;         /* ~ pt-24 */
+  padding-bottom: 3rem;      /* небольшой нижний отступ */
+  background-color: #F3EBDD; /* бежевый фон Lebensanker */
+  color: #2B2D26;
+}
+
+/* Hero-блок сверху */
+.legal-hero {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 2.5rem;     /* ~ py-10 */
+  padding-bottom: 2.5rem;
+}
+
+/* общий контейнер для hero */
+.legal-hero__inner {
+  max-width: 72rem;        /* ~ max-w-6xl */
+  margin-inline: auto;
+  padding-inline: 1rem;    /* ~ px-4 */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .legal-hero__inner {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* фон-градиенты для разных страниц (модификаторы) */
+.legal-hero--impressum {
+  background: linear-gradient(
+    90deg,
+    #f3ebdd 0%,
+    #e6d4ba 50%,
+    #f3ebdd 100%
+  );
+}
+
+.legal-hero--datenschutz {
+  background: linear-gradient(
+    90deg,
+    #f3ebdd 0%,
+    #dcc8a7 50%,
+    #f3ebdd 100%
+  );
+}
+
+.legal-hero--cookies {
+  background: linear-gradient(
+    90deg,
+    #f3ebdd 0%,
+    #e7d3b7 50%,
+    #f3ebdd 100%
+  );
+}
+
+/* Контентный блок */
+.legal-content {
+  padding-top: 2.5rem;   /* py-10 */
+  padding-bottom: 3.5rem;/* lg:py-14 */
+}
+
+.legal-content__inner {
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* Карта с текстом */
+.legal-card {
+  border-radius: 1.5rem; /* ~ rounded-3xl */
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 1.5rem 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .legal-card {
+    padding: 1.75rem 1.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .legal-card {
+    padding: 2rem 2.25rem;
+  }
 }

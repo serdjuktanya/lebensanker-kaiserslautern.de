@@ -385,105 +385,91 @@
     </section>
 
     <!-- Angebote -->
-    <section
-      id="angebote"
-      class="section fade-in relative"
-      aria-labelledby="angeboteTitle"
-      style="background: color-mix(in oklab, var(--beige) 45%, transparent)"
+   <section
+  id="angebote"
+  class="section fade-in relative"
+  aria-labelledby="angeboteTitle"
+  style="background: color-mix(in oklab, var(--beige) 45%, transparent)"
+>
+  <div class="wave wave-top" aria-hidden="true">
+    <svg
+      data-parallax
+      data-speed="0.28"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 120"
+      preserveAspectRatio="none"
+      class="text-[var(--body)]"
+      fill="currentColor"
     >
-      <div class="wave wave-top" aria-hidden="true">
-        <svg
-          data-parallax
-          data-speed="0.28"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 120"
-          preserveAspectRatio="none"
-          class="text-[var(--body)]"
-          fill="currentColor"
-        >
-          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
-        </svg>
-      </div>
+      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
+    </svg>
+  </div>
 
-      <div class="angebote-wrap">
-        <h2 id="angeboteTitle" class="fx-title fx-title--classic">Unsere Angebote</h2>
-        <p class="text-center text-slate-500 mb-6">
-          Ambulante Pflege · Tagespflege · Beratung
-        </p>
+  <div class="angebote-wrap">
+    <h2 id="angeboteTitle" class="fx-title fx-title--classic">Unsere Angebote</h2>
+    <p class="text-center text-slate-500 mb-6">
+      Ambulante Pflege · Tagespflege · Beratung
+    </p>
 
-        <div class="angebote-grid">
-          <article class="angebot-card card" id="angebot-pflege">
-            <div class="angebot-content">
-              <div class="angebot-icon">
-                <svg width="28" height="28" aria-hidden="true">
-                  <use href="#i-ambulant" />
-                </svg>
-              </div>
-              <h3 class="font-semibold">Ambulanter Pflegedienst</h3>
-              <p class="text-slate-600">
-                Zuverlässige Hilfe zu Hause – Grund- &amp; Behandlungspflege, Medikamentengabe, Wundversorgung.
-              </p>
-            </div>
-            <div class="angebot-cta">
-              <button class="btn btn-premium">Beratung</button>
-            </div>
-          </article>
+    <div class="angebote-grid">
 
-          <article class="angebot-card card" id="tagespflege">
-            <div class="angebot-content">
-              <div class="angebot-icon">
-                <svg width="28" height="28" aria-hidden="true">
-                  <use href="#i-tagespflege" />
-                </svg>
-              </div>
-              <h3 class="font-semibold">Tagespflege</h3>
-              <p class="text-slate-600">
-                Strukturierte Tagesbetreuung mit Aktivierung, Gemeinschaft und Entlastung für Angehörige.
-              </p>
-            </div>
-            <div class="angebot-cta">
-              <button class="btn btn-premium">Platz anfragen</button>
-            </div>
-          </article>
-
-          <!--
-          <article class="angebot-card card" id="angebot-psy">
-            <div class="angebot-content">
-              <div class="angebot-icon">
-                <svg width="28" height="28" aria-hidden="true">
-                  <use href="#i-psy" />
-                </svg>
-              </div>
-              <h3 class="font-semibold">Ambulante psychiatrische Pflege</h3>
-              <p class="text-slate-600">
-                Fachpflegerische Unterstützung zu Hause bei psychischen Erkrankungen – stabilisierend & alltagsnah.
-              </p>
-            </div>
-            <div class="angebot-cta">
-              <a href="#kontakt" class="btn-secondary">Beratung</a>
-            </div>
-          </article>
-          -->
-
-          <article class="angebot-card card" id="beratung">
-            <div class="angebot-content">
-              <div class="angebot-icon">
-                <svg width="28" height="28" aria-hidden="true">
-                  <use href="#i-beratung" />
-                </svg>
-              </div>
-              <h3 class="font-semibold">Pflege- &amp; Angehörigenberatung</h3>
-              <p class="text-slate-600">
-                Transparente Beratung zu Ansprüchen, Pflegegraden und Entlastungsleistungen – für Angehörige.
-              </p>
-            </div>
-            <div class="angebot-cta">
-              <button class="btn btn-premium">Termin vereinbaren</button>
-            </div>
-          </article>
+      <!-- Card 1 -->
+      <article class="angebot-card la-card" id="angebot-pflege">
+        <div class="angebot-content">
+          <div class="angebot-icon">
+            <svg width="28" height="28" aria-hidden="true">
+              <use href="#i-ambulant" />
+            </svg>
+          </div>
+          <h3 class="font-semibold">Ambulanter Pflegedienst</h3>
+          <p class="text-slate-600">
+            Zuverlässige Hilfe zu Hause – Grund- &amp; Behandlungspflege, Medikamentengabe, Wundversorgung.
+          </p>
         </div>
-      </div>
-    </section>
+        <div class="angebot-cta">
+          <button class="btn btn-premium">Beratung</button>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="angebot-card la-card" id="tagespflege">
+        <div class="angebot-content">
+          <div class="angebot-icon">
+            <svg width="28" height="28" aria-hidden="true">
+              <use href="#i-tagespflege" />
+            </svg>
+          </div>
+          <h3 class="font-semibold">Tagespflege</h3>
+          <p class="text-slate-600">
+            Strukturierte Tagesbetreuung mit Aktivierung, Gemeinschaft und Entlastung für Angehörige.
+          </p>
+        </div>
+        <div class="angebot-cta">
+          <button class="btn btn-premium">Platz anfragen</button>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="angebot-card la-card" id="beratung">
+        <div class="angebot-content">
+          <div class="angebot-icon">
+            <svg width="28" height="28" aria-hidden="true">
+              <use href="#i-beratung" />
+            </svg>
+          </div>
+          <h3 class="font-semibold">Pflege- &amp; Angehörigenberatung</h3>
+          <p class="text-slate-600">
+            Transparente Beratung zu Ansprüchen, Pflegegraden und Entlastungsleistungen – für Angehörige.
+          </p>
+        </div>
+        <div class="angebot-cta">
+          <button class="btn btn-premium">Termin vereinbaren</button>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
 
     <!-- Unser Team -->
     <section
@@ -778,228 +764,232 @@
 
     <!-- News -->
     <section
-      id="news"
-      class="section relative"
-      aria-labelledby="newsTitle"
-      style="background: color-mix(in oklab, var(--beige) 45%, transparent)"
+  id="news"
+  class="section relative"
+  aria-labelledby="newsTitle"
+  style="background: color-mix(in oklab, var(--beige) 45%, transparent)"
+>
+  <div class="wave wave-top" aria-hidden="true">
+    <svg
+      data-parallax
+      data-speed="0.28"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 120"
+      preserveAspectRatio="none"
+      class="text-[var(--body)]"
+      fill="currentColor"
     >
-      <div class="wave wave-top" aria-hidden="true">
-        <svg
-          data-parallax
-          data-speed="0.28"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 120"
-          preserveAspectRatio="none"
-          class="text-[var(--body)]"
-          fill="currentColor"
-        >
-          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
-        </svg>
-      </div>
+      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
+    </svg>
+  </div>
 
-      <div class="max-w-6xl xl:max-w-7xl mx-auto px-4 relative z-[1]">
-        <header class="mb-8 text-center">
-          <h2 id="newsTitle" class="fx-title fx-title--classic">News</h2>
-          <p class="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            Aktuelles, Hinweise & Tipps.
+  <div class="max-w-6xl xl:max-w-7xl mx-auto px-4 relative z-[1]">
+    <header class="mb-8 text-center">
+      <h2 id="newsTitle" class="fx-title fx-title--classic">News</h2>
+      <p class="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+        Aktuelles, Hinweise & Tipps.
+      </p>
+    </header>
+
+    <div class="news-grid">
+
+      <!-- Featured -->
+      <article class="news-feature la-card">
+        <a href="#" class="stretched"></a>
+        <div class="news-thumb">
+          <img src="img/news-feature1.jpeg" alt="" />
+          <div class="thumb-grad"></div>
+        </div>
+        <div class="p-5 sm:p-6">
+          <span class="chip">Leitfaden</span>
+          <h3 class="news-title">Pflegegrad beantragen – kompakter Leitfaden</h3>
+          <p class="news-teaser">
+            Voraussetzungen, Unterlagen, MD-Termin, Widerspruch und Checkliste.
           </p>
-        </header>
-
-        <div class="news-grid">
-          <!-- Featured -->
-          <article class="news-feature card">
-            <a href="#" class="stretched"></a>
-            <div class="news-thumb">
-              <img src="img/news-feature1.jpeg" alt="" />
-              <div class="thumb-grad"></div>
-            </div>
-            <div class="p-5 sm:p-6">
-              <span class="chip">Leitfaden</span>
-              <h3 class="news-title">Pflegegrad beantragen – kompakter Leitfaden</h3>
-              <p class="news-teaser">
-                Voraussetzungen, Unterlagen, MD-Termin, Widerspruch und Checkliste.
-              </p>
-              <div class="news-meta">
-                <span>⏱️ 6–8 Min</span>
-                <time datetime="2025-10-25">25.10.2025</time>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 2 -->
-          <article class="news-card card">
-            <a href="#" class="stretched"></a>
-            <div class="news-thumb sm:aspect-[16/10]">
-              <img src="img/news-feature.jpg" alt="" />
-              <span class="chip chip--small">Alltag</span>
-              <div class="thumb-grad"></div>
-            </div>
-            <div class="p-4 sm:p-5">
-              <h3 class="small-title">Entlastung im Alltag</h3>
-              <p class="small-teaser">Ambulante Pflege in planbaren Schritten.</p>
-              <div class="news-meta">
-                <span>⏱️ 4 Min</span>
-                <time datetime="2025-10-18">18.10.2025</time>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 3 -->
-          <article class="news-card card">
-            <a href="#" class="stretched"></a>
-            <div class="news-thumb sm:aspect-[16/10]">
-              <img src="img/news-feature2.jpeg" alt="" />
-              <span class="chip chip--small">Konzept</span>
-              <div class="thumb-grad"></div>
-            </div>
-            <div class="p-4 sm:p-5">
-              <h3 class="small-title">Sanfte Integration</h3>
-              <p class="small-teaser">Mehrgenerationen: Wärme, Struktur, Sicherheit.</p>
-              <div class="news-meta">
-                <span>⏱️ 3 Min</span>
-                <time datetime="2025-10-10">10.10.2025</time>
-              </div>
-            </div>
-          </article>
+          <div class="news-meta">
+            <span>⏱️ 6–8 Min</span>
+            <time datetime="2025-10-25">25.10.2025</time>
+          </div>
         </div>
+      </article>
 
-        <div class="mt-8 text-center">
-          <a
-            href="#"
-            class="inline-flex btn items-center gap-2 px-5 py-3 rounded-full bg-[var(--mint)] text-white font-semibold shadow hover:opacity-95 transition"
-          >
-            Alle Artikel ansehen
-            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M13 5l7 7-7 7v-4H4v-6h9z" />
-            </svg>
-          </a>
+      <!-- Card 2 -->
+      <article class="news-card la-card">
+        <a href="#" class="stretched"></a>
+        <div class="news-thumb sm:aspect-[16/10]">
+          <img src="img/news-feature.jpg" alt="" />
+          <span class="chip chip--small">Alltag</span>
+          <div class="thumb-grad"></div>
         </div>
-      </div>
-    </section>
+        <div class="p-4 sm:p-5">
+          <h3 class="small-title">Entlastung im Alltag</h3>
+          <p class="small-teaser">Ambulante Pflege in planbaren Schritten.</p>
+          <div class="news-meta">
+            <span>⏱️ 4 Min</span>
+            <time datetime="2025-10-18">18.10.2025</time>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="news-card la-card">
+        <a href="#" class="stretched"></a>
+        <div class="news-thumb sm:aspect-[16/10]">
+          <img src="img/news-feature2.jpeg" alt="" />
+          <span class="chip chip--small">Konzept</span>
+          <div class="thumb-grad"></div>
+        </div>
+        <div class="p-4 sm:p-5">
+          <h3 class="small-title">Sanfte Integration</h3>
+          <p class="small-teaser">Mehrgenerationen: Wärme, Struktur, Sicherheit.</p>
+          <div class="news-meta">
+            <span>⏱️ 3 Min</span>
+            <time datetime="2025-10-10">10.10.2025</time>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="mt-8 text-center">
+      <a
+        href="#"
+        class="inline-flex btn items-center gap-2 px-5 py-3 rounded-full bg-[var(--mint)] text-white font-semibold shadow hover:opacity-95 transition"
+      >
+        Alle Artikel ansehen
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M13 5l7 7-7 7v-4H4v-6h9z" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
 
            <!-- Karriere -->
     <section
-      id="karriere"
-      class="section scroll-pad"
-      aria-labelledby="karriereTitle"
-      style="background: color-mix(in oklab, var(--beige) 35%, transparent)"
+  id="karriere"
+  class="section scroll-pad"
+  aria-labelledby="karriereTitle"
+  style="background: color-mix(in oklab, var(--beige) 35%, transparent)"
+>
+  <!-- Верхняя волна -->
+  <div class="wave wave-top" aria-hidden="true">
+    <svg
+      data-parallax
+      data-speed="0.24"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 120"
+      preserveAspectRatio="none"
+      class="text-white"
+      fill="currentColor"
     >
-      <!-- Верхняя волна -->
-      <div class="wave wave-top" aria-hidden="true">
-        <svg
-          data-parallax
-          data-speed="0.24"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 120"
-          preserveAspectRatio="none"
-          class="text-white"
-          fill="currentColor"
-        >
-          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
-        </svg>
-      </div>
+      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
+    </svg>
+  </div>
 
-      <div class="fade-in max-w-6xl mx-auto px-4">
-        <!-- Заголовок секции в едином стиле -->
-        <h2 id="karriereTitle" class="fx-title fx-title--classic">
-          Karriere
-        </h2>
+  <div class="fade-in max-w-6xl mx-auto px-4">
+    <!-- Заголовок -->
+    <h2 id="karriereTitle" class="fx-title fx-title--classic">
+      Karriere
+    </h2>
 
-        <p class="text-center max-w-3xl mx-auto text-slate-600 dark:text-slate-300 mb-8">
-          Wertschätzendes Umfeld, ruhige Abläufe und ein Team auf Augenhöhe –
-          mit Möglichkeiten in Teil- und Vollzeit.
-        </p>
+    <p class="text-center max-w-3xl mx-auto text-slate-600 dark:text-slate-300 mb-8">
+      Wertschätzendes Umfeld, ruhige Abläufe und ein Team auf Augenhöhe –
+      mit Möglichkeiten in Teil- und Vollzeit.
+    </p>
 
-        <div class="jobs-grid">
-          <!-- Job 1 -->
-          <article class="job-card">
-            <div class="job-media">
-              <img
-                src="./img/Pflegefachkraft.webp"
-                alt="Pflegefachkraft – ambulant &amp; Tagespflege"
-              />
-            </div>
-            <div class="job-body">
-              <h3>Pflegefachkraft</h3>
-              <p>
-                Bringe Deine Fachkompetenz und Dein Einfühlungsvermögen ein –
-                in einem wertschätzenden Team mit festen Touren
-                und gut planbaren Zeiten.
-              </p>
-            </div>
-            <div class="job-cta">
-              <!-- светлая карьерная кнопка -->
-              <a href="#kontakt" class="job-btn-light">Jetzt bewerben</a>
-            </div>
-          </article>
+    <!-- GRID -->
+    <div class="jobs-grid">
 
-          <!-- Job 2 -->
-          <article class="job-card">
-            <div class="job-media">
-              <img
-                src="./img/Pflegehilfskraft1.webp"
-                alt="Pflegehilfskraft – Unterstützung im Alltag"
-              />
-            </div>
-            <div class="job-body">
-              <h3>Pflegehilfskraft</h3>
-              <p>
-                Mit oder ohne Erfahrung – wir begleiten Dich,
-                Deine Aufgaben mit Herz und Verantwortung zu erfüllen
-                und Dich fachlich weiterzuentwickeln.
-              </p>
-            </div>
-            <div class="job-cta">
-              <a href="#kontakt" class="job-btn-light">Jetzt bewerben</a>
-            </div>
-          </article>
-
-          <!-- Job 3 -->
-          <article class="job-card">
-            <div class="job-media">
-              <img
-                src="./img/Haushaltshelferin.webp"
-                alt="Haushaltshelferin – Unterstützung im Haushalt"
-              />
-            </div>
-            <div class="job-body">
-              <h3>Haushaltshelferin</h3>
-              <p>
-                Du hilfst gerne im Alltag und möchtest Menschen unterstützen?
-                Dann bist Du bei uns genau richtig – wir freuen uns auf Deine Unterstützung.
-              </p>
-            </div>
-            <div class="job-cta">
-              <a href="#kontakt" class="job-btn-light">Jetzt bewerben</a>
-            </div>
-          </article>
+      <!-- JOB 1 -->
+      <article class="job-card la-card">
+        <div class="job-media">
+          <img
+            src="./img/Pflegefachkraft.webp"
+            alt="Pflegefachkraft – ambulant &amp; Tagespflege"
+          />
         </div>
-      </div>
+        <div class="job-body">
+          <h3>Pflegefachkraft</h3>
+          <p>
+            Bringe Deine Fachkompetenz und Dein Einfühlungsvermögen ein –
+            in einem wertschätzenden Team mit festen Touren
+            und gut planbaren Zeiten.
+          </p>
+        </div>
+        <div class="job-cta">
+          <a href="#kontakt" class="job-btn-light">Jetzt bewerben</a>
+        </div>
+      </article>
 
-      <!-- Общий CTA под сеткой -->
-      <div class="mt-8 text-center">
-        <a href="#kontakt" class="btn inline-flex items-center gap-2">
-          Alle Stellen ansehen
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
-          </svg>
-        </a>
-      </div>
+      <!-- JOB 2 -->
+      <article class="job-card la-card">
+        <div class="job-media">
+          <img
+            src="./img/Pflegehilfskraft1.webp"
+            alt="Pflegehilfskraft – Unterstützung im Alltag"
+          />
+        </div>
+        <div class="job-body">
+          <h3>Pflegehilfskraft</h3>
+          <p>
+            Mit oder ohne Erfahrung – wir begleiten Dich,
+            Deine Aufgaben mit Herz und Verantwortung zu erfüllen
+            und Dich fachlich weiterzuentwickeln.
+          </p>
+        </div>
+        <div class="job-cta">
+          <a href="#kontakt" class="job-btn-light">Jetzt bewerben</a>
+        </div>
+      </article>
 
-      <div class="wave wave-bottom rotate-180 mt-10" aria-hidden="true">
-        <svg
-          data-parallax
-          data-speed="-0.2"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 120"
-          preserveAspectRatio="none"
-          class="text-white"
-          fill="currentColor"
-        >
-          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
-        </svg>
-      </div>
-    </section>
+      <!-- JOB 3 -->
+      <article class="job-card la-card">
+        <div class="job-media">
+          <img
+            src="./img/Haushaltshelferin.webp"
+            alt="Haushaltshelferin – Unterstützung im Haushalt"
+          />
+        </div>
+        <div class="job-body">
+          <h3>Haushaltshelferin</h3>
+          <p>
+            Du hilfst gerne im Alltag und möchtest Menschen unterstützen?
+            Dann bist Du bei uns genau richtig – wir freuen uns auf Deine Unterstützung.
+          </p>
+        </div>
+        <div class="job-cta">
+          <a href="#kontakt" class="job-btn-light">Jetzt bewerben</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+
+  <!-- Главный CTA -->
+  <div class="mt-8 text-center">
+    <a href="#kontakt" class="btn inline-flex items-center gap-2">
+      Alle Stellen ansehen
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" />
+      </svg>
+    </a>
+  </div>
+
+  <div class="wave wave-bottom rotate-180 mt-10" aria-hidden="true">
+    <svg
+      data-parallax
+      data-speed="-0.2"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1440 120"
+      preserveAspectRatio="none"
+      class="text-white"
+      fill="currentColor"
+    >
+      <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
+    </svg>
+  </div>
+</section>
 
     <!-- Feedback -->
     <section
@@ -1565,47 +1555,280 @@
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-[#26352C] text-white py-12" role="contentinfo">
-      <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8 text-sm">
-        <div>
-          <h4 class="font-semibold mb-3">Lebensanker</h4>
-          <p>Pflegestützpunkt &amp; Mehrgenerationenhaus</p>
+<!-- Footer -->
+<footer
+  class="relative mt-20 bg-gradient-to-b from-[#26352C] via-[#1f281f] to-[#151a16] text-slate-100 text-sm"
+  role="contentinfo"
+>
+  <div class="max-w-7xl mx-auto px-4 py-10 lg:py-12 border-t border-white/10">
+    <div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+
+      <!-- Brand + краткое описание -->
+      <div class="max-w-sm space-y-4">
+        <div class="flex items-center gap-3">
+          <img
+            src="./img/LEBENSANKER-14.png"
+            alt="Lebensanker Logo"
+            class="h-9 w-auto "
+          />
+          <div>
+            <p class="text-[0.7rem] uppercase tracking-[0.3em] text-emerald-100/70">
+              Lebensanker
+            </p>
+            <p class="text-[0.95rem] font-semibold text-white">
+              Pflegestützpunkt &amp; Mehrgenerationenhaus
+            </p>
+          </div>
         </div>
 
-        <div>
-          <h4 class="font-semibold mb-3">Seiten</h4>
-          <ul class="space-y-2 opacity-90">
-            <li><a href="#angebote" class="hover:underline">Angebote</a></li>
-            <li><a href="#team" class="hover:underline">Team</a></li>
-            <li><a href="#partner" class="hover:underline">Kooperationspartner</a></li>
-            <li><a href="#news" class="hover:underline">News</a></li>
-            <li><a href="#reviews" class="hover:underline">Feedback</a></li>
-            <li><a href="#karriere" class="hover:underline">Karriere</a></li>
-            <li><a href="#kontakt" class="hover:underline">Kontakt</a></li>
-          </ul>
-        </div>
+        <p class="text-[0.85rem] leading-relaxed text-slate-200/80">
+          Wertschätzende Pflege, Tagesbetreuung und Wohnen für mehrere Generationen – mitten in Kaiserslautern.
+        </p>
 
-        <div>
-          <h4 class="font-semibold mb-3">Rechtliches</h4>
-          <ul class="space-y-2 opacity-90">
-            <li><a href="#" class="hover:underline">Impressum</a></li>
-            <li><a href="#" class="hover:underline">Datenschutz</a></li>
-            <li><a href="#" class="hover:underline">Cookie-Hinweis</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="font-semibold mb-3">Sprachen</h4>
-          <p>DEU · RUS · ENG</p>
+        <!-- мини-badge’ы -->
+        <div class="flex flex-wrap gap-3 text-[0.8rem] text-slate-100/80">
+          <div class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
+            <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            <span>Beratung nach Termin</span>
+          </div>
+          <div class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
+            <span>DEU · RUS · ENG</span>
+          </div>
         </div>
       </div>
 
-      <p class="text-center mt-8 text-white/70">
-        © 2025 Lebensanker Pflegestützpunkt GmbH
-      </p>
-    </footer>
+      <!-- Колонки ссылок -->
+      <div class="grid flex-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
 
+        <!-- Navigation -->
+        <div>
+          <h4 class="mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.26em] text-emerald-100/70">
+            Navigation
+          </h4>
+          <ul class="space-y-2 text-[0.9rem] text-slate-100/85">
+            <li><a href="#about" class="footer-link">Über uns</a></li>
+            <li><a href="#angebote" class="footer-link">Angebote</a></li>
+            <li><a href="#team" class="footer-link">Team</a></li>
+            <li><a href="#news" class="footer-link">News</a></li>
+            <li><a href="#karriere" class="footer-link">Karriere</a></li>
+            <li><a href="#kontakt" class="footer-link">Kontakt</a></li>
+          </ul>
+        </div>
+
+        <!-- Kontakt -->
+        <div>
+          <h4 class="mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.26em] text-emerald-100/70">
+            Kontakt
+          </h4>
+          <ul class="space-y-2 text-[0.9rem] text-slate-100/85">
+            <li>
+              Raiffeisenstraße 6<br />
+              67655 Kaiserslautern
+            </li>
+            <li>
+              <a href="tel:+4963131179499" class="footer-link">
+                Tel. 📞 +49&nbsp;631&nbsp;31&nbsp;17&nbsp;94&nbsp;99
+              </a>
+            </li>
+            <li>
+              <a href="mailto:info@lebensanker-pflege.de" class="footer-link">
+                info@lebensanker-pflege.de
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Rechtliches -->
+        <div>
+          <h4 class="mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.26em] text-emerald-100/70">
+            Rechtliches
+          </h4>
+          <ul class="space-y-2 text-[0.9rem] text-slate-100/85">
+            <li><a href="/impressum.html" class="footer-link">Impressum</a></li>
+            <li><a href="/datenschutz.html" class="footer-link">Datenschutz</a></li>
+            <li><a href="/cookies.html" class="footer-link">Cookie-Hinweis</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Нижняя полоска: копирайт + ProvenExpert + соцсети + "Nach oben" -->
+    <div
+      class="mt-8 border-t border-white/10 pt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between footer-bottom"
+    >
+
+      <!-- Копирайт + ProvenExpert badge -->
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5 footer-bottom__primary">
+        <p class="text-[0.8rem] text-slate-300/80">
+          © 2025 Lebensanker Pflegestützpunkt GmbH · Alle Rechte vorbehalten.
+        </p>
+
+        <!-- mini ProvenExpert badge -->
+        <a
+          href="#reviews"
+          class="group inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5 ring-1 ring-white/10 hover:bg-white/10 hover:ring-emerald-300/70 transition"
+        >
+          <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-sm">
+            <svg viewBox="0 0 48 48" aria-hidden="true" class="h-5 w-5 text-[#2b2d26]">
+              <!-- Core -->
+              <circle cx="24" cy="24" r="16.5" fill="#ffffff" />
+              <!-- Upper dark arc -->
+              <path
+                d="M24 6a18 18 0 0 1 0 36"
+                fill="none"
+                stroke="#2b2d26"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+              <!-- Lower mint arc -->
+              <path
+                d="M24 42a18 18 0 0 1 0-36"
+                fill="none"
+                stroke="#8B9478"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+              <!-- Star -->
+              <path
+                d="M24 14.5l3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3 1.2-6.9-5-4.9 6.9-1z"
+                fill="#C29A6B"
+              />
+            </svg>
+          </span>
+          <span class="text-[0.78rem] text-slate-100/90">
+            100% Empfehlungen bei ProvenExpert
+          </span>
+        </a>
+      </div>
+
+      <!-- Соцсети + "Nach oben" (отделены визуально) -->
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6 w-full sm:w-auto footer-bottom__secondary">
+
+        <!-- Соцсети -->
+        <div class="flex items-center gap-2 footer-bottom__social">
+          <span class="text-[0.8rem] text-slate-300/85">Folgen Sie uns:</span>
+          <div class="flex gap-2.5">
+            <!-- Instagram -->
+            <a
+              href="#"
+              aria-label="Instagram"
+              class="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 shadow-sm hover:bg-white/10 hover:ring-[#E4405F]/70 hover:shadow-lg transition"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                class="h-3.5 w-3.5 text-slate-100/85 group-hover:text-[#E4405F] transition"
+              >
+                <rect
+                  x="4"
+                  y="4"
+                  width="16"
+                  height="16"
+                  rx="5"
+                  ry="5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                />
+                <circle cx="17" cy="7" r="1.1" fill="currentColor" />
+              </svg>
+            </a>
+
+            <!-- Facebook -->
+            <a
+              href="#"
+              aria-label="Facebook"
+              class="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 shadow-sm hover:bg-white/10 hover:ring-[#1877F2]/70 hover:shadow-lg transition"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                class="h-3.5 w-3.5 text-slate-100/85 group-hover:text-[#1877F2] transition"
+              >
+                <path
+                  fill="currentColor"
+                  d="M13 21v-7h2.4l.6-3H13V9.2c0-.9.3-1.4 1.5-1.4H16V5.1C15.3 5 14.4 5 13.6 5 11.1 5 9.4 6.4 9.4 9v2H7v3h2.4v7z"
+                />
+              </svg>
+            </a>
+
+            <!-- WhatsApp -->
+            <a
+              href="#"
+              aria-label="WhatsApp"
+              class="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 shadow-sm hover:bg-white/10 hover:ring-[#25D366]/70 hover:shadow-lg transition"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                class="h-3.5 w-3.5 text-slate-100/85 group-hover:text-[#25D366] transition"
+              >
+                <path
+                  fill="currentColor"
+                  d="M4.5 20.5 5.7 17A8 8 0 1 1 12 20a8 8 0 0 1-3.7-.9zM9.4 10.1c-.1-.3-.3-.3-.5-.3h-.4c-.1 0-.4.1-.6.3-.2.2-.8.7-.8 1.7s.8 1.9.9 2.1c.1.2 1.5 2.4 3.7 3.3 1.8.7 2.2.6 2.6.5.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.5-.3s-1.3-.6-1.5-.7c-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.8-.1.1-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.3a8 8 0 0 1-1.5-1.9c-.2-.3 0-.4.1-.5.1-.1.3-.3.4-.4.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.5-1.2-.7-1.7z"
+                />
+              </svg>
+            </a>
+
+            <!-- YouTube -->
+            <a
+              href="#"
+              aria-label="YouTube"
+              class="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 shadow-sm hover:bg-white/10 hover:ring-[#FF0000]/70 hover:shadow-lg transition"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                class="h-3.5 w-3.5 text-slate-100/85 group-hover:text-[#FF0000] transition"
+              >
+                <rect
+                  x="3.5"
+                  y="7"
+                  width="17"
+                  height="10"
+                  rx="3"
+                  ry="3"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.6"
+                />
+                <path fill="currentColor" d="m11 10 4 2-4 2z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Отдельный блок "Nach oben" (не выглядит как соцсеть) -->
+        <div
+  class="flex items-center gap-2 sm:border-l sm:border-white/15 pl-0 sm:pl-5 footer-bottom__top
+         mt-3 sm:mt-0"
+>
+  <span class="text-[0.8rem] text-slate-300/85">Nach oben</span>
+  <a
+    href="#top"
+    class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5
+           ring-1 ring-white/15 hover:bg-white/10 hover:ring-emerald-300/70 hover:shadow-lg transition"
+  >
+    <span class="sr-only">Nach oben</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4">
+      <path fill="currentColor" d="M12 5 6 11h4v8h4v-8h4z" />
+    </svg>
+  </a>
+</div>
+
+      </div>
+    </div>
+  </div>
+</footer>
     <!-- SVG SPRITE -->
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
       <symbol id="i-ambulant" viewBox="0 0 64 64" fill="none">
