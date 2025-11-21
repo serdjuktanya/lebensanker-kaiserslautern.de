@@ -1200,3 +1200,117 @@ document.addEventListener("DOMContentLoaded", () => {
 
   observer.observe(grid);
 });
+
+// ÜBER UNS – Video-Modal (FINAL, заменить старые варианты)
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("aboutVideoModal");
+  const modalBody = document.getElementById("aboutModalBody");
+  const triggers = document.querySelectorAll(".js-open-about-video");
+  const closeEls = document.querySelectorAll(".js-about-modal-close");
+
+  if (!modal || !modalBody || !triggers.length) return;
+
+  let lastActiveElement = null;
+
+  function clearModal() {
+    // Очищаем содержимое, чтобы видео/iframe не продолжали играть «в фоне»
+    modalBody.innerHTML = "";
+  }
+
+  function lockScroll() {
+    // Надёжная блокировка скролла
+    document.documentElement.classList.add("overflow-hidden");
+    document.body.style.overflow = "hidden";
+  }
+
+  function unlockScroll() {
+    document.documentElement.classList.remove("overflow-hidden");
+    document.body.style.overflow = "";
+  }
+
+  function openModal(fromBtn) {
+    const youtubeId = fromBtn.dataset.youtubeId?.trim();
+    const videoSrc = fromBtn.dataset.videoSrc?.trim();
+
+    clearModal();
+
+    if (youtubeId) {
+      const iframe = document.createElement("iframe");
+      iframe.setAttribute(
+        "src",
+        `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`
+      );
+      iframe.setAttribute("frameborder", "0");
+      iframe.setAttribute(
+        "allow",
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      );
+      iframe.setAttribute("allowfullscreen", "true");
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      modalBody.appendChild(iframe);
+    } else if (videoSrc) {
+      const video = document.createElement("video");
+      video.setAttribute("src", videoSrc);
+      video.setAttribute("controls", "controls");
+      video.setAttribute("autoplay", "autoplay");
+      video.style.width = "100%";
+      video.style.height = "100%";
+      video.style.backgroundColor = "#000";
+      modalBody.appendChild(video);
+    } else {
+      // Заглушка, если источник пока не задан
+      const wrapper = document.createElement("div");
+      wrapper.style.position = "absolute";
+      wrapper.style.inset = "0";
+      wrapper.style.display = "flex";
+      wrapper.style.alignItems = "center";
+      wrapper.style.justifyContent = "center";
+      wrapper.style.color = "#f5f5f5";
+      wrapper.style.fontSize = "1rem";
+      wrapper.style.textAlign = "center";
+      wrapper.textContent = "Video-Einblick folgt in Kürze.";
+      modalBody.appendChild(wrapper);
+    }
+
+    lastActiveElement = document.activeElement;
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    lockScroll();
+  }
+
+  function closeModal() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    unlockScroll();
+    clearModal();
+
+    if (lastActiveElement && typeof lastActiveElement.focus === "function") {
+      lastActiveElement.focus();
+    }
+  }
+
+  // Открытие по клику на большую кнопку / pill
+  triggers.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      openModal(btn);
+    });
+  });
+
+  // Крестик и фон с классом .js-about-modal-close
+  closeEls.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeModal();
+    });
+  });
+
+  // ESC закрывает модалку
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+});

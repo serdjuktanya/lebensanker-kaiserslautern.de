@@ -286,7 +286,7 @@
         </div>
       </div>
 
-      <div class="wave wave-bottom" aria-hidden="true">
+      <!-- <div class="wave wave-bottom" aria-hidden="true">
         <svg
           data-parallax
           data-speed="-0.25"
@@ -297,81 +297,139 @@
         >
           <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z" />
         </svg>
-      </div>
+      </div>     -->
     </section>
 
-    <!-- Über uns -->
-    <section id="about" class="section relative" aria-labelledby="aboutTitle">
-      <div
-        class="absolute -top-10 left-0 w-full overflow-hidden leading-none rotate-180"
-        aria-hidden="true"
-      >
-        <svg
-          data-parallax
-          data-speed="0.25"
-          class="relative block w-full h-10 text-[var(--beige)]"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          viewBox="0 0 1440 120"
-          fill="currentColor"
-        >
-          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
-        </svg>
-      </div>
+<!-- Über uns -->
+<section id="about" class="section relative" aria-labelledby="aboutTitle">
+  <div class="max-w-6xl lg:max-w-7xl mx-auto px-4">
+    <div class="about-card">
 
-      <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-        <div>
-          <h2 id="aboutTitle" class="fx-title fx-title--classic">Über uns</h2>
-          <p class="text-lg text-slate-600 dark:text-slate-300 mb-4">
-            Wir von Lebensanker sind mehr als nur ein Pflegedienst – wir sind ein Zuhause für Menschen, die Ruhe,
-            Fürsorge und Gemeinschaft suchen.
+      <div class="about-card-inner grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <!-- Текстовый блок -->
+        <div class="about-copy">
+          <p class="about-overline">Wer wir sind</p>
+
+          <h2 id="aboutTitle" class="fx-title fx-title--classic about-title">
+            Über uns
+          </h2>
+
+          <p class="about-text">
+            Wir von Lebensanker sind mehr als nur ein Pflegedienst – wir sind ein Zuhause
+            für Menschen, die Ruhe, Fürsorge und Gemeinschaft suchen.
           </p>
-          <p class="text-lg text-slate-600 dark:text-slate-300 mb-6">
-            Pflegebedürftige Menschen brauchen liebevolle und fürsorgliche Betreuung. Doch für Angehörige ist es oft
-            schwierig, diese Herausforderung allein zu bewältigen. Der Pflegedienst Lebensanker unterstützt Sie bei
-            dieser Aufgabe und begleitet Sie im Pflegealltag – auch rund um die Uhr. Kontaktieren Sie uns, wenn Sie
-            Unterstützung bei der Pflege Ihrer Angehörigen benötigen!
+
+          <p class="about-text">
+            Pflegebedürftige Menschen brauchen liebevolle und verlässliche Betreuung.
+            Angehörige stehen dabei oft vor großen Herausforderungen. Wir begleiten Sie
+            im Pflegealltag – strukturiert, ruhig und mit Herz.
           </p>
-          <blockquote
-            class="bg-[var(--mint-50)] dark:bg-slate-800 rounded-2xl p-6 italic text-xl text-[var(--mint)] shadow mb-6 text-center"
-          >
+
+          <blockquote class="about-quote">
             „Pflege ist nicht nur Betreuung, sondern auch Herz.“
           </blockquote>
-          <address class="not-italic text-slate-500 dark:text-slate-400">
-            Raiffeisenstraße 6, 67655 Kaiserslautern
-          </address>
+
+          <div class="about-meta">
+            <div class="about-meta-item">
+              <span class="about-meta-label">Standort</span>
+              <span class="about-meta-value">Raiffeisenstraße 6, 67655 Kaiserslautern</span>
+            </div>
+            <div class="about-meta-item">
+              <span class="about-meta-label">Einsatzgebiet</span>
+              <span class="about-meta-value">
+                Kaiserslautern, Einsiedlerhof, Hohenecken, Morlautern, Dansenberg, Otterbach, Otterberg
+              </span>
+            </div>
+          </div>
         </div>
 
-        <div class="relative">
+        <!-- Медиа-блок (фото / будущее видео) -->
+        <div class="about-media">
           <div
-            class="aspect-[4/3] rounded-3xl overflow-hidden shadow-lg tilt-wrap js-tilt-on-scroll"
+            class="about-media-frame tilt-wrap js-tilt-on-scroll"
             data-tilt="10"
             data-scale="1.045"
           >
+            <!-- Сейчас фото -->
             <img
               src="./img/alte-frau-und-hilfe-gehen-treppe-hoch-draussen.jpg"
               alt="Foto: Gemeinschaft im Lebensanker"
-              class="w-full h-full object-cover tilt-media"
+              class="about-media-img tilt-media"
             />
+
+            <!-- Оверлей для затемнения/градиента -->
+            <div class="about-media-overlay" aria-hidden="true"></div>
+
+            <!-- Крупная play-иконка по центру -->
+            <button
+              type="button"
+              class="about-play-center js-open-about-video"
+              data-youtube-id=""
+              data-video-src=""
+              aria-label="Video-Einblick ansehen"
+            >
+              <span class="about-play-circle">
+                <span class="about-play-inner"></span>
+                <span class="about-play-triangle"></span>
+              </span>
+            </button>
+
+            <!-- Маленькая подпись-кнопка снизу -->
+            <button
+              type="button"
+              class="about-video-pill js-open-about-video"
+              data-youtube-id=""
+              data-video-src=""
+            >
+              <span class="about-video-icon" aria-hidden="true">
+                <span class="about-video-icon-circle"></span>
+                <span class="about-video-icon-triangle"></span>
+              </span>
+              <span class="about-video-text">
+                Video-Einblick ansehen
+              </span>
+            </button>
+          </div>
+
+          <div class="about-badge">
+            <span>Ambulante Pflege · Tagespflege · APP</span>
           </div>
         </div>
       </div>
 
-      <div class="absolute -bottom-10 left-0 w-full overflow-hidden leading-none" aria-hidden="true">
-        <svg
-          data-parallax
-          data-speed="-0.22"
-          class="relative block w-full h-10 text-[var(--body)]"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          viewBox="0 0 1440 120"
-          fill="currentColor"
-        >
-          <path d="M0,0V120H1440V0C1106,77,348,-53,0,0Z"></path>
-        </svg>
-      </div>
-    </section>
+    </div>
+  </div>
+</section>
 
+<!-- MODALES VIDEO-FENSTER FÜR "Über uns" -->
+<div
+  id="aboutVideoModal"
+  class="about-modal"
+  aria-hidden="true"
+>
+  <!-- затемнение фона -->
+  <div class="about-modal-backdrop js-about-modal-close"></div>
+
+  <!-- диалог -->
+  <div
+    class="about-modal-dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Video-Einblick Lebensanker"
+  >
+    <button
+      type="button"
+      class="about-modal-close js-about-modal-close"
+      aria-label="Video schließen"
+    >
+      ✕
+    </button>
+
+    <div class="about-modal-body" id="aboutModalBody">
+      <!-- СЮДА JS подставит iframe или <video> -->
+    </div>
+  </div>
+</div>
     <!-- Übergang-Welle -->
     <section class="section-wave relative" aria-hidden="true">
       <div class="wave wave-bottom pointer-events-none">
@@ -1976,6 +2034,7 @@
     <script src="./js/video-embed.js"></script>
     <script src="./js/reveal.js"></script>
     <script src="./contact.js"></script>
+    <script src="./js/about-video.js" defer></script>
   </body>
 </html>
 
