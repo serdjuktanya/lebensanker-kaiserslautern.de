@@ -3408,3 +3408,437 @@ header .nav-dropdown .sub-link:hover {
     padding: 2rem 2.25rem;
   }
 }
+
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: rgba(226, 232, 240, 0.85); /* text-slate-100/85 */
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+/* =========================
+   KOOPERATIONSPARTNER – SECTION BACKGROUND
+   ========================= */
+
+#partner {
+  background: linear-gradient(to bottom, #F7F1E4 0%, #F3EBDD 55%, #EBD8BC 100%);
+}
+
+/* большая «капсула» с логотипами */
+.partner-shell {
+  border-radius: 1.75rem;
+  background: radial-gradient(
+    circle at top,
+    #FBF3E4 0%,   /* почти как фон страницы */
+    #F4E3CB 45%,  /* мягкий бежево-золотой */
+    #EAD5BB 100%  /* чуть глубже внизу, но всё ещё светло */
+  );
+  border: 1px solid rgba(194, 154, 107, 0.28); /* очень мягкая золотая рамка */
+  box-shadow:
+    0 12px 32px rgba(15, 23, 42, 0.10),
+    0 0 0 1px rgba(148, 163, 184, 0.18);
+  padding: 2.25rem 1.75rem;
+}
+
+/* =========================
+   GLASS + GLOW ANIMATION
+   (добавь класс partner-glass на ту же «капсулу»)
+   ========================= */
+
+.partner-glass {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* мягкое «дышащее» свечение внутри капсулы */
+.partner-glass::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.35), transparent 55%);
+  opacity: 0.6;                 /* можно уменьшить до 0.35, если слишком сильно */
+  pointer-events: none;
+  transform: translate3d(-18%, -18%, 0);
+  animation: partnerGlow 10s ease-in-out infinite; /* было 24s – сейчас заметнее */
+}
+
+.partner-glass > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes partnerGlow {
+  0%, 25% {
+    opacity: 0;
+    transform: translate3d(-18%, -18%, 0);
+  }
+  40%, 60% {
+    opacity: 0.35;
+    transform: translate3d(0, 0, 0);
+  }
+  80%, 100% {
+    opacity: 0;
+    transform: translate3d(18%, 18%, 0);
+  }
+}
+
+/* =========================
+   GRID + CARDS
+   ========================= */
+
+.partner-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+@media (min-width: 640px) {
+  .partner-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .partner-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* базовая карточка партнёра */
+.partner-card {
+  position: relative;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow:
+    0 8px 20px rgba(15, 23, 42, 0.06),
+    0 0 0 1px rgba(148, 163, 184, 0.16);
+  padding: 1.5rem 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 96px;
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    filter 0.25s ease,
+    opacity 0.55s ease;
+}
+
+/* логотип */
+.partner-logo-img,
+.partner-card img {
+  max-width: 100%;
+  max-height: 64px;
+  object-fit: contain;
+  filter: grayscale(18%);
+  opacity: 0.95;
+  transition:
+    filter 0.25s ease,
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* мягкий золотой hover */
+.partner-card:hover {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(194, 154, 107, 0.25) 0%,
+      rgba(255, 255, 255, 0.98) 60%
+    );
+  border-color: #C29A6B;
+  box-shadow:
+    0 16px 32px rgba(15, 23, 42, 0.10),
+    0 0 0 1px rgba(194, 154, 107, 0.45);
+  filter: saturate(1.03);
+  transform: translateY(-3px);
+}
+
+.partner-card:hover .partner-logo-img,
+.partner-card:hover img {
+  filter: none;
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+/* =========================
+   SCROLL-ANIMATION
+   ========================= */
+
+/* старт */
+.partner-grid .partner-card {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+/* когда JS добавит is-visible */
+.partner-grid.is-visible .partner-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* поочерёдное появление */
+.partner-grid.is-visible .partner-card:nth-child(1) { transition-delay: 0.00s; }
+.partner-grid.is-visible .partner-card:nth-child(2) { transition-delay: 0.05s; }
+.partner-grid.is-visible .partner-card:nth-child(3) { transition-delay: 0.10s; }
+.partner-grid.is-visible .partner-card:nth-child(4) { transition-delay: 0.15s; }
+.partner-grid.is-visible .partner-card:nth-child(5) { transition-delay: 0.20s; }
+.partner-grid.is-visible .partner-card:nth-child(6) { transition-delay: 0.25s; }
+
+/* на мобилке всё мягче */
+@media (max-width: 639px) {
+  .partner-card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 12px 26px rgba(15, 23, 42, 0.09),
+      0 0 0 1px rgba(194, 154, 107, 0.45);
+  }
+
+  .partner-grid .partner-card {
+    transform: translateY(8px);
+  }
+}
+
+.partner-card:hover {
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(194, 154, 107, 0.18) 0%,   /* было 0.25 */
+      rgba(255, 255, 255, 0.98) 62%
+    );
+  border-color: #C29A6B;
+  box-shadow:
+    0 14px 28px rgba(15, 23, 42, 0.10),
+    0 0 0 1px rgba(194, 154, 107, 0.38);
+  filter: saturate(1.02);
+  transform: translateY(-3px);
+}
+
+#partner p {
+  color: #2B2D26CC; /* ~80% */
+}
+
+
+/* =========================
+   FEEDBACK – PREMIUM LOOK
+   ========================= */
+
+/* Бейджи (Google, ProvenExpert) */
+.review-badge {
+  position: relative;
+  border-radius: 1.5rem;
+  background: radial-gradient(circle at top, #ffffff 0%, #f7f2ea 45%, #f1e4d1 100%);
+  border: 1px solid rgba(194, 154, 107, 0.45); /* золото */
+  box-shadow:
+    0 14px 35px rgba(15, 23, 42, 0.12),
+    0 0 0 1px rgba(148, 163, 184, 0.18);
+  overflow: hidden;
+}
+
+/* маленький «пин» с логотипом в углу */
+.review-badge__pin {
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #ffffff, #f3ebdd);
+  box-shadow:
+    0 10px 25px rgba(15, 23, 42, 0.22),
+    0 0 0 1px rgba(148, 163, 184, 0.35);
+}
+
+.review-badge__pin svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* звёздочки */
+.review-badge__stars {
+  letter-spacing: 0.12em;
+  color: #C29A6B;
+}
+
+/* лёгкий hover – чуть поднимаем бейдж */
+.review-badge:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.16),
+    0 0 0 1px rgba(194, 154, 107, 0.50);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* =========================
+   SLIDER-KARTE MIT BEWERTUNGEN
+   ========================= */
+
+.feedback-viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+/* дорожка слайдов */
+.feedback-track {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* отдельная карточка отзыва */
+.feedback-card {
+  position: relative;
+  min-width: 100%;
+  border-radius: 1.75rem;
+  background: radial-gradient(circle at top left, #ffffff 0%, #f5f0e6 40%, #ece0cf 100%);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow:
+    0 16px 40px rgba(15, 23, 42, 0.14),
+    0 0 0 1px rgba(148, 163, 184, 0.16);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.25fr);
+}
+
+/* картинка слева */
+.feedback-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* текст справа */
+.feedback-cap {
+  padding: 1.75rem 1.75rem 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: #2B2D26;
+}
+
+.feedback-cap blockquote {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #2B2D26;
+}
+
+.feedback-who {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4B5338;
+}
+
+/* карточка, которая активна (если JS даёт класс .is-active) */
+.feedback-card.is-active {
+  border-color: #C29A6B;
+  box-shadow:
+    0 20px 48px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(194, 154, 107, 0.5);
+}
+
+/* точки слайдера */
+.feedback-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.feedback-dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(148, 163, 184, 0.65);
+  cursor: pointer;
+  transition:
+    width 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* активная точка (если JS добавляет .is-active) */
+.feedback-dots button.is-active {
+  width: 20px;
+  background: #C29A6B;
+  transform: translateY(-1px);
+}
+
+/* =========================
+   ADAPTIVE
+   ========================= */
+
+@media (max-width: 768px) {
+  .feedback-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .feedback-cap {
+    padding: 1.4rem;
+  }
+
+  .review-badge__pin {
+    right: 14px;
+    top: -12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .review-badge__pin svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ===== FIX: Feedback-Card – фото больше не перекрывает текст ===== */
+
+/* Карточка отзыва: 2 колонки на десктопе */
+.feedback-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.4fr);
+  gap: 0;
+  overflow: hidden;
+}
+
+/* На мобильных – фото сверху, текст снизу */
+@media (max-width: 768px) {
+  .feedback-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Фото заполняет свою колонку и не залезает на текст */
+.feedback-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Текстовый блок */
+.feedback-cap {
+  padding: 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* На всякий случай отключаем возможную “полоску-разделитель” */
+.feedback-card::before {
+  content: none !important;
+}

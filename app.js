@@ -1176,3 +1176,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // дальше — как у тебя
 })();
+
+
+
+// Scroll-anim für Kooperationspartner
+document.addEventListener("DOMContentLoaded", () => {
+  const grid = document.querySelector(".partner-grid");
+  if (!grid) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          grid.classList.add("is-visible");
+          observer.unobserve(grid); // один раз
+        }
+      });
+    },
+    {
+      threshold: 0.25,
+    }
+  );
+
+  observer.observe(grid);
+});

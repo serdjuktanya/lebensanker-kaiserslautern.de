@@ -1,137 +1,765 @@
-<!-- MAIN: COOKIE-HINWEIS -->
-<main class="pt-24 lg:pt-32 bg-[#F3EBDD] text-[#2B2D26] min-h-screen">
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Hero -->
-  <section class="border-b border-black/5 bg-gradient-to-r from-[#F3EBDD] via-[#E7D3B7] to-[#F3EBDD]">
-    <div class="max-w-6xl mx-auto px-4 py-10 lg:py-12 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-      <div>
-        <p class="text-xs tracking-[0.25em] uppercase text-[#4B5338]/70 mb-2">
-          Cookies &amp; Tracking
-        </p>
-        <h1 class="text-2xl lg:text-3xl font-semibold tracking-tight text-[#2B2D26]">
-          Cookie-Hinweis
-        </h1>
-        <p class="mt-2 max-w-2xl text-sm text-[#2B2D26]/80">
-          Hier informieren wir Sie darüber, welche Cookies wir einsetzen und
-          wie Sie Ihre Einwilligungen verwalten können.
-        </p>
-      </div>
-      <div class="flex flex-col items-start lg:items-end gap-2 text-xs text-[#2B2D26]/70">
-        <div class="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-1 shadow-sm ring-1 ring-black/5">
-          <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
-          <span>Transparente Cookie-Richtlinie</span>
+  <!-- Favicons & App icons -->
+  <link rel="icon" type="image/svg+xml" href="./img/favicons/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/favicons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./img/favicons/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png" />
+  <link rel="mask-icon" href="./img/favicons/safari-pinned-tab.svg" color="#2B2C24" />
+  <link rel="manifest" href="./manifest.webmanifest" crossorigin="use-credentials" />
+
+  <meta name="msapplication-TileColor" content="#F4EFE2" />
+  <meta name="theme-color" content="#8C9478" />
+  <meta name="color-scheme" content="light" />
+
+  <!-- SEO -->
+  <title>Cookie-Hinweis | Lebensanker Pflegestützpunkt GmbH</title>
+  <meta
+    name="description"
+    content="Informationen zu Cookies und ähnlichen Technologien auf der Website der Lebensanker Pflegestützpunkt GmbH in Kaiserslautern."
+  />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Lebensanker Pflegestützpunkt GmbH" />
+  <meta property="og:title" content="Lebensanker Pflegedienst in Kaiserslautern" />
+  <meta
+    property="og:description"
+    content="Ambulanter Pflegedienst, Tagespflege und Mehrgenerationen-Angebote in Kaiserslautern."
+  />
+  <meta property="og:url" content="https://lebensanker-kaiserslautern.de/cookies.html" />
+  <meta property="og:image" content="./img/og-cover.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lebensanker Pflegedienst in Kaiserslautern" />
+  <meta
+    name="twitter:description"
+    content="Ambulanter Pflegedienst, Tagespflege und Mehrgenerationen-Angebote."
+  />
+  <meta name="twitter:image" content="./img/og-cover.jpg" />
+
+  <!-- Preload Hero -->
+  <link
+    rel="preload"
+    as="image"
+    href="./img/pflegedienst-1.jpg"
+    imagesrcset="./img/pflegedienst-1.jpg 1920w"
+    imagesizes="100vw"
+  />
+
+  <!-- Fonts & Icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind & Scripts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"
+    defer
+  ></script>
+  <script
+    defer
+    src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+  ></script>
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body id="top" class="bg-[#F3EBDD] text-[#2B2D26]">
+
+  <!-- Header (как на главной/Datenschutz/Impressum) -->
+  <header
+    class="sticky top-0 z-50 border-b border-white/10 bg-[#26352C]/90 dark:bg-[#1b2a22]/90"
+    role="banner"
+  >
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+  <a
+    href="index.html"
+    class="flex items-center gap-3 group"
+  >
+    <img
+      src="./img/LEBENSANKER-14.png"
+      class="logo-light w-[42px] h-[42px] object-contain logo-pulse group-hover:opacity-90 transition"
+      alt="Lebensanker Logo"
+    />
+    <span class="font-semibold text-white tracking-wide group-hover:text-[var(--mint)] transition">
+      Lebensanker
+    </span>
+  </a>
+</div>
+
+      <nav
+        class="hidden md:flex items-center gap-5 lg:gap-6 text-sm text-white"
+        aria-label="Hauptmenü"
+      >
+        <a href="index.html#about" class="nav-link hover:text-[var(--mint)]">Über uns</a>
+
+        <div class="relative nav-group">
+          <button
+            id="navAngeboteBtn"
+            class="inline-flex items-center gap-1 hover:text-[var(--mint)]"
+            aria-haspopup="true"
+            aria-expanded="false"
+            type="button"
+          >
+            Angebote
+            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" d="M7 10l5 5 5-5z" />
+            </svg>
+          </button>
+          <ul
+            class="nav-dropdown rounded-xl shadow bg-white dark:bg-slate-800 border border-black/5 absolute left-0 w-64 p-2"
+          >
+            <li>
+              <a
+                class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]"
+                href="index.html#angebot-pflege"
+              >
+                Ambulanter Pflegedienst
+              </a>
+            </li>
+            <li>
+              <a
+                class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]"
+                href="index.html#tagespflege"
+              >
+                Tagespflege
+              </a>
+            </li>
+            <li>
+              <a
+                class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]"
+                href="index.html#beratung"
+              >
+                Allgemeine Beratung
+              </a>
+            </li>
+          </ul>
         </div>
-        <p>Stand: 01.01.2025</p>
+
+        <a href="index.html#team" class="nav-link hover:text-[var(--mint)]">Team</a>
+        <a href="index.html#news" class="nav-link hover:text-[var(--mint)]">News</a>
+        <a href="index.html#karriere" class="nav-link hover:text-[var(--mint)]">Karriere</a>
+        <a href="index.html#kontakt" class="nav-link hover:text-[var(--mint)]">Kontakt</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <a href="index.html#kontakt" class="btn hidden md:inline-flex">Jetzt Beratung</a>
+        <button
+          id="burger"
+          class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl border border-black/10"
+          aria-label="Menü öffnen"
+          title="Menü"
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />
+          </svg>
+        </button>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- Inhalt -->
-  <section class="py-10 lg:py-14">
-    <div class="max-w-6xl mx-auto px-4">
-
-      <article class="rounded-3xl bg-white/95 shadow-xl shadow-black/5 ring-1 ring-black/5 px-5 py-6 sm:px-7 sm:py-7 lg:px-9 lg:py-8 space-y-7">
-
-        <!-- 1. Was sind Cookies -->
-        <section class="space-y-3 text-sm leading-relaxed">
-          <h2 class="text-lg font-semibold text-[#2B2D26]">
-            1. Was sind Cookies?
-          </h2>
-          <p>
-            Erklären Sie hier kurz und verständlich, was Cookies sind und zu
-            welchen Zwecken sie auf dieser Website eingesetzt werden. Den
-            ausführlichen rechtlichen Text können Sie aus Ihrem Generator
-            übernehmen.
-          </p>
-        </section>
-
-        <div class="h-px bg-slate-200/80"></div>
-
-        <!-- 2. Cookie-Kategorien – schicke Tabelle -->
-        <section class="space-y-3 text-sm leading-relaxed">
-          <h2 class="text-lg font-semibold text-[#2B2D26]">
-            2. Arten von Cookies, die wir nutzen
-          </h2>
-
-          <div class="overflow-hidden rounded-2xl ring-1 ring-slate-200/80 bg-slate-50/80">
-            <table class="min-w-full text-left text-xs sm:text-sm">
-              <thead class="bg-slate-100/90 text-[#2B2D26]/80">
-                <tr>
-                  <th class="px-4 py-3 font-semibold">Kategorie</th>
-                  <th class="px-4 py-3 font-semibold">Zweck</th>
-                  <th class="px-4 py-3 font-semibold w-32">Beispiel</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-200/80">
-                <tr>
-                  <td class="px-4 py-3 align-top font-medium">Notwendig</td>
-                  <td class="px-4 py-3 align-top">
-                    Erforderlich für den Betrieb der Website (z.&nbsp;B. zur
-                    Speicherung Ihrer Cookie-Einstellungen oder für
-                    Sicherheitsfunktionen).
-                  </td>
-                  <td class="px-4 py-3 align-top text-xs font-mono">
-                    cookie_consent, csrf_token
-                  </td>
-                </tr>
-                <tr class="bg-white/70">
-                  <td class="px-4 py-3 align-top font-medium">Statistik</td>
-                  <td class="px-4 py-3 align-top">
-                    Helfen uns zu verstehen, wie Besucher unsere Seite nutzen,
-                    um sie zu verbessern.
-                  </td>
-                  <td class="px-4 py-3 align-top text-xs font-mono">
-                    [_analytics_]*
-                  </td>
-                </tr>
-                <tr>
-                  <td class="px-4 py-3 align-top font-medium">Komfort / Medien</td>
-                  <td class="px-4 py-3 align-top">
-                    Ermöglichen erweiterte Funktionen wie eingebettete Karten,
-                    Videos oder Schriftarten von Drittanbietern.
-                  </td>
-                  <td class="px-4 py-3 align-top text-xs font-mono">
-                    maps_embed, youtube_embed
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <div class="h-px bg-slate-200/80"></div>
-
-        <!-- 3. Einwilligung & Widerruf -->
-        <section class="space-y-3 text-sm leading-relaxed">
-          <h2 class="text-lg font-semibold text-[#2B2D26]">
-            3. Einwilligung &amp; Widerruf
-          </h2>
-          <p>
-            Beschreiben Sie hier, wie Nutzer ihre Einwilligung über Ihr
-            Cookie-Banner geben und widerrufen können (z.&nbsp;B. Link „Cookie-Einstellungen
-            anpassen“).
-          </p>
-          <p class="text-xs italic text-[#2B2D26]/70">
-            Wenn Sie ein externes Consent-Tool verwenden, kopieren Sie die
-            dort vorgeschlagenen Formulierungen an diese Stelle.
-          </p>
-        </section>
-
-        <div class="h-px bg-slate-200/80"></div>
-
-        <!-- 4. Bezug zur Datenschutzerklärung -->
-        <section class="space-y-2 text-sm leading-relaxed">
-          <h2 class="text-lg font-semibold text-[#2B2D26]">
-            4. Weitere Informationen
-          </h2>
-          <p>
-            Weitere Details zur Datenverarbeitung finden Sie in unserer
-            <a href="/datenschutz" class="footer-link">Datenschutzerklärung</a>.
-          </p>
-        </section>
-
-      </article>
-
+  <!-- Drawer (mobile) -->
+  <div id="backdrop" class="backdrop z-40 md:hidden" aria-hidden="true"></div>
+  <div
+    id="drawer"
+    class="offcanvas fixed top-0 right-0 h-full w-[80vw] max-w-[420px] z-50 bg-[var(--beige)] dark:bg-slate-900 shadow-xl border-l border-black/5 pt-6 px-5 pb-5 md:hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Mobiles Menü"
+  >
+    <div class="flex items-center justify-between mb-4">
+      <span class="text-sm font-medium text-slate-500">Navigation</span>
+      <button
+        id="drawerClose"
+        class="w-9 h-9 grid place-items-center rounded-lg border border-white/20 text-white hover:bg-white/10 transition"
+        aria-label="Menü schließen"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M18.3 5.71L12 12.01l-6.3-6.3L4.29 7.12l6.3 6.3l-6.3 6.3l1.41 1.41l6.3-6.3l6.3 6.3l1.41-1.41l-6.3-6.3l6.3-6.3z"
+          />
+        </svg>
+      </button>
     </div>
-  </section>
-</main>
+
+    <nav class="flex flex-col items-center gap-4 text-base" aria-label="Mobiles Hauptmenü">
+      <a href="index.html#about" class="chip w-full max-w-[260px] justify-center text-center">Über uns</a>
+
+      <details class="card w-full max-w-[260px]">
+        <summary class="font-medium cursor-pointer text-center">Angebote</summary>
+        <div class="mt-3 flex flex-col gap-3">
+          <a
+            class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
+            href="index.html#angebot-pflege"
+          >
+            Ambulanter Pflegedienst
+          </a>
+          <a
+            class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
+            href="index.html#tagespflege"
+          >
+            Tagespflege
+          </a>
+          <a
+            class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
+            href="index.html#beratung"
+          >
+            Allgemeine Beratung
+          </a>
+        </div>
+      </details>
+
+      <a href="index.html#team" class="chip w-full max-w-[260px] justify-center text-center">Team</a>
+      <a href="index.html#news" class="chip w-full max-w-[260px] justify-center text-center">News</a>
+      <a href="index.html#karriere" class="chip w-full max-w-[260px] justify-center text-center">Karriere</a>
+      <a href="index.html#kontakt" class="chip w-full max-w-[260px] justify-center text-center">Kontakt</a>
+    </nav>
+
+    <div class="border-t border-[var(--line)] mt-6 pt-6 w-full flex justify-center">
+      <a href="index.html#kontakt" class="btn w-full max-w-[260px] justify-center">Jetzt Beratung</a>
+    </div>
+  </div>
+
+  <!-- MAIN: COOKIE-HINWEIS -->
+  <main class="pt-24 lg:pt-32 bg-[#F3EBDD] text-[#2B2D26] min-h-screen">
+
+    <!-- Hero / Titelbereich -->
+    <section class="border-b border-black/5 bg-gradient-to-r from-[#F3EBDD] via-[#E6D4BA] to-[#F3EBDD]">
+      <div class="max-w-6xl mx-auto px-4 py-10 lg:py-12 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <p class="text-xs tracking-[0.25em] uppercase text-[#4B5338]/70 mb-2">
+            Cookies &amp; Einstellungen
+          </p>
+          <h1 class="text-2xl lg:text-3xl font-semibold tracking-tight text-[#2B2D26]">
+            Cookie-Hinweis
+          </h1>
+          <p class="mt-2 max-w-2xl text-sm text-[#2B2D26]/80">
+            Informationen zu der Verwendung von Cookies und ähnlichen Technologien auf dieser Website
+            sowie zu Ihren Auswahlmöglichkeiten.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-start lg:items-end gap-2 text-xs text-[#2B2D26]/70">
+          <div class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-1 shadow-sm ring-1 ring-black/5">
+            <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+            <span>Cookie-Einstellungen transparent erklärt</span>
+          </div>
+          <p>Stand: 01.01.2025</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inhalt -->
+    <section class="py-10 lg:py-14">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,1.4fr)] items-start">
+
+          <!-- Linke Hauptkarte – eigentlicher Cookie-Text -->
+          <article
+            class="rounded-3xl bg-white/90 shadow-xl shadow-black/5 ring-1 ring-black/5 px-5 py-6 sm:px-7 sm:py-7 lg:px-9 lg:py-8 space-y-6 text-sm leading-relaxed">
+
+            <!-- 1. Was sind Cookies? -->
+            <section class="space-y-2">
+              <h2 class="text-sm font-semibold tracking-[0.22em] uppercase text-[#4B5338]/80">
+                1. Was sind Cookies?
+              </h2>
+              <p>
+                Cookies sind kleine Textdateien, die über den Browser auf Ihrem Endgerät gespeichert werden,
+                wenn Sie unsere Website besuchen. Sie enthalten Informationen, die im Zusammenhang mit dem
+                jeweils eingesetzten Gerät stehen. Cookies richten auf Ihrem Endgerät keinen Schaden an und
+                enthalten keine Viren.
+              </p>
+              <p>
+                Neben klassischen Cookies können wir in Einzelfällen auch ähnliche Technologien einsetzen
+                (z.&nbsp;B. Local Storage, Session Storage oder vergleichbare Verfahren), auf die in diesem
+                Hinweis vereinfachend ebenfalls als „Cookies“ Bezug genommen wird.
+              </p>
+            </section>
+
+            <div class="my-4 h-px bg-gradient-to-r from-transparent via-[#C29A6B]/60 to-transparent"></div>
+
+            <!-- 2. Kategorien von Cookies -->
+            <section class="space-y-2">
+              <h2 class="text-sm font-semibold tracking-[0.22em] uppercase text-[#4B5338]/80">
+                2. Kategorien von Cookies, die wir verwenden
+              </h2>
+              <p>
+                Wir können folgende Kategorien von Cookies auf dieser Website einsetzen:
+              </p>
+              <ul class="list-disc list-inside space-y-1">
+                <li>
+                  <strong>Technisch notwendige Cookies</strong><br>
+                  Diese Cookies sind erforderlich, damit die Website technisch funktioniert und Ihnen
+                  grundlegende Funktionen zur Verfügung stehen (z.&nbsp;B. Seitennavigation, Auswahl der
+                  Sprache, Sicherheitsfunktionen). Ohne diese Cookies kann die Website nicht korrekt
+                  bereitgestellt werden.
+                </li>
+                <li>
+                  <strong>Funktionale Cookies</strong><br>
+                  Diese Cookies ermöglichen erweiterte Funktionen und Personalisierung
+                  (z.&nbsp;B. Merken bestimmter Einstellungen). Wenn Sie diese Cookies nicht zulassen,
+                  funktionieren einige dieser Dienste möglicherweise nicht einwandfrei.
+                </li>
+                <li>
+                  <strong>Optionale Cookies (z.&nbsp;B. Statistik / externe Medien)</strong><br>
+                  Hierunter fallen etwa Analyse-Cookies zur Reichweitenmessung oder Cookies externer
+                  Dienste (z.&nbsp;B. eingebettete Karten, Videos). Diese werden nur eingesetzt, wenn Sie
+                  zuvor zugestimmt haben.
+                </li>
+              </ul>
+              <p class="italic text-xs text-[#2B2D26]/70">
+                Hinweis: Die konkreten, aktuell eingesetzten Cookies werden in Ihrem Cookie-Banner
+                bzw. in den detaillierten Cookie-Einstellungen aufgeführt.
+              </p>
+            </section>
+
+            <div class="my-4 h-px bg-slate-200/80"></div>
+
+            <!-- 3. Rechtsgrundlage -->
+            <section class="space-y-2">
+              <h2 class="text-sm font-semibold tracking-[0.22em] uppercase text-[#4B5338]/80">
+                3. Rechtsgrundlagen für den Einsatz von Cookies
+              </h2>
+              <p>
+                Der Einsatz technisch notwendiger Cookies erfolgt auf Grundlage von
+                Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer funktionsfähigen und
+                sicheren Bereitstellung unserer Website) sowie § 25 Abs. 2 TTDSG.
+              </p>
+              <p>
+                Der Einsatz von Cookies, die für den Betrieb der Website nicht zwingend erforderlich sind
+                (z.&nbsp;B. zu Statistik-, Analyse- oder Marketingzwecken), erfolgt ausschließlich auf
+                Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO in Verbindung mit
+                § 25 Abs. 1 TTDSG. Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft
+                widerrufen.
+              </p>
+            </section>
+
+            <div class="my-4 h-px bg-slate-200/80"></div>
+
+            <!-- 4. Cookie-Banner / Einwilligungsmanagement -->
+            <section class="space-y-2">
+              <h2 class="text-sm font-semibold tracking-[0.22em] uppercase text-[#4B5338]/80">
+                4. Cookie-Banner &amp; Verwaltung Ihrer Einwilligung
+              </h2>
+              <p>
+                Beim ersten Besuch unserer Website wird ein Cookie-Banner angezeigt, über das Sie
+                entscheiden können, welche Cookie-Kategorien Sie akzeptieren oder ablehnen möchten.
+                Ihre Auswahl wird in einem Cookie gespeichert, damit wir Ihre Entscheidung bei
+                weiteren Besuchen berücksichtigen können.
+              </p>
+              <p>
+                Sie können Ihre getroffene Auswahl jederzeit über die Cookie-Einstellungen ändern
+                (z.&nbsp;B. über einen entsprechenden Link „Cookie-Einstellungen“ im Footer dieser Website).
+                Dort können Sie erteilte Einwilligungen widerrufen oder weitere Einwilligungen erteilen.
+              </p>
+              <p class="italic text-xs text-[#2B2D26]/70">
+                Hinweis: Bitte ergänzen Sie hier – sobald vorhanden – den konkreten Namen des
+                eingesetzten Consent-Tools und die genaue Bezeichnung des Buttons/Links,
+                über den die Einstellungen erneut geöffnet werden können.
+              </p>
+            </section>
+
+            <div class="my-4 h-px bg-slate-200/80"></div>
+
+            <!-- 5. Browser-Einstellungen -->
+            <section class="space-y-2">
+              <h2 class="text-sm font-semibold tracking-[0.22em] uppercase text-[#4B5338]/80">
+                5. Verwaltung von Cookies über Ihren Browser
+              </h2>
+              <p>
+                Sie können das Speichern von Cookies auf Ihrem Endgerät auch allgemein über die
+                Einstellungen Ihres Browsers verhindern. Dort können Sie:
+              </p>
+              <ul class="list-disc list-inside space-y-1">
+                <li>bereits gespeicherte Cookies löschen,</li>
+                <li>das automatische Speichern von Cookies deaktivieren oder</li>
+                <li>sich vor dem Setzen eines Cookies informieren lassen.</li>
+              </ul>
+              <p>
+                Bitte beachten Sie, dass bei der Deaktivierung oder Einschränkung von Cookies
+                bestimmte Funktionen unserer Website möglicherweise nicht mehr vollumfänglich
+                genutzt werden können.
+              </p>
+            </section>
+
+            <div class="my-4 h-px bg-slate-200/80"></div>
+
+            <!-- 6. Einsatz von Drittanbietern -->
+            <section class="space-y-2">
+              <h2 class="text-sm font-semibold tracking-[0.22em] uppercase text-[#4B5338]/80">
+                6. Cookies von Drittanbietern
+              </h2>
+              <p>
+                Soweit wir Inhalte oder Dienste von Drittanbietern einsetzen (z.&nbsp;B. Kartendienste,
+                eingebettete Videos, Analyse-Tools), können durch diese Anbieter ebenfalls Cookies
+                gesetzt werden, wenn Sie dem zugestimmt haben. Dabei können auch Daten an Server
+                in Drittländern übermittelt werden.
+              </p>
+              <p class="italic text-xs text-[#2B2D26]/70">
+                Hinweis: Bitte ergänzen Sie hier konkrete Angaben zu den von Ihnen tatsächlich
+                genutzten Drittanbietern (z.&nbsp;B. Google Maps, YouTube, Analyse-Tools), inkl.
+                Anbietername, Sitz, ggf. Hinweise zu Drittländern und Verweis auf die
+                Datenschutzerklärungen der Anbieter.
+              </p>
+            </section>
+
+            <div class="my-4 h-px bg-slate-200/80"></div>
+
+            <!-- 7. Speicherdauer -->
+            <section class="space-y-2">
+              <h2 class="text-sm font-semibold tracking-[0.22em] uppercase text-[#4B5338]/80">
+                7. Speicherdauer
+              </h2>
+              <p>
+                Die Speicherdauer einzelner Cookies kann variieren. Einige Cookies werden nur
+                für die Dauer der aktuellen Sitzung gespeichert (sogenannte Session-Cookies)
+                und nach Verlassen der Website automatisch gelöscht. Andere Cookies (sogenannte
+                Persistente Cookies) bleiben für einen definierten Zeitraum auf Ihrem Endgerät
+                gespeichert und ermöglichen uns oder unseren Partnern, Ihr Endgerät beim nächsten
+                Besuch wiederzuerkennen.
+              </p>
+              <p>
+                Konkrete Speicherdauern entnehmen Sie bitte den Angaben im Cookie-Banner
+                bzw. den dort abrufbaren Cookie-Details.
+              </p>
+            </section>
+
+            <div class="my-4 h-px bg-slate-200/80"></div>
+
+            <!-- 8. Ihre Rechte -->
+            <section class="space-y-2">
+              <h2 class="text-sm font-semibold tracking-[0.22em] uppercase text-[#4B5338]/80">
+                8. Ihre Rechte in Bezug auf Cookies und Datenverarbeitung
+              </h2>
+              <p>
+                Hinsichtlich der durch Cookies verarbeiteten personenbezogenen Daten stehen
+                Ihnen die in unserer
+                <a href="datenschutz.html" class="footer-link">Datenschutzerklärung</a>
+                beschriebenen Rechte zu (z.&nbsp;B. Auskunft, Berichtigung, Löschung, Einschränkung
+                der Verarbeitung, Widerspruch, Widerruf von Einwilligungen).
+              </p>
+              <p>
+                Weitere Informationen finden Sie in der
+                <a href="datenschutz.html" class="footer-link">Datenschutzerklärung</a>
+                dieser Website.
+              </p>
+            </section>
+
+          </article>
+
+          <!-- Rechte Spalte / Info-Karte -->
+          <aside class="space-y-5">
+            <div class="rounded-3xl bg-[#2B2D26] text-slate-100 px-5 py-5 sm:px-6 sm:py-6 shadow-xl shadow-black/40">
+              <p class="text-xs tracking-[0.24em] uppercase text-emerald-100/80 mb-2">
+                Hinweis
+              </p>
+              <p class="text-sm leading-relaxed text-slate-100/90">
+                Dieser Cookie-Hinweis ist als Musterstruktur gedacht und ersetzt keine individuelle
+                Rechtsberatung. Bitte lassen Sie den Inhalt von einer fachkundigen Stelle
+                (z.&nbsp;B. Rechtsanwalt, Datenschutzbeauftragter) prüfen und an Ihre tatsächlich
+                eingesetzten Dienste und Cookies anpassen.
+              </p>
+            </div>
+
+            <div class="rounded-3xl bg-white/80 px-5 py-4 ring-1 ring-black/5 text-xs leading-relaxed text-[#2B2D26]/80">
+              <p class="font-semibold mb-1">
+                Noch zu ergänzen / prüfen:
+              </p>
+              <ul class="list-disc list-inside space-y-1">
+                <li>Konkretes Consent-Tool (Name, Anbieter)</li>
+                <li>Liste der tatsächlich genutzten Cookies &amp; Speicherdauer</li>
+                <li>Eingesetzte Drittanbieter (z.&nbsp;B. Google Maps, YouTube)</li>
+                <li>Verweis auf Datenschutzerklärungen dieser Drittanbieter</li>
+              </ul>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer – такой же, как на других страницах -->
+  <footer
+    class="relative mt-20 bg-gradient-to-b from-[#26352C] via-[#1f281f] to-[#151a16] text-slate-100 text-sm"
+    role="contentinfo"
+  >
+    <div class="max-w-7xl mx-auto px-4 py-10 lg:py-12 border-t border-white/10">
+      <div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+
+        <!-- Brand -->
+        <div class="max-w-sm space-y-4">
+          <div class="flex items-center gap-3">
+            <img
+              src="./img/LEBENSANKER-14.png"
+              alt="Lebensanker Logo"
+              class="h-9 w-auto"
+            />
+            <div>
+              <p class="text-[0.7rem] uppercase tracking-[0.3em] text-emerald-100/70">
+                Lebensanker
+              </p>
+              <p class="text-[0.95rem] font-semibold text-white">
+                Pflegestützpunkt &amp; Mehrgenerationenhaus
+              </p>
+            </div>
+          </div>
+
+          <p class="text-[0.85rem] leading-relaxed text-slate-200/80">
+            Wertschätzende Pflege, Tagesbetreuung und Wohnen für mehrere Generationen – mitten in Kaiserslautern.
+          </p>
+
+          <div class="flex flex-wrap gap-3 text-[0.8rem] text-slate-100/80">
+            <div class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+              <span>Beratung nach Termin</span>
+            </div>
+            <div class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
+              <span>DEU · RUS · ENG</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Колонки ссылок -->
+        <div class="grid flex-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div>
+            <h4 class="mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.26em] text-emerald-100/70">
+              Navigation
+            </h4>
+            <ul class="space-y-2 text-[0.9rem] text-slate-100/85">
+              <li><a href="index.html#about" class="footer-link">Über uns</a></li>
+              <li><a href="index.html#angebote" class="footer-link">Angebote</a></li>
+              <li><a href="index.html#team" class="footer-link">Team</a></li>
+              <li><a href="index.html#news" class="footer-link">News</a></li>
+              <li><a href="index.html#karriere" class="footer-link">Karriere</a></li>
+              <li><a href="index.html#kontakt" class="footer-link">Kontakt</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.26em] text-emerald-100/70">
+              Kontakt
+            </h4>
+            <ul class="space-y-2 text-[0.9rem] text-slate-100/85">
+              <li>
+                Raiffeisenstraße 6<br />
+                67655 Kaiserslautern
+              </li>
+              <li>
+                <a href="tel:+4963131179499" class="footer-link">
+                  Tel. 📞 +49&nbsp;631&nbsp;31&nbsp;17&nbsp;94&nbsp;99
+                </a>
+              </li>
+              <li>
+                <a href="mailto:info@lebensanker-pflege.de" class="footer-link">
+                  info@lebensanker-pflege.de
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="mb-3 text-[0.75rem] font-semibold uppercase tracking-[0.26em] text-emerald-100/70">
+              Rechtliches
+            </h4>
+            <ul class="space-y-2 text-[0.9rem] text-slate-100/85">
+              <li><a href="impressum.html" class="footer-link">Impressum</a></li>
+              <li><a href="datenschutz.html" class="footer-link">Datenschutz</a></li>
+              <li><a href="cookies.html" class="footer-link">Cookie-Hinweis</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Нижняя полоска: копирайт + ProvenExpert + соцсети + Nach oben -->
+      <div
+        class="mt-8 border-t border-white/10 pt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between footer-bottom"
+      >
+
+        <!-- Копирайт + ProvenExpert -->
+        <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5 footer-bottom__primary">
+          <p class="text-[0.8rem] text-slate-300/80">
+            © 2025 Lebensanker Pflegestützpunkt GmbH · Alle Rechte vorbehalten.
+          </p>
+
+          <a
+            href="#reviews"
+            class="group inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1.5 ring-1 ring-white/10 hover:bg-white/10 hover:ring-emerald-300/70 transition"
+          >
+            <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white shadow-sm">
+              <svg viewBox="0 0 48 48" aria-hidden="true" class="h-5 w-5 text-[#2b2d26]">
+                <circle cx="24" cy="24" r="16.5" fill="#ffffff" />
+                <path
+                  d="M24 6a18 18 0 0 1 0 36"
+                  fill="none"
+                  stroke="#2b2d26"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M24 42a18 18 0 0 1 0-36"
+                  fill="none"
+                  stroke="#8B9478"
+                  stroke-width="4"
+                  stroke-linecap="round"
+                />
+                <path
+                  d="M24 14.5l3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3 1.2-6.9-5-4.9 6.9-1z"
+                  fill="#C29A6B"
+                />
+              </svg>
+            </span>
+            <span class="text-[0.78rem] text-slate-100/90">
+              100% Empfehlungen bei ProvenExpert
+            </span>
+          </a>
+        </div>
+
+        <!-- Соцсети + Nach oben -->
+        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6 w-full sm:w-auto footer-bottom__secondary">
+
+          <!-- Соцсети -->
+          <div class="flex items-center gap-2 footer-bottom__social">
+            <span class="text-[0.8rem] text-slate-300/85">Folgen Sie uns:</span>
+            <div class="flex gap-2.5">
+              <!-- Instagram -->
+              <a
+                href="#"
+                aria-label="Instagram"
+                class="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 shadow-sm hover:bg-white/10 hover:ring-[#E4405F]/70 hover:shadow-lg transition"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  class="h-3.5 w-3.5 text-slate-100/85 group-hover:text-[#E4405F] transition"
+                >
+                  <rect
+                    x="4"
+                    y="4"
+                    width="16"
+                    height="16"
+                    rx="5"
+                    ry="5"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  />
+                  <circle cx="17" cy="7" r="1.1" fill="currentColor" />
+                </svg>
+              </a>
+
+              <!-- Facebook -->
+              <a
+                href="#"
+                aria-label="Facebook"
+                class="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 shadow-sm hover:bg-white/10 hover:ring-[#1877F2]/70 hover:shadow-lg transition"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  class="h-3.5 w-3.5 text-slate-100/85 group-hover:text-[#1877F2] transition"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M13 21v-7h2.4l.6-3H13V9.2c0-.9.3-1.4 1.5-1.4H16V5.1C15.3 5 14.4 5 13.6 5 11.1 5 9.4 6.4 9.4 9v2H7v3h2.4v7z"
+                  />
+                </svg>
+              </a>
+
+              <!-- WhatsApp -->
+              <a
+                href="#"
+                aria-label="WhatsApp"
+                class="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 shadow-sm hover:bg-white/10 hover:ring-[#25D366]/70 hover:shadow-lg transition"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  class="h-3.5 w-3.5 text-slate-100/85 group-hover:text-[#25D366] transition"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M4.5 20.5 5.7 17A8 8 0 1 1 12 20a8 8 0 0 1-3.7-.9zM9.4 10.1c-.1-.3-.3-.3-.5-.3h-.4c-.1 0-.4.1-.6.3-.2.2-.8.7-.8 1.7s.8 1.9.9 2.1c.1.2 1.5 2.4 3.7 3.3 1.8.7 2.2.6 2.6.5.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.5-.3s-1.3-.6-1.5-.7c-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.8-.1.1-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.3a8 8 0 0 1-1.5-1.9c-.2-.3 0-.4.1-.5.1-.1.3-.3.4-.4.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.5-1.2-.7-1.7z"
+                  />
+                </svg>
+              </a>
+
+              <!-- YouTube -->
+              <a
+                href="#"
+                aria-label="YouTube"
+                class="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 shadow-sm hover:bg-white/10 hover:ring-[#FF0000]/70 hover:shadow-lg transition"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  class="h-3.5 w-3.5 text-slate-100/85 group-hover:text-[#FF0000] transition"
+                >
+                  <rect
+                    x="3.5"
+                    y="7"
+                    width="17"
+                    height="10"
+                    rx="3"
+                    ry="3"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                  />
+                  <path fill="currentColor" d="m11 10 4 2-4 2z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Nach oben -->
+          <div
+            class="flex items-center gap-2 sm:border-l sm:border-white/15 pl-0 sm:pl-5 footer-bottom__top mt-3 sm:mt-0"
+          >
+            <span class="text-[0.8rem] text-slate-300/85">Nach oben</span>
+            <a
+              href="#top"
+              class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5
+                     ring-1 ring-white/15 hover:bg-white/10 hover:ring-emerald-300/70 hover:shadow-lg transition"
+            >
+              <span class="sr-only">Nach oben</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4">
+                <path fill="currentColor" d="M12 5 6 11h4v8h4v-8h4z" />
+              </svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
