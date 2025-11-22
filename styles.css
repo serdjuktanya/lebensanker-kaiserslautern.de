@@ -808,176 +808,6 @@ select[data-enhance-select] {
   background: color-mix(in oklab, var(--camel) 14%, #fff);
 }
 
-/* =======================
-   Unser Team – carousel
-   ======================= */
-#team {
-  position: relative;
-  background: color-mix(in oklab, var(--beige) 35%, transparent);
-  --team-gap: 24px;
-  --arrow-size: 44px;
-  --caption-pad: 14px 16px;
-}
-#team .wave svg {
-  width: 100%;
-  height: 40px;
-  color: #fff !important;
-}
-#team .team-wrap {
-  position: relative;
-  max-width: 1180px;
-  margin: 28px auto 8px;
-  padding: 0 calc(var(--arrow-size) + 12px);
-  overflow: hidden;
-}
-#team .team-track {
-  display: flex;
-  gap: var(--team-gap);
-  will-change: transform;
-  transform: translateX(0);
-  transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
-  user-select: none;
-}
-#team .team-slide {
-  position: relative;
-  flex: 0 0 calc((100% - 2 * var(--team-gap)) / 3);
-  border-radius: 18px;
-  overflow: hidden;
-  background: #000;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
-}
-#team .team-slide:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
-}
-@media (max-width: 1024px) {
-  #team .team-slide {
-    flex-basis: calc((100% - var(--team-gap)) / 2);
-  }
-}
-@media (max-width: 640px) {
-  #team .team-slide {
-    flex-basis: 100%;
-  }
-}
-#team .team-slide img {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
-  display: block;
-  transition: transform 6s ease;
-}
-#team .team-slide:hover img {
-  transform: scale(1.04);
-}
-#team .team-slide figcaption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 18px 18px 16px;
-  color: #fff;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.35) 35%, rgba(0, 0, 0, 0.96) 100%);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
-  border-bottom-left-radius: 18px;
-  border-bottom-right-radius: 18px;
-  backdrop-filter: blur(3px);
-}
-#team .team-slide figcaption strong,
-#team .team-slide figcaption span {
-  display: inline-block;
-  background-color: rgba(0, 0, 0, 0.45);
-  padding: 3px 8px;
-  border-radius: 6px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-@media (max-width: 640px) {
-  #team .team-slide figcaption {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 10%, rgba(0, 0, 0, 0.65) 45%, rgba(0, 0, 0, 1) 100%);
-  }
-}
-
-/* Team nav arrows + dots */
-#team .team-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: var(--arrow-size);
-  height: var(--arrow-size);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  transition: transform 0.18s ease, opacity 0.18s ease, background-color 0.2s ease;
-  z-index: 2;
-}
-#team .team-prev { left: 8px; }
-#team .team-next { right: 8px; }
-#team .team-nav:hover {
-  transform: translateY(-50%) scale(1.06);
-}
-#team .team-nav[disabled] {
-  opacity: 0.35;
-  pointer-events: none;
-}
-#team .team-nav:focus-visible {
-  outline: 3px solid color-mix(in oklab, var(--mint) 55%, #fff);
-  outline-offset: 2px;
-}
-#team .team-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin: 12px auto 0;
-}
-#team .team-dots button {
-  width: 9px;
-  height: 9px;
-  border-radius: 9999px;
-  border: 0;
-  background: color-mix(in oklab, var(--mint) 35%, #ffffff);
-  opacity: 0.55;
-  transition: width 0.25s ease, opacity 0.25s ease, background-color 0.25s ease, transform 0.2s ease;
-}
-#team .team-dots button:hover {
-  opacity: 0.85;
-  transform: scale(1.1);
-}
-#team .team-dots button[aria-current="true"] {
-  width: 26px;
-  opacity: 1;
-  background: var(--mint);
-}
-@media (prefers-reduced-motion: reduce) {
-  #team .team-track,
-  #team .team-slide,
-  #team .team-slide img {
-    transition: none !important;
-  }
-}
-.dark #team .team-nav {
-  background: var(--card);
-  border-color: var(--line);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
-}
-.dark #team .team-dots button {
-  background: color-mix(in oklab, var(--mint-50) 55%, var(--card));
-  opacity: 0.8;
-}
-.dark #team .team-dots button[aria-current="true"] {
-  background: color-mix(in oklab, var(--mint-600) 70%, var(--card));
-}
-
-/* Simple hover zoom fallback */
-#team img {
-  transition: transform 6s ease;
-}
-#team img:hover {
-  transform: scale(1.05);
-}
 
 /* =========================
    Kooperationspartner – Premium
@@ -1174,7 +1004,17 @@ select[data-enhance-select] {
 }
 #reviews > * {
   position: relative;
-  z-index: 1;
+  z-index: 1;/* TEAM – ровно один слайд во вьюпорте на любом экране */
+#teamViewport {
+  position: relative;
+  border-radius: 1.75rem;
+  overflow: hidden;        /* ничего лишнего не видно */
+  padding: 0;
+}
+
+
+
+
 }
 #reviews .dark,
 .dark #reviews {
@@ -2953,89 +2793,100 @@ body {
     radial-gradient(circle at 100% 0%, rgba(195, 214, 189, 0.25), transparent 60%),
     linear-gradient(180deg, #fbfaf6 0%, #f6f4ee 40%, #f3efe9 100%) !important;
 }
-/* ===== HERO: чистое фото + сильнее тень у карточки ===== */
 
-/* =========================================
-   HERO: фото + лёгкий градиент сверху
-   (поверх картинки, без замыливания)
-   ========================================= */
+/* =========================================================
+   1. HERO SECTION (Base + Cinematic V3 Style)
+   ========================================================= */
 
-/* базовый hero – ТОЛЬКО картинка */
+/* Базовая структура (размеры и позиционирование) */
 .hero {
   position: relative;
   z-index: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-end; /* Контент справа */
   padding: 4rem 6%;
-  color: #fff;
-
-  /* чистая фотография */
-  background-image: url("./img/pflegedienst-1.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   min-height: clamp(420px, 62vh, 760px);
+  color: #fff;
 }
 
-/* лёгкий премиум-градиент поверх фото */
-.hero::before {
+/* Специфичный стиль V3 (Картинка + Cinematic Gradient) */
+.hero.hero--v3 {
+  /* Фотография */
+  background-image: url("./img/pflegedienst-1.jpg");
+  background-size: cover;
+  background-position: 18% 40%; /* Сдвиг фокуса */
+  background-repeat: no-repeat;
+}
+
+/* Легкий светлый градиент слева (под текстом) */
+.hero.hero--v3::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-
-  /* тут уже сам градиент — можешь потом ослабить/усилить */
-  background:
-    radial-gradient(circle at 0% 0%,
-      rgba(255, 255, 255, 0.55) 0,
-      transparent 55%)
-    ,
-    linear-gradient(
-      to bottom,
-      rgba(21, 26, 22, 0.46) 0%,
-      rgba(21, 26, 22, 0.18) 34%,
-      rgba(21, 26, 22, 0) 68%
-    );
+  background: linear-gradient(
+    90deg,
+    rgba(244, 239, 226, 0.85) 0%,
+    rgba(244, 239, 226, 0.55) 30%,
+    rgba(244, 239, 226, 0.12) 65%,
+    rgba(244, 239, 226, 0.02) 100%
+  );
+  mix-blend-mode: screen; /* Режим наложения для "свечения" */
 }
 
-/* контент героя поверх градиента */
+/* Легкая виньетка справа для контраста карточки */
+.hero.hero--v3::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 82% 45%,
+    rgba(0, 0, 0, 0.20) 0%,
+    rgba(0, 0, 0, 0.05) 45%,
+    transparent 70%
+  );
+}
+
+/* Контент поверх градиентов */
 .hero__inner,
 .hero__content {
   position: relative;
   z-index: 1;
+  max-width: 1120px;
 }
 
-/* в тёмной теме — чуть мягче затемнение */
-.dark .hero::before {
-  background:
-    radial-gradient(circle at 0% 0%,
-      rgba(255, 255, 255, 0.3) 0,
-      transparent 55%)
-    ,
-    linear-gradient(
-      to bottom,
-      rgba(21, 26, 22, 0.32) 0%,
-      rgba(21, 26, 22, 0.12) 36%,
-      rgba(21, 26, 22, 0) 68%
-    );
+/* Усиление тени для карточки внутри Hero V3 */
+.hero.hero--v3 .hero-card {
+  box-shadow:
+    0 24px 60px rgba(21, 26, 22, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.7);
 }
 
-/* =====================================================
-   ÜBER UNS – PREMIUM CARD + VIDEO-MODAL (FINAL)
-   ===================================================== */
+/* Точки пагинации в Hero (если используются) */
+.hero-pill-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: rgba(43, 45, 38, 0.18);
+}
 
-/* Чтобы секция уверенно лежала над фоном */
+.hero-pill-dot--active {
+  background: var(--mint, #4B5338);
+}
+
+/* =========================================================
+   2. ABOUT SECTION (Card, Text & Media)
+   ========================================================= */
+
 #about {
   position: relative;
   z-index: 1;
 }
 
-/* -----------------------------------------
-   КАРТОЧКА «БУМАЖНАЯ»
-   ----------------------------------------- */
-
+/* --- Paper Card Styling --- */
 .about-card {
   position: relative;
   margin-inline: auto;
@@ -3053,7 +2904,7 @@ body {
   overflow: hidden;
 }
 
-/* Верхний «блик» */
+/* Верхний блик на карточке */
 .about-card::before {
   content: "";
   position: absolute;
@@ -3070,7 +2921,7 @@ body {
   pointer-events: none;
 }
 
-/* Лёгкий шум/текстура (можно убрать, если не будет noise-файла) */
+/* Шум/текстура (опционально) */
 .about-card::after {
   content: "";
   position: absolute;
@@ -3078,7 +2929,7 @@ body {
   opacity: 0.12;
   mix-blend-mode: multiply;
   pointer-events: none;
-  background-image: url("./img/noise-subtle.png"); /* опционально */
+  background-image: url("./img/noise-subtle.png");
   background-size: 260px 260px;
 }
 
@@ -3097,15 +2948,11 @@ body {
   }
 }
 
-/* -----------------------------------------
-   ЛЕВАЯ КОЛОНКА – ТЕКСТ
-   ----------------------------------------- */
-
+/* --- Left Column: Text Content --- */
 .about-copy {
   max-width: 40rem;
 }
 
-/* Маленький бейдж (можно использовать для "Seit 2025") */
 .about-badge-small {
   display: inline-flex;
   align-items: center;
@@ -3129,7 +2976,6 @@ body {
   background: #c29a6b;
 }
 
-/* Overline "Wer wir sind" */
 .about-overline {
   font-size: 0.78rem;
   letter-spacing: 0.25em;
@@ -3138,13 +2984,11 @@ body {
   margin-bottom: 0.4rem;
 }
 
-/* Заголовок (использует fx-title, просто чутка настраиваем отступы) */
 .about-title {
   margin-bottom: 1rem;
   text-align: left;
 }
 
-/* Обычный текст */
 .about-text {
   font-size: 1rem;
   line-height: 1.7;
@@ -3152,7 +2996,6 @@ body {
   margin-bottom: 0.85rem;
 }
 
-/* Цитата */
 .about-quote {
   margin-top: 1rem;
   margin-bottom: 1.3rem;
@@ -3166,7 +3009,6 @@ body {
   box-shadow: 0 10px 30px rgba(139, 148, 120, 0.16);
 }
 
-/* Блок с Standort / Einsatzgebiet */
 .about-meta {
   display: grid;
   gap: 0.65rem;
@@ -3201,17 +3043,13 @@ body {
   color: rgba(20, 24, 19, 0.9);
 }
 
-/* Мини-«статистика» (если захочешь добавить цифры) */
 .about-stats {
   margin-top: 1.35rem;
   display: grid;
   gap: 0.9rem;
 }
-
 @media (min-width: 768px) {
-  .about-stats {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  .about-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 .about-stat-value {
@@ -3220,7 +3058,6 @@ body {
   font-weight: 600;
   color: #4b5338;
 }
-
 .about-stat-label {
   display: block;
   font-size: 0.8rem;
@@ -3228,10 +3065,7 @@ body {
   color: #6b7166;
 }
 
-/* -----------------------------------------
-   ПРАВАЯ КОЛОНКА – МЕДИА
-   ----------------------------------------- */
-
+/* --- Right Column: Media / Video --- */
 .about-media {
   position: relative;
   display: flex;
@@ -3239,7 +3073,6 @@ body {
   gap: 0.9rem;
 }
 
-/* Рамка вокруг фото/видео */
 .about-media-frame {
   position: relative;
   border-radius: 1.6rem;
@@ -3257,7 +3090,6 @@ body {
   box-shadow: 0 26px 65px rgba(21, 26, 22, 0.45);
 }
 
-/* Само изображение / video */
 .about-media-img {
   display: block;
   width: 100%;
@@ -3268,7 +3100,6 @@ body {
   background-color: #000;
 }
 
-/* Мягкий градиент поверх */
 .about-media-overlay {
   position: absolute;
   inset: 0;
@@ -3278,7 +3109,6 @@ body {
   pointer-events: none;
 }
 
-/* Маленький бейдж под фото */
 .about-badge {
   align-self: flex-start;
   padding: 0.35rem 0.85rem;
@@ -3290,15 +3120,9 @@ body {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
+.about-badge span { white-space: nowrap; }
 
-.about-badge span {
-  white-space: nowrap;
-}
-
-/* -----------------------------------------
-   КРУПНАЯ PLAY-ИКОНКА В ЦЕНТРЕ
-   ----------------------------------------- */
-
+/* Play Button */
 .about-play-center {
   position: absolute;
   inset: 0;
@@ -3341,7 +3165,6 @@ body {
   border-bottom: 10px solid transparent;
 }
 
-/* «дышащее» свечение */
 .about-play-circle::after {
   content: "";
   position: absolute;
@@ -3359,16 +3182,12 @@ body {
     0 22px 55px rgba(15, 23, 42, 0.55),
     0 0 0 1px rgba(255, 255, 255, 0.85);
 }
-
 .about-play-center:hover .about-play-circle::after {
   opacity: 0.9;
   transform: scale(1.03);
 }
 
-/* -----------------------------------------
-   МАЛЕНЬКИЙ PILL-СОПРОВОЖДЕНИЕ
-   ----------------------------------------- */
-
+/* Video Pill Button */
 .about-video-pill {
   position: absolute;
   left: 1.1rem;
@@ -3389,45 +3208,25 @@ body {
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.45);
   backdrop-filter: blur(8px);
 }
-
-.about-video-pill:hover {
-  background: rgba(20, 24, 19, 0.9);
-}
+.about-video-pill:hover { background: rgba(20, 24, 19, 0.9); }
 
 .about-video-icon {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 14px;
+  height: 14px;
 }
-
-.about-video-icon-circle {
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background: radial-gradient(circle at 30% 30%, #ffffff, #f3ebdd);
-}
-
 .about-video-icon-triangle {
-  position: relative;
-  margin-left: 2px;
-  width: 0;
-  height: 0;
-  border-left: 8px solid #c29a6b;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
+  margin-left: 0;
+  border-left: 7px solid #fdf9f0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
 }
+.about-video-text { white-space: nowrap; }
 
-.about-video-text {
-  white-space: nowrap;
-}
-
-/* -----------------------------------------
-   MODAL VIDEO (ABOUT)
-   ----------------------------------------- */
-
+/* Modal Video */
 .about-modal {
   position: fixed;
   inset: 0;
@@ -3436,10 +3235,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-
-.about-modal.is-open {
-  display: flex;
-}
+.about-modal.is-open { display: flex; }
 
 .about-modal-backdrop {
   position: absolute;
@@ -3460,21 +3256,14 @@ body {
   display: flex;
   align-items: stretch;
 }
-
-.about-modal-body {
-  flex: 1;
-  position: relative;
-}
-
-.about-modal-body iframe,
-.about-modal-body video {
+.about-modal-body { flex: 1; position: relative; }
+.about-modal-body iframe, .about-modal-body video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
 }
 
-/* Кнопка закрытия модалки */
 .about-modal-close {
   position: absolute;
   top: 0.6rem;
@@ -3493,46 +3282,1016 @@ body {
   background: rgba(15, 23, 42, 0.65);
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.85);
 }
+.about-modal-close:hover { background: rgba(15, 23, 42, 0.9); }
 
-.about-modal-close:hover {
-  background: rgba(15, 23, 42, 0.9);
-}
-
-/* Адаптив под мобилки */
+/* About Adaptive */
 @media (max-width: 767px) {
-  .about-card {
-    padding: 1.35rem;
-  }
+  .about-card { padding: 1.35rem; }
+  .about-play-circle { width: 64px; height: 64px; }
+  .about-video-pill { left: 0.8rem; bottom: 0.8rem; padding: 0.4rem 0.7rem; }
+  .about-video-text { max-width: 150px; white-space: normal; }
+}
 
-  .about-play-circle {
-    width: 64px;
-    height: 64px;
-  }
+/* =========================================================
+   3. ANGEBOTE (Services)
+   ========================================================= */
 
-  .about-video-pill {
-    left: 0.8rem;
-    bottom: 0.8rem;
-    padding: 0.4rem 0.7rem;
-  }
+.angebote-overline {
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(43, 45, 38, 0.55);
+  margin-bottom: 0.25rem;
+}
 
-  .about-video-text {
-    max-width: 150px;
-    white-space: normal;
+.angebote-subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 1.75rem;
+}
+
+.angebot-content {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+
+.angebot-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 20%, #ffffff, #f3ebdd);
+  color: #4B5338;
+  box-shadow: 0 8px 20px rgba(15,23,42,0.15);
+}
+
+.angebot-card h3 { font-size: 1.05rem; color: #2B2D26; }
+.angebot-card p { font-size: 0.95rem; line-height: 1.6; }
+
+/* Micro Premium Hover */
+.angebote-grid .angebot-card {
+  position: relative;
+  transform: translateY(0);
+  transition: transform 180ms ease-out, box-shadow 180ms ease-out, background 180ms ease-out;
+}
+
+.angebote-grid .angebot-card:hover,
+.angebote-grid .angebot-card:focus-within {
+  transform: translateY(-2px);
+  box-shadow:
+    0 20px 50px rgba(18, 23, 20, 0.20),
+    0 0 0 1px rgba(43, 45, 38, 0.06);
+}
+
+/* Dark card special hover */
+#beratung.angebot-card:hover,
+#beratung.angebot-card:focus-within {
+  transform: translateY(-2px);
+  box-shadow:
+    0 22px 55px rgba(10, 14, 11, 0.50),
+    0 0 0 1px rgba(243, 235, 221, 0.35);
+}
+
+@media (max-width: 640px) {
+  #angeboteTitle { font-size: clamp(1.7rem, 6vw, 2rem); margin-bottom: 0.7rem; }
+  .angebote-wrap > p { font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .angebote-grid { gap: 1rem; }
+  .angebote-grid .angebot-card { max-width: 480px; margin-inline: auto; }
+}
+
+/* =========================================================
+   TEAM – Unser Team (Final Clean Version)
+   ========================================================= */
+
+/* Секция целиком */
+#team {
+  position: relative;
+  z-index: 1;
+  padding: 6rem 0;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(240, 228, 208, 0.85), transparent 55%),
+    linear-gradient(180deg, #f7f1e6 0%, #f0e7d8 55%, #ebeef0 100%);
+}
+
+/* Бумажная карточка */
+.team-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  border-radius: 2rem;
+  padding: clamp(1.8rem, 3vw, 2.6rem);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.96),
+    rgba(243, 235, 221, 0.96)
+  );
+  box-shadow:
+    0 20px 55px rgba(15, 23, 42, 0.15),
+    0 0 0 1px rgba(43, 45, 38, 0.04);
+  border: 1px solid rgba(43, 45, 38, 0.04);
+  position: relative;
+}
+
+/* Верхний блик */
+.team-shell::before {
+  content: "";
+  position: absolute;
+  inset-inline: 12%;
+  top: 0;
+  height: 32px;
+  border-radius: 0 0 999px 999px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), transparent);
+  pointer-events: none;
+}
+
+/* Сетка: текст слева, слайдер справа */
+.team-layout {
+  display: grid;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .team-layout {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+    gap: 2.2rem;
   }
 }
-/* Убираем второй круг внутри pill-кнопки, оставляем только маленький треугольник */
-.about-video-icon-circle {
+
+/* ---------- ЛЕВАЯ КОЛОНКА (текст) ---------- */
+
+.team-copy {
+  max-width: 30rem;
+}
+
+.team-lead {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #4b4f45;
+  margin-bottom: 1.2rem;
+}
+
+.team-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.team-tags li {
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(195, 214, 189, 0.22);
+  border: 1px solid rgba(139, 148, 120, 0.4);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #4b5338;
+}
+
+/* мини-статистика */
+.team-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1.3rem;
+  margin-top: 0.4rem;
+}
+
+@media (min-width: 1024px) {
+  .team-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.team-stat dt {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(43, 45, 38, 0.65);
+  margin-bottom: 0.12rem;
+}
+
+.team-stat dd {
+  font-size: 0.9rem;
+  color: rgba(20, 24, 19, 0.9);
+}
+
+/* ссылка "Mehr über unser Team" */
+.team-more-link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #4b5338;
+}
+
+.team-more-link:hover {
+  color: #2b2d26;
+}
+
+/* ---------- ПРАВАЯ КОЛОНКА (слайдер) ---------- */
+
+.team-hero {
+  position: relative;
+}
+
+/* Рамка «телефона» */
+#teamViewport {
+  position: relative;
+  overflow: hidden;            /* обрезаем всё, что выходит за рамку */
+  border-radius: 1.75rem;
+  background: #111;
+  box-shadow:
+    0 22px 60px rgba(15, 23, 42, 0.35),
+    0 0 0 1px rgba(0, 0, 0, 0.35);
+  isolation: isolate;
+}
+
+/* Лента слайдов (ul) */
+#teamTrack {
+  display: flex;
+  margin: 0;           /* убираем стандартные отступы ul */
+  padding: 0;
+  list-style: none;
+  gap: 0;              /* без зазора между слайдами */
+  will-change: transform;
+  transition: transform 450ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Один слайд = ровно 100% ширины вьюпорта */
+.team-slide {
+  flex: 0 0 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+/* Карточка сотрудника внутри */
+.team-hero-card {
+  margin: 0;           /* сбрасываем margin у figure */
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;    /* красивая пропорция, без бешеной высоты */
+}
+
+/* Фото */
+.team-hero-photo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  /* немного поднимаем фокус, чтобы лицо было не отрезано подписью */
+  object-position: 50% 30%;
+  transform: none;          /* БЕЗ зума по умолчанию */
+  transition: transform 0.35s ease-out;
+}
+
+/* отключаем любой зум при hover */
+.team-hero:hover .team-hero-photo {
+  transform: none;
+}
+
+/* Градиент поверх фото */
+.team-hero-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 8% 0%, rgba(255, 255, 255, 0.25), transparent 55%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.15));
+  pointer-events: none;
+}
+
+/* Подпись снизу */
+.team-hero-info {
+  position: absolute;
+  left: 1.4rem;
+  right: 1.4rem;
+  bottom: 1.4rem;
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+  background: radial-gradient(
+      circle at 0% 0%,
+      rgba(243, 235, 221, 0.9),
+      rgba(21, 26, 22, 0.65)
+  );
+  color: #fdf9f0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+}
+
+.team-hero-role {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  opacity: 0.92;
+}
+
+.team-hero-name {
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Стрелки ---------- */
+
+#teamPrev,
+#teamNext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  border: none;
+  display: grid;
+  place-items: center;
+  background: rgba(244, 239, 226, 0.96);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.45);
+  cursor: pointer;
+  pointer-events: auto;
+  transition:
+    transform 150ms ease-out,
+    box-shadow 150ms ease-out,
+    background 150ms ease-out,
+    opacity 120ms ease-out;
+}
+
+#teamPrev { left: 0.65rem; }
+#teamNext { right: 0.65rem; }
+
+#teamPrev svg,
+#teamNext svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: #2B2D26;
+}
+
+#teamPrev:hover,
+#teamNext:hover {
+  background: rgba(255, 255, 255, 0.98);
+  transform: translateY(-50%) translateY(-1px);
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.55);
+}
+
+#teamPrev:active,
+#teamNext:active {
+  transform: translateY(-50%);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.45);
+}
+
+#teamPrev[disabled],
+#teamNext[disabled] {
+  opacity: 0.3;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* ---------- Точки под слайдером ---------- */
+
+.team-dots {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.team-dots button {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  border: none;
+  padding: 0;
+  background: rgba(43, 45, 38, 0.25);
+  cursor: pointer;
+  transition:
+    width 160ms ease-out,
+    background 160ms ease-out,
+    opacity 160ms ease-out;
+}
+
+.team-dots button.is-active,
+.team-dots button[aria-current="true"] {
+  width: 18px;
+  background: var(--mint, #8b9478);
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .team-dots button:hover {
+    background: rgba(43, 45, 38, 0.6);
+  }
+}
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 1023px) {
+  .team-shell {
+    border-radius: 1.6rem;
+    padding: 1.5rem 1.4rem;
+  }
+
+  .team-hero-info {
+    left: 1.1rem;
+    right: 1.1rem;
+    bottom: 1.1rem;
+    padding: 0.7rem 0.9rem;
+  }
+
+  .team-hero-name {
+    font-size: 1.02rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .team-shell {
+    padding: 1.4rem 1.1rem;
+  }
+
+  .team-stats {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #teamPrev,
+  #teamNext {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  #teamPrev { left: 0.4rem; }
+  #teamNext { right: 0.4rem; }
+}
+
+/* ===========================
+   FAQ – Premium Section
+   =========================== */
+
+#faq {
+  position: relative;
+  z-index: 1;
+  padding: 5rem 0 6rem;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(240, 228, 208, 0.9), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(139, 148, 120, 0.16), transparent 55%),
+    linear-gradient(180deg, #f7f1e6 0%, #f0e7d8 52%, #ebeef0 100%);
+}
+
+/* Внутренняя «бумажная» карточка вокруг всего FAQ-контента */
+#faq .fade-in {
+  border-radius: 1.9rem;
+  padding: 2rem 1.7rem 2.4rem;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.97),
+    rgba(243, 235, 221, 0.97)
+  );
+  box-shadow:
+    0 20px 55px rgba(15, 23, 42, 0.12),
+    0 0 0 1px rgba(43, 45, 38, 0.04);
+}
+
+#faq header {
+  margin-bottom: 1.75rem;
+}
+
+#faqTitle {
+  margin-bottom: 0.4rem;
+}
+
+#faq header p {
+  color: #4b4f45;
+}
+
+/* ===========================
+   FAQ Search
+   =========================== */
+
+#faq label[aria-label="FAQ durchsuchen"] {
+  position: relative;
+  display: block;
+  max-width: 32rem;
+  margin: 0 auto;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 14px 36px rgba(15, 23, 42, 0.12),
+    0 0 0 1px rgba(43, 45, 38, 0.06);
+  overflow: hidden;
+}
+
+#faq #faqSearch {
+  width: 100%;
+  border-radius: 999px;
+  border: none;
+  padding: 0.8rem 2.4rem 0.8rem 2.6rem;
+  font-size: 0.95rem;
+  background: transparent;
+  outline: none;
+  color: #111827;
+}
+
+#faq #faqSearch::placeholder {
+  color: rgba(107, 114, 128, 0.9);
+}
+
+/* иконка лупы слева */
+#faq label[aria-label="FAQ durchsuchen"]::before {
+  content: "🔍";
+  position: absolute;
+  left: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* кнопка очистки справа */
+#faq #faqClear {
+  right: 0.4rem;
+  background: transparent;
+  color: #4b4f45;
+  opacity: 0.75;
+}
+
+#faq #faqClear:hover {
+  background: rgba(15, 23, 42, 0.06);
+  opacity: 1;
+}
+
+#faqEmpty {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+/* ===========================
+   FAQ Chips (Kategorien)
+   =========================== */
+
+.faq-chips {
+  margin-top: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.faq-chip {
+  border: 1px solid rgba(139, 148, 120, 0.35);
+  border-radius: 999px;
+  padding: 0.25rem 0.85rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(243, 235, 221, 0.85);
+  color: #4b5338;
+  cursor: pointer;
+  transition:
+    background 150ms ease-out,
+    border-color 150ms ease-out,
+    box-shadow 150ms ease-out,
+    transform 120ms ease-out,
+    color 150ms ease-out;
+}
+
+.faq-chip:hover {
+  background: rgba(243, 235, 221, 1);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+  transform: translateY(-1px);
+}
+
+.faq-chip.is-active {
+  background: var(--mint, #8b9478);
+  color: #fdf9f0;
+  border-color: rgba(139, 148, 120, 0.9);
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 640px) {
+  .faq-chip {
+    font-size: 0.74rem;
+    padding: 0.22rem 0.75rem;
+  }
+}
+
+/* ===========================
+   FAQ Items – Cards
+   =========================== */
+
+#faq #faqList {
+  margin-top: 1.4rem;
+}
+
+#faq .faq-item.card {
+  border-radius: 1.2rem;
+  padding: 0.9rem 1rem;
+  background: radial-gradient(
+      circle at 0% 0%,
+      rgba(243, 235, 221, 0.9),
+      rgba(255, 255, 255, 0.95)
+    );
+  border: 1px solid rgba(194, 154, 107, 0.16);
+  box-shadow:
+    0 10px 26px rgba(15, 23, 42, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.7);
+  transition:
+    box-shadow 160ms ease-out,
+    transform 160ms ease-out,
+    border-color 160ms ease-out,
+    background 160ms ease-out;
+}
+
+#faq .faq-item.card:hover,
+#faq .faq-item.card[open] {
+  transform: translateY(-1px);
+  box-shadow:
+    0 16px 40px rgba(15, 23, 42, 0.15),
+    0 0 0 1px rgba(194, 154, 107, 0.22);
+  border-color: rgba(194, 154, 107, 0.35);
+}
+
+/* строка вопроса */
+#faq .faq-q {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  list-style: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.96rem;
+  line-height: 1.5;
+  color: #1f2933;
+  position: relative;
+}
+
+/* убираем стандартный маркер summary */
+#faq .faq-q::-webkit-details-marker {
   display: none;
 }
-
-.about-video-icon {
-  width: 14px;
-  height: 14px;
+#faq .faq-q::marker {
+  content: "";
 }
 
-.about-video-icon-triangle {
-  margin-left: 0;
-  border-left: 7px solid #fdf9f0;
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
+/* иконка слева */
+#faq .faq-ico {
+  flex: 0 0 auto;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 30% 20%, #ffffff, #f3ebdd);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12);
+  color: #4b5338;
+}
+
+#faq .faq-ico svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  stroke: currentColor;
+}
+
+/* текст вопроса */
+#faq .faq-q .faq-label {
+  display: inline;
+  font-size: 0.96rem;
+}
+
+/* стрелочка справа */
+#faq .faq-q::after {
+  content: "";
+  position: absolute;
+  right: 0.3rem;
+  top: 50%;
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 2px;
+  border-right: 2px solid rgba(43, 45, 38, 0.7);
+  border-bottom: 2px solid rgba(43, 45, 38, 0.7);
+  transform: translateY(-50%) rotate(45deg);
+  transition: transform 150ms ease-out, border-color 150ms ease-out;
+}
+
+#faq .faq-item[open] .faq-q::after {
+  transform: translateY(-30%) rotate(-135deg);
+  border-color: rgba(75, 83, 56, 0.95);
+}
+
+/* ответ */
+#faq .faq-a {
+  margin-top: 0.55rem;
+  padding-left: 2.9rem;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: #4b4f45;
+}
+
+/* скрытые (поиском) */
+#faq .is-hidden {
+  display: none !important;
+}
+
+/* подсветка поиском / mark.faq-hit */
+#faq .faq-hit {
+  background: rgba(194, 154, 107, 0.25);
+  color: inherit;
+  padding: 0 0.1em;
+  border-radius: 0.25em;
+}
+
+/* ===========================
+   Adaptive
+   =========================== */
+
+@media (max-width: 768px) {
+  #faq {
+    padding: 4.2rem 0 5rem;
+  }
+
+  #faq .fade-in {
+    border-radius: 1.4rem;
+    padding: 1.5rem 1.1rem 2rem;
+  }
+
+  #faq .faq-a {
+    padding-left: 2.5rem;
+    font-size: 0.93rem;
+  }
+
+  #faq label[aria-label="FAQ durchsuchen"] {
+    box-shadow:
+      0 10px 28px rgba(15, 23, 42, 0.12),
+      0 0 0 1px rgba(43, 45, 38, 0.04);
+  }
+}
+/* ===========================
+   KONTAKT – Premium Section
+   =========================== */
+
+#kontakt {
+  position: relative;
+  z-index: 1;
+  padding: 5.5rem 0 6.5rem;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(240, 228, 208, 0.9), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(139, 148, 120, 0.16), transparent 55%),
+    linear-gradient(180deg, #f7f1e6 0%, #f0e7d8 52%, #ebeef0 100%);
+}
+
+/* чтобы контент чуть «плавал» над фоном (как FAQ/Team) */
+#kontakt .fade-in {
+  border-radius: 2rem;
+  padding: 2rem 1.7rem 2.6rem;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.97),
+    rgba(243, 235, 221, 0.97)
+  );
+  box-shadow:
+    0 22px 60px rgba(15, 23, 42, 0.14),
+    0 0 0 1px rgba(43, 45, 38, 0.04);
+}
+
+/* чуть плотнее на мобилках */
+@media (max-width: 768px) {
+  #kontakt {
+    padding: 4.4rem 0 5.4rem;
+  }
+
+  #kontakt .fade-in {
+    border-radius: 1.6rem;
+    padding: 1.6rem 1.2rem 2.1rem;
+  }
+}
+
+/* ===========================
+   KONTAKT – Cards Base
+   =========================== */
+
+.kontakt-layout {
+  align-items: flex-start;
+}
+
+/* базовая «карточка» для левой и правой колонок */
+.kontakt-card {
+  position: relative;
+  border-radius: 1.6rem;
+  padding: 1.6rem 1.5rem 1.9rem;
+  background: radial-gradient(
+      circle at 0% 0%,
+      rgba(243, 235, 221, 0.92),
+      rgba(255, 255, 255, 0.98)
+    );
+  border: 1px solid rgba(43, 45, 38, 0.06);
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+  transition:
+    box-shadow 160ms ease-out,
+    transform 160ms ease-out,
+    border-color 160ms ease-out,
+    background 160ms ease-out;
+}
+
+/* лёгкое «поднятие» при hover */
+.kontakt-card:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 22px 60px rgba(15, 23, 42, 0.18),
+    0 0 0 1px rgba(194, 154, 107, 0.2);
+  border-color: rgba(194, 154, 107, 0.35);
+}
+
+/* верхний «блик» как в team-shell / FAQ */
+.kontakt-card::before {
+  content: "";
+  position: absolute;
+  inset-inline: 12%;
+  top: 0;
+  height: 26px;
+  border-radius: 0 0 999px 999px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), transparent);
+  pointer-events: none;
+}
+
+/* ===========================
+   KONTAKT – Modifiers
+   =========================== */
+
+/* Левая колонка – карта и контакты */
+.kontakt-card--info {
+  padding-top: 1.9rem;
+}
+
+/* Правая колонка – форма */
+.kontakt-card--form {
+  padding-top: 1.9rem;
+}
+
+/* на небольших экранах карточки одна под другой */
+@media (max-width: 768px) {
+  .kontakt-card {
+    border-radius: 1.4rem;
+    padding: 1.5rem 1.25rem 1.9rem;
+  }
+
+  .kontakt-card--form {
+    margin-top: 0.5rem;
+  }
+}
+
+/* ===========================
+   KONTAKT – Inputs & Select
+   =========================== */
+
+#kontakt input[type="text"],
+#kontakt input[type="tel"],
+#kontakt input[type="email"],
+#kontakt textarea,
+#kontakt select {
+  width: 100%;
+  margin-top: 0.25rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(255, 255, 255, 0.96);
+  padding: 0.55rem 0.85rem;
+  font-size: 0.95rem;
+  color: #111827;
+  outline: none;
+  transition:
+    border-color 140ms ease-out,
+    box-shadow 140ms ease-out,
+    background 140ms ease-out;
+}
+
+#kontakt textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* hover/focus состояния */
+#kontakt input:focus,
+#kontakt textarea:focus,
+#kontakt select:focus {
+  border-color: var(--mint, #8b9478);
+  box-shadow:
+    0 0 0 1px rgba(139, 148, 120, 0.35),
+    0 0 0 4px rgba(139, 148, 120, 0.18);
+  background: #ffffff;
+}
+
+/* placeholder */
+#kontakt input::placeholder,
+#kontakt textarea::placeholder {
+  color: rgba(148, 163, 184, 0.9);
+}
+
+/* маленький текст в форме */
+#kontakt #formTitle {
+  margin-bottom: 0.3rem;
+}
+
+#kontakt p.text-xs {
+  line-height: 1.5;
+}
+
+/* чипы в контакт-секции пусть выглядят чуть плотнее */
+#kontakt .chip {
+  border-radius: 999px;
+  padding-inline: 0.9rem;
+  padding-block: 0.4rem;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(139, 148, 120, 0.35);
+  color: #2b2d26;
+  font-size: 0.82rem;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+}
+
+/* ===========================
+   KONTAKT – Grid & Equal Height
+   =========================== */
+
+/* Сетка контакта: колонки растягиваются по высоте строки */
+.kontakt-grid {
+  align-items: stretch;
+}
+
+/* Левая панель + форма = одинаковая высота */
+.kontakt-panel,
+#contactForm {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Внутренний контейнер в карточках, чтобы контент тянулся */
+.kontakt-card-inner {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Чтобы карта красиво вписывалась и тянулась вместе с карточкой */
+.kontakt-panel .map-card {
+  flex: 1 1 auto;
+  display: flex;
+}
+
+.kontakt-panel .map-card iframe {
+  flex: 1 1 auto;
+  border-radius: 1.25rem;
+}
+/* ===========================
+   Mobile Drawer / Offcanvas
+   =========================== */
+
+/* Затемнение фона */
+.backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease-out;
+}
+
+.backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Панель-выдвижка справа */
+.offcanvas {
+  transform: translateX(100%);
+  will-change: transform;
+  transition: transform 210ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.offcanvas.open {
+  transform: translateX(0);
+}
+
+/* На десктопе drawer на всякий случай прячем */
+@media (min-width: 768px) {
+  .backdrop,
+  .offcanvas {
+    display: none !important;
+  }
+}
+
+/* Немного косметики для <details> в drawer */
+.offcanvas details.card summary {
+  list-style: none;
+}
+
+.offcanvas details.card summary::-webkit-details-marker {
+  display: none;
 }

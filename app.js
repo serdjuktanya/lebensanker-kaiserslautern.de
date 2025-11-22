@@ -490,87 +490,79 @@ on(window, "keydown", (e) => {
 })();
 
 /* ===============================
-   TEAM CAROUSEL
+   TEAM CAROUSEL – один слайд во вьюпорте (FINAL)
 =============================== */
 (() => {
   const viewport = document.getElementById("teamViewport");
-  const track = document.getElementById("teamTrack");
-  const prevBtn = document.getElementById("teamPrev");
-  const nextBtn = document.getElementById("teamNext");
+  const track    = document.getElementById("teamTrack");
+  const prevBtn  = document.getElementById("teamPrev");
+  const nextBtn  = document.getElementById("teamNext");
   const dotsWrap = document.getElementById("teamDots");
   if (!viewport || !track) return;
 
   const slides = Array.from(track.children);
-  const AUTOPLAY = true;
-  const INTERVAL = 4200;
+  if (!slides.length) return;
+
+  const AUTOPLAY    = true;
+  const INTERVAL    = 4200;
   const FADE_OUT_MS = 160;
 
-  const getGap = () => parseFloat(getComputedStyle(track).gap || "0") || 0;
-  const perView = () => {
-    const w = viewport.clientWidth;
-    if (w >= 1024) return 4;
-    if (w >= 768) return 3;
-    if (w >= 640) return 2;
-    return 1;
-  };
-  const stepWidth = () => {
-    const first = slides[0];
-    return first ? first.getBoundingClientRect().width + getGap() : 0;
-  };
-  const pageCount = () => Math.max(1, slides.length - perView() + 1);
+  // каждая "страница" = один слайд
+  const pageCount = () => slides.length;
 
-  let index = 0;
-  let timer = null;
+  let index   = 0;
+  let timer   = null;
   let isHover = false;
 
-  const clampIndex = (i) => clamp(i, 0, pageCount() - 1);
+  const clampIndex = (i) => Math.max(0, Math.min(i, pageCount() - 1));
+
+  // 🔹 ВАЖНО: берем фактическую ширину одного слайда
+  function slideWidth() {
+    const first = slides[0];
+    return first ? first.getBoundingClientRect().width : 0;
+  }
+
+  function computeOffset() {
+    const w = slideWidth();
+    return -index * w;
+  }
 
   function buildDots() {
+    if (!dotsWrap) return;
     dotsWrap.innerHTML = "";
     const pages = pageCount();
-
     for (let i = 0; i < pages; i++) {
       const b = document.createElement("button");
       b.type = "button";
       b.className =
         "w-2.5 h-2.5 rounded-full border border-[var(--early)]/30 aria-[current=true]:w-6 aria-[current=true]:bg-[var(--mint)] aria-[current=true]:border-[var(--mint)] transition-[width,background]";
       b.setAttribute("aria-label", `Slide ${i + 1}`);
-      on(b, "click", () => go(i, true));
+      b.addEventListener("click", () => go(i, true));
       dotsWrap.appendChild(b);
     }
   }
 
   function updateDots() {
-    Array.from(dotsWrap.children).forEach((d, di) => d.setAttribute("aria-current", di === index ? "true" : "false"));
+    if (!dotsWrap) return;
+    Array.from(dotsWrap.children).forEach((d, di) =>
+      d.setAttribute("aria-current", di === index ? "true" : "false")
+    );
   }
 
   function updateButtons() {
+    if (!prevBtn || !nextBtn) return;
     const atStart = index === 0;
-    const atEnd = index === pageCount() - 1;
-    prevBtn?.toggleAttribute("disabled", atStart);
-    nextBtn?.toggleAttribute("disabled", atEnd);
-  }
-
-  function computeOffset() {
-    const step = stepWidth();
-    if (!step) return 0;
-
-    let x = -(index * step);
-    const totalWidth = slides.length * step - getGap();
-    const maxOffset = totalWidth - viewport.clientWidth;
-
-    if (x < -maxOffset) x = -maxOffset;
-    return x;
+    const atEnd   = index === pageCount() - 1;
+    prevBtn.toggleAttribute("disabled", atStart);
+    nextBtn.toggleAttribute("disabled", atEnd);
   }
 
   function render(withFade = true) {
     index = clampIndex(index);
     const x = computeOffset();
 
-    viewport.classList.add("is-moving");
-
     if (withFade) {
-      viewport.classList.add("is-fading");
+      viewport.classList.add("is-moving", "is-fading");
 
       window.setTimeout(() => {
         track.style.transform = `translateX(${x}px)`;
@@ -579,8 +571,7 @@ on(window, "keydown", (e) => {
         viewport.classList.add("is-fading-soft");
 
         window.setTimeout(() => {
-          viewport.classList.remove("is-fading-soft");
-          viewport.classList.remove("is-moving");
+          viewport.classList.remove("is-fading-soft", "is-moving");
         }, 640);
       }, FADE_OUT_MS);
     } else {
@@ -630,28 +621,28 @@ on(window, "keydown", (e) => {
     start();
   }
 
-  on(prevBtn, "click", () => go(index - 1, true));
-  on(nextBtn, "click", () => go(index + 1, true));
+  // события
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => go(index - 1, true));
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => go(index + 1, true));
+  }
 
-  on(viewport, "mouseenter", () => isHover = true);
-  on(viewport, "mouseleave", () => isHover = false);
-  on(viewport, "focusin", stop);
-  on(viewport, "focusout", start);
+  viewport.addEventListener("mouseenter", () => (isHover = true));
+  viewport.addEventListener("mouseleave", () => (isHover = false));
+  viewport.addEventListener("focusin",  stop);
+  viewport.addEventListener("focusout", start);
 
-  on(window, "resize", () => {
-    const oldPages = dotsWrap.children.length;
-    const newPages = pageCount();
-
-    if (oldPages !== newPages) {
-      const currentStartItem = index;
-      buildDots();
-      index = clampIndex(currentStartItem);
-    }
-
+  // при ресайзе пересчитываем позицию
+  window.addEventListener("resize", () => {
+    index = clampIndex(index);
     render(false);
   }, { passive: true });
 
-  on(document, "visibilitychange", () => document.visibilityState === "hidden" ? stop() : start());
+  document.addEventListener("visibilitychange", () =>
+    document.visibilityState === "hidden" ? stop() : start()
+  );
 
   buildDots();
   render(false);
@@ -952,16 +943,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ===============================
-   FAQ unified: search + highlight + deep-link
+   FAQ unified: search + highlight + deep-link + chips
 =============================== */
 (function () {
   const scope = document.querySelector("#faq");
   if (!scope) return;
 
-  const search = scope.querySelector("#faqSearch");
-  const clear = scope.querySelector("#faqClear");
+  const search  = scope.querySelector("#faqSearch");
+  const clear   = scope.querySelector("#faqClear");
   const emptyUI = scope.querySelector("#faqEmpty");
   const counter = scope.querySelector("#faqCounter");
+  const chips   = Array.from(scope.querySelectorAll("[data-faq-chip]"));
 
   const items = Array.from(scope.querySelectorAll("details.faq-item, #faqList details"));
   const summaries = items.map((d) => d.querySelector("summary.faq-q"));
@@ -1023,14 +1015,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const before = raw.slice(0, i);
-    const hit = raw.slice(i, i + qRaw.length);
-    const after = raw.slice(i + qRaw.length);
+    const hit    = raw.slice(i, i + qRaw.length);
+    const after  = raw.slice(i + qRaw.length);
 
     labelEl.innerHTML = "";
     const mark = document.createElement("mark");
     mark.className = "faq-hit";
     mark.textContent = hit;
-    labelEl.append(document.createTextNode(before), mark, document.createTextNode(after));
+    labelEl.append(
+      document.createTextNode(before),
+      mark,
+      document.createTextNode(after)
+    );
   }
 
   function applyFilter() {
@@ -1039,11 +1035,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let visible = 0;
 
     items.forEach((d, idx) => {
-      const lbl = labels[idx];
+      const lbl    = labels[idx];
       const sumTxt = lbl?.dataset?.label || "";
       const ansTxt = d.querySelector(".faq-a")?.textContent || "";
-      const hay = norm(sumTxt + " " + ansTxt);
-      const match = !q || hay.includes(q);
+      const hay    = norm(sumTxt + " " + ansTxt);
+      const match  = !q || hay.includes(q);
 
       d.classList.toggle("is-hidden", !match);
       if (match) visible++;
@@ -1070,10 +1066,27 @@ document.addEventListener("DOMContentLoaded", () => {
     if (clear) {
       clear.hidden = qRaw.length === 0;
     }
+
+    // 🔹 Обновляем активный чип в зависимости от строки поиска
+    if (chips.length) {
+      const qLower = qRaw.toLowerCase();
+
+      chips.forEach((chip) => {
+        const query = (chip.dataset.query || "").toLowerCase();
+        const isAll = query === "";
+        const active =
+          (!qLower && isAll) ||            // пустой поиск → "Alle"
+          (qLower && query && qLower === query); // поиск совпадает с query
+
+        chip.classList.toggle("is-active", active);
+      });
+    }
   }
 
+  // Ввод в поиск
   on(search, "input", debounce(applyFilter, 120));
 
+  // ESC очищает поиск
   on(search, "keydown", (e) => {
     if (e.key === "Escape") {
       search.value = "";
@@ -1081,6 +1094,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Кнопка очистки
   on(clear, "click", () => {
     if (!search) return;
     search.value = "";
@@ -1088,6 +1102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     search.focus();
   });
 
+  // Клик по FAQ – аккордеон
   on(scope, "toggle", (e) => {
     const d = e.target;
     if (d.tagName !== "DETAILS" || !d.open) return;
@@ -1100,6 +1115,20 @@ document.addEventListener("DOMContentLoaded", () => {
     if (d.id) history.replaceState(null, "", `#${d.id}`);
   });
 
+  // 🔹 Чипы – подставляем запрос в поиск
+  chips.forEach((chip) => {
+    on(chip, "click", (e) => {
+      e.preventDefault();
+      const q = chip.dataset.query || "";
+      if (!search) return;
+
+      search.value = q;
+      applyFilter();
+      search.focus();
+    });
+  });
+
+  // Открытие FAQ по якорю #faq-...
   function openFromHash() {
     const id = location.hash.replace("#", "");
     if (!id) return;
@@ -1113,10 +1142,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   on(window, "hashchange", openFromHash);
 
+  // стартовое состояние
   applyFilter();
   openFromHash();
 })();
-
 
 /* ===============================
    отправка формы: автоустановка e-mail получателя в зависимости от темы
