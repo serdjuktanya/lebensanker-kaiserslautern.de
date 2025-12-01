@@ -38,7 +38,10 @@
 }
 
 body {
-  background: var(--body);
+  background:
+    radial-gradient(circle at top left, rgba(195, 214, 189, 0.6), transparent 55%),
+    radial-gradient(circle at 120% 120%, rgba(242, 230, 211, 0.9), transparent 55%),
+    var(--body, #f4efe5);
   color: var(--ink);
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
 }
@@ -178,18 +181,7 @@ header .nav-dropdown .sub-link:hover {
   transform: translateY(-1px);
 }
 
-.card-ui {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  box-shadow: var(--shadow);
-  padding: 1.5rem;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-.card-ui:hover {
-  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.12);
-  transform: translateY(-1px);
-}
+
 
 .job-card {
   background: white;
@@ -1881,9 +1873,7 @@ select[data-enhance-select] {
 .dark #angebote .angebot-card h3 {
   color: #f9fafb;
 }
-.dark #angebote .angebot-card p {
-  color: #e5e7eb;
-}
+
 .dark #angebote .angebot-icon {
   background: color-mix(in oklab, var(--mint-50) 26%, #222822);
   color: #f9fafb;
@@ -1894,86 +1884,6 @@ select[data-enhance-select] {
   color: var(--camel);
 }
 
-/* =========================
-   FAQ
-   ========================= */
-.faq-item {
-  padding: 0;
-  overflow: hidden;
-}
-.faq-q {
-  list-style: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 1rem 1.1rem 1rem 1rem;
-  font-weight: 600;
-}
-.faq-ico {
-  width: 1.2rem;
-  text-align: center;
-  opacity: 0.9;
-}
-.faq-a {
-  padding: 0 1rem 1rem 2.2rem;
-  color: var(--text-muted, #64748b);
-}
-.faq-q::after {
-  content: "▾";
-  margin-left: auto;
-  opacity: 0.7;
-  transition: transform 0.25s ease, opacity 0.25s ease;
-}
-details[open] .faq-q::after {
-  transform: rotate(-180deg);
-  opacity: 1;
-}
-.faq-item:hover .faq-q {
-  background: rgba(0, 0, 0, 0.03);
-}
-details.faq-item > .faq-a {
-  animation: faq-open 0.28s ease;
-}
-@keyframes faq-open {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-.faq-item.is-hidden {
-  display: none !important;
-}
-#faqCounter {
-  min-height: 1.25rem;
-}
-mark.faq-hit {
-  background: color-mix(in oklab, var(--mint) 25%, #fff);
-  padding: 0.05em 0.2em;
-  border-radius: 0.25rem;
-}
-.scroll-pad {
-  scroll-margin-top: var(--sticky-offset);
-}
-#faq details {
-  scroll-margin-top: 84px;
-}
-#faqEmpty.hidden {
-  display: none;
-}
-.faq-ico svg {
-  stroke: #8b9478;
-  transition: filter 0.3s ease, transform 0.2s ease, stroke 0.3s ease;
-}
-.faq-item:hover .faq-ico svg {
-  stroke: #4b5338;
-  filter: drop-shadow(0 0 5px rgba(139, 148, 120, 0.5));
-  transform: scale(1.05);
-}
 
 /* PREMIUM CARD для FAQ / общих блоков */
 .la-card {
@@ -2160,14 +2070,7 @@ mark.faq-hit {
   border-color: #4a4a4a;
   color: #f4f4f4;
 }
-#kontakt select option {
-  color: inherit;
-  background: #ffffff;
-}
-.dark #kontakt select option {
-  background: #2a2b27;
-  color: #f4f4f4;
-}
+
 
 /* Якоря не прячутся под шапку */
 .scroll-pad {
@@ -2661,18 +2564,6 @@ section h2.fx-title.fx-title--sm::after {
   height: 40px;
 }
 
-/* =========================================
-   PREMIUM BACKGROUND OVERRIDES (only bg)
-
-   ========================================= */
-
-/* Фон всей страницы */
-body {
-  background:
-    radial-gradient(circle at top left, rgba(195, 214, 189, 0.6), transparent 55%),
-    radial-gradient(circle at 120% 120%, rgba(242, 230, 211, 0.9), transparent 55%),
-    var(--body, #f4efe5);
-}
 
 /* Убираем волны (форму секций не трогаем) */
 .wave,
@@ -3927,7 +3818,14 @@ body {
   width: 1.15rem;
   height: 1.15rem;
   stroke: currentColor;
+  transition: filter 0.3s ease, transform 0.2s ease, stroke 0.3s ease;
 }
+
+#faq .faq-item:hover .faq-ico svg {
+  filter: drop-shadow(0 0 5px rgba(139, 148, 120, 0.5));
+  transform: scale(1.05);
+}
+
 
 /* текст вопроса */
 #faq .faq-q .faq-label {
@@ -4220,49 +4118,7 @@ body {
   flex: 1 1 auto;
   border-radius: 1.25rem;
 }
-/* ===========================
-   Mobile Drawer / Offcanvas
-   =========================== */
 
-/* Затемнение фона */
-.backdrop {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 180ms ease-out;
-}
-
-.backdrop.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* Панель-выдвижка справа */
-.offcanvas {
-  transform: translateX(100%);
-  will-change: transform;
-  transition: transform 210ms cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-.offcanvas.open {
-  transform: translateX(0);
-}
-
-/* На десктопе drawer на всякий случай прячем */
-@media (min-width: 768px) {
-  .backdrop,
-  .offcanvas {
-    display: none !important;
-  }
-}
-
-/* Немного косметики для <details> в drawer */
-.offcanvas details.card summary {
-  list-style: none;
-}
-
-.offcanvas details.card summary::-webkit-details-marker {
-  display: none;
-}
 
 /* =======================
    DARK THEME – deep green
@@ -4398,4 +4254,248 @@ body {
   background: #0d1410;
   border-color: rgba(255, 255, 255, 0.08);
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.85);
+}
+/* =========================================
+   DARK MODE – контраст текста (фиксы)
+   ========================================= */
+
+/* Базово: в тёмной теме текст светлый */
+.dark,
+.dark body {
+  color: var(--ink);
+}
+
+/* Заголовки */
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  color: #f9fafb;
+}
+
+/* Базовый текст и списки в секциях */
+.dark p,
+.dark li,
+.dark .text-slate-500,
+.dark .text-slate-600,
+.dark .text-slate-700,
+.dark .text-gray-500,
+.dark .text-gray-600 {
+  color: #e5e7eb;
+}
+
+/* ABOUT */
+.dark #about .about-text,
+.dark #about .about-lead,
+.dark #about p,
+.dark #about li {
+  color: #e5e7eb;
+}
+.dark #about .about-quote {
+  color: #f3f4f6;
+  background: rgba(124, 143, 118, 0.4);
+}
+
+/* ANGEBOTE */
+.dark #angebote .angebote-subtitle,
+.dark #angebote .angebot-card p {
+  color: #e5e7eb;
+}
+
+/* TEAM */
+.dark #team .team-lead,
+.dark #team .team-stat dd,
+.dark #team .team-stat dt,
+.dark #team .team-tags li {
+  color: #e5e7eb;
+}
+.dark #team .team-tags li {
+  background: rgba(79, 112, 80, 0.35);
+  border-color: rgba(196, 214, 193, 0.7);
+}
+
+/* PARTNER */
+.dark #partner p {
+  color: #e5e7eb;
+}
+
+/* REVIEWS */
+.dark #reviews .review-badge__text,
+.dark #reviews .review-badge,
+.dark #reviews p {
+  color: #e5e7eb;
+}
+
+/* NEWS */
+.dark #news .news-teaser,
+.dark #news .news-meta,
+.dark #news .small-teaser {
+  color: rgba(249, 250, 251, 0.95);
+}
+
+/* KARRIERE */
+.dark #karriere .job-body p {
+  color: #e5e7eb;
+}
+
+/* FAQ */
+.dark #faq header p,
+.dark #faq .faq-a,
+.dark #faq .faq-q .faq-label,
+.dark #faqEmpty {
+  color: #e5e7eb;
+}
+.dark #faq .faq-ico {
+  color: #e5e7eb;
+}
+
+/* KONTAKT */
+.dark #kontakt .kontakt-card,
+.dark #kontakt .kontakt-card p,
+.dark #kontakt .kontakt-card address,
+.dark #kontakt label {
+  color: #e5e7eb;
+}
+
+/* Legal pages в тёмной теме */
+.dark .legal-page,
+.dark .legal-page p,
+.dark .legal-page li {
+  color: #e5e7eb;
+}
+/* =========================================
+   DARK – фиксы для H2 / заголовков
+   ========================================= */
+
+/* Все обычные h2 – делаем светлыми */
+.dark h2 {
+  color: #f9fafb !important;
+}
+
+/* Фирменные секционные заголовки fx-title */
+.dark section h2.fx-title {
+  color: #f9fafb !important;
+}
+
+/* Специальный заголовок в NEWS */
+.dark #news h2#blogTitle {
+  color: #f9fafb !important;
+}
+
+/* Заголовки в legal-блоках */
+.dark .legal-hero h1,
+.dark .legal-card h2,
+.dark .legal-card h3 {
+  color: #f9fafb !important;
+}
+
+/* =========================================
+   Typografie / Farben für About, FAQ, Kontakt
+   (светлая + тёмная тема, без !important и *:not)
+   ========================================= */
+
+/* Базовый текст для секций */
+#about,
+#faq,
+#kontakt {
+  color: #111827;
+}
+
+/* Заголовки секций (light) */
+#about h2,
+#about h2.fx-title,
+#faq h2,
+#faq h2.fx-title,
+#kontakt h2,
+#kontakt h2.fx-title,
+#faq #faqTitle,
+#kontakt #formTitle {
+  color: #111827;
+}
+
+/* Текст, подписи и мета-информация (light) */
+#about .about-text,
+#about .about-quote,
+#about .about-meta-value,
+#about .about-meta-label,
+#about .about-stat-label,
+#about .about-stat-value,
+#faq header p,
+#faq .faq-q,
+#faq .faq-q .faq-label,
+#faq .faq-a,
+#faq #faqEmpty,
+#kontakt .kontakt-panel,
+#kontakt .kontakt-panel p,
+#kontakt .kontakt-panel .text,
+#kontakt .kontakt-panel address,
+#kontakt .kontakt-panel div,
+#kontakt label,
+
+#kontakt input[type="email"],
+#kontakt textarea,
+#kontakt select {
+  color: #1f2937;
+}
+
+/* Плейсхолдеры (light) */
+#kontakt input::placeholder,
+#kontakt textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* =========================================
+   Dark mode — те же секции
+   ========================================= */
+
+.dark #about,
+.dark #faq,
+.dark #kontakt {
+  color: #e5e7eb;
+}
+
+/* Заголовки секций (dark) */
+.dark #about h2,
+.dark #about h2.fx-title,
+.dark #faq h2,
+.dark #faq h2.fx-title,
+.dark #kontakt h2,
+.dark #kontakt h2.fx-title,
+.dark #faq #faqTitle,
+.dark #kontakt #formTitle {
+  color: #f9fafb;
+}
+
+/* Текст, подписи и мета-информация (dark) */
+.dark #about .about-text,
+.dark #about .about-quote,
+.dark #about .about-meta-value,
+.dark #about .about-meta-label,
+.dark #about .about-stat-label,
+.dark #about .about-stat-value,
+.dark #faq header p,
+.dark #faq .faq-q,
+.dark #faq .faq-q .faq-label,
+.dark #faq .faq-a,
+.dark #faq #faqEmpty,
+.dark #kontakt .kontakt-panel,
+.dark #kontakt .kontakt-panel p,
+.dark #kontakt .kontakt-panel .text,
+.dark #kontakt .kontakt-panel address,
+.dark #kontakt .kontakt-panel div,
+.dark #kontakt label,
+.dark #kontakt input[type="text"],
+.dark #kontakt input[type="tel"],
+.dark #kontakt input[type="email"],
+.dark #kontakt textarea,
+.dark #kontakt select {
+  color: #e5e7eb;
+}
+
+/* Плейсхолдеры (dark) */
+.dark #kontakt input::placeholder,
+.dark #kontakt textarea::placeholder {
+  color: #9ca3af;
 }
