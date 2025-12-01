@@ -37,19 +37,6 @@
   --fx-title-letter-spacing: 0.04em;
 }
 
-.dark {
-  --body: #141813;
-  --card: #0f1310;
-  --chip: #0f1310;
-  --ink: #e9eee8;
-  --line: rgba(255, 255, 255, 0.12);
-  --shadow: none;
-  --mint: var(--sage);
-  --mint-600: #aeb8a1;
-  --mint-50: #1b221b;
-  --beige: #161a15;
-}
-
 body {
   background: var(--body);
   color: var(--ink);
@@ -983,7 +970,10 @@ select[data-enhance-select] {
 }
 #reviews > * {
   position: relative;
-  z-index: 1;/* TEAM – ровно один слайд во вьюпорте на любом экране */
+  z-index: 1;
+}
+
+/* TEAM – ровно один слайд во вьюпорте на любом экране */
 #teamViewport {
   position: relative;
   border-radius: 1.75rem;
@@ -991,15 +981,14 @@ select[data-enhance-select] {
   padding: 0;
 }
 
+/* (страй бракет закомментирован, чтобы не ломать CSS) */
+/* } */
 
-
-
-}
 #reviews .dark,
 .dark #reviews {
-  background: #fff !important;
-  color: var(--ink) !important;
-  border-color: var(--line) !important;
+  background: #fff;
+  color: var(--ink);
+  border-color: var(--line);
 }
 
 /* Review badge cards */
@@ -2674,7 +2663,7 @@ section h2.fx-title.fx-title--sm::after {
 
 /* =========================================
    PREMIUM BACKGROUND OVERRIDES (only bg)
-   Добавить в КОНЕЦ styles.css
+
    ========================================= */
 
 /* Фон всей страницы */
@@ -2682,7 +2671,7 @@ body {
   background:
     radial-gradient(circle at top left, rgba(195, 214, 189, 0.6), transparent 55%),
     radial-gradient(circle at 120% 120%, rgba(242, 230, 211, 0.9), transparent 55%),
-    var(--body, #f4efe5) !important;
+    var(--body, #f4efe5);
 }
 
 /* Убираем волны (форму секций не трогаем) */
@@ -2698,7 +2687,7 @@ body {
 #about {
   background:
     radial-gradient(circle at 0% 100%, rgba(195, 214, 189, 0.55), transparent 55%),
-    var(--body, #f4efe5) !important;
+    var(--body, #f4efe5);
 }
 
 /* -----------------------------------------
@@ -2707,7 +2696,7 @@ body {
 #angebote {
   background:
     radial-gradient(circle at 100% 0%, rgba(195, 214, 189, 0.45), transparent 55%),
-    linear-gradient(180deg, #f6f0e6 0%, #f3ebdd 40%, #f7f2e8 100%) !important;
+    linear-gradient(180deg, #f6f0e6 0%, #f3ebdd 40%, #f7f2e8 100%);
 }
 
 /* -----------------------------------------
@@ -2716,7 +2705,7 @@ body {
 #team {
   background:
     radial-gradient(circle at 0% 0%, rgba(240, 228, 208, 0.85), transparent 55%),
-    linear-gradient(180deg, #f7f1e6 0%, #f0e7d8 55%, #ebeef0 100%) !important;
+    linear-gradient(180deg, #f7f1e6 0%, #f0e7d8 55%, #ebeef0 100%);
 }
 
 /* -----------------------------------------
@@ -2725,7 +2714,7 @@ body {
 #partner {
   background:
     radial-gradient(circle at 15% 0%, rgba(195, 214, 189, 0.6), transparent 55%),
-    linear-gradient(180deg, #f3ebdd 0%, #f7f1e6 100%) !important;
+    linear-gradient(180deg, #f3ebdd 0%, #f7f1e6 100%);
 }
 
 /* -----------------------------------------
@@ -2734,7 +2723,7 @@ body {
 #news {
   background:
     radial-gradient(circle at 85% 0%, rgba(195, 214, 189, 0.5), transparent 55%),
-    linear-gradient(180deg, #f7f1e6 0%, #f3ebdd 35%, #edf1f3 100%) !important;
+    linear-gradient(180deg, #f7f1e6 0%, #f3ebdd 35%, #edf1f3 100%);
 }
 
 /* -----------------------------------------
@@ -2743,7 +2732,7 @@ body {
 #karriere {
   background:
     radial-gradient(circle at 0% 0%, rgba(195, 214, 189, 0.6), transparent 60%),
-    linear-gradient(180deg, #f6f0e6 0%, #f3ebdd 45%, #edf2f4 100%) !important;
+    linear-gradient(180deg, #f6f0e6 0%, #f3ebdd 45%, #edf2f4 100%);
 }
 
 /* -----------------------------------------
@@ -2752,7 +2741,7 @@ body {
 #reviews {
   background:
     radial-gradient(circle at 75% 0%, rgba(195, 214, 189, 0.7), transparent 60%),
-    linear-gradient(180deg, #f3ebdd 0%, #f1e8da 45%, #edf2f4 100%) !important;
+    linear-gradient(180deg, #f3ebdd 0%, #f1e8da 45%, #edf2f4 100%);
 }
 
 /* -----------------------------------------
@@ -2761,7 +2750,7 @@ body {
 #faq {
   background:
     radial-gradient(circle at 0% 0%, rgba(195, 214, 189, 0.25), transparent 55%),
-    linear-gradient(180deg, #fbf9f5 0%, #f6f3ee 50%, #f3efe9 100%) !important;
+    linear-gradient(180deg, #fbf9f5 0%, #f6f3ee 50%, #f3efe9 100%);
 }
 
 /* -----------------------------------------
@@ -2770,7 +2759,7 @@ body {
 #kontakt {
   background:
     radial-gradient(circle at 100% 0%, rgba(195, 214, 189, 0.25), transparent 60%),
-    linear-gradient(180deg, #fbfaf6 0%, #f6f4ee 40%, #f3efe9 100%) !important;
+    linear-gradient(180deg, #fbfaf6 0%, #f6f4ee 40%, #f3efe9 100%);
 }
 
 /* =========================================================
@@ -4273,4 +4262,140 @@ body {
 
 .offcanvas details.card summary::-webkit-details-marker {
   display: none;
+}
+
+/* =======================
+   DARK THEME – deep green
+   ======================= */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* более тёмные зелёные бренд-цвета */
+    --cream: #121813;
+    --camel: #b78b58;
+    --sage: #647e63;
+    --ever: #2f4c35;
+    --forest: #050806;
+
+    /* алиасы */
+    --pistage: var(--sage);
+    --evergreen: var(--ever);
+    --matcha: var(--sage);
+    --early: var(--ever);
+    --calm: #dfe9dc;
+
+    /* базовые поверхности и текст */
+    --resting: var(--forest);
+    --body: #050806;
+    --card: #0d1410;
+    --chip: #121c15;
+    --ink: #e6f0e5;
+    --line: rgba(255, 255, 255, 0.12);
+    --shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
+
+    /* мята/акценты в dark-теме */
+    --mint: #7fb58a;
+    --mint-600: #c5e4cd;
+    --mint-50: #0b130e;
+    --beige: #141b14;
+  }
+}
+
+/* Светлый вариант по умолчанию */
+body {
+  background:
+    radial-gradient(circle at top left, rgba(195, 214, 189, 0.6), transparent 55%),
+    radial-gradient(circle at 120% 120%, rgba(242, 230, 211, 0.9), transparent 55%),
+    var(--body, #f4efe5);
+  color: var(--ink);
+}
+
+/* Тёмный фон, когда система в dark-режиме */
+@media (prefers-color-scheme: dark) {
+  body {
+    background:
+      radial-gradient(circle at 8% 0%, rgba(47, 76, 53, 0.6), transparent 55%),
+      radial-gradient(circle at 120% 120%, rgba(20, 31, 23, 0.85), transparent 55%),
+      var(--body);
+    color: var(--ink);
+  }
+}
+/* ======================
+   DARK – section backgrounds
+   ======================= */
+
+.dark #about {
+  background:
+    radial-gradient(circle at 0% 100%, rgba(79, 112, 80, 0.45), transparent 55%),
+    linear-gradient(180deg, #050806 0%, #0b120c 45%, #050806 100%);
+}
+
+.dark #angebote {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(79, 112, 80, 0.4), transparent 55%),
+    linear-gradient(180deg, #060a07 0%, #0d1610 45%, #050806 100%);
+}
+
+.dark #team {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(101, 132, 100, 0.45), transparent 55%),
+    linear-gradient(180deg, #060a07 0%, #101712 50%, #050806 100%);
+}
+
+.dark #partner {
+  background:
+    radial-gradient(circle at 15% 0%, rgba(79, 112, 80, 0.45), transparent 55%),
+    linear-gradient(180deg, #050806 0%, #0d1510 100%);
+}
+
+.dark #news {
+  background:
+    radial-gradient(circle at 85% 0%, rgba(79, 112, 80, 0.45), transparent 55%),
+    linear-gradient(180deg, #050806 0%, #0d1510 40%, #050806 100%);
+}
+
+.dark #karriere {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(79, 112, 80, 0.45), transparent 60%),
+    linear-gradient(180deg, #050806 0%, #0d1510 45%, #050806 100%);
+}
+
+.dark #reviews {
+  background:
+    radial-gradient(circle at 75% 0%, rgba(79, 112, 80, 0.55), transparent 60%),
+    linear-gradient(180deg, #050806 0%, #0f1711 45%, #050806 100%);
+}
+
+.dark #faq {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(79, 112, 80, 0.35), transparent 55%),
+    linear-gradient(180deg, #050806 0%, #0d1510 50%, #050806 100%);
+}
+
+.dark #kontakt {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(79, 112, 80, 0.35), transparent 60%),
+    linear-gradient(180deg, #050806 0%, #0d1510 45%, #050806 100%);
+}
+
+/* =======================
+   DARK – Legal pages
+   ======================= */
+
+.dark .legal-page {
+  background-color: #050806;
+  color: var(--ink);
+}
+
+.dark .legal-hero--impressum,
+.dark .legal-hero--datenschutz,
+.dark .legal-hero--cookies {
+  background: linear-gradient(90deg, #050806 0%, #101712 50%, #050806 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dark .legal-card {
+  background: #0d1410;
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.85);
 }

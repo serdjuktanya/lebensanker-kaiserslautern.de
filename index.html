@@ -14,7 +14,8 @@
 
     <meta name="msapplication-TileColor" content="#F4EFE2" />
     <meta name="theme-color" content="#8C9478" />
-    <meta name="color-scheme" content="light" />
+    <!--<meta name="color-scheme" content="light" />-->
+    <meta name="color-scheme" content=" light dark" />
 
     <!-- SEO -->
     <title>
@@ -459,7 +460,7 @@
               </div>
 
               <div class="about-badge">
-                <span>Ambulante Pflege · Tagespflege · APP</span>
+                <span>Ambulante Pflege · Tagespflege · Beratung</span>
               </div>
             </div>
           </div>
@@ -674,7 +675,7 @@
 
           <ul class="team-tags">
             <li>Examinierte Pflegefachkräfte</li>
-            <li>APP – Ambulante psychiatrische Pflege</li>
+            <li>Pflege- &amp; Angehörigenberatung</li>
             <li>Tagespflege &amp; Aktivierung</li>
           </ul>
 
@@ -689,7 +690,7 @@
             </div>
             <div class="team-stat">
               <dt>Schwerpunkte</dt>
-              <dd>Ambulante Pflege, APP, Tagespflege</dd>
+              <dd>Ambulante Pflege, Tagespflege, Beratung</dd>
             </div>
           </dl>
 
@@ -2263,6 +2264,27 @@
       }
       */
     </script>
+    <script>
+  (function () {
+    const mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function applySystemTheme(e) {
+      if (e.matches) {
+        // Система в тёмной теме → включаем .dark
+        document.documentElement.classList.add('dark');
+      } else {
+        // Система в светлой теме → выключаем .dark
+        document.documentElement.classList.remove('dark');
+      }
+    }
+
+    // Применяем сразу при загрузке
+    applySystemTheme(mq);
+
+    // Реагируем на смену темы в системе (например, по расписанию)
+    mq.addEventListener('change', applySystemTheme);
+  })();
+</script>
     <script src="./app.js" defer></script>
     <script src="./js/reveal.js"></script>
     <script src="./contact.js"></script>
