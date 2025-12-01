@@ -2613,8 +2613,9 @@ section h2.fx-title.fx-title--sm::after {
    ----------------------------------------- */
 #news {
   background:
-    radial-gradient(circle at 85% 0%, rgba(195, 214, 189, 0.5), transparent 55%),
-    linear-gradient(180deg, #f7f1e6 0%, #f3ebdd 35%, #edf1f3 100%);
+    radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.95), transparent 55%),
+    radial-gradient(circle at 100% 120%, rgba(200, 200, 200, 0.12), transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #f9f8f6 40%, #f3efe9 100%);
 }
 
 /* -----------------------------------------
@@ -2622,10 +2623,10 @@ section h2.fx-title.fx-title--sm::after {
    ----------------------------------------- */
 #karriere {
   background:
-    radial-gradient(circle at 0% 0%, rgba(195, 214, 189, 0.6), transparent 60%),
-    linear-gradient(180deg, #f6f0e6 0%, #f3ebdd 45%, #edf2f4 100%);
+    radial-gradient(circle at 0% 0%, rgba(221, 233, 223, 1), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(139, 148, 120, 0.22), transparent 55%),
+    linear-gradient(180deg, #edf2eb 0%, #e1e9df 55%, #d9e2d7 100%);
 }
-
 /* -----------------------------------------
    FEEDBACK / REVIEWS
    ----------------------------------------- */
