@@ -22,7 +22,7 @@ const debounce = (fn, ms = 140) => {
  * @param {number} threshold Порог IntersectionObserver.
  * @param {string} rootMargin Отступ IntersectionObserver.
  */
-function observeElements(selector, className, threshold = 0.2, rootMargin = '0px') {
+function observeElements(selector, className, threshold = 0.2, rootMargin = "0px") {
   const els = $$(selector);
   if (!els.length || !("IntersectionObserver" in window) || prefersReduced) {
     // Если reduced motion, просто добавляем класс видимости
@@ -30,18 +30,20 @@ function observeElements(selector, className, threshold = 0.2, rootMargin = '0px
     return;
   }
 
-  const io = new IntersectionObserver((entries, obs) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.classList.add(className);
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold, rootMargin });
+  const io = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add(className);
+          obs.unobserve(e.target);
+        }
+      });
+    },
+    { threshold, rootMargin }
+  );
 
   els.forEach((el) => io.observe(el));
 }
-
 
 /* ===============================
    Drawer (mobile)
@@ -51,21 +53,73 @@ const burger = $("#burger");
 const drawerClose = $("#drawerClose");
 const backdrop = $("#backdrop");
 
-function toggleDrawer(open) {
-  if (!drawer) return;
-  const shouldOpen = open === undefined ? !drawer.classList.contains("open") : open;
+const html = document.documentElement;
 
-  drawer.classList.toggle("open", shouldOpen);
-  backdrop?.classList.toggle("show", shouldOpen);
-  document.body.classList.toggle("overflow-hidden", shouldOpen);
+// классы из HTML: закрыто = translate-x-full, открыто = translate-x-0
+const CLOSED_CLASS = "translate-x-full";
+const OPEN_CLASS = "translate-x-0";
+
+function setDrawer(open) {
+  if (!drawer || !backdrop) return;
+
+  if (open) {
+    // показать выезжающее меню
+    drawer.classList.remove(CLOSED_CLASS);
+    drawer.classList.add(OPEN_CLASS);
+
+    // показать затемнение фона и сделать его кликабельным
+    backdrop.classList.remove("opacity-0", "pointer-events-none");
+    backdrop.classList.add("opacity-100");
+
+    // заблокировать прокрутку страницы
+    html.classList.add("overflow-hidden");
+    document.body.classList.add("overflow-hidden");
+  } else {
+    // спрятать меню
+    drawer.classList.remove(OPEN_CLASS);
+    drawer.classList.add(CLOSED_CLASS);
+
+    // скрыть фон и отключить клики
+    backdrop.classList.add("opacity-0", "pointer-events-none");
+    backdrop.classList.remove("opacity-100");
+
+    // вернуть прокрутку
+    html.classList.remove("overflow-hidden");
+    document.body.classList.remove("overflow-hidden");
+  }
 }
-on(burger, "click", () => toggleDrawer(true));
-on(drawerClose, "click", () => toggleDrawer(false));
+
+// оставляем имя toggleDrawer, чтобы не ломать scroll-spy
+function toggleDrawer(force) {
+  if (!drawer) return;
+  const isOpen = drawer.classList.contains(OPEN_CLASS);
+  const shouldOpen = force !== undefined ? force : !isOpen;
+  setDrawer(shouldOpen);
+}
+
+// события
+on(burger, "click", (e) => {
+  e.preventDefault();
+  toggleDrawer(true);
+});
+
+on(drawerClose, "click", (e) => {
+  e.preventDefault();
+  toggleDrawer(false);
+});
+
 on(backdrop, "click", () => toggleDrawer(false));
+
 on(window, "keydown", (e) => {
   if (e.key === "Escape") toggleDrawer(false);
 });
 
+// при увеличении окна до desktop — принудительно закрыть drawer
+on(window, "resize", () => {
+  if (window.innerWidth >= 768) {
+    toggleDrawer(false);
+  }
+});
 
 /* ===============================
    Fade-in on view + заголовки секций
@@ -126,15 +180,19 @@ on(window, "keydown", (e) => {
   }
 
   apply();
-  on(window, "scroll", () => {
-    if (!ticking) {
-      requestAnimationFrame(apply);
-      ticking = true;
-    }
-  }, { passive: true });
+  on(
+    window,
+    "scroll",
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(apply);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
   on(window, "resize", apply, { passive: true });
 })();
-
 
 /* ===============================
    Scroll-spy
@@ -146,15 +204,14 @@ on(window, "keydown", (e) => {
   const allLinks = $$('a[href^="#"]');
   const navBtnAngebote = $("#navAngeboteBtn");
 
-  const sectionEls = allSections
-    .map((id) => ({ id, el: document.getElementById(id) }))
-    .filter((s) => s.el);
+  const sectionEls = allSections.map((id) => ({ id, el: document.getElementById(id) })).filter((s) => s.el);
 
   if (!sectionEls.length) return;
 
   function clearActive() {
-    $$(".nav-link.active, .sub-link.active, #navAngeboteBtn.active, #drawer a.chip.active")
-      .forEach((el) => el.classList.remove("active"));
+    $$(".nav-link.active, .sub-link.active, #navAngeboteBtn.active, #drawer a.chip.active").forEach((el) =>
+      el.classList.remove("active")
+    );
   }
 
   function setActiveFor(id) {
@@ -164,19 +221,11 @@ on(window, "keydown", (e) => {
       navBtnAngebote?.classList.add("active");
 
       allLinks
-        .filter(
-          (a) =>
-            a.classList.contains("sub-link") &&
-            a.getAttribute("href") === `#${id}`
-        )
+        .filter((a) => a.classList.contains("sub-link") && a.getAttribute("href") === `#${id}`)
         .forEach((a) => a.classList.add("active"));
     } else {
       allLinks
-        .filter(
-          (a) =>
-            a.classList.contains("nav-link") &&
-            a.getAttribute("href") === `#${id}`
-        )
+        .filter((a) => a.classList.contains("nav-link") && a.getAttribute("href") === `#${id}`)
         .forEach((a) => a.classList.add("active"));
     }
 
@@ -222,7 +271,6 @@ on(window, "keydown", (e) => {
   updateOnScroll();
 })();
 
-
 /* ===============================
    Enhanced <select data-enhance-select>
 =============================== */
@@ -239,8 +287,12 @@ on(window, "keydown", (e) => {
     wrap.appendChild(native);
 
     Object.assign(native.style, {
-      position: "absolute", inset: "0", width: "100%", height: "100%",
-      opacity: "0", pointerEvents: "none",
+      position: "absolute",
+      inset: "0",
+      width: "100%",
+      height: "100%",
+      opacity: "0",
+      pointerEvents: "none",
     });
 
     const btn = document.createElement("button");
@@ -251,7 +303,8 @@ on(window, "keydown", (e) => {
 
     const labelSpan = document.createElement("span");
     const caret = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    caret.setAttribute("width", "16"); caret.setAttribute("height", "16");
+    caret.setAttribute("width", "16");
+    caret.setAttribute("height", "16");
     caret.setAttribute("viewBox", "0 0 24 24");
     caret.classList.add("enhanced-select__chevron");
     caret.innerHTML = `<path fill="currentColor" d="M7 10l5 5 5-5z"/>`;
@@ -396,122 +449,28 @@ on(window, "keydown", (e) => {
 })();
 
 /* ===============================
-   Parallax for .parallax-card
-=============================== */
-(() => {
-  const cards = $$(".parallax-card");
-  if (!cards.length) return;
-  let ticking = false;
-
-  function update() {
-    cards.forEach((card) => {
-      const media = card.querySelector(".parallax-media");
-      if (!media) return;
-
-      const r = card.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const progress = clamp((vh - r.top) / (vh + r.height), 0, 1);
-      const amp = parseFloat(card.dataset.parallax) || 60;
-      const dy = (progress - 0.5) * amp * 2;
-
-      media.style.transform = `translateY(${dy.toFixed(1)}px) scale(1.03)`;
-    });
-    ticking = false;
-  }
-
-  function onScroll() {
-    if (!ticking) {
-      requestAnimationFrame(update);
-      ticking = true;
-    }
-  }
-
-  update();
-  on(window, "scroll", onScroll, { passive: true });
-  on(window, "resize", onScroll);
-})();
-
-/* ===============================
-   3D Tilt on Scroll (.js-tilt-on-scroll)
-=============================== */
-(() => {
-  const items = $$(".js-tilt-on-scroll");
-  if (!items.length) return;
-  let ticking = false;
-
-  function calcRotate(el) {
-    const rect = el.getBoundingClientRect();
-    const vh = window.innerHeight;
-    const vw = window.innerWidth;
-
-    const prog = clamp((vh - rect.top) / (vh + rect.height), 0, 1);
-    const maxTilt = parseFloat(el.dataset.tilt) || 10;
-
-    const tiltX = (prog - 0.5) * (maxTilt * 2);
-    const cx = rect.left + rect.width / 2;
-    const normX = cx / vw - 0.5;
-    const tiltY = normX * (maxTilt * 0.6);
-
-    const shift = 8;
-    const ty = (prog - 0.5) * (shift * 2);
-    const scale = parseFloat(el.dataset.scale) || 1.04;
-
-    return { tiltX, tiltY, ty, scale };
-  }
-
-  function update() {
-    items.forEach((el) => {
-      const media = el.querySelector(".tilt-media");
-      if (!media) return;
-
-      if (prefersReduced) {
-        media.style.transform = "translateY(0) scale(1)";
-        return;
-      }
-
-      const { tiltX, tiltY, ty, scale } = calcRotate(el);
-      media.style.transform = `translateY(${ty.toFixed(1)}px) rotateX(${tiltX.toFixed(
-        2
-      )}deg) rotateY(${tiltY.toFixed(2)}deg) scale(${scale})`;
-    });
-    ticking = false;
-  }
-
-  function onScroll() {
-    if (!ticking) {
-      requestAnimationFrame(update);
-      ticking = true;
-    }
-  }
-
-  update();
-  on(window, "scroll", onScroll, { passive: true });
-  on(window, "resize", onScroll);
-})();
-
-/* ===============================
    TEAM CAROUSEL – один слайд во вьюпорте (FINAL)
 =============================== */
 (() => {
   const viewport = document.getElementById("teamViewport");
-  const track    = document.getElementById("teamTrack");
-  const prevBtn  = document.getElementById("teamPrev");
-  const nextBtn  = document.getElementById("teamNext");
+  const track = document.getElementById("teamTrack");
+  const prevBtn = document.getElementById("teamPrev");
+  const nextBtn = document.getElementById("teamNext");
   const dotsWrap = document.getElementById("teamDots");
   if (!viewport || !track) return;
 
   const slides = Array.from(track.children);
   if (!slides.length) return;
 
-  const AUTOPLAY    = true;
-  const INTERVAL    = 4200;
+  const AUTOPLAY = true;
+  const INTERVAL = 4200;
   const FADE_OUT_MS = 160;
 
   // каждая "страница" = один слайд
   const pageCount = () => slides.length;
 
-  let index   = 0;
-  let timer   = null;
+  let index = 0;
+  let timer = null;
   let isHover = false;
 
   const clampIndex = (i) => Math.max(0, Math.min(i, pageCount() - 1));
@@ -544,15 +503,13 @@ on(window, "keydown", (e) => {
 
   function updateDots() {
     if (!dotsWrap) return;
-    Array.from(dotsWrap.children).forEach((d, di) =>
-      d.setAttribute("aria-current", di === index ? "true" : "false")
-    );
+    Array.from(dotsWrap.children).forEach((d, di) => d.setAttribute("aria-current", di === index ? "true" : "false"));
   }
 
   function updateButtons() {
     if (!prevBtn || !nextBtn) return;
     const atStart = index === 0;
-    const atEnd   = index === pageCount() - 1;
+    const atEnd = index === pageCount() - 1;
     prevBtn.toggleAttribute("disabled", atStart);
     nextBtn.toggleAttribute("disabled", atEnd);
   }
@@ -631,18 +588,20 @@ on(window, "keydown", (e) => {
 
   viewport.addEventListener("mouseenter", () => (isHover = true));
   viewport.addEventListener("mouseleave", () => (isHover = false));
-  viewport.addEventListener("focusin",  stop);
+  viewport.addEventListener("focusin", stop);
   viewport.addEventListener("focusout", start);
 
   // при ресайзе пересчитываем позицию
-  window.addEventListener("resize", () => {
-    index = clampIndex(index);
-    render(false);
-  }, { passive: true });
-
-  document.addEventListener("visibilitychange", () =>
-    document.visibilityState === "hidden" ? stop() : start()
+  window.addEventListener(
+    "resize",
+    () => {
+      index = clampIndex(index);
+      render(false);
+    },
+    { passive: true }
   );
+
+  document.addEventListener("visibilitychange", () => (document.visibilityState === "hidden" ? stop() : start()));
 
   buildDots();
   render(false);
@@ -846,10 +805,10 @@ on(window, "keydown", (e) => {
     start();
   }
 
-  on(viewport, "mouseenter", () => isHover = true);
-  on(viewport, "mouseleave", () => isHover = false);
+  on(viewport, "mouseenter", () => (isHover = true));
+  on(viewport, "mouseleave", () => (isHover = false));
   on(window, "resize", () => render(false), { passive: true });
-  on(document, "visibilitychange", () => document.visibilityState === "hidden" ? stop() : start());
+  on(document, "visibilitychange", () => (document.visibilityState === "hidden" ? stop() : start()));
 
   buildDots();
   render(false);
@@ -941,7 +900,6 @@ document.addEventListener("DOMContentLoaded", () => {
   on(window, "resize", onScroll);
 })();
 
-
 /* ===============================
    FAQ unified: search + highlight + deep-link + chips
 =============================== */
@@ -949,11 +907,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const scope = document.querySelector("#faq");
   if (!scope) return;
 
-  const search  = scope.querySelector("#faqSearch");
-  const clear   = scope.querySelector("#faqClear");
+  const search = scope.querySelector("#faqSearch");
+  const clear = scope.querySelector("#faqClear");
   const emptyUI = scope.querySelector("#faqEmpty");
   const counter = scope.querySelector("#faqCounter");
-  const chips   = Array.from(scope.querySelectorAll("[data-faq-chip]"));
+  const chips = Array.from(scope.querySelectorAll("[data-faq-chip]"));
 
   const items = Array.from(scope.querySelectorAll("details.faq-item, #faqList details"));
   const summaries = items.map((d) => d.querySelector("summary.faq-q"));
@@ -978,7 +936,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const nodes = Array.from(sum.childNodes);
     let take = !ico;
     nodes.forEach((n) => {
-      if (n === ico) { take = true; return; }
+      if (n === ico) {
+        take = true;
+        return;
+      }
       if (take) lbl.appendChild(n);
     });
     lbl.dataset.label = (lbl.textContent || "").trim();
@@ -1015,18 +976,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const before = raw.slice(0, i);
-    const hit    = raw.slice(i, i + qRaw.length);
-    const after  = raw.slice(i + qRaw.length);
+    const hit = raw.slice(i, i + qRaw.length);
+    const after = raw.slice(i + qRaw.length);
 
     labelEl.innerHTML = "";
     const mark = document.createElement("mark");
     mark.className = "faq-hit";
     mark.textContent = hit;
-    labelEl.append(
-      document.createTextNode(before),
-      mark,
-      document.createTextNode(after)
-    );
+    labelEl.append(document.createTextNode(before), mark, document.createTextNode(after));
   }
 
   function applyFilter() {
@@ -1035,11 +992,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let visible = 0;
 
     items.forEach((d, idx) => {
-      const lbl    = labels[idx];
+      const lbl = labels[idx];
       const sumTxt = lbl?.dataset?.label || "";
       const ansTxt = d.querySelector(".faq-a")?.textContent || "";
-      const hay    = norm(sumTxt + " " + ansTxt);
-      const match  = !q || hay.includes(q);
+      const hay = norm(sumTxt + " " + ansTxt);
+      const match = !q || hay.includes(q);
 
       d.classList.toggle("is-hidden", !match);
       if (match) visible++;
@@ -1051,11 +1008,7 @@ document.addEventListener("DOMContentLoaded", () => {
     emptyUI?.classList.toggle("hidden", !(qRaw && visible === 0));
 
     if (counter) {
-      counter.textContent = qRaw
-        ? visible
-          ? `${visible} Treffer`
-          : "Keine Ergebnisse"
-        : "";
+      counter.textContent = qRaw ? (visible ? `${visible} Treffer` : "Keine Ergebnisse") : "";
     }
 
     if (qRaw) {
@@ -1075,7 +1028,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const query = (chip.dataset.query || "").toLowerCase();
         const isAll = query === "";
         const active =
-          (!qLower && isAll) ||            // пустой поиск → "Alle"
+          (!qLower && isAll) || // пустой поиск → "Alle"
           (qLower && query && qLower === query); // поиск совпадает с query
 
         chip.classList.toggle("is-active", active);
@@ -1150,21 +1103,21 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ===============================
    отправка формы: автоустановка e-mail получателя в зависимости от темы
 =============================== */
-document.addEventListener('DOMContentLoaded', function () {
-  const topicSelect = document.getElementById('fTopic');
-  const recipientField = document.getElementById('recipientField');
+document.addEventListener("DOMContentLoaded", function () {
+  const topicSelect = document.getElementById("fTopic");
+  const recipientField = document.getElementById("recipientField");
 
   if (!topicSelect || !recipientField) return;
 
   // соответствие "значение option" → "e-mail"
   const RECIPIENT_MAP = {
-    ambulant:   'ambulant@lebensanker-kaiserslautern.de',
-    tagespflege:'tagespflege@lebensanker-kaiserslautern.de',
+    ambulant: "ambulant@lebensanker-kaiserslautern.de",
+    tagespflege: "tagespflege@lebensanker-kaiserslautern.de",
     // psychiatrisch: 'ambulant@lebensanker-kaiserslautern.de', // на будущее
-    beratung:   'info@lebensanker-kaiserslautern.de'
+    beratung: "info@lebensanker-kaiserslautern.de",
   };
 
-  const DEFAULT_MAIL = 'mail@lebensanker-kaiserslautern.de';
+  const DEFAULT_MAIL = "mail@lebensanker-kaiserslautern.de";
 
   function updateRecipient() {
     const key = topicSelect.value;
@@ -1173,7 +1126,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // при загрузке страницы и при изменении выбора
   updateRecipient();
-  on(topicSelect, 'change', updateRecipient);
+  on(topicSelect, "change", updateRecipient);
 });
 
 // Добавление класса 'appear' для заголовков.
@@ -1205,8 +1158,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // дальше — как у тебя
 })();
-
-
 
 // Scroll-anim für Kooperationspartner
 document.addEventListener("DOMContentLoaded", () => {
@@ -1265,10 +1216,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (youtubeId) {
       const iframe = document.createElement("iframe");
-      iframe.setAttribute(
-        "src",
-        `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`
-      );
+      iframe.setAttribute("src", `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`);
       iframe.setAttribute("frameborder", "0");
       iframe.setAttribute(
         "allow",
