@@ -55,7 +55,6 @@ const backdrop = $("#backdrop");
 
 const html = document.documentElement;
 
-// классы из HTML: закрыто = translate-x-full, открыто = translate-x-0
 const CLOSED_CLASS = "translate-x-full";
 const OPEN_CLASS = "translate-x-0";
 
@@ -63,33 +62,36 @@ function setDrawer(open) {
   if (!drawer || !backdrop) return;
 
   if (open) {
-    // показать выезжающее меню
     drawer.classList.remove(CLOSED_CLASS);
     drawer.classList.add(OPEN_CLASS);
 
-    // показать затемнение фона и сделать его кликабельным
     backdrop.classList.remove("opacity-0", "pointer-events-none");
     backdrop.classList.add("opacity-100");
 
-    // заблокировать прокрутку страницы
     html.classList.add("overflow-hidden");
     document.body.classList.add("overflow-hidden");
+
+    // 🔹 помечаем бургер как открытый → для крестика
+    if (burger) {
+      burger.setAttribute("aria-expanded", "true");
+    }
   } else {
-    // спрятать меню
     drawer.classList.remove(OPEN_CLASS);
     drawer.classList.add(CLOSED_CLASS);
 
-    // скрыть фон и отключить клики
     backdrop.classList.add("opacity-0", "pointer-events-none");
     backdrop.classList.remove("opacity-100");
 
-    // вернуть прокрутку
     html.classList.remove("overflow-hidden");
     document.body.classList.remove("overflow-hidden");
+
+    // 🔹 помечаем бургер как закрытый
+    if (burger) {
+      burger.setAttribute("aria-expanded", "false");
+    }
   }
 }
 
-// оставляем имя toggleDrawer, чтобы не ломать scroll-spy
 function toggleDrawer(force) {
   if (!drawer) return;
   const isOpen = drawer.classList.contains(OPEN_CLASS);
@@ -114,7 +116,6 @@ on(window, "keydown", (e) => {
   if (e.key === "Escape") toggleDrawer(false);
 });
 
-// при увеличении окна до desktop — принудительно закрыть drawer
 on(window, "resize", () => {
   if (window.innerWidth >= 768) {
     toggleDrawer(false);
@@ -856,49 +857,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-/* ===============================
-   Waves parallax (.wave[data-parallax])
-=============================== */
-(() => {
-  const waves = Array.from(document.querySelectorAll(".wave[data-parallax]"));
-  if (!waves.length) return;
 
-  const state = new Set();
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) state.add(e.target);
-        else state.delete(e.target);
-      });
-    },
-    { rootMargin: "100px 0px" }
-  );
-
-  waves.forEach((w) => io.observe(w));
-
-  let ticking = false;
-
-  function onScroll() {
-    if (ticking) return;
-    ticking = true;
-
-    requestAnimationFrame(() => {
-      const vh = window.innerHeight;
-      state.forEach((wave) => {
-        const speed = parseFloat(wave.dataset.speed || "0.28");
-        const rect = wave.getBoundingClientRect();
-        const centerOffset = rect.top + rect.height / 2 - vh / 2;
-        const amount = -centerOffset * speed * 0.15;
-        wave.style.setProperty("--wy", `${amount.toFixed(2)}px`);
-      });
-      ticking = false;
-    });
-  }
-
-  onScroll();
-  on(window, "scroll", onScroll, { passive: true });
-  on(window, "resize", onScroll);
-})();
 
 /* ===============================
    FAQ unified: search + highlight + deep-link + chips
@@ -1130,8 +1089,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Добавление класса 'appear' для заголовков.
-// Это было в оригинальном коде, но частично дублировало логику выше.
-// В унифицированной версии это учтено в observeElements.
+
 /*
 document.addEventListener("DOMContentLoaded", () => {
   const titles = document.querySelectorAll(".fx-title");
@@ -1291,3 +1249,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+

@@ -72,18 +72,22 @@
     <header class="sticky top-0 z-50 border-b border-white/10 bg-[#26352C]/90 dark:bg-[#1b2a22]/90" role="banner">
       <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <a href="index.html" class="flex items-center gap-3 group">
-            <img
-              src="./img/LEBENSANKER-14.png"
-              class="logo-light w-[42px] h-[42px] object-contain logo-pulse group-hover:opacity-90 transition"
-              alt="Lebensanker Logo" />
-            <span class="font-semibold text-white tracking-wide group-hover:text-[var(--mint)] transition">
-              Lebensanker
-            </span>
-          </a>
-        </div>
+  <a href="index.html" class="flex items-center gap-3 group">
+    <div class="logo-glow">
+  <img
+    src="./img/LEBENSANKER-14.png"
+    class="w-[42px] h-[42px] object-contain transition"
+    alt="Lebensanker Logo"
+  />
+</div>
 
-        <nav class="hidden md:flex items-center gap-5 lg:gap-6 text-sm text-white" aria-label="Hauptmenü">
+    <span class="font-semibold text-white tracking-wide group-hover:text-[var(--mint)] transition">
+      Lebensanker
+    </span>
+  </a>
+</div>
+
+        <nav class="hidden lg:flex items-center gap-5 lg:gap-6 text-sm text-white" aria-label="Hauptmenü">
           <a href="#about" class="nav-link hover:text-[var(--mint)]">Über uns</a>
 
           <div class="relative nav-group">
@@ -125,88 +129,94 @@
         </nav>
 
         <div class="flex items-center gap-2">
-          <a href="#kontakt" class="btn hidden md:inline-flex">Jetzt Beratung</a>
-          <button
-            id="burger"
-            class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl border border-black/10"
-            aria-label="Menü öffnen"
-            title="Menü">
-            <svg width="22" height="22" viewBox="0 0 24 24">
-              <path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />
-            </svg>
-          </button>
-        </div>
+  <!-- Кнопка только на десктопе -->
+  <a href="#kontakt" class="btn btn-desktop">Jetzt Beratung</a>
+
+  <!-- Бургер: виден на мобиле и планшетах -->
+ <button
+  id="burger"
+  class="inline-flex lg:hidden items-center justify-center w-10 h-10 rounded-xl bg-white/5 text-white no-border"
+  aria-label="Menü öffnen"
+  title="Menü"
+  aria-expanded="false"
+>
+  <svg width="22" height="22" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />
+  </svg>
+</button>
+</div>
       </div>
     </header>
 
     <!-- Drawer (mobile) -->
-    <div
-      id="backdrop"
-      class="backdrop fixed inset-0 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-200 z-40 md:hidden"
-      aria-hidden="true"></div>
+<div
+  id="backdrop"
+  class="backdrop fixed inset-0 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-200 z-40 lg:hidden"
+  aria-hidden="true"
+></div>
 
-    <div
-      id="drawer"
-      class="offcanvas fixed top-0 right-0 h-full w-[80vw] max-w-[420px] z-50 shadow-2xl border-l border-black/5 pt-6 px-5 pb-5 md:hidden translate-x-full transition-transform duration-200 ease-out"      role="dialog"
-      aria-modal="true"
-      aria-label="Mobiles Menü">
-      <!-- Верхняя панель -->
-      <div class="flex items-center justify-between mb-4">
-        <span class="text-xs font-semibold tracking-[0.18em] uppercase text-slate-600/80">Navigation</span>
+<div
+  id="drawer"
+  class="offcanvas fixed top-0 right-0 h-full w-[80vw] max-w-[420px] z-50
+         bg-[var(--beige)] dark:bg-slate-900 shadow-xl border-l border-black/5
+         pt-6 px-5 pb-5 lg:hidden
+         translate-x-full transition-transform duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Mobiles Menü"
+>
+  <div class="flex items-center justify-between mb-4">
+    <span class="text-sm font-medium text-slate-500">Navigation</span>
+    <button
+      id="drawerClose"
+      class="w-9 h-9 grid place-items-center rounded-lg border border-white/20 text-white hover:bg-white/10 transition"
+      aria-label="Menü schließen"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M18.3 5.71L12 12.01l-6.3-6.3L4.29 7.12l6.3 6.3l-6.3 6.3l1.41 1.41l6.3-6.3l6.3 6.3l1.41-1.41l-6.3-6.3l6.3-6.3z"
+        />
+      </svg>
+    </button>
+  </div>
 
-        <button
-          id="drawerClose"
-          class="w-9 h-9 grid place-items-center rounded-lg border border-white/40 bg-white/90 text-[var(--calm)] shadow hover:bg-white hover:shadow-md transition"
-          aria-label="Menü schließen"
-          type="button">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              fill="currentColor"
-              d="M18.3 5.71 12 12.01 5.7 5.71 4.29 7.12l6.3 6.3-6.3 6.3 1.41 1.41 6.3-6.3 6.3 6.3 1.41-1.41-6.3-6.3 6.3-6.3z" />
-          </svg>
-        </button>
+  <nav class="flex flex-col items-center gap-4 text-base" aria-label="Mobiles Hauptmenü">
+    <a href="#about" class="chip w-full max-w-[260px] justify-center text-center">Über uns</a>
+
+    <details class="card w-full max-w-[260px]">
+      <summary class="font-medium cursor-pointer text-center">Angebote</summary>
+      <div class="mt-3 flex flex-col gap-3">
+        <a
+          class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
+          href="#angebot-pflege"
+        >
+          Ambulanter Pflegedienst
+        </a>
+        <a
+          class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
+          href="#tagespflege"
+        >
+          Tagespflege
+        </a>
+        <a
+          class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
+          href="#beratung"
+        >
+          Allgemeine Beratung
+        </a>
       </div>
+    </details>
 
-      <!-- Навигация -->
-      <nav class="flex flex-col items-center gap-4 text-base mt-2" aria-label="Mobiles Hauptmenü">
-        <a href="#about" class="chip w-full max-w-[260px] justify-center text-center">Über uns</a>
-
-        <!-- Dropdown: Angebote -->
-        <details
-          class="card w-full max-w-[260px] rounded-2xl border border-[var(--early)]/40 bg-white/90 dark:bg-slate-800/90 px-3 py-2">
-          <summary class="font-medium cursor-pointer text-center text-sm tracking-wide text-[var(--calm)] list-none">
-            Angebote
-          </summary>
-          <div class="mt-3 flex flex-col gap-3">
-            <a
-              class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
-              href="#angebot-pflege">
-              Ambulanter Pflegedienst
-            </a>
-            <a
-              class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
-              href="#tagespflege">
-              Tagespflege
-            </a>
-            <a
-              class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
-              href="#beratung">
-              Allgemeine Beratung
-            </a>
-          </div>
-        </details>
-
-        <a href="#team" class="chip w-full max-w-[260px] justify-center text-center">Team</a>
-        <a href="#news" class="chip w-full max-w-[260px] justify-center text-center">News</a>
-        <a href="#karriere" class="chip w-full max-w-[260px] justify-center text-center">Karriere</a>
-        <a href="#kontakt" class="chip w-full max-w-[260px] justify-center text-center">Kontakt</a>
-      </nav>
-
-      <!-- CTA снизу -->
-      <div class="border-t border-[var(--line)] mt-6 pt-6 w-full flex justify-center">
-        <a href="#kontakt" class="btn w-full max-w-[260px] justify-center">Jetzt Beratung</a>
-      </div>
-    </div>
+    <a href="#team" class="chip w-full max-w-[260px] justify-center text-center">Team</a>
+    <a href="#news" class="chip w-full max-w-[260px] justify-center text-center">News</a>
+    <a href="#karriere" class="chip w-full max-w-[260px] justify-center text-center">Karriere</a>
+    <a href="#kontakt" class="chip w-full max-w-[260px] justify-center text-center">Kontakt</a>
+  </nav>
+<!-- CTA снизу -->
+  <div class="border-t border-[var(--line)] mt-6 pt-6 w-full flex justify-center">
+    <a href="#kontakt" class="btn w-full max-w-[260px] justify-center">Jetzt Beratung</a>
+  </div>
+</div>
 
     <!-- Hero -->
     <section class="hero section hero--premium relative overflow-hidden hero--v3" aria-labelledby="heroTitle">
@@ -227,7 +237,7 @@
           <p
             class="mb-3 inline-flex flex-wrap items-center justify-center gap-1.5 rounded-full bg-white/80 px-3 py-1.5 text-[0.7rem] sm:text-[0.78rem] tracking-[0.12em] sm:tracking-[0.22em] uppercase text-[#4B5338] text-center shadow-sm">
             <span class="flex items-center justify-center text-[0.75rem]" style="color: var(--camel)">♥</span>
-            <span>Ruhig · Verlässlich · Nah</span>
+            <span class="heart-icon">Ruhig · Verlässlich · Nah</span>
           </p>
 
           <!-- Haupttitel -->
@@ -443,7 +453,7 @@
         <p class="angebote-subtitle">Ambulante Pflege · Tagespflege · Beratung</p>
 
         <!-- Cards -->
-       <div class="angebote-grid grid gap-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+       <div class="angebote-grid grid gap-6 grid-cols-1 lg:grid-cols-3">
           <!-- Card 1: Ambulanter Pflegedienst -->
           <article class="angebot-card la-card" id="angebot-pflege">
             <div class="angebot-content">
@@ -1712,98 +1722,70 @@
           </div>
 
           <div
-            class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6 w-full sm:w-auto footer-bottom__secondary">
-            <div class="flex items-center gap-2 footer-bottom__social">
-              <span class="text-[0.8rem] text-slate-300/85">Folgen Sie uns:</span>
-              <div class="flex gap-2.5">
-                <a
-                  href="#"
-                  aria-label="Instagram"
-                  class="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 shadow-sm hover:bg-white/10 hover:ring-[#E4405F]/70 hover:shadow-lg transition">
-                  <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    class="h-3.5 w-3.5 text-slate-100/85 group-hover:text-[#E4405F] transition">
-                    <rect
-                      x="4"
-                      y="4"
-                      width="16"
-                      height="16"
-                      rx="5"
-                      ry="5"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.6" />
-                    <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6" />
-                    <circle cx="17" cy="7" r="1.1" fill="currentColor" />
-                  </svg>
-                </a>
+  class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6 w-full sm:w-auto footer-bottom__secondary">
 
-                <a
-                  href="#"
-                  aria-label="Facebook"
-                  class="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 shadow-sm hover:bg-white/10 hover:ring-[#1877F2]/70 hover:shadow-lg transition">
-                  <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    class="h-3.5 w-3.5 text-slate-100/85 group-hover:text-[#1877F2] transition">
-                    <path
-                      fill="currentColor"
-                      d="M13 21v-7h2.4l.6-3H13V9.2c0-.9.3-1.4 1.5-1.4H16V5.1C15.3 5 14.4 5 13.6 5 11.1 5 9.4 6.4 9.4 9v2H7v3h2.4v7z" />
-                  </svg>
-                </a>
+  <div class="flex items-center gap-2 footer-bottom__social">
+    <span class="text-[0.8rem] text-slate-300/85">Folgen Sie uns:</span>
 
-                <a
-                  href="#"
-                  aria-label="WhatsApp"
-                  class="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 shadow-sm hover:bg-white/10 hover:ring-[#25D366]/70 hover:shadow-lg transition">
-                  <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    class="h-3.5 w-3.5 text-slate-100/85 group-hover:text-[#25D366] transition">
-                    <path
-                      fill="currentColor"
-                      d="M4.5 20.5 5.7 17A8 8 0 1 1 12 20a8 8 0 0 1-3.7-.9zM9.4 10.1c-.1-.3-.3-.3-.5-.3h-.4c-.1 0-.4.1-.6.3-.2.2-.8.7-.8 1.7s.8 1.9.9 2.1c.1.2 1.5 2.4 3.7 3.3 1.8.7 2.2.6 2.6.5.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.5-.3s-1.3-.6-1.5-.7c-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.8-.1.1-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.3a8 8 0 0 1-1.5-1.9c-.2-.3 0-.4.1-.5.1-.1.3-.3.4-.4.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.5-1.2-.7-1.7z" />
-                  </svg>
-                </a>
+    <!-- Start footer-socials -->
+    <div class="flex gap-2.5 footer-socials">
 
-                <a
-                  href="#"
-                  aria-label="YouTube"
-                  class="group inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 shadow-sm hover:bg-white/10 hover:ring-[#FF0000]/70 hover:shadow-lg transition">
-                  <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                    class="h-3.5 w-3.5 text-slate-100/85 group-hover:text-[#FF0000] transition">
-                    <rect
-                      x="3.5"
-                      y="7"
-                      width="17"
-                      height="10"
-                      rx="3"
-                      ry="3"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.6" />
-                    <path fill="currentColor" d="m11 10 4 2-4 2z" />
-                  </svg>
-                </a>
-              </div>
-            </div>
+      <!-- Instagram -->
+      <a href="#"
+         aria-label="Instagram"
+         class="instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 text-white">
+          <rect x="4" y="4" width="16" height="16" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <circle cx="17" cy="7" r="1.1" fill="currentColor" />
+        </svg>
+      </a>
 
-            <div
-              class="flex items-center gap-2 sm:border-l sm:border-white/15 pl-0 sm:pl-5 footer-bottom__top mt-3 sm:mt-0">
-              <span class="text-[0.8rem] text-slate-300/85">Nach oben</span>
-              <a
-                href="#top"
-                class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 hover:bg-white/10 hover:ring-emerald-300/70 hover:shadow-lg transition">
-                <span class="sr-only">Nach oben</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4">
-                  <path fill="currentColor" d="M12 5 6 11h4v8h4v-8h4z" />
-                </svg>
-              </a>
-            </div>
-          </div>
+      <!-- Facebook -->
+      <a href="#"
+         aria-label="Facebook"
+         class="facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 text-white">
+          <path fill="currentColor"
+                d="M13 21v-7h2.4l.6-3H13V9.2c0-.9.3-1.4 1.5-1.4H16V5.1C15.3 5 14.4 5 13.6 5 11.1 5 9.4 6.4 9.4 9v2H7v3h2.4v7z"/>
+        </svg>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="#"
+         aria-label="WhatsApp"
+         class="whatsapp">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 text-white">
+          <path fill="currentColor"
+                d="M4.5 20.5 5.7 17A8 8 0 1 1 12 20a8 8 0 0 1-3.7-.9zM9.4 10.1c-.1-.3-.3-.3-.5-.3h-.4c-.1 0-.4.1-.6.3-.2.2-.8.7-.8 1.7s.8 1.9.9 2.1c.1.2 1.5 2.4 3.7 3.3 1.8.7 2.2.6 2.6.5.4-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1-.1-.1-.2-.2-.5-.3s-1.3-.6-1.5-.7c-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.8-.1.1-.3.2-.6.1-.3-.1-1.2-.4-2.2-1.3a8 8 0 0 1-1.5-1.9c-.2-.3 0-.4.1-.5.1-.1.3-.3.4-.4.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.5-1.2-.7-1.7z"/>
+        </svg>
+      </a>
+
+      <!-- YouTube -->
+      <a href="#"
+         aria-label="YouTube"
+         class="youtube">
+        <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4 text-white">
+          <rect x="3.5" y="7" width="17" height="10" rx="3" ry="3"
+                fill="none" stroke="currentColor" stroke-width="1.6" />
+          <path fill="currentColor" d="m11 10 4 2-4 2z"/>
+        </svg>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="flex items-center gap-2 sm:border-l sm:border-white/15 pl-0 sm:pl-5 footer-bottom__top mt-3 sm:mt-0">
+    <span class="text-[0.8rem] text-slate-300/85">Nach oben</span>
+    <a href="#top"
+       class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/5 ring-1 ring-white/15 hover:bg-white/10 hover:ring-emerald-300/70 hover:shadow-lg transition">
+      <span class="sr-only">Nach oben</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4">
+        <path fill="currentColor" d="M12 5 6 11h4v8h4v-8h4z" />
+      </svg>
+    </a>
+  </div>
+</div>
         </div>
       </div>
     </footer>

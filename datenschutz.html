@@ -83,160 +83,174 @@
 
 <body id="top" class="bg-[#F3EBDD] text-[#2B2D26]">
 
-  <!-- Header -->
-  <header
-    class="sticky top-0 z-50 border-b border-white/10 bg-[#26352C]/90 dark:bg-[#1b2a22]/90"
-    role="banner"
-  >
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-  <a
-    href="index.html"
-    class="flex items-center gap-3 group"
-  >
-    <img
-      src="./img/LEBENSANKER-14.png"
-      class="logo-light w-[42px] h-[42px] object-contain logo-pulse group-hover:opacity-90 transition"
-      alt="Lebensanker Logo"
-    />
-    <span class="font-semibold text-white tracking-wide group-hover:text-[var(--mint)] transition">
-      Lebensanker
-    </span>
-  </a>
-</div>
+<!-- Header -->
+<header
+  class="sticky top-0 z-50 border-b border-white/10 bg-[#26352C]/90 dark:bg-[#1b2a22]/90"
+  role="banner"
+>
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- Logo -->
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img
+          src="./img/LEBENSANKER-14.png"
+          class="logo-light w-[42px] h-[42px] object-contain logo-pulse group-hover:opacity-90 transition"
+          alt="Lebensanker Logo"
+        />
+        <span class="font-semibold text-white tracking-wide group-hover:text-[var(--mint)] transition">
+          Lebensanker
+        </span>
+      </a>
+    </div>
 
-      <nav
-        class="hidden md:flex items-center gap-5 lg:gap-6 text-sm text-white"
-        aria-label="Hauptmenü"
-      >
-        <a href="index.html#about" class="nav-link hover:text-[var(--mint)]">Über uns</a>
+    <!-- Desktop-Navigation: только с lg и выше -->
+    <nav
+      class="hidden lg:flex items-center gap-5 xl:gap-6 text-sm text-white"
+      aria-label="Hauptmenü"
+    >
+      <a href="#about" class="nav-link hover:text-[var(--mint)]">Über uns</a>
 
-        <div class="relative nav-group">
-          <button
-            id="navAngeboteBtn"
-            class="inline-flex items-center gap-1 hover:text-[var(--mint)]"
-            aria-haspopup="true"
-            aria-expanded="false"
-            type="button"
-          >
-            Angebote
-            <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" d="M7 10l5 5 5-5z" />
-            </svg>
-          </button>
-          <ul
-            class="nav-dropdown rounded-xl shadow bg-white dark:bg-slate-800 border border-black/5 absolute left-0 w-64 p-2"
-          >
-            <li>
-              <a
-                class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]"
-                href="index.html#angebot-pflege"
-              >
-                Ambulanter Pflegedienst
-              </a>
-            </li>
-            <li>
-              <a
-                class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]"
-                href="index.html#tagespflege"
-              >
-                Tagespflege
-              </a>
-            </li>
-            <li>
-              <a
-                class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]"
-                href="index.html#beratung"
-              >
-                Allgemeine Beratung
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <a href="index.html#team" class="nav-link hover:text-[var(--mint)]">Team</a>
-        <a href="index.html#news" class="nav-link hover:text-[var(--mint)]">News</a>
-        <a href="index.html#karriere" class="nav-link hover:text-[var(--mint)]">Karriere</a>
-        <a href="index.html#kontakt" class="nav-link hover:text-[var(--mint)]">Kontakt</a>
-      </nav>
-
-      <div class="flex items-center gap-2">
-        <a href="index.html#kontakt" class="btn hidden md:inline-flex">Jetzt Beratung</a>
+      <div class="relative nav-group">
         <button
-          id="burger"
-          class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl border border-black/10"
-          aria-label="Menü öffnen"
-          title="Menü"
+          id="navAngeboteBtn"
+          class="inline-flex items-center gap-1 hover:text-[var(--mint)]"
+          aria-haspopup="true"
+          aria-expanded="false"
+          type="button"
         >
-          <svg width="22" height="22" viewBox="0 0 24 24">
-            <path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />
+          Angebote
+          <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M7 10l5 5 5-5z" />
           </svg>
         </button>
+        <ul
+          class="nav-dropdown rounded-xl shadow bg-white dark:bg-slate-800 border border-black/5 absolute left-0 w-64 p-2"
+        >
+          <li>
+            <a
+              class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]"
+              href="#angebot-pflege"
+            >
+              Ambulanter Pflegedienst
+            </a>
+          </li>
+          <li>
+            <a
+              class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]"
+              href="#tagespflege"
+            >
+              Tagespflege
+            </a>
+          </li>
+          <li>
+            <a
+              class="sub-link block px-3 py-2 rounded-lg hover:bg-[var(--mint-50)]"
+              href="#beratung"
+            >
+              Allgemeine Beratung
+            </a>
+          </li>
+        </ul>
       </div>
-    </div>
-  </header>
 
-  <!-- Drawer (mobile) -->
-  <div id="backdrop" class="backdrop z-40 md:hidden" aria-hidden="true"></div>
-  <div
-    id="drawer"
-    class="offcanvas fixed top-0 right-0 h-full w-[80vw] max-w-[420px] z-50 bg-[var(--beige)] dark:bg-slate-900 shadow-xl border-l border-black/5 pt-6 px-5 pb-5 md:hidden"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Mobiles Menü"
-  >
-    <div class="flex items-center justify-between mb-4">
-      <span class="text-sm font-medium text-slate-500">Navigation</span>
+      <a href="#team" class="nav-link hover:text-[var(--mint)]">Team</a>
+      <a href="#news" class="nav-link hover:text-[var(--mint)]">News</a>
+      <a href="#karriere" class="nav-link hover:text-[var(--mint)]">Karriere</a>
+      <a href="#kontakt" class="nav-link hover:text-[var(--mint)]">Kontakt</a>
+    </nav>
+
+    <!-- CTA + Burger -->
+    <div class="flex items-center gap-2">
+      <!-- Кнопка «Jetzt Beratung» только с lg -->
+      <a href="#kontakt" class="btn hidden lg:inline-flex">Jetzt Beratung</a>
+
+      <!-- Гамбургер виден до lg (включая все телефоны и планшеты) -->
       <button
-        id="drawerClose"
-        class="w-9 h-9 grid place-items-center rounded-lg border border-white/20 text-white hover:bg-white/10 transition"
-        aria-label="Menü schließen"
+        id="burger"
+        class="inline-flex lg:hidden items-center justify-center w-10 h-10 rounded-xl border border-black/10 bg-white/5 text-white"
+        aria-label="Menü öffnen"
+        title="Menü"
       >
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M18.3 5.71L12 12.01l-6.3-6.3L4.29 7.12l6.3 6.3l-6.3 6.3l1.41 1.41l6.3-6.3l6.3 6.3l1.41-1.41l-6.3-6.3l6.3-6.3z"
-          />
+        <svg width="22" height="22" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />
         </svg>
       </button>
     </div>
-
-    <nav class="flex flex-col items-center gap-4 text-base" aria-label="Mobiles Hauptmenü">
-      <a href="index.html#about" class="chip w-full max-w-[260px] justify-center text-center">Über uns</a>
-
-      <details class="card w-full max-w-[260px]">
-        <summary class="font-medium cursor-pointer text-center">Angebote</summary>
-        <div class="mt-3 flex flex-col gap-3">
-          <a
-            class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
-            href="index.html#angebot-pflege"
-          >
-            Ambulanter Pflegedienst
-          </a>
-          <a
-            class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
-            href="index.html#tagespflege"
-          >
-            Tagespflege
-          </a>
-          <a
-            class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
-            href="index.html#beratung"
-          >
-            Allgemeine Beratung
-          </a>
-        </div>
-      </details>
-
-      <a href="index.html#team" class="chip w-full max-w-[260px] justify-center text-center">Team</a>
-      <a href="index.html#news" class="chip w-full max-w-[260px] justify-center text-center">News</a>
-      <a href="index.html#karriere" class="chip w-full max-w-[260px] justify-center text-center">Karriere</a>
-      <a href="index.html#kontakt" class="chip w-full max-w-[260px] justify-center text-center">Kontakt</a>
-    </nav>
-
-    <div class="border-t border-[var(--line)] mt-6 pt-6 w-full flex justify-center">
-      <a href="index.html#kontakt" class="btn w-full max-w-[260px] justify-center">Jetzt Beratung</a>
-    </div>
   </div>
+</header>
+
+<!-- Drawer (mobile / tablet) -->
+<div
+  id="backdrop"
+  class="backdrop fixed inset-0 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-200 z-40 lg:hidden"
+  aria-hidden="true"
+></div>
+
+<div
+  id="drawer"
+  class="offcanvas fixed top-0 right-0 h-full w-[80vw] max-w-[420px] z-50 bg-[var(--beige)] dark:bg-slate-900 shadow-xl border-l border-black/5 pt-6 px-5 pb-5 translate-x-full transition-transform duration-200 ease-out lg:hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Mobiles Menü"
+>
+  <div class="flex items-center justify-between mb-4">
+    <span class="text-xs font-semibold tracking-[0.18em] uppercase text-slate-600/80">Navigation</span>
+    <button
+      id="drawerClose"
+      class="w-9 h-9 grid place-items-center rounded-lg border border-white/40 bg-white/90 text-[var(--calm)] shadow hover:bg-white hover:shadow-md transition"
+      aria-label="Menü schließen"
+      type="button"
+    >
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M18.3 5.71 12 12.01 5.7 5.71 4.29 7.12l6.3 6.3-6.3 6.3 1.41 1.41 6.3-6.3 6.3 6.3 1.41-1.41-6.3-6.3 6.3-6.3z"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <nav class="flex flex-col items-center gap-4 text-base mt-2" aria-label="Mobiles Hauptmenü">
+    <a href="#about" class="chip w-full max-w-[260px] justify-center text-center">Über uns</a>
+
+    <details
+      class="card w-full max-w-[260px] rounded-2xl border border-[var(--early)]/40 bg-white/90 dark:bg-slate-800/90 px-3 py-2"
+    >
+      <summary class="font-medium cursor-pointer text-center text-sm tracking-wide text-[var(--calm)] list-none">
+        Angebote
+      </summary>
+      <div class="mt-3 flex flex-col gap-3">
+        <a
+          class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
+          href="#angebot-pflege"
+        >
+          Ambulanter Pflegedienst
+        </a>
+        <a
+          class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
+          href="#tagespflege"
+        >
+          Tagespflege
+        </a>
+        <a
+          class="block w-full text-center rounded-full border border-[var(--early)] bg-white px-4 py-2 text-sm font-medium text-[var(--calm)] hover:bg-[var(--mint-50)] transition"
+          href="#beratung"
+        >
+          Allgemeine Beratung
+        </a>
+      </div>
+    </details>
+
+    <a href="#team" class="chip w-full max-w-[260px] justify-center text-center">Team</a>
+    <a href="#news" class="chip w-full max-w-[260px] justify-center text-center">News</a>
+    <a href="#karriere" class="chip w-full max-w-[260px] justify-center text-center">Karriere</a>
+    <a href="#kontakt" class="chip w-full max-w-[260px] justify-center text-center">Kontakt</a>
+  </nav>
+
+  <div class="border-t border-[var(--line)] mt-6 pt-6 w-full flex justify-center">
+    <a href="#kontakt" class="btn w-full max-w-[260px] justify-center">Jetzt Beratung</a>
+  </div>
+</div>
 
   <!-- MAIN: DATENSCHUTZERKLÄRUNG -->
   <main class="pt-24 lg:pt-32 bg-[#F3EBDD] text-[#2B2D26] min-h-screen">
