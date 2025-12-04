@@ -67,12 +67,39 @@ header[role="banner"] {
   backdrop-filter: saturate(140%) blur(6px);
   background-color: color-mix(in oklab, var(--forest) 65%, transparent);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
+
 header .nav-link,
 header button,
 header a {
   color: #fff;
+}
+
+/* базовые паддинги вместо фиксированной высоты */
+header[role="banner"] .max-w-7xl {
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
+  transition: padding 0.2s ease;
+}
+
+/* Smart-shrink on scroll */
+header[role="banner"].is-compact .max-w-7xl {
+  padding-top: 0.35rem !important;
+  padding-bottom: 0.35rem !important;
+}
+
+header[role="banner"].is-compact {
+  background-color: rgba(38, 53, 44, 0.98);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+header[role="banner"].is-compact .logo-pulse {
+  transform: scale(0.9);
 }
 .nav-link {
   position: relative;
@@ -86,21 +113,50 @@ header a {
 .nav-link.active {
   color: var(--mint) !important;
 }
+/* ==========================
+   HEADER – плавное поведение
+   ========================== */
 
-/* Smart-shrink on scroll */
-header[role="banner"].is-compact .max-w-7xl {
-  padding-top: 0.35rem !important;
-  padding-bottom: 0.35rem !important;
-}
-header[role="banner"].is-compact {
-  background-color: rgba(38, 53, 44, 0.98);
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-}
-header[role="banner"].is-compact .logo-pulse {
-  transform: scale(0.9);
+/* Общий стиль шапки */
+.site-header {
+  position: sticky;      /* дублируем для надёжности */
+  top: 0;
+  z-index: 50;
+
+  /* базовый фон (перекроет tailwind bg-[#26352C]/90 при необходимости) */
+  background: rgba(38, 53, 44, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  /* плавные переходы */
+  transition:
+    background 0.25s ease,
+    box-shadow 0.25s ease,
+    padding 0.25s ease,
+    transform 0.25s ease;
 }
 
+/* Темная тема – фон шапки */
+.dark .site-header {
+  background: rgba(16, 24, 20, 0.96);
+}
+
+/* Верх страницы: шапка чуть выше и без сильной тени
+   (ограничиваем для десктопа, чтобы мобилка не прыгала) */
+@media (min-width: 1024px) {
+  .site-header {
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    box-shadow: none;
+  }
+
+  /* Когда проскролили вниз */
+  .site-header.is-scrolled {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  }
+}
 /* ===============================
    LOGO — ULTRA THIN GLOW RING
 =============================== */
