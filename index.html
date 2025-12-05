@@ -308,9 +308,9 @@
 
     <!-- Über uns -->
     <section id="about" class="section fade-in  relative" aria-labelledby="aboutTitle">
-      <div class="max-w-6xl lg:max-w-7xl mx-auto px-4">
+      <div class="max-w-6xl lg:max-w-7xl mx-auto px-4 ">
         <div class="about-card">
-          <div class="about-card-inner grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div class="about-card-inner grid md:grid-cols-2 gap-8 lg:gap-12 items-center" >
             <!-- Text -->
             <div class="about-copy">
               <p class="about-overline">Wer wir sind</p>
@@ -345,49 +345,30 @@
 
             <!-- Media (Foto / zukünftiges Video) -->
             <div class="about-media">
-              <div class="about-media-frame">
-                <img
-                  src="./img/alte-frau-und-hilfe-gehen-treppe-hoch-draussen.jpg"
-                  alt="Foto: Gemeinschaft im Lebensanker"
-                  class="about-media-img tilt-media" />
+  <div class="about-media-frame">
+    <video
+      class="about-media-video tilt-media"
+      src="./video/lebensanker-about.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      poster="./img/alte-frau-und-hilfe-gehen-treppe-hoch-draussen.jpg"
+    ></video>
 
-                <div class="about-media-overlay" aria-hidden="true"></div>
+    <div class="about-media-overlay" aria-hidden="true"></div>
+  </div>
 
-                <!-- Große Play-Icon -->
-                <button
-                  type="button"
-                  class="about-play-center js-open-about-video"
-                  data-youtube-id=""
-                  data-video-src=""
-                  aria-label="Video-Einblick ansehen">
-                  <span class="about-play-circle">
-                    <span class="about-play-inner"></span>
-                    <span class="about-play-triangle"></span>
-                  </span>
-                </button>
-
-                <!-- Kleine Pill-Button -->
-                <!--<button
-                  type="button"
-                  class="about-video-pill js-open-about-video"
-                  data-youtube-id=""
-                  data-video-src=""
-                >
-                  <span class="about-video-icon" aria-hidden="true">
-                    <span class="about-video-icon-circle"></span>
-                    <span class="about-video-icon-triangle"></span>
-                  </span>
-                  <span class="about-video-text">Video-Einblick ansehen</span>
-                </button>-->
-              </div>
-
-              <div class="about-badge">
-                <span>Ambulante Pflege · Tagespflege · Beratung</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="about-badge">
+    <span>Ambulante Pflege · Tagespflege · Beratung</span>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
     </section>
 
     <!-- MODAL VIDEO FÜR "Über uns" (динамическая, подставляем через JS) -->
@@ -437,7 +418,7 @@
             </div>
 
             <div class="angebot-cta">
-              <button class="btn btn-premium">Beratung</button>
+              <a href="#kontakt" class="btn btn-premium">Beratung</a>
             </div>
           </article>
 
@@ -459,7 +440,7 @@
             </div>
 
             <div class="angebot-cta">
-              <button class="btn btn-premium">Platz anfragen</button>
+              <a href="#kontakt" class="btn btn-premium">Platz anfragen</a>
             </div>
           </article>
 
@@ -481,7 +462,7 @@
             </div>
 
             <div class="angebot-cta">
-              <button class="btn btn-premium">Termin vereinbaren</button>
+              <a href="#kontakt" class="btn btn-premium">Termin vereinbaren</a>
             </div>
           </article>
         </div>
@@ -506,7 +487,7 @@
         </header>
 
         <!-- Premium Team Card -->
-        <div class="team-shell">
+        <div class="team-shell" >
           <div class="team-layout">
             <!-- Linke Spalte: Text -->
             <div class="team-copy">
@@ -695,7 +676,7 @@
         </header>
 
         <div class="partner-shell partner-glass relative rounded-[2rem] px-4 py-5 sm:px-6 sm:py-6 md:px-8 md:py-7">
-          <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-5">
+          <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-5 mt-8">
             <div class="flex items-center gap-3 text-xs text-[#2B2D26]/70">
               <span
                 class="inline-flex items-center gap-2 rounded-full bg-[#2B2D26] text-white px-3 py-1 text-[0.7rem] tracking-[0.22em] uppercase">
@@ -1715,7 +1696,7 @@
     </svg>
 
     <!-- Scripts -->
-    
+
     <script>
       /*
       if ("serviceWorker" in navigator) {
