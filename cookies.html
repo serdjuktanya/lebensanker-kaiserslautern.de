@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Canonical & Robots -->
+  <link rel="canonical" href="https://lebensanker-kaiserslautern.de/" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
   <!-- Favicons & App icons -->
   <link rel="icon" type="image/svg+xml" href="./img/favicons/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="./img/favicons/favicon-32.png" />
@@ -14,14 +18,15 @@
 
   <meta name="msapplication-TileColor" content="#F4EFE2" />
   <meta name="theme-color" content="#8C9478" />
-  <meta name="color-scheme" content="light" />
+  <meta name="color-scheme" content="light dark" />
 
   <!-- SEO -->
-  <title>Cookie-Hinweis | Lebensanker Pflegestützpunkt GmbH</title>
+  <title>
+    Lebensanker Pflegedienst in Kaiserslautern – Ambulanter Pflegedienst, Tagespflege & Psychiatrische Pflege
+  </title>
   <meta
     name="description"
-    content="Informationen zu Cookies und ähnlichen Technologien auf der Website der Lebensanker Pflegestützpunkt GmbH in Kaiserslautern."
-  />
+    content="Pflegedienst in Kaiserslautern: Ambulanter Pflegedienst, Tagespflege und ambulante psychiatrische Pflege. Ruhig, verlässlich, nah. Jetzt Beratung vereinbaren." />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -29,10 +34,9 @@
   <meta property="og:title" content="Lebensanker Pflegedienst in Kaiserslautern" />
   <meta
     property="og:description"
-    content="Ambulanter Pflegedienst, Tagespflege und Mehrgenerationen-Angebote in Kaiserslautern."
-  />
-  <meta property="og:url" content="https://lebensanker-kaiserslautern.de/cookies.html" />
-  <meta property="og:image" content="./img/og-cover.jpg" />
+    content="Ambulanter Pflegedienst, Tagespflege und ambulante psychiatrische Pflege. Ruhig, verlässlich, nah." />
+  <meta property="og:url" content="https://lebensanker-kaiserslautern.de/" />
+  <meta property="og:image" content="https://lebensanker-kaiserslautern.de/img/og-cover.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
@@ -41,9 +45,8 @@
   <meta name="twitter:title" content="Lebensanker Pflegedienst in Kaiserslautern" />
   <meta
     name="twitter:description"
-    content="Ambulanter Pflegedienst, Tagespflege und Mehrgenerationen-Angebote."
-  />
-  <meta name="twitter:image" content="./img/og-cover.jpg" />
+    content="Ambulanter Pflegedienst, Tagespflege und ambulante psychiatrische Pflege." />
+  <meta name="twitter:image" content="https://lebensanker-kaiserslautern.de/img/og-cover.jpg" />
 
   <!-- Preload Hero -->
   <link
@@ -51,34 +54,80 @@
     as="image"
     href="./img/pflegedienst-1.jpg"
     imagesrcset="./img/pflegedienst-1.jpg 1920w"
-    imagesizes="100vw"
-  />
+    imagesizes="100vw" />
 
   <!-- Fonts & Icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+    rel="stylesheet" />
 
-  <!-- Tailwind & Scripts -->
+  <!-- Tailwind CDN (для разработки). В продакшене лучше заменить на скомпилированный CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"
-    defer
-  ></script>
-  <script
-    defer
-    src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-  ></script>
+
+  <!-- Внешние скрипты -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js" defer></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <!-- Custom styles -->
   <link rel="stylesheet" href="./styles.css" />
+
+  <!-- Schema.org: MedicalBusiness + режим работы офиса и квартир -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Lebensanker Pflegestützpunkt GmbH",
+    "url": "https://lebensanker-kaiserslautern.de/",
+    "image": "https://lebensanker-kaiserslautern.de/img/og-cover.jpg",
+    "telephone": "+49 631 31179499",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Raiffeisenstraße 6",
+      "addressLocality": "Kaiserslautern",
+      "postalCode": "67655",
+      "addressCountry": "DE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "49.444",
+      "longitude": "7.769"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "08:00",
+        "closes": "17:00",
+        "description": "Büro / Pflegestützpunkt"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "00:00",
+        "closes": "23:59",
+        "description": "Betreutes Wohnen / Wohnungen – rund um die Uhr"
+      }
+    ],
+    "priceRange": "$$"
+  }
+  </script>
 </head>
 
 <body id="top" class="bg-[#F3EBDD] text-[#2B2D26]">

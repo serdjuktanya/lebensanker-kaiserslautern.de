@@ -2979,6 +2979,81 @@ section h2.fx-title.fx-title--sm::after {
   margin-bottom: 0.85rem;
 }
 
+.about-quote {
+  position: relative;
+  padding: 2.4rem 2.2rem;
+  border-radius: 1.8rem;
+
+  /* Премиальный нежный градиент */
+  background: linear-gradient(
+    135deg,
+    rgba(243, 235, 221, 0.96),
+    rgba(210, 199, 176, 0.94),
+    rgba(139, 148, 120, 0.88)
+  );
+
+  /* Внутренняя мягкая тень */
+  box-shadow:
+    inset 0 0 22px rgba(0, 0, 0, 0.14),
+    0 12px 34px rgba(0, 0, 0, 0.25);
+
+  /* Плавная анимация */
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.35s ease,
+    background 0.45s ease;
+}
+
+/* Тонкая премиальная рамка */
+.about-quote::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+  border: 1px solid rgba(255, 255, 255, 0.45);
+
+  /* мягкое сияние */
+  box-shadow: 0 0 22px rgba(255, 255, 255, 0.25);
+  pointer-events: none;
+}
+
+/* Hover — лёгкий premium-подсвет */
+.about-quote:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 0 22px rgba(0, 0, 0, 0.1),
+    0 18px 42px rgba(0, 0, 0, 0.34);
+}
+
+.about-quote:hover::before {
+  box-shadow: 0 0 28px rgba(255, 255, 255, 0.33);
+}
+/* 🔥 Тёмная версия градиента для тёмной темы */
+.dark .about-quote {
+  background: linear-gradient(
+    135deg,
+    rgba(38, 53, 44, 0.92),   /* тёмно-зелёный премиум */
+    rgba(30, 36, 32, 0.94),   /* глубокий тёмный тон */
+    rgba(21, 24, 22, 0.96)    /* почти чёрный, дорогой */
+  );
+  box-shadow:
+    0 18px 48px rgba(0,0,0,0.45),
+    inset 0 0 24px rgba(0,0,0,0.35);
+}
+
+.about-quote-block {
+    max-width: 820px;
+    margin: 48px auto;
+    padding: 28px 36px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.about-quote-block p {
+    margin: 0;
+}
 
 
 .about-meta {
@@ -3193,24 +3268,35 @@ section h2.fx-title.fx-title--sm::after {
   pointer-events: none;
 }
 
-/* LIGHT – бейдж под видео */
 .about-badge {
-  margin-top: 0.75rem;
-  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-  padding: 0.4rem 0.95rem;
-  border-radius: 999px;
+  padding: 10px 28px;
+  border-radius: 9999px;
 
-  background: rgba(243, 235, 221, 0.96);
-  border: 1px solid rgba(194, 154, 107, 0.45);
+  /* НОВЫЙ — премиум mint/evergreen tint */
+  background: rgba(75, 83, 56, 0.08); /* mint/evergreen tint */
+  border: 1px solid rgba(75, 83, 56, 0.18);
 
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #4b5338;
+  backdrop-filter: blur(12px);
 
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+  color: #2B2D26; /* глубокий премиум-ink */
+  font-size: 14px;
+  letter-spacing: .02em;
+  font-weight: 500;
+
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+  transition: background .3s ease, border-color .3s ease;
 }
+
+.about-badge:hover {
+  background: rgba(75, 83, 56, 0.15);
+  border-color: rgba(75, 83, 56, 0.28);
+}
+
+
 /* DARK – тот же бейдж в тёмной теме */
 .dark .about-badge {
   background: rgba(15, 23, 20, 0.98);
@@ -3747,6 +3833,18 @@ section h2.fx-title.fx-title--sm::after {
   width: 18px;
   background: var(--mint, #8b9478);
   opacity: 1;
+}
+
+.dark .team-dots button,
+.dark .team-dots .dot {
+    background-color: #8B9478 !important;   /* mint-sage */
+    opacity: 0.4;
+}
+
+.dark .team-dots button.active,
+.dark .team-dots .dot.active {
+    background-color: #C29A6B !important;   /* premium beige */
+    opacity: 1;
 }
 
 @media (hover: hover) {
@@ -6834,442 +6932,873 @@ body {
 
 
 
-/* ======================================
-   HERO – базовая сцена
-   ====================================== */
 
-.hero {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-inline: clamp(1.5rem, 6vw, 4.5rem);
-  padding-block: clamp(3.5rem, 7vh, 5.5rem);
-  min-height: clamp(440px, 70vh, 820px);
-  overflow: hidden;
+/* ==============================
+   HERO MAIN – Lebensanker Style
+   ============================== */
+
+/* Базовые цвета (примерно как на сайте) */
+:root {
+  --la-bg-light: #f3ebdd;   /* фон секции в светлой теме */
+  --la-card-light: #f9f4ec; /* карточка в светлой */
+  --la-mint: #8b9478;       /* мятно-оливковый */
+  --la-mint-dark: #4b5338;  /* темный зелёный */
+  --la-accent-gold: #c29a6b;
+  --la-text-main: #1f2933;
+  --la-text-soft: #4b5563;
 }
 
-/* уже существующая hero--v3 с фото можно оставить как было,
-   главное — чтобы .hero.hero--v3 имела background-image в светлой теме */
-
-/* Обёртка карточек */
-.hero-shell {
-  position: relative;
-  z-index: 1;
-  max-width: 72rem; /* примерно как max-w-7xl */
-  margin-inline: auto;
-
-  display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.1fr);
-  gap: clamp(2rem, 4vw, 3.5rem);
-  align-items: stretch;
+.dark {
+  --la-bg-dark: #050b09;
+  --la-card-dark: #111518;
 }
 
-/* =========================
-   HERO – левая карточка
-   ========================= */
+/* Секция hero */
 
 .hero-main {
   position: relative;
-  border-radius: 1.9rem;
-  padding: clamp(2rem, 2.6vw, 2.7rem) clamp(2.1rem, 3vw, 3rem);
-
-  background:
-    radial-gradient(circle at 0% 0%, rgba(243, 235, 221, 0.9), transparent 55%),
-    rgba(255, 255, 255, 0.9);
-
-  backdrop-filter: blur(16px) saturate(150%);
-  -webkit-backdrop-filter: blur(16px) saturate(150%);
-
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  box-shadow:
-    0 26px 70px rgba(15, 23, 20, 0.35),
-    0 0 0 1px rgba(194, 154, 107, 0.22);
-
-  color: #2b2d26;
   overflow: hidden;
+  color: #fff;
+  background: var(--la-bg-light);
+  z-index: 0;
 }
 
-/* мягкий светлый halo */
+.dark .hero-main {
+  background: radial-gradient(circle at 0 0, #0b1711 0, var(--la-bg-dark) 55%);
+}
+
+/* Высота hero */
+
+.hero-main__slideshow {
+  position: relative;
+  width: 100%;
+  padding: 2.75rem 0;
+  min-height: min(78vh, 740px);
+  display: flex;
+  align-items: center;
+}
+
+/* Слайд */
+
+.hero-main__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6%;
+
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  transform: translateY(8px) scale(1.01);
+}
+
+.hero-main__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* Фон-фото */
+
+.hero-main__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1.06);
+  animation: heroZoom 26s ease-in-out infinite;
+  z-index: 0;
+}
+
+/* свои картинки */
+.hero-main__slide--tagespflege .hero-main__bg { background-image: url("./img/pflegedienst-11.jpg"); }
+.hero-main__slide--wohnen      .hero-main__bg { background-image: url("./img/hero-7.jpg"); }
+.hero-main__slide--mehrgen     .hero-main__bg { background-image: url("./img/hero-6.jpg"); }
+
+/* Оверлей */
+
 .hero-main::before {
   content: "";
   position: absolute;
-  inset: -10%;
-  border-radius: inherit;
+  inset: 0;
+  z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 0% 0%, rgba(243, 235, 221, 0.65), transparent 60%),
-    radial-gradient(circle at 100% 0%, rgba(216, 195, 164, 0.48), transparent 65%);
-  mix-blend-mode: screen;
-  opacity: 0.28;
-}
-
-/* лёгкий hover на десктопе */
-@media (hover: hover) and (pointer: fine) {
-  .hero-main {
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-  }
-  .hero-main:hover {
-    transform: translateY(-3px);
-    box-shadow:
-      0 30px 80px rgba(15, 23, 20, 0.45),
-      0 0 0 1px rgba(194, 154, 107, 0.28);
-  }
-}
-
-/* ========== Pill над заголовком ========== */
-
-.hero-pill {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 999px;
-  border: 1px solid rgba(194, 154, 107, 0.5);
-  color: #4b5338;
-  box-shadow: 0 10px 28px rgba(15, 23, 20, 0.18);
-}
-
-.hero-pill-dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 999px;
-  background: radial-gradient(circle at 30% 30%, #facc15, #16a34a);
-  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
-}
-
-.hero-pill-text {
-  letter-spacing: 0.18em;
-}
-
-/* Заголовок и подзаголовок */
-
-.hero-title {
-  margin-top: 0.9rem;
-  font-size: clamp(2.1rem, 3.1vw, 3.1rem);
-  line-height: 1.1;
-  font-weight: 600;
-  color: #2b2d26;
-}
-
-.hero-subline {
-  margin-top: 0.9rem;
-  font-size: clamp(1rem, 1.1rem, 1.1rem);
-  line-height: 1.6;
-  color: #4b5563;
-}
-
-/* ========== Features ========== */
-
-.hero__features {
-  margin-top: 1.4rem;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 0.6rem 1.1rem;
-  font-size: 0.92rem;
-}
-
-.hero__features li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.55rem;
-}
-
-.hero__features i {
-  margin-top: 2px;
-  color: var(--mint, #8b9478);
-  font-size: 0.85rem;
-}
-
-/* ========== Buttons ========== */
-
-.hero__buttons {
-  margin-top: 1.8rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
-}
-
-.hero-buttons-main {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem;
-}
-
-.hero-note {
-  font-size: 0.78rem;
-  color: #6b7280;
-}
-
-/* ========== Meta / телефон + ProvenExpert ========== */
-
-.hero-meta {
-  margin-top: 1.6rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.9rem 1.5rem;
-  align-items: center;
-  font-size: 0.86rem;
-  color: #4b5563;
-}
-
-.hero-meta-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.hero-meta-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 999px;
-  background: #ffffff;
-  box-shadow: 0 8px 20px rgba(15, 23, 20, 0.16);
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  color: var(--mint, #8b9478);
-  font-size: 0.8rem;
-}
-
-.hero-meta-icon-star {
-  color: #facc15;
-}
-
-.hero-meta-link {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-  text-decoration-color: var(--mint, #8b9478);
-}
-
-.hero-meta-divider {
-  width: 1.8rem;
-  height: 1px;
-  background: rgba(148, 163, 184, 0.6);
-}
-
-/* =========================
-   HERO – правая карточка
-   ========================= */
-
-.hero-side-card {
-  position: relative;
-  align-self: stretch;
-  border-radius: 1.9rem;
-
-  padding: 1.8rem 1.7rem;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(243, 235, 221, 0.92), transparent 55%),
-    linear-gradient(
-      145deg,
-      rgba(243, 235, 221, 0.98),
-      rgba(216, 195, 164, 0.9),
-      rgba(139, 148, 120, 0.78)
+    linear-gradient(to right,
+      rgba(0, 0, 0, 0.18),
+      rgba(0, 0, 0, 0.05),
+      rgba(0, 0, 0, 0)
     );
-
-  box-shadow:
-    0 28px 70px rgba(15, 23, 20, 0.38),
-    0 0 0 1px rgba(194, 154, 107, 0.35);
-
-  color: #2b2d26;
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-}
-
-/* только на крупных экранах оставляем правую карточку */
-@media (max-width: 1023px) {
-  .hero-shell {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .hero-side-card {
-    display: none;
-  }
-}
-
-.hero-side-label {
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(43, 45, 38, 0.82);
-}
-
-.hero-side-title {
-  font-size: 1.02rem;
-  font-weight: 600;
-  line-height: 1.4;
-  color: #2b2d26;
-}
-
-.hero-side-stats {
-  display: grid;
-  gap: 0.7rem;
-  font-size: 0.86rem;
-}
-
-.hero-side-stats dt {
-  font-size: 0.76rem;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: rgba(55, 65, 81, 0.9);
-}
-
-.hero-side-stats dd {
-  font-weight: 500;
-  color: #111827;
-}
-
-.hero-side-badge {
-  margin-top: 0.6rem;
-  padding: 0.65rem 0.85rem;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  background: rgba(43, 45, 38, 0.96);
-  color: #f9fafb;
-  font-size: 0.78rem;
-  box-shadow: 0 14px 32px rgba(15, 23, 20, 0.6);
-}
-
-.hero-side-badge-dot {
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 999px;
-  background: radial-gradient(circle at 30% 30%, #22c55e, #16a34a);
-  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.38);
-}
-
-/* =========================
-   HERO – Mobile tweaks
-   ========================= */
-
-@media (max-width: 768px) {
-  .hero {
-    padding-inline: 1rem;
-    padding-block: 3rem;
-    min-height: 72vh;
-  }
-
-  .hero-main {
-    padding: 1.7rem 1.5rem;
-  }
-
-  .hero-title {
-    text-align: center;
-  }
-  .hero-subline {
-    text-align: center;
-  }
-
-  .hero__features {
-    grid-template-columns: 1fr;
-  }
-
-  .hero__buttons {
-    align-items: center;
-    text-align: center;
-  }
-  .hero-buttons-main {
-    justify-content: center;
-  }
-  .hero-meta {
-    justify-content: center;
-    text-align: center;
-  }
-}
-
-/* =========================
-   DARK MODE – HERO
-   ========================= */
-
-/* сам фон hero в тёмной теме ты уже настраивал через .dark .hero.hero--v3 –
-   оставь как есть, а ниже только карточки */
-
-.dark .hero-main {
-  background:
-    radial-gradient(circle at 0% 0%, rgba(47, 76, 53, 0.6), transparent 60%),
-    linear-gradient(
-      140deg,
-      rgba(12, 18, 15, 0.98),
-      rgba(20, 31, 23, 0.96),
-      rgba(32, 49, 39, 0.98)
-    );
-  border-color: rgba(127, 181, 138, 0.32);
-  box-shadow:
-    0 30px 80px rgba(0, 0, 0, 0.9),
-    0 0 0 1px rgba(127, 181, 138, 0.22);
-  color: #e5e7eb;
 }
 
 .dark .hero-main::before {
   background:
-    radial-gradient(circle at 0% 0%, rgba(127, 181, 138, 0.55), transparent 65%),
-    radial-gradient(circle at 100% 0%, rgba(194, 154, 107, 0.42), transparent 65%);
-  opacity: 0.28;
-}
-
-.dark .hero-title {
-  color: #f9fafb;
-}
-.dark .hero-subline {
-  color: #d1d5db;
-}
-.dark .hero__features li span {
-  color: #e5e7eb;
-}
-.dark .hero__features i {
-  color: var(--mint, #a3e1b5);
-}
-
-.dark .hero-pill {
-  background: rgba(15, 23, 20, 0.96);
-  border-color: rgba(127, 181, 138, 0.55);
-  color: #e5e7eb;
-}
-
-.dark .hero-meta-icon {
-  background: rgba(15, 23, 20, 0.98);
-  border-color: rgba(148, 163, 184, 0.55);
-  color: var(--mint, #a3e1b5);
-}
-
-.dark .hero-meta-link {
-  color: #e5f4ea;
-  text-decoration-color: rgba(167, 243, 208, 0.85);
-}
-
-.dark .hero-meta-divider {
-  background: rgba(148, 163, 184, 0.6);
-}
-
-/* правая карточка в тёмной теме */
-
-.dark .hero-side-card {
-  background:
-    radial-gradient(circle at 0% 0%, rgba(47, 76, 53, 0.7), transparent 60%),
-    linear-gradient(
-      145deg,
-      rgba(10, 16, 13, 0.98),
-      rgba(20, 31, 23, 0.96),
-      rgba(32, 49, 39, 0.98)
+    linear-gradient(to right,
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.25),
+      rgba(0, 0, 0, 0.05)
     );
-  border: 1px solid rgba(127, 181, 138, 0.32);
+}
+
+/* Карточка hero – светлая тема */
+
+.hero-main__content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: 640px;
+
+  /* вместо центрирования через auto: */
+  margin-left: auto;
+  margin-right: clamp(4%, 6vw, 9%); /* регулирует, насколько вправо */
+
+  padding: 2.1rem 2.4rem 2rem;
+  border-radius: 26px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  background: var(--la-card-light);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   box-shadow:
-    0 34px 90px rgba(0, 0, 0, 0.95),
-    0 0 0 1px rgba(127, 181, 138, 0.25);
+    0 24px 40px rgba(15, 23, 42, 0.16),
+    0 0 0 1px rgba(209, 213, 219, 0.4);
+
+  color: var(--la-text-main);
+}
+/* В тёмной теме карточка тёмная, но читаемая */
+
+.dark .hero-main__content {
+  background: radial-gradient(circle at 0 0, #171f17 0, var(--la-card-dark) 60%);
+  border-color: rgba(148, 163, 184, 0.7);
+  box-shadow:
+    0 26px 46px rgba(0, 0, 0, 0.75),
+    0 0 0 1px rgba(15, 23, 42, 0.85);
+  color: #f9fafb;
+}
+
+/* чтобы .dark глобальные стили не убивали цвета */
+.hero-main__content h1,
+.hero-main__content h2,
+.hero-main__content p,
+.hero-main__content li {
+  color: inherit !important;
+}
+
+/* Текст */
+
+.hero-main__kicker {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--la-mint-dark);
+  opacity: 0.85;
+}
+
+.dark .hero-main__kicker {
+  color: #d1fae5;
+}
+
+.hero-main__title {
+  font-size: clamp(1.6rem, 2.4vw, 2.2rem); /* ~26–32 px */
+  font-weight: 700;
+  line-height: 1.17;
+}
+
+.hero-main__subtitle {
+  font-size: clamp(1rem, 1.25vw, 1.15rem); /* ~16–18 px */
+  line-height: 1.55;
+}
+.dark .hero-main__title {
+  color: #f9fafb;
+}
+
+.hero-main__subtitle {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--la-text-soft);
+  opacity: 0.95;
+}
+
+.dark .hero-main__subtitle {
   color: #e5e7eb;
 }
 
-.dark .hero-side-title {
+/* Features-пилюли */
+
+.hero-main__features {
+  list-style: none;
+  padding: 0;
+  margin: 0.6rem 0 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.7rem;
+  font-size: 0.9rem;
+}
+
+.hero-main__features li {
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid rgba(209, 213, 219, 0.9);
+  color: var(--la-text-main);
+  box-shadow: 0 5px 12px rgba(148, 163, 184, 0.25);
+}
+
+.dark .hero-main__features li {
+  background: rgba(15, 23, 20, 0.95);
+  border-color: rgba(148, 163, 184, 0.8);
+  color: #f3f4f6;
+}
+
+/* Кнопки */
+
+.hero-main__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.6rem;
+}
+
+.hero-main__btn {
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+  border: 1px solid transparent;
+}
+
+/* Основная (золотая) */
+
+.hero-main__btn--primary {
+  background: linear-gradient(135deg, var(--la-accent-gold), #b0804a);
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(178, 120, 64, 0.45);
+}
+
+.hero-main__btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 32px rgba(178, 120, 64, 0.65);
+}
+
+/* Секундари (mint-outline) */
+
+.hero-main__btn--ghost {
+  background: transparent;
+  color: var(--la-mint-dark);
+  border-color: rgba(148, 163, 184, 0.8);
+}
+
+.hero-main__btn--ghost:hover {
+  background: rgba(139, 148, 120, 0.08);
+}
+
+/* Линк-кнопка (Mehr über …) */
+
+.hero-main__btn--link {
+  background: transparent;
+  border: none;
+  padding-inline: 0;
+  color: var(--la-mint-dark);
+  box-shadow: none;
+}
+
+.hero-main__btn--link::after {
+  content: "↗";
+  margin-left: 0.35rem;
+  font-size: 0.85em;
+}
+
+.hero-main__btn--link:hover {
+  color: #2f3b28;
+}
+
+.dark .hero-main__btn--link {
+  color: #a5f3fc;
+}
+.dark .hero-main__btn--link:hover {
+  color: #e0f2fe;
+}
+
+/* Dots */
+
+.hero-main__dots {
+  position: absolute;
+  bottom: 2.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.6rem;
+  z-index: 3;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.hero-main__dot {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  padding: 0.32rem 0.85rem;
+  font-size: 0.7rem;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--la-text-main);
+  transition: 0.2s ease;
+}
+
+.hero-main__dot.is-active {
+  background: var(--la-accent-gold);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(178, 120, 64, 0.6);
+}
+
+.dark .hero-main__dot {
+  background: rgba(15, 23, 20, 0.9);
   color: #f9fafb;
 }
-.dark .hero-side-stats dt {
-  color: rgba(209, 213, 219, 0.92);
+
+/* Meta-полоса снизу */
+
+/* Светлая тема — мягкая, премиальная полоса */
+.hero-main__meta {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  align-items: center;
+  padding: 1.5rem 6% 1.8rem;
+
+  background: rgba(243, 237, 221, 0.72); /* кремовый полупрозрачный */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  border-top: 1px solid rgba(203, 190, 170, 0.55);
+  border-bottom: 1px solid rgba(203, 190, 170, 0.45);
+
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.08) inset,
+    0 -6px 18px rgba(0, 0, 0, 0.04) inset;
+
+  color: #2B2D26; /* спокойный глубокий тёмный цвет */
+  font-size: 0.92rem;
 }
-.dark .hero-side-stats dd {
+
+.dark .hero-main__meta {
+  background: rgba(18, 24, 22, 0.55); /* глубокий графит + прозрачность */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.4) inset,
+    0 -6px 12px rgba(255, 255, 255, 0.04) inset;
+
+  color: #F5F6F4; /* мягкий светлый текст, НЕ белый */
+}
+
+.hero-main__meta-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.hero-main__meta-link {
+  color: var(--la-accent-gold);
+  text-decoration: underline;
+}
+
+/* ==============================
+   Адаптив
+   ============================== */
+
+@media (max-width: 900px) {
+  .hero-main__slideshow {
+    padding: 2.3rem 0 2rem;
+    min-height: auto;
+  }
+
+  .hero-main__slide {
+    padding: 0 1.5rem;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .hero-main__content {
+    margin: 0;
+    max-width: 100%;
+    padding: 1.7rem 1.5rem 1.6rem;
+  }
+
+  .hero-main__features {
+    flex-direction: column;
+  }
+
+  .hero-main__meta {
+    font-size: 0.85rem;
+    gap: 0.9rem;
+  }
+}
+
+/* анимация фона */
+@keyframes heroZoom {
+  0%   { transform: scale(1.05); }
+  50%  { transform: scale(1.09); }
+  100% { transform: scale(1.05); }
+}
+
+.hero-main__dots {
+  display: none !important;
+}
+
+.hero-main__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.hero-main__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+/* =========================
+   АДАПТИВ HERO
+   ========================= */
+
+/* 1200px и ниже – чуть компактнее */
+@media (max-width: 1200px) {
+  .hero-main__slideshow {
+    padding: 2.4rem 0;
+    min-height: min(72vh, 720px);
+  }
+
+  .hero-main__content {
+    max-width: 500px;
+    padding: 1.8rem 2rem;
+    margin-right: 5%;
+  }
+
+  .hero-main__title {
+    font-size: clamp(1.6rem, 2.1vw, 2.1rem);
+  }
+
+  .hero-main__subtitle {
+    font-size: 0.98rem;
+  }
+
+  .hero-main__features li {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* 1024px и ниже – ноутбуки / планшеты в альбомной ориентации */
+@media (max-width: 1024px) {
+  .hero-main__slideshow {
+    padding: 2.2rem 0;
+    min-height: min(70vh, 680px);
+  }
+
+  .hero-main__slide {
+    padding: 0 4%;
+  }
+
+  .hero-main__content {
+    max-width: 460px;
+    margin-right: 4%;
+    padding: 1.7rem 1.8rem;
+  }
+
+  .hero-main__title {
+    font-size: clamp(1.55rem, 2.2vw, 2rem);
+  }
+
+  .hero-main__subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero-main__meta {
+    font-size: 0.85rem;
+    padding-inline: 4%;
+  }
+
+  .hero-main__meta-separator {
+    display: none;
+  }
+}
+
+/* 768px и ниже – классические планшеты / маленькие ноуты */
+@media (max-width: 768px) {
+  .hero-main__slideshow {
+    padding: 3.2rem 0 2.4rem;
+    min-height: 78vh;
+  }
+
+  .hero-main__slide {
+    padding: 3.2rem 1.6rem 2.2rem;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .hero-main__content {
+    max-width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 1.6rem 1.4rem;
+    border-radius: 24px;
+  }
+
+  .hero-main__title {
+    font-size: 1.55rem;
+  }
+
+  .hero-main__subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero-main__features {
+    gap: 0.4rem;
+    font-size: 0.88rem;
+  }
+
+  .hero-main__actions {
+    gap: 0.6rem;
+  }
+
+  .hero-main__dots {
+    bottom: 1.4rem;
+  }
+}
+
+/* 480px и ниже – телефоны */
+@media (max-width: 480px) {
+  .hero-main__slideshow {
+    padding: 2.8rem 0 2.1rem;
+    min-height: 82vh;
+  }
+
+  .hero-main__slide {
+    padding: 3rem 1.1rem 2rem;
+  }
+
+  .hero-main__content {
+    padding: 1.4rem 1.15rem;
+    border-radius: 22px;
+  }
+
+  .hero-main__kicker {
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+  }
+
+  .hero-main__title {
+    font-size: 1.4rem;
+    line-height: 1.25;
+  }
+
+  .hero-main__subtitle {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .hero-main__features li {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .hero-main__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-main__btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-main__meta {
+    padding: 1rem 1.2rem 1.3rem;
+    font-size: 0.8rem;
+    gap: 0.8rem;
+  }
+}
+/* Экраны низкие по высоте — 600–720px */
+@media (max-height: 720px) and (min-width: 900px) {
+  .hero-main__slideshow {
+    min-height: 70vh;
+    padding: 1.2rem 0 1.5rem;
+  }
+
+  /* Контентный блок — чуть левее и компактнее */
+  .hero-main__content {
+    max-width: 460px;
+    margin-right: 4%;       /* было 7–9% — слишком много */
+    margin-top: 1.2rem;
+    padding: 1.4rem 1.6rem;
+  }
+
+  .hero-main__title {
+    font-size: 1.45rem;
+    line-height: 1.25;
+  }
+
+  .hero-main__subtitle {
+    font-size: 0.95rem;
+  }
+
+  .hero-main__features li {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.7rem;
+  }
+
+  .hero-main__btn {
+    padding: 0.65rem 1.1rem;
+    font-size: 0.85rem;
+  }
+
+  /* Нижняя полоса — меньше высоты */
+  .hero-main__meta {
+    padding: 1rem 4%;
+    font-size: 0.8rem;
+  }
+}
+
+/* Низкие широкие экраны (Nest Hub и похожие) */
+@media (max-height: 650px) && (min-width: 900px) {
+
+  /* главный отступ после героя, чтобы не «съедать» верх следующей секции */
+  .hero-main {
+    padding-bottom: 1.6rem;      /* 🔥 именно это даёт пространство перед "Über uns" / Termin */
+  }
+
+  .hero-main__slideshow {
+    min-height: 360px;           /* герой чуть ниже */
+    padding: 1.1rem 0 0.3rem;    /* меньше воздуха сверху/снизу */
+    align-items: center;
+  }
+
+  .hero-main__content {
+    max-width: 440px;
+    padding: 1.2rem 1.5rem;
+    margin-right: 4%;
+  }
+
+  .hero-main__title {
+    font-size: 1.25rem;
+    line-height: 1.25;
+  }
+
+  .hero-main__subtitle {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .hero-main__features li {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  .hero-main__btn {
+    padding: 0.55rem 1.05rem;
+    font-size: 0.84rem;
+  }
+
+  .hero-main__meta {
+    padding: 0.45rem 6% 0.6rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Низкие широкие экраны: типа Nest Hub 1024×600 */
+@media (max-width: 1100px) and (max-height: 700px) {
+
+  /* герой в целом чуть компактнее и даём место снизу */
+  .hero-main {
+    padding-bottom: 1rem;
+  }
+
+  .hero-main__slideshow {
+    min-height: 430px;
+    padding: 1rem 0 0.3rem;
+    align-items: center;
+  }
+
+  .hero-main__content {
+    max-width: 430px;
+    padding: 1.2rem 1.5rem;
+    margin-right: 3%;
+  }
+
+  .hero-main__kicker {
+    font-size: 0.65rem;
+    letter-spacing: 0.13em;
+  }
+
+  .hero-main__title {
+    font-size: 1.35rem;
+    line-height: 1.25;
+    margin-bottom: 0.35rem;
+  }
+
+  .hero-main__subtitle {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.55rem;
+  }
+
+  .hero-main__features {
+    gap: 0.35rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .hero-main__features li {
+    font-size: 0.84rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  .hero-main__btn {
+    padding: 0.55rem 1.05rem;
+    font-size: 0.84rem;
+  }
+
+  .hero-main__meta {
+    padding: 0.55rem 6% 0.7rem;
+    font-size: 0.8rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* Маленький чип «Standort & Erreichbarkeit» уже есть – чуть усилим */
+#kontakt .kontakt-card--info .inline-flex.bg-white/70 {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
+}
+
+.dark #kontakt .kontakt-card--info .inline-flex.bg-white/70 {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(148, 163, 184, 0.5);
   color: #e5e7eb;
 }
-.dark .hero-side-badge {
-  background: rgba(15, 23, 20, 0.98);
+
+/* MAP CARD – сделать аккуратной, премиальной */
+#kontakt .map-card {
+  border-radius: 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.92),
+    rgba(243, 235, 221, 0.9)
+  );
+  box-shadow:
+    0 20px 45px rgba(15, 23, 42, 0.22),
+    0 0 0 1px rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+}
+
+.dark #kontakt .map-card {
+  border-color: rgba(148, 163, 184, 0.55);
+  background: radial-gradient(circle at 0 0, #111827, #020617);
+  box-shadow:
+    0 22px 55px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(15, 23, 42, 0.85);
+}
+
+/* iframe карты без серых рамок */
+#kontakt .map-card iframe {
+  display: block;
+  width: 100%;
+  border: none;
+}
+
+/* Кнопки-маршруты внизу карты – выровнять и сделать чуть более премиум */
+#kontakt .map-card + .mt-4 .chip {
+  font-size: 0.82rem;
+  border-radius: 999px;
+}
+
+/* Текст Einsatzgebiet */
+#kontakt .kontakt-card--info .mt-5 {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.9rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.dark #kontakt .kontakt-card--info .mt-5 {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(148, 163, 184, 0.6);
+}
+
+
+
+/* Чипы Ambulant / Tagespflege / Beratung над формой – больше «badge» */
+#kontakt .kontakt-card--form .mb-3 span {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 999px;
+  border-color: rgba(226, 232, 240, 0.9);
+}
+
+.dark #kontakt .kontakt-card--form .mb-3 span {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(148, 163, 184, 0.7);
+  color: #e5e7eb;
+}
+
+/* Кнопка "Absenden" уже .btn – чуть выровняем в этой секции */
+#kontakt .kontakt-card--form .btn {
+  border-radius: 999px;
+  padding-inline: 1.6rem;
+}
+
+/* Маленький текст под формой */
+#kontakt .kontakt-card--form p.text-xs {
+  color: #6b7280;
+}
+
+.dark #kontakt .kontakt-card--form p.text-xs {
+  color: #9ca3af;
+}
+
+/* ===========================
+   ADAPTIV FÜR KONTAKT
+   =========================== */
+
+@media (max-width: 1024px) {
+ 
+
+  #kontakt .map-card {
+    margin-top: 1.1rem;
+  }
+
+  #kontakt .kontakt-card--info .mt-5 {
+    margin-top: 0.9rem;
+  }
 }

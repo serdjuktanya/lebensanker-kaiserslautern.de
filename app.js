@@ -1249,3 +1249,74 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
+
+/* =================     HERO SLIDER   =      ============== */
+
+(() => {
+  const hero = document.querySelector(".hero-main");
+  if (!hero) return;
+
+  const slides = Array.from(hero.querySelectorAll(".hero-main__slide"));
+  if (!slides.length) return;
+
+  let index = 0;
+  const INTERVAL = 5000; // мс, можно 5000–9000
+  let timer = null;
+
+  // показываем нужный слайд
+  function setActive(i) {
+    index = (i + slides.length) % slides.length;
+
+    slides.forEach((sl, n) => {
+      sl.classList.toggle("is-active", n === index);
+    });
+  }
+
+  function next() {
+    setActive(index + 1);
+  }
+
+  function start() {
+    stop();
+    timer = setInterval(() => {
+      if (document.visibilityState !== "visible") return;
+      next();
+    }, INTERVAL);
+  }
+
+  function stop() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  // если у первого слайда забыт is-active – ставим
+  const hasActive = slides.some(sl => sl.classList.contains("is-active"));
+  if (!hasActive) {
+    slides[0].classList.add("is-active");
+    index = 0;
+  } else {
+    index = slides.findIndex(sl => sl.classList.contains("is-active"));
+  }
+
+  // Пауза при наведении
+  hero.addEventListener("mouseenter", stop);
+  hero.addEventListener("mouseleave", start);
+
+  // Пауза при фокусе внутри Hero
+  hero.addEventListener("focusin", stop);
+  hero.addEventListener("focusout", start);
+
+  // Пауза, если вкладка неактивна
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") stop();
+    else start();
+  });
+
+  // Старт
+  start();
+})();
+
